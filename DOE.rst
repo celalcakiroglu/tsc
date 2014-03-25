@@ -6,13 +6,17 @@ In the scope  of this project  a total of 8  full scale  experiments (:ref:`test
 
 .. _testMat:
 .. csv-table:: **Test matrix**
-   :header: "Test number", "Specimen length", "Internal pressure (% SMYS)"
-   :widths: 10, 10, 30	
+   :header: "Test number", "Specimen length", "Internal pressure (% SMYS)", "Flaw length [mm]", "Flaw depth [mm]"
+   :widths: 10, 10, 15, 15, 15 	
 
-   "1", 72", "On a stick!"
-   "2", 72", "If we took the bones out, it wouldn't be
-   crunchy, now would it?"
-   "3", 1.99, "On a stick!"
+   "1", 72", "80", "50", "1.7"
+   "2", 72", "30", "50", "1.7"
+   "3", 72", "80", "50", "3.4"
+   "4", 72", "30", "50", "3.4"
+   "5", 48", "80", "150", "1.7"
+   "6", 48", "30", "150", "1.7"
+   "7", 48", "80", "150", "3.4"
+   "8", 48", "30", "150", "3.4"
 
 End Plate Design
 -----------------------------
