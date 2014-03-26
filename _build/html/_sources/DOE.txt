@@ -7,7 +7,7 @@ In the scope  of this project  a total of 8  full scale  experiments (:ref:`test
 .. _testMat:
 .. csv-table:: **Test matrix**
    :header: "Test number", "Specimen length", "Internal pressure (% SMYS)", "Flaw length [mm]", "Flaw depth [mm]"
-   :widths: 5, 5, 10, 5, 5	
+   :widths: 5, 5, 7, 5, 5	
 
    "1", 72", "80", "50", "1.7"
    "2", 72", "30", "50", "1.7"
