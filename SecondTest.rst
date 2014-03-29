@@ -15,8 +15,12 @@ Second Tensile Strain Experiment
 | Specimen length  |   72"                  |
 +------------------+------------------------+
 
-.. image:: Pipe2.jpg
+.. _Specimen2:
+.. figure:: Pipe2.jpg
    :height: 2304px
    :width: 1296 px
    :scale: 25 %
    :align: center
+
+   Second full scale specimen.
+The focus of the second tensile strain experiment is the effect of internal pressure on the tensile strain capacity of the pipe.
