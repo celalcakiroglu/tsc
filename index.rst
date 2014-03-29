@@ -4,7 +4,7 @@
    contain the root `toctree` directive.
 
 Welcome to the Tensile Strain Capacity documentation!
-===================================================
+======================================================
 
 Contents:
 
@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    DOE.rst
+   SecondTest.rst
 
 Indices and tables
 ==================
