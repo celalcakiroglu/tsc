@@ -19,3 +19,4 @@ Second Tensile Strain Experiment
    :height: 2304px
    :width: 1296 px
    :scale: 25 %
+   :align: center
