@@ -15,7 +15,7 @@ Second Tensile Strain Experiment
 | Specimen length  |   72"                  |
 +------------------+------------------------+
 
-.. figure:: Pipe2.jpg
+.. image:: Pipe2.jpg
    :height: 2304px
    :width: 1296 px
    :scale: 25 %
