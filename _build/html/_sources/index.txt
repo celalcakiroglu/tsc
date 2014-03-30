@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   ColdBend.rst
    DOE.rst
    SecondTest.rst
 
