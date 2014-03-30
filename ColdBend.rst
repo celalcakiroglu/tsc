@@ -1,6 +1,6 @@
 Tension Side Fracture of Cold Bends
 ===================================================
-Cold bending is applied in order to change the direction of a pipeline in a horizontal or vertical plane. This can be necessary to conform with the terrain conditions. Cold bending is done on site using cold bending machines. In the process of cold bending the compression side (intrados) of the pipe can be loaded beyond the yield stress in compression whereas the tension side (extrados) can be loaded beyond yield stress in tension. As a result the intrados is weakened and more likely to fail after cold bending. However, experimental studies carried out by Sen et al demonstrated that failure of a cold bend at the tension side can occur earlier than compressive failure under certain loading configurations (:ref:`Sen`).
+Cold bending is applied in order to change the direction of a pipeline in a horizontal or vertical plane. This can be necessary to conform with the terrain conditions. Cold bending is done on site using cold bending machines. In the process of cold bending the compression side (intrados) of the pipe can be loaded beyond the yield stress in compression whereas the tension side (extrados) can be loaded beyond yield stress in tension. As a result the intrados is weakened and more likely to fail after cold bending. However, experimental studies carried out by Sen et al demonstrated that failure of a cold bend at the tension side can occur earlier than compressive failure under certain loading configurations (Sen_).
 
 **References**
 

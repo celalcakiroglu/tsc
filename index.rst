@@ -9,7 +9,7 @@ Welcome to the Tensile Strain Capacity documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
 
    ColdBend.rst
    DOE.rst
