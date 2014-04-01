@@ -25,4 +25,17 @@ Second Tensile Strain Experiment
    Second full scale specimen.
 The focus of the second tensile strain experiment is the effect of internal pressure on the tensile strain capacity of the pipe. The tensile strain that the pipe experiences due to internal pressure and applied tensile displacement is measured using strain gauges and digital image correlation. The white painted and speckled areas in Figure(:ref:`Specimen2`) are the areas where the strain field is captured throughout the experiment using digital image correlation. The white area in the middle of the pipe is where the girth weld and the heat affected zone (HAZ) are located. The flaw is cut in the HAZ within 5 mm from the girth weld. 
 
-In addition to digital image correlation, 19 strain gauges are mounted on different parts of the pipe surface. Since the cameras are not high enough to take pictures of the upper parts of the pipe, in these parts the strain values are measured using strain gauges. Also at the mid-sections of both upper and lower parts of the pipe two rings of strain gauges are mounted in longitudinal and hoop directions. 
+In addition to digital image correlation, 19 strain gauges are mounted on different parts of the pipe surface. Since the cameras are not high enough to take pictures of the upper parts of the pipe, in these parts the strain values are measured using strain gauges(:ref:`Remote Strain Gauges`). Also at the mid-sections of both upper and lower parts of the pipe two rings of strain gauges are mounted in longitudinal and hoop directions. 
+
+.. _Remote Strain Gauges:
+.. figure:: NW2_RemoteGauges.jpg
+   :height: 418px
+   :width: 743 px
+   :scale: 85 %
+   :align: center
+
+   Remote strain at the upper side
+The strain gauge measurements in Figure(:ref:`Remote Strain Gauges`) were able to record longitudinal strain values up to about 3.5% longitudinal strain. In this Figure the strain gauges aligned with the flaw, 90° away from the flaw, 180° away from the flaw and 270° away from the flaw are plotted with blue, brown, green and purple colours respectively. The dropping of the measurements below zero indicates the failure of the strain gauge during the test. Therefore Figure(:ref:`Remote Strain Gauges`) gives only partial information about the development of the remote strain.
+
+
+
