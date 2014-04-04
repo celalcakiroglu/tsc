@@ -46,5 +46,29 @@ Figure(:ref:`Remote Strain Gauges`) shows strain measurements of the gauges one 
 
    Middle strain at the top side
 
+.. _Middle Strain Gauges Bottom:
+.. figure:: NW2_BottomSideMiddleGauges.jpg
+   :height: 416px
+   :width: 769 px
+   :scale: 85 %
+   :align: center
 
+   Middle strain at the bottom side
 
+.. _HAZ Image Cor:
+.. figure:: NW2_HAZ_Cor.jpg
+   :height: 476px
+   :width: 636 px
+   :scale: 85 %
+   :align: center
+
+    HAZ image correlation for tensile strain
+
+.. _Remote Image Cor:
+.. figure:: NW2_RemoteStrain_Cor.jpg
+   :height: 476px
+   :width: 636 px
+   :scale: 85 %
+   :align: center
+
+    Remote strain image correlation
