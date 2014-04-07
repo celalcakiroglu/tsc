@@ -73,7 +73,7 @@ Figure(:ref:`Remote Strain Gauges`) shows strain measurements of the gauges one 
 
    Remote strain image correlation
 
-In the diagrams of Figure(:ref:`Remote Strain Gauges`), Figure(:ref:`Middle Strain Gauges Top`) and Figure(:ref:`Middle Strain Gauges Bottom`) the notation used to label the strain gauges is explained on an example in Table
+In the diagrams of Figure(:ref:`Remote Strain Gauges`), Figure(:ref:`Middle Strain Gauges Top`) and Figure(:ref:`Middle Strain Gauges Bottom`) the notation used to label the strain gauges is explained on an example in the table below.
 
 +------------+--------------------------------------------------------------------------------------+
 | SG_A_0_1/2_A                                                                                      |
@@ -86,5 +86,5 @@ In the diagrams of Figure(:ref:`Remote Strain Gauges`), Figure(:ref:`Middle Stra
 +------------+--------------------------------------------------------------------------------------+
 | 1/2        | 1/2 of the specimen half length away from the end plate                              |
 +------------+--------------------------------------------------------------------------------------+
-| Second A   | Gauge is in the axial direction                                                      |
+| Second A   | Gauge is in the axial direction (Here H would indicate hoop direction)               |
 +------------+--------------------------------------------------------------------------------------+
