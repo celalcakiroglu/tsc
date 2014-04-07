@@ -75,13 +75,16 @@ Figure(:ref:`Remote Strain Gauges`) shows strain measurements of the gauges one 
 
 In the diagrams of Figure(:ref:`Remote Strain Gauges`), Figure(:ref:`Middle Strain Gauges Top`) and Figure(:ref:`Middle Strain Gauges Bottom`) the notation used to label the strain gauges is explained on an example in Table
 
-===========  ================================================================================
-   SG_A_0_1/2_A   
----------------------------------------------------------------------------------------------
-===========  ================================================================================
-SG            Strain gauge  
-First A       Bottom side of the pipe 
-0             0 degrees away from the girth weld flaw center in the circumferential direction   
-1/2           1/2 of the specimen half length away from the end plate  
-Second A      Gauge is in the axial direction
-===========  ================================================================================
++------------+--------------------------------------------------------------------------------------+
+| SG_A_0_1/2_A                                                                                      |
++============+======================================================================================+
+| SG         | Strain gauge                                                                         |
++------------+--------------------------------------------------------------------------------------+
+| First A    | Bottom side of the pipe                                                              |
++------------+--------------------------------------------------------------------------------------+
+| 0          | 0 degrees away from the girth weld flaw center in the circumferential direction      |
++------------+--------------------------------------------------------------------------------------+
+| 1/2        | 1/2 of the specimen half length away from the end plate                              |
++------------+--------------------------------------------------------------------------------------+
+| Second A   | Gauge is in the axial direction                                                      |
++------------+--------------------------------------------------------------------------------------+
