@@ -105,7 +105,7 @@ In order to measure the deflection of the pipe axis 5 cable transducers are conn
 
    Pipe axis deflections
 
-   Figure(:ref:`Deflections`) shows the development of the deflections with respect to applied displacement. In this plot the displacement axis is limited to 60 mm since beyond that point no measurements could be made. The reason for that is the failure of the epoxy glue between the nut and the pipe surface when the tensile force on the soldering wire increases. The notation used to label the cable transducers is explained on an example in the table below.
+ Figure(:ref:`Deflections`) shows the development of the deflections with respect to applied displacement. In this plot the displacement axis is limited to 60 mm since beyond that point no measurements could be made. The reason for that is the failure of the epoxy glue between the nut and the pipe surface when the tensile force on the soldering wire increases. The notation used to label the cable transducers is explained on an example in the table below.
 
 +------------+--------------------------------------------------------------------------------------+
 | Cable A-1/3                                                                                       |
