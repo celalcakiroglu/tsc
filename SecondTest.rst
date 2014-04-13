@@ -97,7 +97,7 @@ Deflection of the Pipe Axis
 In order to measure the deflection of the pipe axis 5 cable transducers are connected on the pipe surface. For this purpose a steel beam is placed in front of the pipe on the opposite side of the flaw. Cable transducers are connected to the beam using magnets. On the pipe side opposite to every cable transducer a nut is glued on the pipe surface using epoxy. Afterwards an eye bolt is screwed into each nut. The eye bolts are connected to the cable transducers using soldering wire.
 
 .. _Deflections:
-.. figure:: NW2_CableTrans.png
+.. figure:: NW2_CableTrans.jpg
    :height: 416px
    :width: 769 px
    :scale: 85 %
