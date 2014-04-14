@@ -27,6 +27,10 @@ The focus of the second tensile strain experiment is the effect of internal pres
 
 In addition to digital image correlation, 19 strain gauges are mounted on different parts of the pipe surface. Since the cameras are not high enough to take pictures of the upper parts of the pipe, in these parts the strain values are measured using strain gauges(:ref:`Remote Strain Gauges`). Also at the mid-sections of both upper and lower parts of the pipe two rings of strain gauges are mounted in longitudinal and hoop directions. 
 
+.. container:: clearer
+
+    .. image :: spacer.png
+
 Strain measurements
 -----------------------------------
 
