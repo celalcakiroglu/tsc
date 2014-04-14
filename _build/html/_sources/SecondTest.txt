@@ -126,3 +126,10 @@ In Figure(:ref:`Deflections`) the measurements of the cable transducer on the bo
    :scale: 85 %
    :align: left
 
+.. _CableA2_3Filtered:
+.. figure:: NW2_CableA2_3_filtered.png
+   :height: 615px
+   :width: 815 px
+   :scale: 85 %
+   :align: right 
+
