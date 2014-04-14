@@ -119,3 +119,10 @@ Figure(:ref:`Deflections`) shows the development of the deflections with respect
 
 In Figure(:ref:`Deflections`) the measurements of the cable transducer on the bottom side 2/3 of the specimen half length away from the end plate appear to be noisy. In order to eliminate this noise, the measurements of this tranducer are filtered using an exponentially weighted moving average (EWMA) filter. 
 
+.. _CableA2_3Original:
+.. figure:: NW2_CableA2_3_original.png
+   :height: 615px
+   :width: 815 px
+   :scale: 85 %
+   :align: left
+
