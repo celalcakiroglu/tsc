@@ -20,7 +20,7 @@ Second Tensile Strain Experiment
    :height: 2304px
    :width: 1296 px
    :scale: 25 %
-   :align: center
+   :align: left
 
    Second full scale specimen.
 The focus of the second tensile strain experiment is the effect of internal pressure on the tensile strain capacity of the pipe. The tensile strain that the pipe experiences due to internal pressure and applied tensile displacement is measured using strain gauges and digital image correlation. The white painted and speckled areas in Figure(:ref:`Specimen2`) are the areas where the strain field is captured throughout the experiment using digital image correlation. The white area in the middle of the pipe is where the girth weld and the heat affected zone (HAZ) are located. The flaw is cut in the HAZ within 5 mm from the girth weld. 
@@ -83,7 +83,7 @@ In the diagrams of Figure(:ref:`Remote Strain Gauges`), Figure(:ref:`Middle Stra
 +============+======================================================================================+
 | SG         | Strain gauge                                                                         |
 +------------+--------------------------------------------------------------------------------------+
-| First A    | Bottom side of the pipe  (This would be B for the top side)                          |
+| First A    | Bottom side of the pipe  (Here B would indicate the top side)                        |
 +------------+--------------------------------------------------------------------------------------+
 | 0          | 0 degrees away from the girth weld flaw center in the circumferential direction      |
 +------------+--------------------------------------------------------------------------------------+
@@ -94,7 +94,7 @@ In the diagrams of Figure(:ref:`Remote Strain Gauges`), Figure(:ref:`Middle Stra
 
 Deflection of the Pipe Axis
 -----------------------------
-In order to measure the deflection of the pipe axis 5 cable transducers are connected on the pipe surface. For this purpose a steel beam is placed in front of the pipe on the opposite side of the flaw. Cable transducers are connected to the beam using magnets. On the pipe side opposite to every cable transducer a nut is glued on the pipe surface using epoxy. Afterwards an eye bolt is screwed into each nut. The eye bolts are connected to the cable transducers using soldering wire.
+In order to measure the deflection of the pipe axis 5 cable transducers are connected on the pipe surface. For this purpose a steel column is placed in front of the pipe on the opposite side of the flaw (Figure(:ref:`Specimen2`)). Cable transducers are connected to the beam using magnets. On the pipe side opposite to every cable transducer a nut is glued on the pipe surface using epoxy. Afterwards an eye bolt is screwed into each nut. The eye bolts are connected to the cable transducers using soldering wire.
 
 .. _Deflections:
 .. figure:: NW2_CableTrans.jpg
@@ -105,7 +105,7 @@ In order to measure the deflection of the pipe axis 5 cable transducers are conn
 
    Pipe axis deflections
 
-Figure(:ref:`Deflections`) shows the development of the deflections with respect to applied displacement. In this plot the displacement axis is limited to 60 mm since beyond that point no measurements could be made. The reason for that is the failure of the epoxy glue between the nut and the pipe surface when the tensile force on the soldering wire increases. The notation used to label the cable transducers is explained on an example in the table below.
+Figure(:ref:`Deflections`) shows the development of the deflections with respect to applied displacement. In this plot the displacement axis is limited to 60 mm since beyond that point no measurements could be made. The reason for that is the failure of the epoxy glue between the nut and the pipe surface when the tensile force on the soldering wire increases. The dropping of the value to zero indicates this failure. The notation used to label the cable transducers is explained on an example in the table below.
 
 +------------+--------------------------------------------------------------------------------------+
 | Cable A-1/3                                                                                       |
@@ -118,3 +118,4 @@ Figure(:ref:`Deflections`) shows the development of the deflections with respect
 +------------+--------------------------------------------------------------------------------------+
 
 In Figure(:ref:`Deflections`) the measurements of the cable transducer on the bottom side 2/3 of the specimen half length away from the end plate appear to be noisy. In order to eliminate this noise, the measurements of this tranducer are filtered using an exponentially weighted moving average (EWMA) filter. 
+

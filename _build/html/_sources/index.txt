@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 4
 
+   ReadExcelFromPython.rst
    ColdBend.rst
    DOE.rst
    SecondTest.rst
