@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Tension Side Fracture of Cold Bends &mdash; Tensile Strain Capacity 1.0.1 documentation</title>
+    <title>Tension Side Fracture of Cold Bends &mdash; Epsilon Critical 1.0.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '1.0.1',
+        VERSION:     '1.0.2',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,9 +23,10 @@
     <script type="text/javascript" src="_static/jquery.js"></script>
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
-    <link rel="top" title="Tensile Strain Capacity 1.0.1 documentation" href="index.html" />
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Epsilon Critical 1.0.2 documentation" href="index.html" />
     <link rel="next" title="Design of Tensile Strain Experiments" href="DOE.html" />
-    <link rel="prev" title="Welcome to the Tensile Strain Capacity documentation!" href="index.html" /> 
+    <link rel="prev" title="How to read an Excel file with ”.xls” extension using Python" href="ReadExcelFromPython.html" /> 
   </head>
   <body>
     <div class="related">
@@ -38,9 +39,9 @@
           <a href="DOE.html" title="Design of Tensile Strain Experiments"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to the Tensile Strain Capacity documentation!"
+          <a href="ReadExcelFromPython.html" title="How to read an Excel file with ”.xls” extension using Python"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Tensile Strain Capacity 1.0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Epsilon Critical 1.0.2 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -52,10 +53,19 @@
   <div class="section" id="tension-side-fracture-of-cold-bends">
 <h1>Tension Side Fracture of Cold Bends<a class="headerlink" href="#tension-side-fracture-of-cold-bends" title="Permalink to this headline">¶</a></h1>
 <p>Cold bending is applied in order to change the direction of a pipeline in a horizontal or vertical plane. This can be necessary to conform with the terrain conditions. Cold bending is done on site using cold bending machines. In the process of cold bending the compression side (intrados) of the pipe can be loaded beyond the yield stress in compression whereas the tension side (extrados) can be loaded beyond yield stress in tension. As a result the intrados is weakened and more likely to fail after cold bending. However, experimental studies carried out by Sen et al demonstrated that failure of a cold bend at the tension side can occur earlier than compressive failure under certain loading configurations (<a class="reference internal" href="#sen">Sen</a>).</p>
+<div class="section" id="internal-pressure-of-a-pipe-as-a-function-of-diameter-and-wall-thickness">
+<h2>Internal Pressure of a Pipe as a Function of Diameter and Wall Thickness<a class="headerlink" href="#internal-pressure-of-a-pipe-as-a-function-of-diameter-and-wall-thickness" title="Permalink to this headline">¶</a></h2>
+<p>The relationship between the wall thickness <span class="math">\((t)\)</span>, pipe outer diameter <span class="math">\((OD)\)</span>, internal pressure <span class="math">\((p_i)\)</span> and the longitudinal stress on the pipe wall caused by these variables <span class="math">\((\sigma_l)\)</span> is given as</p>
+<div class="math">
+\[\sigma_l = \frac{p_i \cdot (OD/2-t)^2}{t \cdot D_{ave}}\]</div>
+<p>where <span class="math">\(D_{ave}=\displaystyle\frac{OD+(OD-2t)}{2}=OD-t\)</span>. <span class="math">\(\sigma_l\)</span> occurs in test setups due to the axial force exerted by the end plates. The hoop stress <span class="math">\(\sigma_h\)</span> has a magnitude 2 times greater than the longitudinal stress the derivation of which is lengthy and omitted at this point.</p>
+<div class="math">
+\[\sigma_h=\frac{2\cdot p_i(OD/2-t)^2}{t\cdot D_{ave}}\]</div>
 <p><strong>References</strong></p>
 <p id="sen">Sen M. (2006); “Behaviour of Cold Bend Pipes Under Combined Loads” Ph.D. dissertation, University of Alberta, 2006</p>
 <p id="sen2">Sen M., Cheng, J.J.R. , Zhou, J. (2011).  <a class="reference external" href="http://ascelibrary.org/doi/pdf/10.1061/%28ASCE%29ST.1943-541X.0000219">Behaviour of Cold Bend Pipes under Bending Loads</a> , DOI: 10.1061/(ASCE)ST.1943-541X.0000219. 2011 American Society of Civil Engineers</p>
 <p id="sen3">Sen M, Cheng JJR, Murray DW (2004). <a class="reference external" href="http://www.google.ca/url?sa=t&amp;rct=j&amp;q=&amp;esrc=s&amp;source=web&amp;cd=1&amp;ved=0CCsQFjAA&amp;url=http%3A%2F%2Fproceedings.asmedigitalcollection.asme.org%2Fdata%2FConferences%2FIPC2004%2F71304%2F419_1.pdf&amp;ei=IWc3U7XDFsO-sQSuqYCoCA&amp;usg=AFQjCNEZSf_5saGujIrEysYVZy1mse4I8g&amp;sig2=ggMyIzYQkJPTyYfUWaQ7Ig&amp;bvm=bv.63808443,d.cWc">Full-Scale Tests of Cold Bend Pipes</a> , Proceedings of IPC2004, International Pipeline Conference, IPC2004 – 743</p>
+</div>
 </div>
 
 
@@ -64,9 +74,17 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Tension Side Fracture of Cold Bends</a><ul>
+<li><a class="reference internal" href="#internal-pressure-of-a-pipe-as-a-function-of-diameter-and-wall-thickness">Internal Pressure of a Pipe as a Function of Diameter and Wall Thickness</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to the Tensile Strain Capacity documentation!</a></p>
+  <p class="topless"><a href="ReadExcelFromPython.html"
+                        title="previous chapter">How to read an Excel file with &#8221;.xls&#8221; extension using Python</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="DOE.html"
                         title="next chapter">Design of Tensile Strain Experiments</a></p>
@@ -102,9 +120,9 @@
           <a href="DOE.html" title="Design of Tensile Strain Experiments"
              >next</a> |</li>
         <li class="right" >
-          <a href="index.html" title="Welcome to the Tensile Strain Capacity documentation!"
+          <a href="ReadExcelFromPython.html" title="How to read an Excel file with ”.xls” extension using Python"
              >previous</a> |</li>
-        <li><a href="index.html">Tensile Strain Capacity 1.0.1 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Epsilon Critical 1.0.2 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

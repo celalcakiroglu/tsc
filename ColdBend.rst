@@ -2,6 +2,16 @@ Tension Side Fracture of Cold Bends
 ===================================================
 Cold bending is applied in order to change the direction of a pipeline in a horizontal or vertical plane. This can be necessary to conform with the terrain conditions. Cold bending is done on site using cold bending machines. In the process of cold bending the compression side (intrados) of the pipe can be loaded beyond the yield stress in compression whereas the tension side (extrados) can be loaded beyond yield stress in tension. As a result the intrados is weakened and more likely to fail after cold bending. However, experimental studies carried out by Sen et al demonstrated that failure of a cold bend at the tension side can occur earlier than compressive failure under certain loading configurations (Sen_).
 
+Internal Pressure of a Pipe as a Function of Diameter and Wall Thickness
+----------------------------------------------------------------------------
+The relationship between the wall thickness :math:`(t)`, pipe outer diameter :math:`(OD)`, internal pressure :math:`(p_i)` and the longitudinal stress on the pipe wall caused by these variables :math:`(\sigma_l)` is given as 
+
+.. math:: \sigma_l = \frac{p_i \cdot (OD/2-t)^2}{t \cdot D_{ave}} 
+
+where :math:`D_{ave}=\displaystyle\frac{OD+(OD-2t)}{2}=OD-t`. :math:`\sigma_l` occurs in test setups due to the axial force exerted by the end plates. The hoop stress :math:`\sigma_h` has a magnitude 2 times greater than the longitudinal stress the derivation of which is lengthy and omitted at this point.
+
+.. math:: \sigma_h=\frac{2\cdot p_i(OD/2-t)^2}{t\cdot D_{ave}}  
+
 **References**
 
 .. _Sen: 
