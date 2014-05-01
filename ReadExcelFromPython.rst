@@ -2,7 +2,6 @@ How to read  and write Excel files with ".csv", .xls" or ".xlsx" extension using
 =============================================================================================
 Method 1: Using xlrd (for reading) and xlwt (for writing) packages together. The 'xlwt' package doesn't support the ".xlsx" format.
 Installing and using the "xlwt" package in Windows:
-Bullet lists:
 
 - Step 1: Download 'xlwt' from `here <https://pypi.python.org/pypi/xlwt>`_ and extract it to the Python directory (eg: C:\Python27) 
 - Step 2: Open the command prompt and change to the directory of 'xlwt' (e.g cd ..\\..\\Python27\\xlwt-0.7.5)
