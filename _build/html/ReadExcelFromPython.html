@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>How to read an Excel file with ”.xls” extension using Python &mdash; Epsilon Critical 1.0.2 documentation</title>
+    <title>How to read and write Excel files with ”.csv”, .xls” or ”.xlsx” extension using Python &mdash; Epsilon Critical 1.0.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -50,8 +50,19 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="how-to-read-an-excel-file-with-xls-extension-using-python">
-<h1>How to read an Excel file with &#8221;.xls&#8221; extension using Python<a class="headerlink" href="#how-to-read-an-excel-file-with-xls-extension-using-python" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="how-to-read-and-write-excel-files-with-csv-xls-or-xlsx-extension-using-python">
+<h1>How to read  and write Excel files with &#8221;.csv&#8221;, .xls&#8221; or &#8221;.xlsx&#8221; extension using Python<a class="headerlink" href="#how-to-read-and-write-excel-files-with-csv-xls-or-xlsx-extension-using-python" title="Permalink to this headline">¶</a></h1>
+<p>Method 1: Using xlrd (for reading) and xlwt (for writing) packages together. The &#8216;xlwt&#8217; package doesn&#8217;t support the &#8221;.xlsx&#8221; format.
+Installing and using the &#8220;xlwt&#8221; package in Windows:
+Bullet lists:</p>
+<ul class="simple">
+<li>Step 1: Download &#8216;xlwt&#8217; from <a class="reference external" href="https://pypi.python.org/pypi/xlwt">here</a> and extract it to the Python directory (eg: C:Python27)</li>
+<li>Step 2: Open the command prompt and change to the directory of &#8216;xlwt&#8217; (e.g cd ..\..\Python27\xlwt-0.7.5)</li>
+<li>Step 3: Run the following command in the command prompt:  ..python setup.py install</li>
+</ul>
+<p>The same 3 steps can be applied to install &#8216;xlrd&#8217;</p>
+<p>Method 2: Reading with the &#8220;xlrd&#8221; package and writing with <a class="reference external" href="https://pypi.python.org/pypi/XlsxWriter/0.5.3">XlsxWriter</a></p>
+<p>Installing the &#8220;XlsxWriter&#8221; package in Windows:</p>
 </div>
 
 
