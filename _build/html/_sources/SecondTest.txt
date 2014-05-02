@@ -23,6 +23,7 @@ Second Tensile Strain Experiment
    :align: left
 
    Second full scale specimen.
+
 The focus of the second tensile strain experiment is the effect of internal pressure on the tensile strain capacity of the pipe. The tensile strain that the pipe experiences due to internal pressure and applied tensile displacement is measured using strain gauges and digital image correlation. The white painted and speckled areas in Figure(:ref:`Specimen2`) are the areas where the strain field is captured throughout the experiment using digital image correlation. The white area in the middle of the pipe is where the girth weld and the heat affected zone (HAZ) are located. The flaw is cut in the HAZ within 5 mm from the girth weld. 
 
 In addition to digital image correlation, 19 strain gauges are mounted on different parts of the pipe surface. Since the cameras are not high enough to take pictures of the upper parts of the pipe, in these parts the strain values are measured using strain gauges(:ref:`Remote Strain Gauges`). Also at the mid-sections of both upper and lower parts of the pipe two rings of strain gauges are mounted in longitudinal and hoop directions. 
@@ -42,6 +43,7 @@ Strain measurements
    :align: center
 
    Remote strain at the top side
+
 Figure(:ref:`Remote Strain Gauges`) shows strain measurements of the gauges one OD away from the top side end plate. The strain gauge measurements in Figure(:ref:`Remote Strain Gauges`) were able to record longitudinal strain values up to about 3.5% longitudinal strain. At this strain level all three gauges measuring tensile strain failed. This is expected since the gauges are designed to measure strain values up to 3%. In this Figure the strain gauges aligned with the flaw, 90° away from the flaw, 180° away from the flaw and 270° away from the flaw are plotted with blue, brown, green and purple colours respectively. The dropping of the measurements below zero indicates the failure of the strain gauge during the test. Therefore Figure(:ref:`Remote Strain Gauges`) gives only partial information about the development of the remote strain. It can be seen that the green curve measured negligible strain values. This indicates that on the side of the pipe opposite to the flaw, the tensile strains due to applied tension and compressive strains due to bending almost cancel each other.
 
 .. _Middle Strain Gauges Top:
@@ -121,7 +123,7 @@ Figure(:ref:`Deflections`) shows the development of the deflections with respect
 | 1/3        | The deflection is measured 1/3 of the specimen half length away from the end plate   |
 +------------+--------------------------------------------------------------------------------------+
 
-In Figure(:ref:`Deflections`) the measurements of the cable transducer on the bottom side 2/3 of the specimen half length away from the end plate appear to be noisy. In order to eliminate this noise, the measurements of this tranducer are filtered using an exponentially weighted moving average (EWMA) filter. 
+In Figure(:ref:`Deflections`) the measurements of the cable transducer on the bottom side 2/3 of the specimen half length away from the end plate appear to be noisy. In order to eliminate this noise, the measurements of this tranducer are filtered using an EWMA (:ref:`EWMA`) filter. 
 
 .. _CableA2_3Original:
 .. figure:: NW2_CableA2_3_original.png

@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Epsilon Critical'
+project = u'Tensile Strain Capacity'
 copyright = u'2014, Celal Cakiroglu'
 
 # The version info for the project you're documenting, acts as replacement for

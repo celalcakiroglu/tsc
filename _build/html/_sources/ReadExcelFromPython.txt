@@ -1,4 +1,4 @@
-How to read  and write Excel files with ".csv", .xls" or ".xlsx" extension using Python
+Reading and writing Excel files with ".csv", ".xls" or ".xlsx" extension using Python
 =============================================================================================
 Method 1: Using xlrd (for reading) and xlwt (for writing) packages together. The 'xlwt' package doesn't support the ".xlsx" format.
 Installing and using the "xlwt" package in Windows:
