@@ -60,21 +60,44 @@
 <p>where <span class="math">\(N\)</span> is the fundamental period of <span class="math">\(x(n)\)</span>. In equation <a href="#equation-fourier">(1)</a>, <span class="math">\(c_k\)</span> are the Fourier coefficients of <span class="math">\(x(n)\)</span> and they represent the frequency components contained in <span class="math">\(x(n)\)</span>. For each <span class="math">\(k \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>, <span class="math">\(c_k\)</span> can be calculated as</p>
 <div class="math" id="equation-fourierCoeff">
 <span class="eqno">(2)</span>\[c_k=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}\]</div>
-<p>Equation <a href="#equation-fourierCoeff">(2)</a> can be derived applying the following steps:</p>
+<p>Equation <a href="#equation-fourierCoeff">(2)</a> can be derived applying the following 3 steps:</p>
 <ul class="simple">
 <li><strong>Step 1</strong>: Both sides of equation <a href="#equation-fourier">(1)</a> are multiplied by <span class="math">\(e^{-j2\pi ln/N}\)</span>, where <span class="math">\(l \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>.</li>
 </ul>
-<div class="math">
-\[\begin{split}x(n) e^{-j2\pi ln/N} &amp; = \sum _{k=0}^{N-1} c_k e^{j 2\pi (k-l) n/N }                        \\
-                         &amp; = \sum _{k=0}^{N-1} c_k \Big\lbrace e^{j2\pi (k-l)/N}\Big\rbrace^n   \\\end{split}\]</div>
+<div class="math" id="equation-fourierArranged">
+<span class="eqno">(3)</span>\[\begin{split}x(n) e^{-j2\pi ln/N} &amp; = \sum _{k=0}^{N-1} c_k e^{j 2\pi (k-l) n/N }                        \\
+           &amp; = \sum _{k=0}^{N-1} c_k \Big\lbrace e^{j2\pi (k-l)/N}\Big\rbrace^n   \\\end{split}\]</div>
 <ul class="simple">
-<li><strong>Step 2</strong>: Let <span class="math">\(r=e^{j2\pi (k-l)/N}\)</span> and sum the equation of step 2 over the index <span class="math">\(n\)</span></li>
+<li><strong>Step 2</strong>: Let <span class="math">\(r=e^{j2\pi (k-l)/N}\)</span> and sum both sides of equation <a href="#equation-fourierArranged">(3)</a> over the index <span class="math">\(n\)</span></li>
 </ul>
 <div class="math" id="equation-fourierSum1">
-<span class="eqno">(3)</span>\[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = \sum _{k=0}^{N-1} c_k \sum _{n=0}^{N-1} r^n\]</div>
+<span class="eqno">(4)</span>\[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = \sum _{k=0}^{N-1} c_k \sum _{n=0}^{N-1} r^n\]</div>
 <ul class="simple">
-<li><strong>Step 3</strong>: Using the geometric series summation .</li>
+<li><strong>Step 3</strong>: Using the geometric series summation:</li>
 </ul>
+<div class="math">
+\[\begin{split}      \begin{equation*}
+      \sum _{n=0}^{N-1} r^n= \left\{ \begin{array}{ll}
+N &amp; \mbox{ if $ k=l$}\\
+ \displaystyle\frac{1-r^N}{1-r} &amp; \mbox{ if $k \neq l$}
+\end{array}
+\right. = \left\{ \begin{array}{ll}
+N &amp; \mbox{ if $ k=l$}\\
+ \displaystyle\frac{1- e^{j2\pi (k-l)} }{1-e^{j2\pi (k-l)/N}} &amp; \mbox{ if $k \neq l$}
+\end{array}
+\right.
+\end{equation*}\end{split}\]</div>
+<div class="math">
+\[\begin{split}e^{j2\pi (k-l)}=\cos{2\pi (k-l)} + j\sin{2\pi (k-l)}=1 \Rightarrow \sum _{n=0}^{N-1} r^n= \left\{ \begin{array}{ll}
+N &amp; \mbox{ if $ k=l$}\\
+ 0 &amp; \mbox{ if $k \neq l$}
+\end{array}
+\right.\end{split}\]</div>
+<p>It follows that</p>
+<div class="math">
+\[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = c_0 \cdot 0 + c_1 \cdot 0 + ... + c_l \cdot N + c_{l+1}\cdot 0 + ... +c_{N-1}\cdot 0 = c_l \cdot N\]</div>
+<div class="math">
+\[c_l=\frac{1}{N}\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N}\]</div>
 </div>
 </div>
 
