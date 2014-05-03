@@ -13,7 +13,7 @@ where :math:`N` is the fundamental period of :math:`x(n)`. In equation :eq:`four
 .. math:: c_k=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}
 	:label: fourierCoeff
 
-Equation :eq:`fourierCoeff` can be derived applying the following 3 steps:
+Equation :eq:`fourierCoeff` can be derived applying the following 4 steps:
 
 - **Step 1**: Both sides of equation :eq:`fourier` are multiplied by :math:`e^{-j2\pi ln/N}`, where :math:`l \in \lbrace 0, 1, ..., N-1 \rbrace`.
 
@@ -50,7 +50,7 @@ Equation :eq:`fourierCoeff` can be derived applying the following 3 steps:
   \end{array}
   \right.
 
-Plugging the result of step 3 in equation :eq:`fourierSum1` we obtain:
+- **Step 4**: Plugging the result of step 3 in equation :eq:`fourierSum1` we obtain:
 
 .. math:: \sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = c_0 \cdot 0 + c_1 \cdot 0 + ... + c_l \cdot N + c_{l+1}\cdot 0 + ... +c_{N-1}\cdot 0 = c_l \cdot N
 

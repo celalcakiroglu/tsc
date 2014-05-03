@@ -60,7 +60,7 @@
 <p>where <span class="math">\(N\)</span> is the fundamental period of <span class="math">\(x(n)\)</span>. In equation <a href="#equation-fourier">(1)</a>, <span class="math">\(c_k\)</span> denotes the Fourier coefficients of <span class="math">\(x(n)\)</span> and they represent the frequency components contained in <span class="math">\(x(n)\)</span>. For each <span class="math">\(k \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>, <span class="math">\(c_k\)</span> can be calculated as</p>
 <div class="math" id="equation-fourierCoeff">
 <span class="eqno">(2)</span>\[c_k=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}\]</div>
-<p>Equation <a href="#equation-fourierCoeff">(2)</a> can be derived applying the following 3 steps:</p>
+<p>Equation <a href="#equation-fourierCoeff">(2)</a> can be derived applying the following 4 steps:</p>
 <ul class="simple">
 <li><strong>Step 1</strong>: Both sides of equation <a href="#equation-fourier">(1)</a> are multiplied by <span class="math">\(e^{-j2\pi ln/N}\)</span>, where <span class="math">\(l \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>.</li>
 </ul>
@@ -93,7 +93,9 @@ N &amp; \mbox{ if $ k=l$}\\
  0 &amp; \mbox{ if $k \neq l$}
 \end{array}
 \right.\end{split}\]</div>
-<p>Plugging the result of step 3 in equation <a href="#equation-fourierSum1">(4)</a> we obtain:</p>
+<ul class="simple">
+<li><strong>Step 4</strong>: Plugging the result of step 3 in equation <a href="#equation-fourierSum1">(4)</a> we obtain:</li>
+</ul>
 <div class="math">
 \[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = c_0 \cdot 0 + c_1 \cdot 0 + ... + c_l \cdot N + c_{l+1}\cdot 0 + ... +c_{N-1}\cdot 0 = c_l \cdot N\]</div>
 <div class="math">
