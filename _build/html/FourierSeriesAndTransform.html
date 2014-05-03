@@ -24,7 +24,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" /> 
+    <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
+    <link rel="next" title="Digital Filters" href="DigitalFilters.html" />
+    <link rel="prev" title="Second Tensile Strain Experiment" href="SecondTest.html" /> 
   </head>
   <body>
     <div class="related">
@@ -33,6 +35,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="DigitalFilters.html" title="Digital Filters"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SecondTest.html" title="Second Tensile Strain Experiment"
+             accesskey="P">previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>
     </div>  
@@ -46,10 +54,27 @@
 <h1>Fourier Series and the Fourier Transform<a class="headerlink" href="#fourier-series-and-the-fourier-transform" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="fourier-series">
 <h2>Fourier Series<a class="headerlink" href="#fourier-series" title="Permalink to this headline">¶</a></h2>
-<p>The Fourier series representation of a periodic signal <span class="math">\(x(n)\)</span> is defined as</p>
+<p>The Fourier series representation of a periodic discrete-time signal <span class="math">\(x(n)\)</span> is defined as</p>
+<div class="math" id="equation-fourier">
+<span class="eqno">(1)</span>\[x(n)=\sum_{k=0}^{N-1}c_k e^{j2\pi kn/N}\]</div>
+<p>where <span class="math">\(N\)</span> is the fundamental period of <span class="math">\(x(n)\)</span>. In equation <a href="#equation-fourier">(1)</a>, <span class="math">\(c_k\)</span> are the Fourier coefficients of <span class="math">\(x(n)\)</span> and they represent the frequency components contained in <span class="math">\(x(n)\)</span>. For each <span class="math">\(k \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>, <span class="math">\(c_k\)</span> can be calculated as</p>
+<div class="math" id="equation-fourierCoeff">
+<span class="eqno">(2)</span>\[c_k=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}\]</div>
+<p>Equation <a href="#equation-fourierCoeff">(2)</a> can be derived applying the following steps:</p>
+<ul class="simple">
+<li><strong>Step 1</strong>: Both sides of equation <a href="#equation-fourier">(1)</a> are multiplied by <span class="math">\(e^{-j2\pi ln/N}\)</span>, where <span class="math">\(l \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>.</li>
+</ul>
 <div class="math">
-\[x(n)=\sum_{k=0}^{N-1}c_k e^{j2\pi kn/N}\]</div>
-<p>where <span class="math">\(N\)</span> is the fundamental period of <span class="math">\(x(n)\)</span></p>
+\[\begin{split}x(n) e^{-j2\pi ln/N} &amp; = \sum _{k=0}^{N-1} c_k e^{j 2\pi (k-l) n/N }                        \\
+                         &amp; = \sum _{k=0}^{N-1} c_k \Big\lbrace e^{j2\pi (k-l)/N}\Big\rbrace^n   \\\end{split}\]</div>
+<ul class="simple">
+<li><strong>Step 2</strong>: Let <span class="math">\(r=e^{j2\pi (k-l)/N}\)</span> and sum the equation of step 2 over the index <span class="math">\(n\)</span></li>
+</ul>
+<div class="math" id="equation-fourierSum1">
+<span class="eqno">(3)</span>\[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = \sum _{k=0}^{N-1} c_k \sum _{n=0}^{N-1} r^n\]</div>
+<ul class="simple">
+<li><strong>Step 3</strong>: Using the geometric series summation .</li>
+</ul>
 </div>
 </div>
 
@@ -67,6 +92,12 @@
 </li>
 </ul>
 
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="SecondTest.html"
+                        title="previous chapter">Second Tensile Strain Experiment</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="DigitalFilters.html"
+                        title="next chapter">Digital Filters</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/FourierSeriesAndTransform.txt"
@@ -95,6 +126,12 @@
         <li class="right" style="margin-right: 10px">
           <a href="genindex.html" title="General Index"
              >index</a></li>
+        <li class="right" >
+          <a href="DigitalFilters.html" title="Digital Filters"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="SecondTest.html" title="Second Tensile Strain Experiment"
+             >previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>
     </div>
