@@ -8,7 +8,7 @@ The Fourier series representation of a periodic discrete-time signal :math:`x(n)
 .. math:: x(n)=\sum_{k=0}^{N-1}c_k e^{j2\pi kn/N}
 	:label: fourier
 
-where :math:`N` is the fundamental period of :math:`x(n)`. In equation :eq:`fourier`, :math:`c_k` are the Fourier coefficients of :math:`x(n)` and they represent the frequency components contained in :math:`x(n)`. For each :math:`k \in \lbrace 0, 1, ..., N-1 \rbrace`, :math:`c_k` can be calculated as
+where :math:`N` is the fundamental period of :math:`x(n)`. In equation :eq:`fourier`, :math:`c_k` denotes the Fourier coefficients of :math:`x(n)` and they represent the frequency components contained in :math:`x(n)`. For each :math:`k \in \lbrace 0, 1, ..., N-1 \rbrace`, :math:`c_k` can be calculated as
 
 .. math:: c_k=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}
 	:label: fourierCoeff
@@ -50,7 +50,7 @@ Equation :eq:`fourierCoeff` can be derived applying the following 3 steps:
   \end{array}
   \right.
 
-It follows that
+Plugging the result of step 3 in equation :eq:`fourierSum1` we obtain:
 
 .. math:: \sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = c_0 \cdot 0 + c_1 \cdot 0 + ... + c_l \cdot N + c_{l+1}\cdot 0 + ... +c_{N-1}\cdot 0 = c_l \cdot N
 
