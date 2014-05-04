@@ -81,14 +81,14 @@ The only nonzero terms in :eq:`ex1eq1` are the ones in :eq:`quiz41bxn`
    :height: 515px
    :width: 1015 px
    :scale: 50 %
-   :align: left
+   :align: center
 
 .. _Quiz41b2:
 .. figure:: Quiz41b2.png
    :height: 515px
    :width: 1015 px
    :scale: 50 %
-   :align: right
+   :align: center
 
 .. container:: clearer
 
