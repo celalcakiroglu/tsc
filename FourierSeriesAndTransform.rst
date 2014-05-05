@@ -94,7 +94,44 @@ The only nonzero terms in :eq:`ex1eq1` are the ones in :eq:`quiz41bxn`
 
     .. image :: spacer.png
 
-The 2 plots above show the magnitude spectra of the 4 frequency components contained in :math:`x(n)`.
+The 2 plots above show the magnitude spectra of the 4 frequency components contained in :math:`x(n)`. In the second plot :math:`\omega_k` denotes the frequency component associated with the index :math:`k`. The python code for generating the magnitude spectrum plots is given below::
+
+  import numpy as np
+  import matplotlib.pyplot as plt
+
+  kList=list(range(0,15)) #List of k values
+  omegakList=[2*np.pi*x/15 for x in kList] #List of omegak values
+  ckList=[0, 0, 0, -0.5j, 0, 0.5, 0, 0, 0, 0, 0.5, 0, 0.5j, 0, 0]
+  ckMagList=[abs(x) for x in ckList]#List containing the magnitudes of ck
+  print ckList
+  print ckMagList
+  #Plotting the magnitude spectrum with k values on x axis
+  f1=plt.figure(figsize=(10,5))
+  plt.stem(kList, ckMagList)
+  plt.ylim([-0.1,0.6])
+  plt.xlim([0,15])
+  plt.xlabel(r'k', size=30)
+  plt.ylabel(r'$|c_k|$', size=30)
+  plt.title('Magnitude spectrum', size=25)
+  plt.tick_params(axis='x', labelsize=20)
+  plt.tick_params(axis='y', labelsize=20)
+  f1.tight_layout()
+  plt.show(f1)
+  #Plotting the magnitude spectrum with omegak values on x axis
+  f2=plt.figure(figsize=(10,5))
+  plt.stem(omegakList, ckMagList)
+  plt.ylim([-0.1,0.6])
+  plt.xlim([0,2*np.pi])
+  omegak=[2*np.pi/5, 2*np.pi/3, 4*np.pi/3, 8*np.pi/5]
+  omegakLabels=[r"$\frac{2\pi}{5}$",r"$\frac{2\pi}{3}$", r"$\frac{4\pi}{3}$", r"$\frac{8\pi}{5}$"] 
+  plt.xticks(omegak,omegakLabels)
+  plt.xlabel(r'$\omega_k$', size=30)
+  plt.ylabel(r'$|c_k|$', size=30)
+  plt.title('Magnitude spectrum', size=25)
+  plt.tick_params(axis='x', labelsize=30)
+  plt.tick_params(axis='y', labelsize=20)
+  f2.tight_layout()
+  plt.show(f2)
 
 Power density spectrum of a periodic signal
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -147,7 +184,7 @@ Let :math:`c_k=a_k +jb_k`. Then :eq:`xnstar1` becomes:
   &=\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N}
   :label: xnstar2
 
-Using equation :eq:`pxident`, the power of a periodic signal :math:`x(n)` can be written as:
+- **Step 3:** Using equation :eq:`pxident`, the power of a periodic signal :math:`x(n)` can be written as:
 
 .. math:: P_x &= \frac{1}{N}\sum_{n=0}^{N-1}x(n)\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N} \\
   &=\sum_{k=0}^{N-1}{c_k}^*\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N} \\
