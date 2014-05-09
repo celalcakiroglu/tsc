@@ -56,7 +56,9 @@ Equation :eq:`fourierCoeff` can be derived applying the following 4 steps:
 
 .. math:: c_l=\frac{1}{N}\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N}
 
-**Example:** Determine the Fourier coefficients of the signal :math:`x(n)=\cos(\frac{2\pi}{3}n)+\sin(\frac{2\pi}{5}n)`.
+.. _fourierEx1:
+
+**Example 1:** Determine the Fourier coefficients of the signal :math:`x(n)=\cos(\frac{2\pi}{3}n)+\sin(\frac{2\pi}{5}n)`.
 
 .. math:: x(n)=\frac{1}{2}e^{j\displaystyle\frac{2\pi}{3}n}+\frac{1}{2}e^{j\Big(-\displaystyle\frac{2\pi}{3}\Big)n}+\frac{1}{2j}e^{j\displaystyle\frac{2\pi}{5}n}-\frac{1}{2j}e^{j\Big(-\displaystyle\frac{2\pi}{5}\Big)n}
 
@@ -189,3 +191,37 @@ Let :math:`c_k=a_k +jb_k`. Then :eq:`xnstar1` becomes:
 .. math:: P_x &= \frac{1}{N}\sum_{n=0}^{N-1}x(n)\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N} \\
   &=\sum_{k=0}^{N-1}{c_k}^*\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N} \\
   &=\sum_{k=0}^{N-1}{c_k}^*c_k=\sum_{k=0}^{N-1}|c_k|^2
+  :label: powerCk
+
+Using equation :eq:`powerCk` the power of the signal in :ref:`Example 1 <fourierEx1>` can be determined as follows:
+
+.. math:: P_x = |c_3|^2 + |c^5|^2 + |c_{10}|^2 + |c_{12}|^2 = 4\Big(\frac{1}{2}\Big)^2 = 1
+
+Each frequency component :math:`\frac{2\pi k}{N}` has a contribution to the total power of the signal. These variation of these contributions constitutes the **power density spectrum** of the signal. In case of :ref:`Example 1 <fourierEx1>` the power density spectrum is plotted below:    
+
+.. _Quiz41b3:
+.. figure:: Quiz41b3.png
+   :height: 515px
+   :width: 1015 px
+   :scale: 50 %
+   :align: center
+
+.. _fourierEx2:
+
+**Example 2:** Let :math:`x(n) = 2 + 2\cos\displaystyle\frac{\pi}{4}n + \cos \displaystyle\frac{\pi}{2}n + \displaystyle\frac{1}{2}\cos \displaystyle\frac{3\pi}{4}n`. This signal can be decomposed into :math:`4` components as :math:`x_1(n)=2`, :math:`x_2(n)=2\cos\displaystyle\frac{\pi}{4}n`, :math:`x_3(n)=\cos\displaystyle\frac{\pi}{2}n`, :math:`x_4(n)=\displaystyle\frac{1}{2}\cos\frac{3\pi}{4}n`.
+
+.. math:: x_1(n)\text{ is a constant and doesn't contain a frequency component.}
+
+.. math:: x_2(n)=2\cos\Big(2\pi \frac{1}{8}n\Big) \Rightarrow f_2=1/8 \Rightarrow N_2 = 8
+
+.. math:: x_3(n)=\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_3=1/4 \Rightarrow N_3 = 4
+
+.. math:: x_4(n)=\displaystyle\frac{1}{2}\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_4=1/4 \Rightarrow N_4 = 8
+
+The smallest common factor of :math:`N_1, N_2, N_3` is :math:`N=8` which is the fundamental period of the signal.
+
+:math:`x(n)` can be written in form of equation :eq:`fourier` as follows:
+
+.. math:: x_1(n)=2e^{\displaystyle{j0n}}=2e^{\displaystyle{j\frac{2\pi 0}{8}n}} \Rightarrow k=0,\quad c_0=2
+
+.. math:: x_2(n)&=2\Big( \frac{1}{2}e^{\displaystyle{j\frac{\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{4}n}}\Big)=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j(-\frac{\pi}{4}+2\pi)n}}  \\ &=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j\frac{7\pi}{4}n}}=e^{\displaystyle{j\frac{2\pi k_1}{8}n}}+e^{\displaystyle{j\frac{2\pi k_2}{8}n}}\\ &\Rightarrow k_1=1,\quad c_1 = 1, \qquad k_2=7, \quad c_7=1

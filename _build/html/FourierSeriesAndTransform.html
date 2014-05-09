@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
-    <link rel="next" title="Digital Filters" href="DigitalFilters.html" />
+    <link rel="next" title="Discrete Time Signals" href="DigitalFilters.html" />
     <link rel="prev" title="Second Tensile Strain Experiment" href="SecondTest.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="DigitalFilters.html" title="Digital Filters"
+          <a href="DigitalFilters.html" title="Discrete Time Signals"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="SecondTest.html" title="Second Tensile Strain Experiment"
@@ -100,7 +100,7 @@ N &amp; \mbox{ if $ k=l$}\\
 \[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = c_0 \cdot 0 + c_1 \cdot 0 + ... + c_l \cdot N + c_{l+1}\cdot 0 + ... +c_{N-1}\cdot 0 = c_l \cdot N\]</div>
 <div class="math">
 \[c_l=\frac{1}{N}\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N}\]</div>
-<p><strong>Example:</strong> Determine the Fourier coefficients of the signal <span class="math">\(x(n)=\cos(\frac{2\pi}{3}n)+\sin(\frac{2\pi}{5}n)\)</span>.</p>
+<p id="fourierex1"><strong>Example 1:</strong> Determine the Fourier coefficients of the signal <span class="math">\(x(n)=\cos(\frac{2\pi}{3}n)+\sin(\frac{2\pi}{5}n)\)</span>.</p>
 <div class="math">
 \[x(n)=\frac{1}{2}e^{j\displaystyle\frac{2\pi}{3}n}+\frac{1}{2}e^{j\Big(-\displaystyle\frac{2\pi}{3}\Big)n}+\frac{1}{2j}e^{j\displaystyle\frac{2\pi}{5}n}-\frac{1}{2j}e^{j\Big(-\displaystyle\frac{2\pi}{5}\Big)n}\]</div>
 <div class="math">
@@ -206,10 +206,32 @@ N &amp; \mbox{ if $ k=l$}\\
 <ul class="simple">
 <li><strong>Step 3:</strong> Using equation <a href="#equation-pxident">(8)</a>, the power of a periodic signal <span class="math">\(x(n)\)</span> can be written as:</li>
 </ul>
-<div class="math">
-\[\begin{split}P_x &amp;= \frac{1}{N}\sum_{n=0}^{N-1}x(n)\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N} \\
+<div class="math" id="equation-powerCk">
+<span class="eqno">(12)</span>\[\begin{split}P_x &amp;= \frac{1}{N}\sum_{n=0}^{N-1}x(n)\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N} \\
 &amp;=\sum_{k=0}^{N-1}{c_k}^*\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N} \\
 &amp;=\sum_{k=0}^{N-1}{c_k}^*c_k=\sum_{k=0}^{N-1}|c_k|^2\end{split}\]</div>
+<p>Using equation <a href="#equation-powerCk">(12)</a> the power of the signal in <a class="reference internal" href="#fourierex1"><em>Example 1</em></a> can be determined as follows:</p>
+<div class="math">
+\[P_x = |c_3|^2 + |c^5|^2 + |c_{10}|^2 + |c_{12}|^2 = 4\Big(\frac{1}{2}\Big)^2 = 1\]</div>
+<p>Each frequency component <span class="math">\(\frac{2\pi k}{N}\)</span> has a contribution to the total power of the signal. These variation of these contributions constitutes the <strong>power density spectrum</strong> of the signal. In case of <a class="reference internal" href="#fourierex1"><em>Example 1</em></a> the power density spectrum is plotted below:</p>
+<div class="figure align-center" id="quiz41b3">
+<a class="reference internal image-reference" href="_images/Quiz41b3.png"><img alt="_images/Quiz41b3.png" src="_images/Quiz41b3.png" style="width: 507.5px; height: 257.5px;" /></a>
+</div>
+<p id="fourierex2"><strong>Example 2:</strong> Let <span class="math">\(x(n) = 2 + 2\cos\displaystyle\frac{\pi}{4}n + \cos \displaystyle\frac{\pi}{2}n + \displaystyle\frac{1}{2}\cos \displaystyle\frac{3\pi}{4}n\)</span>. This signal can be decomposed into <span class="math">\(4\)</span> components as <span class="math">\(x_1(n)=2\)</span>, <span class="math">\(x_2(n)=2\cos\displaystyle\frac{\pi}{4}n\)</span>, <span class="math">\(x_3(n)=\cos\displaystyle\frac{\pi}{2}n\)</span>, <span class="math">\(x_4(n)=\displaystyle\frac{1}{2}\cos\frac{3\pi}{4}n\)</span>.</p>
+<div class="math">
+\[x_1(n)\text{ is a constant and doesn't contain a frequency component.}\]</div>
+<div class="math">
+\[x_2(n)=2\cos\Big(2\pi \frac{1}{8}n\Big) \Rightarrow f_2=1/8 \Rightarrow N_2 = 8\]</div>
+<div class="math">
+\[x_3(n)=\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_3=1/4 \Rightarrow N_3 = 4\]</div>
+<div class="math">
+\[x_4(n)=\displaystyle\frac{1}{2}\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_4=1/4 \Rightarrow N_4 = 8\]</div>
+<p>The smallest common factor of <span class="math">\(N_1, N_2, N_3\)</span> is <span class="math">\(N=8\)</span> which is the fundamental period of the signal.</p>
+<p><span class="math">\(x(n)\)</span> can be written in form of equation <a href="#equation-fourier">(1)</a> as follows:</p>
+<div class="math">
+\[x_1(n)=2e^{\displaystyle{j0n}}=2e^{\displaystyle{j\frac{2\pi 0}{8}n}} \Rightarrow k=0,\quad c_0=2\]</div>
+<div class="math">
+\[\begin{split}x_2(n)&amp;=2\Big( \frac{1}{2}e^{\displaystyle{j\frac{\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{4}n}}\Big)=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j(-\frac{\pi}{4}+2\pi)n}}  \\ &amp;=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j\frac{7\pi}{4}n}}=e^{\displaystyle{j\frac{2\pi k_1}{8}n}}+e^{\displaystyle{j\frac{2\pi k_2}{8}n}}\\ &amp;\Rightarrow k_1=1,\quad c_1 = 1, \qquad k_2=7, \quad c_7=1\end{split}\]</div>
 </div>
 </div>
 </div>
@@ -236,7 +258,7 @@ N &amp; \mbox{ if $ k=l$}\\
                         title="previous chapter">Second Tensile Strain Experiment</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="DigitalFilters.html"
-                        title="next chapter">Digital Filters</a></p>
+                        title="next chapter">Discrete Time Signals</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/FourierSeriesAndTransform.txt"
@@ -266,7 +288,7 @@ N &amp; \mbox{ if $ k=l$}\\
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="DigitalFilters.html" title="Digital Filters"
+          <a href="DigitalFilters.html" title="Discrete Time Signals"
              >next</a> |</li>
         <li class="right" >
           <a href="SecondTest.html" title="Second Tensile Strain Experiment"

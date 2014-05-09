@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Digital Filters &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
+    <title>Discrete Time Signals &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -46,8 +46,19 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="digital-filters">
-<h1>Digital Filters<a class="headerlink" href="#digital-filters" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="discrete-time-signals">
+<h1>Discrete Time Signals<a class="headerlink" href="#discrete-time-signals" title="Permalink to this headline">¶</a></h1>
+<p>Examples of signal sources that might be filtererd:</p>
+<p><em>aircraft altitude, concentration of a species in a liquid, level of liquid in a tank, flux of a liquid into a tank, pressure, electric current, various vibration measurements, audio signals, vehicle velocity, air humidity</em></p>
+<p>Discrete - time <span class="math">\((DT)\)</span> signals can be obtained by sampling continuous time signals or they can be discrete in nature. <span class="math">\((DT)\)</span> signals are denoted like <span class="math">\(x(n)\)</span> where <span class="math">\(n\)</span> is the sample index. <span class="math">\(n\)</span> usually starts from <span class="math">\(0\)</span> and increases with unit steps <span class="math">\((\Delta n =1)\)</span>. If this is not the case, the following transformation can be applied:</p>
+<p>Let <span class="math">\(n(k)\)</span> be the sequence of time instants such that for any <span class="math">\(k \in \mathbb{N}\)</span>, <span class="math">\(n(k)=n(0)+k\Delta n\)</span>, where <span class="math">\(n(0) \neq 0\)</span> and <span class="math">\(\Delta n \neq 1\)</span>. We can define a time sequence <span class="math">\({n(k)}'\)</span> which satisfies the requirements of zero initial time and unit time step as follows: Let <span class="math">\({n(k)}'=an(k) + b\)</span>, <span class="math">\(k \in \mathbb{N}\)</span> and impose the initial conditions <span class="math">\({n(0)}'=0\)</span>, <span class="math">\({n(1)}'=1\)</span>. Then we obtain the following two equations:</p>
+<div class="math" id="equation-nPrime1">
+<span class="eqno">(1)</span>\[{n(0)}'=an(0)+b \Rightarrow b=-an(0)\]</div>
+<div class="math" id="equation-nPrime2">
+<span class="eqno">(2)</span>\[{n(1)}'=an(1)+b \Rightarrow 1=an(1)-an(0)=a\Delta n \Rightarrow a=\frac{1}{\Delta n}, b=-\frac{1}{\Delta n} n(0)\]</div>
+<p>Inserting these two equations in the expression for <span class="math">\({n(k)}'\)</span> gives:</p>
+<div class="math">
+\[{n(k)}'=\frac{1}{\Delta n} n(k)  -\frac{1}{\Delta n} n(0)= \frac{1}{\Delta n} \Big( n(k)-n(0)  \Big) = \frac{1}{\Delta n}k \Delta n = k\]</div>
 <div class="section" id="exponentially-weighted-moving-average-ewma-filters">
 <span id="ewma"></span><h2>Exponentially Weighted Moving Average (EWMA) Filters<a class="headerlink" href="#exponentially-weighted-moving-average-ewma-filters" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -61,7 +72,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Digital Filters</a><ul>
+<li><a class="reference internal" href="#">Discrete Time Signals</a><ul>
 <li><a class="reference internal" href="#exponentially-weighted-moving-average-ewma-filters">Exponentially Weighted Moving Average (EWMA) Filters</a></li>
 </ul>
 </li>
