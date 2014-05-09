@@ -15,8 +15,8 @@ Contents:
    ColdBend.rst
    DOE.rst
    SecondTest.rst
-   FourierSeriesAndTransform.rst
    DigitalFilters.rst
+   FourierSeriesAndTransform.rst
 
 Indices and tables
 ==================
