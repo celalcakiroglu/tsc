@@ -25,7 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
-    <link rel="prev" title="Fourier Series and the Fourier Transform" href="FourierSeriesAndTransform.html" /> 
+    <link rel="next" title="Fourier Series and the Fourier Transform" href="FourierSeriesAndTransform.html" />
+    <link rel="prev" title="Second Tensile Strain Experiment" href="SecondTest.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,6 +37,9 @@
              accesskey="I">index</a></li>
         <li class="right" >
           <a href="FourierSeriesAndTransform.html" title="Fourier Series and the Fourier Transform"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SecondTest.html" title="Second Tensile Strain Experiment"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>
@@ -48,9 +52,9 @@
             
   <div class="section" id="discrete-time-signals">
 <h1>Discrete Time Signals<a class="headerlink" href="#discrete-time-signals" title="Permalink to this headline">¶</a></h1>
-<p>Examples of signal sources that might be filtererd:</p>
-<p><em>aircraft altitude, concentration of a species in a liquid, level of liquid in a tank, flux of a liquid into a tank, pressure, electric current, various vibration measurements, audio signals, vehicle velocity, air humidity</em></p>
-<p>Discrete - time <span class="math">\((DT)\)</span> signals can be obtained by sampling continuous time signals or they can be discrete in nature. <span class="math">\((DT)\)</span> signals are denoted like <span class="math">\(x(n)\)</span> where <span class="math">\(n\)</span> is the sample index. <span class="math">\(n\)</span> usually starts from <span class="math">\(0\)</span> and increases with unit steps <span class="math">\((\Delta n =1)\)</span>. If this is not the case, the following transformation can be applied:</p>
+<p>Examples of signal sources that might be filtered:</p>
+<p><em>aircraft altitude, concentration of a species in a liquid, level of liquid in a tank, flux of a liquid into a tank, pressure, electric current, various vibration measurements, audio signals, pixels of an image, vehicle velocity, air humidity</em></p>
+<p>Discrete - time <span class="math">\((DT)\)</span> signals can be obtained by sampling continuous time signals or they can be discrete in nature. <span class="math">\(DT\)</span> signals are denoted like <span class="math">\(x(n)\)</span> where <span class="math">\(n\)</span> is the sample index. <span class="math">\(n\)</span> usually starts from <span class="math">\(0\)</span> and increases with unit steps <span class="math">\((\Delta n =1)\)</span>. If this is not the case, the following transformation can be applied:</p>
 <p>Let <span class="math">\(n(k)\)</span> be the sequence of time instants such that for any <span class="math">\(k \in \mathbb{N}\)</span>, <span class="math">\(n(k)=n(0)+k\Delta n\)</span>, where <span class="math">\(n(0) \neq 0\)</span> and <span class="math">\(\Delta n \neq 1\)</span>. We can define a time sequence <span class="math">\({n(k)}'\)</span> which satisfies the requirements of zero initial time and unit time step as follows: Let <span class="math">\({n(k)}'=an(k) + b\)</span>, <span class="math">\(k \in \mathbb{N}\)</span> and impose the initial conditions <span class="math">\({n(0)}'=0\)</span>, <span class="math">\({n(1)}'=1\)</span>. Then we obtain the following two equations:</p>
 <div class="math" id="equation-nPrime1">
 <span class="eqno">(1)</span>\[{n(0)}'=an(0)+b \Rightarrow b=-an(0)\]</div>
@@ -79,8 +83,11 @@
 </ul>
 
   <h4>Previous topic</h4>
+  <p class="topless"><a href="SecondTest.html"
+                        title="previous chapter">Second Tensile Strain Experiment</a></p>
+  <h4>Next topic</h4>
   <p class="topless"><a href="FourierSeriesAndTransform.html"
-                        title="previous chapter">Fourier Series and the Fourier Transform</a></p>
+                        title="next chapter">Fourier Series and the Fourier Transform</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/DigitalFilters.txt"
@@ -111,6 +118,9 @@
              >index</a></li>
         <li class="right" >
           <a href="FourierSeriesAndTransform.html" title="Fourier Series and the Fourier Transform"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="SecondTest.html" title="Second Tensile Strain Experiment"
              >previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>

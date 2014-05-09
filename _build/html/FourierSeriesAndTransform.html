@@ -25,8 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
-    <link rel="next" title="Discrete Time Signals" href="DigitalFilters.html" />
-    <link rel="prev" title="Second Tensile Strain Experiment" href="SecondTest.html" /> 
+    <link rel="prev" title="Discrete Time Signals" href="DigitalFilters.html" /> 
   </head>
   <body>
     <div class="related">
@@ -37,9 +36,6 @@
              accesskey="I">index</a></li>
         <li class="right" >
           <a href="DigitalFilters.html" title="Discrete Time Signals"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="SecondTest.html" title="Second Tensile Strain Experiment"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>
@@ -225,13 +221,22 @@ N &amp; \mbox{ if $ k=l$}\\
 <div class="math">
 \[x_3(n)=\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_3=1/4 \Rightarrow N_3 = 4\]</div>
 <div class="math">
-\[x_4(n)=\displaystyle\frac{1}{2}\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_4=1/4 \Rightarrow N_4 = 8\]</div>
+\[x_4(n)=\displaystyle\frac{1}{2}\cos\Big(2\pi \frac{3}{8}n\Big) \Rightarrow f_4=3/8 \Rightarrow N_4 = 8\]</div>
 <p>The smallest common factor of <span class="math">\(N_1, N_2, N_3\)</span> is <span class="math">\(N=8\)</span> which is the fundamental period of the signal.</p>
 <p><span class="math">\(x(n)\)</span> can be written in form of equation <a href="#equation-fourier">(1)</a> as follows:</p>
 <div class="math">
-\[x_1(n)=2e^{\displaystyle{j0n}}=2e^{\displaystyle{j\frac{2\pi 0}{8}n}} \Rightarrow k=0,\quad c_0=2\]</div>
+\[x_1(n)=2e^{\displaystyle{j0n}}=2e^{\displaystyle{j\frac{2\pi 0}{8}n}} \Rightarrow k=0,\quad \boxed{c_0=2}\]</div>
 <div class="math">
-\[\begin{split}x_2(n)&amp;=2\Big( \frac{1}{2}e^{\displaystyle{j\frac{\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{4}n}}\Big)=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j(-\frac{\pi}{4}+2\pi)n}}  \\ &amp;=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j\frac{7\pi}{4}n}}=e^{\displaystyle{j\frac{2\pi k_1}{8}n}}+e^{\displaystyle{j\frac{2\pi k_2}{8}n}}\\ &amp;\Rightarrow k_1=1,\quad c_1 = 1, \qquad k_2=7, \quad c_7=1\end{split}\]</div>
+\[\begin{split}x_2(n)&amp;=2\Big( \frac{1}{2}e^{\displaystyle{j\frac{\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{4}n}}\Big)=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j(-\frac{\pi}{4}+2\pi)n}}  \\ &amp;=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j\frac{7\pi}{4}n}}=e^{\displaystyle{j\frac{2\pi k_1}{8}n}}+e^{\displaystyle{j\frac{2\pi k_2}{8}n}}\\ &amp;\Rightarrow k_1=1,\quad \boxed{c_1 = 1}, \qquad k_2=7, \quad \boxed{c_7=1}\end{split}\]</div>
+<div class="math">
+\[\begin{split}x_3(n)&amp;=\frac{1}{2}e^{\displaystyle{j\frac{\pi}{2}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{2}n}}=\frac{1}{2}e^{\displaystyle{j\frac{\pi}{2}n}}+\frac{1}{2}e^{\displaystyle{j(-\frac{\pi}{2}+2\pi)n}} \\ &amp;=\frac{1}{2}e^{\displaystyle{j\frac{\pi}{2}n}}+\frac{1}{2}e^{\displaystyle{j\frac{3\pi}{2}n}}=\frac{1}{2}e^{\displaystyle{j\frac{2\pi k_3}{8}n}}+\frac{1}{2}e^{\displaystyle{j\frac{2\pi k_4}{8}n}} \\ &amp;\Rightarrow k_3 = 2,\quad\ \boxed{c_2 = 1/2}, \qquad k_4 = 6, \quad \boxed{c_6 = 1/2}\end{split}\]</div>
+<div class="math">
+\[\begin{split}x_4(n)&amp;=\frac{1}{2}\Big( \frac{1}{2}e^{\displaystyle{j\frac{3\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{3\pi}{4}n}}\Big)=\frac{1}{4}e^{\displaystyle{j\frac{3\pi}{4}n}}+\frac{1}{4}e^{\displaystyle{j(-\frac{3\pi}{4}+2\pi)n}}  \\ &amp;=\frac{1}{4}e^{\displaystyle{j\frac{3\pi}{4}n}}+\frac{1}{4}e^{\displaystyle{j\frac{5\pi}{4}n}}=\frac{1}{4}e^{\displaystyle{j\frac{2\pi k_5}{8}n}}+\frac{1}{4}e^{\displaystyle{j\frac{2\pi k_6}{8}n}}\\ &amp;\Rightarrow k_5=3,\quad \boxed{c_3 = \frac{1}{4}}, \qquad k_6=5, \quad \boxed{c_5=\frac{1}{4}}\end{split}\]</div>
+<p>Since the signal doesn&#8217;t have the component <span class="math">\(c_4e^{\displaystyle{j\frac{2\pi 4}{8}}}\)</span>, <span class="math">\(\boxed{c_4 = 0}\)</span>.</p>
+<div class="figure align-center" id="quiz41c">
+<a class="reference internal image-reference" href="_images/Quiz41c.png"><img alt="_images/Quiz41c.png" src="_images/Quiz41c.png" style="width: 507.5px; height: 257.5px;" /></a>
+</div>
+<p>In case of real valued periodic signals, for even valued <span class="math">\(N\)</span>, <span class="math">\(k \in \lbrace 0, 1, ..., N/2  \rbrace\)</span> and for odd valued <span class="math">\(N\)</span>, <span class="math">\(k \in \lbrace 0, 1, ..., (N-1)/2  \rbrace\)</span> completely describes the power density spectrum of the signal. In order to prove this we can use the fact that the Fourier series of <span class="math">\(x(n)\)</span> and <span class="math">\({x(n)}^*\)</span> are equal to each other.</p>
 </div>
 </div>
 </div>
@@ -254,11 +259,8 @@ N &amp; \mbox{ if $ k=l$}\\
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="SecondTest.html"
-                        title="previous chapter">Second Tensile Strain Experiment</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="DigitalFilters.html"
-                        title="next chapter">Discrete Time Signals</a></p>
+                        title="previous chapter">Discrete Time Signals</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/FourierSeriesAndTransform.txt"
@@ -289,9 +291,6 @@ N &amp; \mbox{ if $ k=l$}\\
              >index</a></li>
         <li class="right" >
           <a href="DigitalFilters.html" title="Discrete Time Signals"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="SecondTest.html" title="Second Tensile Strain Experiment"
              >previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>

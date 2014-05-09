@@ -216,12 +216,27 @@ Each frequency component :math:`\frac{2\pi k}{N}` has a contribution to the tota
 
 .. math:: x_3(n)=\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_3=1/4 \Rightarrow N_3 = 4
 
-.. math:: x_4(n)=\displaystyle\frac{1}{2}\cos\Big(2\pi \frac{1}{4}n\Big) \Rightarrow f_4=1/4 \Rightarrow N_4 = 8
+.. math:: x_4(n)=\displaystyle\frac{1}{2}\cos\Big(2\pi \frac{3}{8}n\Big) \Rightarrow f_4=3/8 \Rightarrow N_4 = 8
 
 The smallest common factor of :math:`N_1, N_2, N_3` is :math:`N=8` which is the fundamental period of the signal.
 
 :math:`x(n)` can be written in form of equation :eq:`fourier` as follows:
 
-.. math:: x_1(n)=2e^{\displaystyle{j0n}}=2e^{\displaystyle{j\frac{2\pi 0}{8}n}} \Rightarrow k=0,\quad c_0=2
+.. math:: x_1(n)=2e^{\displaystyle{j0n}}=2e^{\displaystyle{j\frac{2\pi 0}{8}n}} \Rightarrow k=0,\quad \boxed{c_0=2}
 
-.. math:: x_2(n)&=2\Big( \frac{1}{2}e^{\displaystyle{j\frac{\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{4}n}}\Big)=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j(-\frac{\pi}{4}+2\pi)n}}  \\ &=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j\frac{7\pi}{4}n}}=e^{\displaystyle{j\frac{2\pi k_1}{8}n}}+e^{\displaystyle{j\frac{2\pi k_2}{8}n}}\\ &\Rightarrow k_1=1,\quad c_1 = 1, \qquad k_2=7, \quad c_7=1
+.. math:: x_2(n)&=2\Big( \frac{1}{2}e^{\displaystyle{j\frac{\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{4}n}}\Big)=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j(-\frac{\pi}{4}+2\pi)n}}  \\ &=e^{\displaystyle{j\frac{\pi}{4}n}}+e^{\displaystyle{j\frac{7\pi}{4}n}}=e^{\displaystyle{j\frac{2\pi k_1}{8}n}}+e^{\displaystyle{j\frac{2\pi k_2}{8}n}}\\ &\Rightarrow k_1=1,\quad \boxed{c_1 = 1}, \qquad k_2=7, \quad \boxed{c_7=1}
+
+.. math:: x_3(n)&=\frac{1}{2}e^{\displaystyle{j\frac{\pi}{2}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{\pi}{2}n}}=\frac{1}{2}e^{\displaystyle{j\frac{\pi}{2}n}}+\frac{1}{2}e^{\displaystyle{j(-\frac{\pi}{2}+2\pi)n}} \\ &=\frac{1}{2}e^{\displaystyle{j\frac{\pi}{2}n}}+\frac{1}{2}e^{\displaystyle{j\frac{3\pi}{2}n}}=\frac{1}{2}e^{\displaystyle{j\frac{2\pi k_3}{8}n}}+\frac{1}{2}e^{\displaystyle{j\frac{2\pi k_4}{8}n}} \\ &\Rightarrow k_3 = 2,\quad\ \boxed{c_2 = 1/2}, \qquad k_4 = 6, \quad \boxed{c_6 = 1/2}
+
+.. math:: x_4(n)&=\frac{1}{2}\Big( \frac{1}{2}e^{\displaystyle{j\frac{3\pi}{4}n}}+\frac{1}{2}e^{\displaystyle{-j\frac{3\pi}{4}n}}\Big)=\frac{1}{4}e^{\displaystyle{j\frac{3\pi}{4}n}}+\frac{1}{4}e^{\displaystyle{j(-\frac{3\pi}{4}+2\pi)n}}  \\ &=\frac{1}{4}e^{\displaystyle{j\frac{3\pi}{4}n}}+\frac{1}{4}e^{\displaystyle{j\frac{5\pi}{4}n}}=\frac{1}{4}e^{\displaystyle{j\frac{2\pi k_5}{8}n}}+\frac{1}{4}e^{\displaystyle{j\frac{2\pi k_6}{8}n}}\\ &\Rightarrow k_5=3,\quad \boxed{c_3 = \frac{1}{4}}, \qquad k_6=5, \quad \boxed{c_5=\frac{1}{4}}
+
+Since the signal doesn't have the component :math:`c_4e^{\displaystyle{j\frac{2\pi 4}{8}}}`, :math:`\boxed{c_4 = 0}`. 
+
+.. _Quiz41c:
+.. figure:: Quiz41c.png
+   :height: 515px
+   :width: 1015 px
+   :scale: 50 %
+   :align: center
+
+In case of real valued periodic signals, for even valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., N/2  \rbrace` and for odd valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., (N-1)/2  \rbrace` completely describes the power density spectrum of the signal. In order to prove this we can use the fact that the Fourier series of :math:`x(n)` and :math:`{x(n)}^*` are equal to each other.
