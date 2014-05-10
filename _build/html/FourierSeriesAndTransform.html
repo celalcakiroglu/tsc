@@ -236,9 +236,25 @@ N &amp; \mbox{ if $ k=l$}\\
 <div class="figure align-center" id="quiz41c">
 <a class="reference internal image-reference" href="_images/Quiz41c.png"><img alt="_images/Quiz41c.png" src="_images/Quiz41c.png" style="width: 507.5px; height: 257.5px;" /></a>
 </div>
-<p>In case of real valued periodic signals, for even valued <span class="math">\(N\)</span>, <span class="math">\(k \in \lbrace 0, 1, ..., N/2  \rbrace\)</span> and for odd valued <span class="math">\(N\)</span>, <span class="math">\(k \in \lbrace 0, 1, ..., (N-1)/2  \rbrace\)</span> completely describes the power density spectrum of the signal. In order to prove this we can use the fact that the Fourier series of <span class="math">\(x(n)\)</span> and <span class="math">\({x(n)}^*\)</span> are equal to each other.</p>
+<p>In case of real valued periodic signals, for even valued <span class="math">\(N\)</span>, <span class="math">\(k \in \lbrace 0, 1, ..., N/2  \rbrace\)</span> and for odd valued <span class="math">\(N\)</span>, <span class="math">\(k \in \lbrace 0, 1, ..., (N-1)/2  \rbrace\)</span> completely describes the power density spectrum of the signal. In order to prove this we can use the fact that the Fourier series of <span class="math">\(x(n)\)</span> and <span class="math">\({x(n)}^*\)</span> are equal to each other for a real signal.</p>
 <div class="math">
 \[\begin{split}x(n)=\sum_{k=-(N-1)}^{0}c_ke^{\displaystyle{j2\pi k n/N}}&amp;=c_0 + c_{-1}e^{\displaystyle{j2\pi (-1)n/N}} + ... \\ &amp;+ c_{-(N-2)}e^{\displaystyle{j2\pi (-(N-2))n/N}} + c_{-(N-1)}e^{\displaystyle{j2\pi (-(N-1))n/N}}\end{split}\]</div>
+<div class="math">
+\[\begin{split}{x(n)}^*=\sum_{k=0}^{N-1}{c_k}^*e^{\displaystyle{-j2\pi k n/N}}&amp;={c_0}^* + {c_1}^*e^{\displaystyle{-j2\pi (1)n/N}} + ... \\ &amp;+ {c_{(N-2)}}^*e^{\displaystyle{-j2\pi (N-2)n/N}} + {c_{(N-1)}}^*e^{\displaystyle{-j2\pi (N-1)n/N}}\end{split}\]</div>
+<div class="math">
+\[x(n) = {x(n)}^* \Rightarrow c_0 = {c_0}^*, \quad c_{-1} = {c_1}^*,  . . .,  c_{-(N-2)} = {c_{(N-2)}}^*, \quad c_{-(N-1)} = {c_{(N-1)}}^*\]</div>
+<div class="math" id="equation-realCk">
+<span class="eqno">(13)</span>\[c_{-k} = {c_k}^* , \quad \forall k \in {0, ..., N-1}\]</div>
+<p>An immediate result of equation <a href="#equation-realCk">(13)</a> is as follows:</p>
+<div class="math" id="equation-realCk2">
+<span class="eqno">(14)</span>\[\begin{split}&amp;|{c_k}^*| = |c_k| = |c_{-k}|=|c_{N-k}| \\ &amp;\angle {c_k}^* = \angle c_{-k} =\angle c_{N-k}= -\angle c_k\end{split}\]</div>
+<p>In equation <a href="#equation-realCk2">(14)</a> the periodicty of <span class="math">\(c_k\)</span> and the relationship <span class="math">\(\angle {c_k}^*=-\angle c_k\)</span> are used. The periodicity of <span class="math">\(c_k\)</span> implies that <span class="math">\(\forall k `, :math:`c_k = c_{k+N}\)</span>. This can be shown using equation <a href="#equation-fourierCoeff">(2)</a> as follows:</p>
+<div class="math">
+\[c_{k+N}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi (k+N)n/N}}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi kn/N}}e^{\displaystyle{-j2\pi Nn/N}}\]</div>
+<div class="math">
+\[e^{\displaystyle{-j2\pi n}} = \cos(2\pi n) - j \sin(2\pi n) = 1\]</div>
+<div class="math">
+\[\Rightarrow c_{k+N}=c_k\]</div>
 </div>
 </div>
 </div>

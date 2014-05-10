@@ -239,6 +239,26 @@ Since the signal doesn't have the component :math:`c_4e^{\displaystyle{j\frac{2\
    :scale: 50 %
    :align: center
 
-In case of real valued periodic signals, for even valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., N/2  \rbrace` and for odd valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., (N-1)/2  \rbrace` completely describes the power density spectrum of the signal. In order to prove this we can use the fact that the Fourier series of :math:`x(n)` and :math:`{x(n)}^*` are equal to each other.
+In case of real valued periodic signals, for even valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., N/2  \rbrace` and for odd valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., (N-1)/2  \rbrace` completely describes the power density spectrum of the signal. In order to prove this we can use the fact that the Fourier series of :math:`x(n)` and :math:`{x(n)}^*` are equal to each other for a real signal.
 
 .. math:: x(n)=\sum_{k=-(N-1)}^{0}c_ke^{\displaystyle{j2\pi k n/N}}&=c_0 + c_{-1}e^{\displaystyle{j2\pi (-1)n/N}} + ... \\ &+ c_{-(N-2)}e^{\displaystyle{j2\pi (-(N-2))n/N}} + c_{-(N-1)}e^{\displaystyle{j2\pi (-(N-1))n/N}}
+
+.. math:: {x(n)}^*=\sum_{k=0}^{N-1}{c_k}^*e^{\displaystyle{-j2\pi k n/N}}&={c_0}^* + {c_1}^*e^{\displaystyle{-j2\pi (1)n/N}} + ... \\ &+ {c_{(N-2)}}^*e^{\displaystyle{-j2\pi (N-2)n/N}} + {c_{(N-1)}}^*e^{\displaystyle{-j2\pi (N-1)n/N}}
+
+.. math:: x(n) = {x(n)}^* \Rightarrow c_0 = {c_0}^*, \quad c_{-1} = {c_1}^*,  . . .,  c_{-(N-2)} = {c_{(N-2)}}^*, \quad c_{-(N-1)} = {c_{(N-1)}}^*
+
+.. math:: c_{-k} = {c_k}^* , \quad \forall k \in {0, ..., N-1}
+  :label: realCk
+
+An immediate result of equation :eq:`realCk` is as follows:
+
+.. math:: &|{c_k}^*| = |c_k| = |c_{-k}|=|c_{N-k}| \\ &\angle {c_k}^* = \angle c_{-k} =\angle c_{N-k}= -\angle c_k
+  :label: realCk2
+
+In equation :eq:`realCk2` the periodicty of :math:`c_k` and the relationship :math:`\angle {c_k}^*=-\angle c_k` are used. The periodicity of :math:`c_k` implies that :math:`\forall k `, :math:`c_k = c_{k+N}`. This can be shown using equation :eq:`fourierCoeff` as follows:
+
+.. math:: c_{k+N}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi (k+N)n/N}}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi kn/N}}e^{\displaystyle{-j2\pi Nn/N}}
+
+.. math:: e^{\displaystyle{-j2\pi n}} = \cos(2\pi n) - j \sin(2\pi n) = 1
+
+.. math:: \Rightarrow c_{k+N}=c_k
