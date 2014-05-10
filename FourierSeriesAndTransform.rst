@@ -60,16 +60,16 @@ Equation :eq:`fourierCoeff` can be derived applying the following 4 steps:
 
 **Example 1:** Determine the Fourier coefficients of the signal :math:`x(n)=\cos(\frac{2\pi}{3}n)+\sin(\frac{2\pi}{5}n)`.
 
-.. math:: x(n)=\frac{1}{2}e^{j\displaystyle\frac{2\pi}{3}n}+\frac{1}{2}e^{j\Big(-\displaystyle\frac{2\pi}{3}\Big)n}+\frac{1}{2j}e^{j\displaystyle\frac{2\pi}{5}n}-\frac{1}{2j}e^{j\Big(-\displaystyle\frac{2\pi}{5}\Big)n}
+.. math:: x(n)=\frac{1}{2}e^{\displaystyle{j\frac{2\pi}{3}n}}+\frac{1}{2}e^{\displaystyle{j\Big(-\frac{2\pi}{3}\Big)n}}+\frac{1}{2j}e^{\displaystyle{j\frac{2\pi}{5}n}}-\frac{1}{2j}e^{\displaystyle{j\Big(-\frac{2\pi}{5}\Big)n}}
 
-.. math:: e^{j\Big(-\displaystyle\frac{2\pi}{3}\Big)n}=e^{j\Big(-\displaystyle\frac{2\pi}{3}+2\pi\Big)n}=e^{j\displaystyle\frac{4\pi}{3}n}, \quad e^{j\Big(-\displaystyle\frac{2\pi}{5}\Big)n}=e^{j\Big(-\displaystyle\frac{2\pi}{5}+2\pi\Big)n}=e^{j\displaystyle\frac{8\pi}{5}n}
+.. math:: e^{\displaystyle{j\Big(-\frac{2\pi}{3}\Big)n}}=e^{\displaystyle{j\Big(-\frac{2\pi}{3}+2\pi\Big)n}}=e^{\displaystyle{j\frac{4\pi}{3}n}}, \quad e^{\displaystyle{j\Big(-\frac{2\pi}{5}\Big)n}}=e^{\displaystyle{j\Big(-\frac{2\pi}{5}+2\pi\Big)n}}=e^{\displaystyle{j\frac{8\pi}{5}n}}
 
-.. math:: \Rightarrow x(n)=\frac{1}{2j}e^{j\displaystyle\frac{2\pi}{5}n}+\frac{1}{2}e^{j\displaystyle\frac{2\pi}{3}n}+\frac{1}{2}e^{j\displaystyle\frac{4\pi}{3}n}-\frac{1}{2j}e^{j\displaystyle\frac{8\pi}{5}n}
+.. math:: \Rightarrow x(n)=\frac{1}{2j}e^{\displaystyle{j\frac{2\pi}{5}n}}+\frac{1}{2}e^{\displaystyle{j\frac{2\pi}{3}n}}+\frac{1}{2}e^{\displaystyle{j\frac{4\pi}{3}n}}-\frac{1}{2j}e^{\displaystyle{j\frac{8\pi}{5}n}}
   :label: quiz41bxn
 
 Let :math:`x_1(n)=\cos(2\pi\frac{1}{3}n)`, :math:`x_2(n)=\sin(2\pi\frac{1}{5}n)`. Let :math:`N_1` and :math:`N_2` be the fundamental periods of :math:`x_1` and :math:`x_2` respectively. Then :math:`N_1=3` and :math:`N_2=5`. The fundamental period of :math:`x(n)` is the smallest common factor of :math:`N_1` and :math:`N_2` such that :math:`N=15`. It follows that
 
-.. math::  x(n)=\sum_{k=0}^{14}c_k e^{j\displaystyle\frac{2\pi}{15}kn}
+.. math::  x(n)=\sum_{k=0}^{14}c_k e^{\displaystyle{j\frac{2\pi}{15}kn}}
   :label: ex1eq1
 
 The only nonzero terms in :eq:`ex1eq1` are the ones in :eq:`quiz41bxn`  
