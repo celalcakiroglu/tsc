@@ -255,7 +255,7 @@ An immediate result of equation :eq:`realCk` is as follows:
 .. math:: &|{c_k}^*| = |c_k| = |c_{-k}|=|c_{N-k}| \\ &\angle {c_k}^* = \angle c_{-k} =\angle c_{N-k}= -\angle c_k
   :label: realCk2
 
-In equation :eq:`realCk2` the periodicty of :math:`c_k` and the relationship :math:`\angle {c_k}^*=-\angle c_k` are used. The periodicity of :math:`c_k` implies that :math:`\forall k `, :math:`c_k = c_{k+N}`. This can be shown using equation :eq:`fourierCoeff` as follows:
+In equation :eq:`realCk2` the periodicty of :math:`c_k` and the relationship :math:`\angle {c_k}^*=-\angle c_k` are used. The periodicity of :math:`c_k` implies that :math:`\forall k`, :math:`c_k = c_{k+N}`. This can be shown using equation :eq:`fourierCoeff` as follows:
 
 .. math:: c_{k+N}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi (k+N)n/N}}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi kn/N}}e^{\displaystyle{-j2\pi Nn/N}}
 
