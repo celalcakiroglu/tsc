@@ -240,3 +240,5 @@ Since the signal doesn't have the component :math:`c_4e^{\displaystyle{j\frac{2\
    :align: center
 
 In case of real valued periodic signals, for even valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., N/2  \rbrace` and for odd valued :math:`N`, :math:`k \in \lbrace 0, 1, ..., (N-1)/2  \rbrace` completely describes the power density spectrum of the signal. In order to prove this we can use the fact that the Fourier series of :math:`x(n)` and :math:`{x(n)}^*` are equal to each other.
+
+.. math:: x(n)=\sum_{k=-(N-1)}^{0}c_ke^{\displaystyle{j2\pi k n/N}}&=c_0 + c_{-1}e^{\displaystyle{j2\pi (-1)n/N}} + ... \\ &+ c_{-(N-2)}e^{\displaystyle{j2\pi (-(N-2))n/N}} + c_{-(N-1)}e^{\displaystyle{j2\pi (-(N-1))n/N}}
