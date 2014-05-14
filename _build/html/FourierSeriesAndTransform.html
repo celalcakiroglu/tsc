@@ -255,6 +255,46 @@ N &amp; \mbox{ if $ k=l$}\\
 \[e^{\displaystyle{-j2\pi n}} = \cos(2\pi n) - j \sin(2\pi n) = 1\]</div>
 <div class="math">
 \[\Rightarrow c_{k+N}=c_k\]</div>
+<p>In <a class="reference internal" href="#fourierex2"><em>Example 2</em></a> <span class="math">\(x(n)\)</span> is a real-valued signal and <span class="math">\(N=8\)</span>. Therefore <span class="math">\(|c_k|^2\)</span> for <span class="math">\(k \in \lbrace 0, 1, 2,3, 4 \rbrace\)</span> completely describes the power density spectrum.</p>
+<p id="fourierex3"><strong>Example 3:</strong></p>
+<div class="figure align-center" id="fourierex3fig">
+<a class="reference internal image-reference" href="_images/fourierEx3fig.png"><img alt="_images/fourierEx3fig.png" src="_images/fourierEx3fig.png" style="width: 507.5px; height: 257.5px;" /></a>
+</div>
+<p>The above plot shows one period of the signal <span class="math">\(x(n)\)</span>. The fundamental period of the signal is <span class="math">\(N=10\)</span>. The Fourier coefficients of <span class="math">\(x(n)\)</span> can be calculated using equation <a href="#equation-fourierCoeff">(2)</a>. For <span class="math">\(n \in [3,7]\)</span>, <span class="math">\(x(n)=0\)</span>. Therefore equation <a href="#equation-fourierCoeff">(2)</a> becomes:</p>
+<div class="math">
+\[\begin{split}c_k&amp;=\frac{1}{10}\Big ( x(0)e^{\displaystyle{-j2\pi 0k/10}} + x(1)e^{\displaystyle{-j2\pi 1k/10}} + x(2)e^{\displaystyle{-j2\pi 2k/10}} + x(8)e^{\displaystyle{-j2\pi 8k/10}} + x(9)e^{\displaystyle{-j2\pi 9k/10}}  \Big) \\ &amp;=\frac{1}{10}\Big( 1+ e^{\displaystyle{-j\pi k/5}} + e^{\displaystyle{-j2\pi k/5}} + e^{\displaystyle{-j\pi 8k/5}} + e^{\displaystyle{-j\pi 9k/5}} \Big) \\ &amp;=\frac{1}{10}\Big( 1 + e^{\displaystyle{-j\pi k/5}} + e^{\displaystyle{-j2\pi k/5}} + e^{\displaystyle{j2\pi k/5}} + e^{\displaystyle{j\pi k/5}} \Big) \\ &amp;= \frac{1}{10}e^{\displaystyle{-j2\pi k/5}}\Big( 1+ e^{\displaystyle{j\pi k/5}} + e^{\displaystyle{j2\pi k/5}} + e^{\displaystyle{j3\pi k/5}} + e^{\displaystyle{j4\pi k/5}} \Big)\end{split}\]</div>
+<p>Let <span class="math">\(r=e^{j\pi k/5}\)</span>. Then</p>
+<div class="math">
+\[\begin{split}c_k &amp;= \frac{1}{10}r^{-2}\sum_{p=0}^{4}r^p = \frac{1}{10}r^{-2}\left\{ \begin{array}{ll}
+5 &amp; \mbox{ if $ k=0(r=1)$}\\
+ \displaystyle\frac{1-r^5}{1-r} &amp; \mbox{ if $k \neq 0(r \neq 1)$}
+\end{array}
+\right. \\
+&amp;=\left\{ \begin{array}{ll}
+1/2 &amp; \mbox{ if $ k=0$}\\
+ \frac{1}{10}r^{-2}\displaystyle\frac{r^{5/2}(r^{-5/2}-r^{5/2})}{r^{1/2}(r^{-1/2}-r^{1/2})} &amp; \mbox{ if $k \neq 0$}
+\end{array}
+\right. =\left\{ \begin{array}{ll}
+1/2 &amp; \mbox{ if $ k=0$}\\
+ \frac{1}{10}\displaystyle\frac{e^{-j\pi k/2}-e^{j\pi k/2}}{e^{-j\pi k/10}-e^{j\pi k/10}} &amp; \mbox{ if $k \neq 0$}
+\end{array}
+\right. \\
+&amp;=\left\{ \begin{array}{ll}
+1/2 &amp; \mbox{ if $ k=0$}\\
+ \frac{1}{10}\displaystyle\frac{-2j\sin(\pi k /2)}{-2j\sin(\pi k /10)} &amp; \mbox{ if $k = 0$}
+\end{array}
+\right. =\left\{ \begin{array}{ll}
+1/2 &amp; \mbox{ if $ k=0$}\\
+ \frac{1}{10}\displaystyle\frac{\sin(\pi k /2)}{\sin(\pi k /10)} &amp; \mbox{ if $k \neq 0$}
+\end{array}
+\right.\end{split}\]</div>
+<p>Since <span class="math">\(x(n)\)</span> is a real valued periodic signal <span class="math">\(c_k\)</span> for <span class="math">\(k \in [0, 5]\)</span> completely describes the power spectrum of the signal</p>
+<div class="figure align-center" id="fourierex3fig2">
+<a class="reference internal image-reference" href="_images/fourierEx3fig2.png"><img alt="_images/fourierEx3fig2.png" src="_images/fourierEx3fig2.png" style="width: 507.5px; height: 257.5px;" /></a>
+</div>
+<div class="figure align-center" id="fourierex3fig3">
+<a class="reference internal image-reference" href="_images/fourierEx3fig3.png"><img alt="_images/fourierEx3fig3.png" src="_images/fourierEx3fig3.png" style="width: 507.5px; height: 257.5px;" /></a>
+</div>
 </div>
 </div>
 </div>

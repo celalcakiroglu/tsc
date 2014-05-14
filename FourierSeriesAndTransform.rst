@@ -262,3 +262,62 @@ In equation :eq:`realCk2` the periodicty of :math:`c_k` and the relationship :ma
 .. math:: e^{\displaystyle{-j2\pi n}} = \cos(2\pi n) - j \sin(2\pi n) = 1
 
 .. math:: \Rightarrow c_{k+N}=c_k
+
+In :ref:`Example 2 <fourierEx2>` :math:`x(n)` is a real-valued signal and :math:`N=8`. Therefore :math:`|c_k|^2` for :math:`k \in \lbrace 0, 1, 2,3, 4 \rbrace` completely describes the power density spectrum.
+
+.. _fourierEx3:
+
+**Example 3:** 
+
+.. _fourierEx3fig:
+.. figure:: fourierEx3fig.png
+   :height: 515px
+   :width: 1015 px
+   :scale: 50 %
+   :align: center
+
+The above plot shows one period of the signal :math:`x(n)`. The fundamental period of the signal is :math:`N=10`. The Fourier coefficients of :math:`x(n)` can be calculated using equation :eq:`fourierCoeff`. For :math:`n \in [3,7]`, :math:`x(n)=0`. Therefore equation :eq:`fourierCoeff` becomes:
+
+.. math:: c_k&=\frac{1}{10}\Big ( x(0)e^{\displaystyle{-j2\pi 0k/10}} + x(1)e^{\displaystyle{-j2\pi 1k/10}} + x(2)e^{\displaystyle{-j2\pi 2k/10}} + x(8)e^{\displaystyle{-j2\pi 8k/10}} + x(9)e^{\displaystyle{-j2\pi 9k/10}}  \Big) \\ &=\frac{1}{10}\Big( 1+ e^{\displaystyle{-j\pi k/5}} + e^{\displaystyle{-j2\pi k/5}} + e^{\displaystyle{-j\pi 8k/5}} + e^{\displaystyle{-j\pi 9k/5}} \Big) \\ &=\frac{1}{10}\Big( 1 + e^{\displaystyle{-j\pi k/5}} + e^{\displaystyle{-j2\pi k/5}} + e^{\displaystyle{j2\pi k/5}} + e^{\displaystyle{j\pi k/5}} \Big) \\ &= \frac{1}{10}e^{\displaystyle{-j2\pi k/5}}\Big( 1+ e^{\displaystyle{j\pi k/5}} + e^{\displaystyle{j2\pi k/5}} + e^{\displaystyle{j3\pi k/5}} + e^{\displaystyle{j4\pi k/5}} \Big)
+
+Let :math:`r=e^{j\pi k/5}`. Then
+
+.. math:: c_k &= \frac{1}{10}r^{-2}\sum_{p=0}^{4}r^p = \frac{1}{10}r^{-2}\left\{ \begin{array}{ll}
+  5 & \mbox{ if $ k=0(r=1)$}\\
+   \displaystyle\frac{1-r^5}{1-r} & \mbox{ if $k \neq 0(r \neq 1)$}
+  \end{array}
+  \right. \\
+  &=\left\{ \begin{array}{ll}
+  1/2 & \mbox{ if $ k=0$}\\
+   \frac{1}{10}r^{-2}\displaystyle\frac{r^{5/2}(r^{-5/2}-r^{5/2})}{r^{1/2}(r^{-1/2}-r^{1/2})} & \mbox{ if $k \neq 0$}
+  \end{array}
+  \right. =\left\{ \begin{array}{ll}
+  1/2 & \mbox{ if $ k=0$}\\
+   \frac{1}{10}\displaystyle\frac{e^{-j\pi k/2}-e^{j\pi k/2}}{e^{-j\pi k/10}-e^{j\pi k/10}} & \mbox{ if $k \neq 0$}
+  \end{array}
+  \right. \\
+  &=\left\{ \begin{array}{ll}
+  1/2 & \mbox{ if $ k=0$}\\
+   \frac{1}{10}\displaystyle\frac{-2j\sin(\pi k /2)}{-2j\sin(\pi k /10)} & \mbox{ if $k = 0$}
+  \end{array}
+  \right. =\left\{ \begin{array}{ll}
+  1/2 & \mbox{ if $ k=0$}\\
+   \frac{1}{10}\displaystyle\frac{\sin(\pi k /2)}{\sin(\pi k /10)} & \mbox{ if $k \neq 0$}
+  \end{array}
+  \right.
+
+Since :math:`x(n)` is a real valued periodic signal :math:`c_k` for :math:`k \in [0, 5]` completely describes the power spectrum of the signal
+
+.. _fourierEx3fig2:
+.. figure:: fourierEx3fig2.png
+   :height: 515px
+   :width: 1015 px
+   :scale: 50 %
+   :align: center
+
+.. _fourierEx3fig3:
+.. figure:: fourierEx3fig3.png
+   :height: 515px
+   :width: 1015 px
+   :scale: 50 %
+   :align: center
