@@ -2,6 +2,24 @@ Tension Side Fracture of Cold Bends
 ===================================================
 Cold bending is applied in order to change the direction of a pipeline in a horizontal or vertical plane. This can be necessary to conform with the terrain conditions. Cold bending is done on site using cold bending machines. In the process of cold bending the compression side (intrados) of the pipe can be loaded beyond the yield stress in compression whereas the tension side (extrados) can be loaded beyond yield stress in tension. As a result the intrados is weakened and more likely to fail after cold bending. However, experimental studies carried out by Sen et al demonstrated that failure of a cold bend at the tension side can occur earlier than compressive failure under certain loading configurations (Sen_).
 
+.. _coldBendTestMat:
+
++------------------+---------------------------------------------------+
+|       Geometry and Material Properties of TCPL1                      |
++==================+===================================================+
+| Nominal diameter |        762 mm                                     |
++------------------+---------------------------------------------------+
+| Wall thickness   |        8.2 mm                                     |
++------------------+---------------------------------------------------+
+| Grade            |   X65                                             |
++------------------+---------------------------------------------------+
+| Curvature        |  Bent 1 degree per diameter in length             |
++------------------+---------------------------------------------------+
+| SMYS             |     448 MPa                                       |
++------------------+---------------------------------------------------+
+|Internal pressure |   80% SMYS hoop stress                            |
++------------------+---------------------------------------------------+
+
 Axial and Hoop Stresses as Functions of Internal Pressure, Diameter and Wall Thickness
 -------------------------------------------------------------------------------------------
 The relationship between the wall thickness :math:`(t)`, pipe outer diameter :math:`(OD)`, internal pressure :math:`(p_i)` and the longitudinal stress on the pipe wall caused by these variables :math:`(\sigma_l)` is given as 
@@ -27,6 +45,8 @@ Based on these definitions, the following plots are created for an X52 pipe with
    :width: 903 px
    :scale: 85 %
    :align: center
+
+
 
 **References**
 
