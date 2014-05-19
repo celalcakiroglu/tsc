@@ -15,6 +15,8 @@ Cold bending is applied in order to change the direction of a pipeline in a hori
 +------------------+---------------------------------------------------+
 | Curvature        |  Bent 1 degree per diameter in length             |
 +------------------+---------------------------------------------------+
+|Bend angle        | 9 degrees                                         |
++------------------+---------------------------------------------------+
 | SMYS             |     448 MPa                                       |
 +------------------+---------------------------------------------------+
 |Internal pressure |   80% SMYS hoop stress                            |
