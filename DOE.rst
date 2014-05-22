@@ -41,7 +41,20 @@ In the scope  of this project  a total of 8  full scale  experiments (testMat_) 
 End Plate Design
 -----------------------------------
 First Tensile Strain Experiment
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
+
+Strain measurements of the first test
+--------------------------------------
+
+.. _Axial0ATest1:
+.. figure:: Axial0ATest1.png
+   :height: 385px
+   :width: 706 px
+   :scale: 100 %
+   :align: left
+
+   Axial strain gauge measurements at the bottom side of the specimen
+
 
 .. _firstStrainProfile:
 .. figure:: StrainProfileTest1.png
@@ -52,7 +65,7 @@ First Tensile Strain Experiment
 
    Strain profile of the first full scale specimen.
 
-In Test 1 strain gauge data was available throughout the test. However this time instead of the gauge in the middle, the gauge 2 OD away from the end plate is used in the plots( :ref:`strain profile 1<firstStrainProfile>`). The reason for this was the erroneous measurements of the middle gauge. In  :ref:`strain profile 1<firstStrainProfile>`, the profile of each frame is plotted by joining strain at three different points on the pipe surface. The point denoted by **Remote** is where the strain is obtained from the edge of the DIC area of interest close to the end plate. The point denoted by **Gauge** is where the strain is measured using an axial strain gauge located in the mid-length of the bottom side of the girth weld. The point denoted by **Crack** is where the strain is obtained from the edge of the DIC area of interest around the flaw.
+In Test 1 strain gauge data was available throughout the test ( :ref:`Axial strain gauges bottom side 1<Axial0ATest1>`). However this time instead of the gauge in the middle, the gauge 2 OD away from the end plate is used in the plots( :ref:`strain profile 1<firstStrainProfile>`). The reason for this was the erroneous measurements of the middle gauge. In  :ref:`strain profile 1<firstStrainProfile>`, the profile of each frame is plotted by joining strain at three different points on the pipe surface. The point denoted by **Remote** is where the strain is obtained from the edge of the DIC area of interest close to the end plate. The point denoted by **Gauge** is where the strain is measured using an axial strain gauge located in the mid-length of the bottom side of the girth weld. The point denoted by **Crack** is where the strain is obtained from the edge of the DIC area of interest around the flaw.
 
 .. container:: clearer
 
@@ -92,7 +105,7 @@ In addition to digital image correlation, 19 strain gauges are mounted on differ
 
     .. image :: spacer.png
 
-Strain measurements
+Strain measurements of second test
 -----------------------------------
 
 .. _Remote Strain Gauges:
