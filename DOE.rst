@@ -1,4 +1,4 @@
-Design of Tensile Strain Experiments
+Design and Outcome of Tensile Strain Experiments
 ===================================================
 This  section  explains  the  general  design  process  of  the  full scale  specimen  as  well  as  the  details  of  the  preliminary numerical analysis. Based on the estimated forces acting on the specimen, proper dimensions are determined for the end plates. Also  this  section  describes  the  test  setup  and  the  flaw cutting procedure schematically.
 
