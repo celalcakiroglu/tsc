@@ -14,7 +14,6 @@ Contents:
    ReadExcelFromPython.rst
    ColdBend.rst
    DOE.rst
-   SecondTest.rst
    DigitalFilters.rst
    FourierSeriesAndTransform.rst
 

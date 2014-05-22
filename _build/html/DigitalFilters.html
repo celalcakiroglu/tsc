@@ -63,8 +63,20 @@
 <p>Inserting these two equations in the expression for <span class="math">\({n(k)}'\)</span> gives:</p>
 <div class="math">
 \[{n(k)}'=\frac{1}{\Delta n} n(k)  -\frac{1}{\Delta n} n(0)= \frac{1}{\Delta n} \Big( n(k)-n(0)  \Big) = \frac{1}{\Delta n}k \Delta n = k\]</div>
+<div class="section" id="power-and-energy-of-a-signal">
+<span id="powen"></span><h2>Power and energy of a signal<a class="headerlink" href="#power-and-energy-of-a-signal" title="Permalink to this headline">¶</a></h2>
+<p>The power of a DT signal <span class="math">\(x(n)\)</span> is defined as:</p>
+<div class="math">
+\[P_x = \lim_{N\to \infty}\displaystyle\frac{1}{2N+1}\sum_{n=-N}^{N}|x(n)|^2\]</div>
+<p>If a signal has finite power, then the signal is called <strong>power signal</strong></p>
+<p>The energy of a DT signal <span class="math">\(x(n)\)</span> is defined as:</p>
+<div class="math">
+\[E_x = \sum_{n=-\infty}^{\infty}|x(n)|^2\]</div>
+<p>If a signal has finite energy, then the signal is called <strong>energy signal</strong>.
+The power of an energy signal is equal to zero and the energy of a power signal is infinite.</p>
 <div class="section" id="exponentially-weighted-moving-average-ewma-filters">
-<span id="ewma"></span><h2>Exponentially Weighted Moving Average (EWMA) Filters<a class="headerlink" href="#exponentially-weighted-moving-average-ewma-filters" title="Permalink to this headline">¶</a></h2>
+<span id="ewma"></span><h3>Exponentially Weighted Moving Average (EWMA) Filters<a class="headerlink" href="#exponentially-weighted-moving-average-ewma-filters" title="Permalink to this headline">¶</a></h3>
+</div>
 </div>
 </div>
 
@@ -77,7 +89,10 @@
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Discrete Time Signals</a><ul>
+<li><a class="reference internal" href="#power-and-energy-of-a-signal">Power and energy of a signal</a><ul>
 <li><a class="reference internal" href="#exponentially-weighted-moving-average-ewma-filters">Exponentially Weighted Moving Average (EWMA) Filters</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

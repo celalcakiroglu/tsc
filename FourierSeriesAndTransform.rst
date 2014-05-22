@@ -58,7 +58,7 @@ Equation :eq:`fourierCoeff` can be derived applying the following 4 steps:
 
 .. _fourierEx1:
 
-**Example 1:** Determine the Fourier coefficients of the signal :math:`x(n)=\cos(\frac{2\pi}{3}n)+\sin(\frac{2\pi}{5}n)`.
+**Example 1:** Determine the Fourier coefficients of the signal :math:`x(n)=\cos(\displaystyle\frac{2\pi}{3}n)+\sin(\displaystyle\frac{2\pi}{5}n)`.
 
 .. math:: x(n)=\frac{1}{2}e^{\displaystyle{j\frac{2\pi}{3}n}}+\frac{1}{2}e^{\displaystyle{j\Big(-\frac{2\pi}{3}\Big)n}}+\frac{1}{2j}e^{\displaystyle{j\frac{2\pi}{5}n}}-\frac{1}{2j}e^{\displaystyle{j\Big(-\frac{2\pi}{5}\Big)n}}
 
@@ -67,7 +67,8 @@ Equation :eq:`fourierCoeff` can be derived applying the following 4 steps:
 .. math:: \Rightarrow x(n)=\frac{1}{2j}e^{\displaystyle{j\frac{2\pi}{5}n}}+\frac{1}{2}e^{\displaystyle{j\frac{2\pi}{3}n}}+\frac{1}{2}e^{\displaystyle{j\frac{4\pi}{3}n}}-\frac{1}{2j}e^{\displaystyle{j\frac{8\pi}{5}n}}
   :label: quiz41bxn
 
-Let :math:`x_1(n)=\cos(2\pi\frac{1}{3}n)`, :math:`x_2(n)=\sin(2\pi\frac{1}{5}n)`. Let :math:`N_1` and :math:`N_2` be the fundamental periods of :math:`x_1` and :math:`x_2` respectively. Then :math:`N_1=3` and :math:`N_2=5`. The fundamental period of :math:`x(n)` is the smallest common factor of :math:`N_1` and :math:`N_2` such that :math:`N=15`. It follows that
+Let :math:`x_1(n)=\cos(2\pi\frac{1}{3}n)`, :math:`x_2(n)=\sin(2\pi\frac{1}{5}n)`. 
+ The fundamental periods of :math:`x_1` and :math:`x_2` are  :math:`=3` and :math:`5`respectively. The fundamental period of :math:`x(n)` is the smallest common factor of these two funsamental periods such that :math:`N=15`. It follows that
 
 .. math::  x(n)=\sum_{k=0}^{14}c_k e^{\displaystyle{j\frac{2\pi}{15}kn}}
   :label: ex1eq1
@@ -321,3 +322,10 @@ Since :math:`x(n)` is a real valued periodic signal :math:`c_k` for :math:`k \in
    :width: 1015 px
    :scale: 50 %
    :align: center
+
+The Fourier Transform
+----------------------------------
+
+The Fourier transform of an aperiodic  :ref:`energy signal<Powen>`  is defined as
+
+.. math:: X(\omega)=\sum_{n=-\infty}^{\infty}x(n)e^{\displaystyle{-j\omega n}}

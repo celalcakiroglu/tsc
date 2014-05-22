@@ -18,6 +18,23 @@ Inserting these two equations in the expression for :math:`{n(k)}'` gives:
 
 .. math:: {n(k)}'=\frac{1}{\Delta n} n(k)  -\frac{1}{\Delta n} n(0)= \frac{1}{\Delta n} \Big( n(k)-n(0)  \Big) = \frac{1}{\Delta n}k \Delta n = k
 
+.. _Powen:
+
+Power and energy of a signal
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The power of a DT signal :math:`x(n)` is defined as:
+
+.. math:: P_x = \lim_{N\to \infty}\displaystyle\frac{1}{2N+1}\sum_{n=-N}^{N}|x(n)|^2
+
+If a signal has finite power, then the signal is called **power signal**
+
+The energy of a DT signal :math:`x(n)` is defined as:
+
+.. math:: E_x = \sum_{n=-\infty}^{\infty}|x(n)|^2
+
+If a signal has finite energy, then the signal is called **energy signal**.
+The power of an energy signal is equal to zero and the energy of a power signal is infinite.
 
 .. _EWMA:
 
