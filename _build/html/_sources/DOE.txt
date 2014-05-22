@@ -47,7 +47,7 @@ First Tensile Strain Experiment
 .. figure:: StrainProfileTest1.png
    :height: 515px
    :width: 1015 px
-   :scale: 75 %
+   :scale: 70 %
    :align: left
 
    Strain profile of the first full scale specimen.
@@ -210,7 +210,7 @@ Strain Profile of the Second Experiment
 .. figure:: StrainProfileTest2.png
    :height: 515px
    :width: 1015 px
-   :scale: 75 %
+   :scale: 70 %
    :align: left
 
    Strain profile of the second full scale specimen.
