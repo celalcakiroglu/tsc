@@ -71,7 +71,7 @@ From :ref:`strain profile 1<firstStrainProfile>` and :ref:`Axial strain gauges b
 
 .. raw:: html
 
-   <table>
+   <table border="1">
       <thead>
          <caption> Strain profile of Test 1    </caption>
          <tr><th>Frame</th><th>Remote measurement (%)</th><th>2/3 Gauge reading</th><th>Crack side strain measurement (%)</th></tr>
@@ -85,7 +85,7 @@ From :ref:`strain profile 1<firstStrainProfile>` and :ref:`Axial strain gauges b
          <tr><td>1382</td><td>4.8013</td><td><span style="color:red">2.83762</span></td><td>2.39687</td></tr>
       </tbody>
    </table>
-   <table>
+   <table border="1">
       <thead>
          <tr><th>Frame</th><th>Increase in the remote strain (%)</th><th>Ratio(left/right)</th><th>Increase in the gauge reading</th><th>Ratio (left/right)</th><th>Increase of the crack side strain (%)</th></tr>
       </thead>
