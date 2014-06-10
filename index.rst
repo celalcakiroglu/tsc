@@ -9,11 +9,12 @@ Welcome to the Tensile Strain Capacity documentation!
 Contents:
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 15
 
    ReadExcelFromPython.rst
    ColdBend.rst
    DOE.rst
+   MachineLearning.rst
    DigitalFilters.rst
    FourierSeriesAndTransform.rst
 

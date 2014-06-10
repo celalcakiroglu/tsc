@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Machine Learning &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
+    <link rel="next" title="Discrete Time Signals" href="DigitalFilters.html" />
+    <link rel="prev" title="Design and Outcome of Tensile Strain Experiments" href="DOE.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="DigitalFilters.html" title="Discrete Time Signals"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="DOE.html" title="Design and Outcome of Tensile Strain Experiments"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="machine-learning">
+<h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h1>
+<p><strong>Hyperplane:</strong> <span class="math">\(\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace\)</span>, <span class="math">\(\mathbf{w,x}\in \mathbb{R}^n\)</span>, <span class="math">\(b\in \mathbb{R}\)</span>. This is a set of points in <span class="math">\(\mathbb{R}^n\)</span> with a constant inner product to a given vector <span class="math">\(\textbf{w} \in \mathbb{R}^n\)</span>. The constant <span class="math">\(b\)</span> determines the offset of the hyperplane <span class="math">\((\textbf{w},b)\)</span> from the origin.</p>
+<p><strong>Input Space</strong> <span class="math">\(X\)</span> <strong>:</strong> Space of the examples <span class="math">\(\mathbf{x}_i\)</span>, <span class="math">\(i \in \lbrace 1, 2, ..., l \rbrace\)</span>. <span class="math">\(X\)</span> is a subset of <span class="math">\(\mathbb{R}^n\)</span>. <span class="math">\(X\)</span> may be a vector space of image vectors or vectors containing any data.</p>
+<p><strong>Output Domain</strong> <span class="math">\(Y\)</span> <strong>:</strong> For binary classification of the vectors in <span class="math">\(X\)</span>, <span class="math">\(Y=\lbrace -1, 1  \rbrace\)</span>. For every <span class="math">\(\mathbf{x}_i \in X\)</span>, there is a label <span class="math">\(y_i \in Y\)</span>.</p>
+<p><strong>Classification function:</strong> Based on the assumption that there exists a hyperplane <span class="math">\((\mathbf{w},b)\)</span> that correctly classifies all the vectors in the training data <span class="math">\(S\subseteq X\)</span> , the classification function is defined as</p>
+<div class="math">
+\[\forall \mathbf{x}_i \in S, f(\mathbf{x}_i)=\mathbf{w}^T \mathbf{x}_i + b\]</div>
+<p>For the classification <span class="math">\(sign(f(\mathbf{x}_i))\)</span> is used. If <span class="math">\(y_i=sign(f(\mathbf{x}_i))\)</span> this implies correct classification. The convention <span class="math">\(sign(0)=1\)</span> is used.</p>
+<p><strong>Margin:</strong> The margin of an example <span class="math">\((\mathbf{x}_i, y_i)\)</span> with respect to a hyperplane <span class="math">\((\mathbf{w},b)\)</span> is given as</p>
+<div class="math">
+\[\gamma_i = y_i(\mathbf{w}^T\mathbf{x}_i +b)\]</div>
+<div class="math">
+\[\begin{split}\left\{ \begin{array}{ll}
+\gamma _i &gt;0 &amp; \mbox{ $\Rightarrow$ the classification is correct}\\
+ \gamma _i &lt;0 &amp; \mbox{incorrect classification $\Rightarrow \mathbf{w}$ has to be updated}
+\end{array}
+\right.\end{split}\]</div>
+<p><strong>References</strong></p>
+<p id="jaakkola">Tommi Jaakkola, course materials for 6.867 Machine Learning, Fall 2006. MIT OpenCourseWare (<a class="reference external" href="http://ocw.mit.edu/">http://ocw.mit.edu/</a>), Massachusetts Institute of Technology. Downloaded on [26 May 2014].</p>
+<p id="cristianini">Cristianini N., Shawe-Taylor John: An Introduction to Support Vector Machines and other Kernel Based Learning Methods, Cambridge University Press 2000</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="DOE.html"
+                        title="previous chapter">Design and Outcome of Tensile Strain Experiments</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="DigitalFilters.html"
+                        title="next chapter">Discrete Time Signals</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/MachineLearning.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="DigitalFilters.html" title="Discrete Time Signals"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="DOE.html" title="Design and Outcome of Tensile Strain Experiments"
+             >previous</a> |</li>
+        <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Celal Cakiroglu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

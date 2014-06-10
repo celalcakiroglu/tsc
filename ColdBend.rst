@@ -22,6 +22,26 @@ Cold bending is applied in order to change the direction of a pipeline in a hori
 |Internal pressure |   80% SMYS hoop stress                            |
 +------------------+---------------------------------------------------+
 
+Rate of Increase of the PEEQ at the compression and tension sides at different levels of internal pressure
+----------------------------------------------------------------------------------------------------------------
+.. _35PercX65:
+.. figure:: _static/35PercX65.png
+   :height: 515px
+   :width: 1015 px
+   :scale: 70 %
+   :align: left
+
+.. _75PercX65:
+.. figure:: _static/75PercX65.png
+   :height: 515px
+   :width: 1015 px
+   :scale: 70 %
+   :align: right
+
+ .. container:: clearer
+
+    .. image :: spacer.png
+
 Axial and Hoop Stresses as Functions of Internal Pressure, Diameter and Wall Thickness
 -------------------------------------------------------------------------------------------
 The relationship between the wall thickness :math:`(t)`, pipe outer diameter :math:`(OD)`, internal pressure :math:`(p_i)` and the longitudinal stress on the pipe wall caused by these variables :math:`(\sigma_l)` is given as 

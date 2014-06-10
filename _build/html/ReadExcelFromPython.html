@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Reading and writing Excel files with ”.csv”, ”.xls” or ”.xlsx” extension using Python &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
+    <title>Interaction with Excel &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -50,8 +50,10 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="reading-and-writing-excel-files-with-csv-xls-or-xlsx-extension-using-python">
-<h1>Reading and writing Excel files with &#8221;.csv&#8221;, &#8221;.xls&#8221; or &#8221;.xlsx&#8221; extension using Python<a class="headerlink" href="#reading-and-writing-excel-files-with-csv-xls-or-xlsx-extension-using-python" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="interaction-with-excel">
+<h1>Interaction with Excel<a class="headerlink" href="#interaction-with-excel" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reading-and-writing-excel-files-with-csv-xls-or-xlsx-extension-using-python">
+<h2>Reading and writing Excel files with &#8221;.csv&#8221;, &#8221;.xls&#8221; or &#8221;.xlsx&#8221; extension using Python<a class="headerlink" href="#reading-and-writing-excel-files-with-csv-xls-or-xlsx-extension-using-python" title="Permalink to this headline">¶</a></h2>
 <p>Method 1: Using xlrd (for reading) and xlwt (for writing) packages together. The &#8216;xlwt&#8217; package doesn&#8217;t support the &#8221;.xlsx&#8221; format.
 Installing and using the &#8220;xlwt&#8221; package in Windows:</p>
 <ul class="simple">
@@ -63,6 +65,16 @@ Installing and using the &#8220;xlwt&#8221; package in Windows:</p>
 <p>Method 2: Reading with the &#8220;xlrd&#8221; package and writing with <a class="reference external" href="https://pypi.python.org/pypi/XlsxWriter/0.5.3">XlsxWriter</a></p>
 <p>Installing the &#8220;XlsxWriter&#8221; package in Windows:</p>
 </div>
+<div class="section" id="adding-and-removing-secondary-axes-in-excel-charts">
+<h2>Adding and removing secondary axes in excel charts<a class="headerlink" href="#adding-and-removing-secondary-axes-in-excel-charts" title="Permalink to this headline">¶</a></h2>
+<p><strong>Remove a secondary axis</strong></p>
+<ul class="simple">
+<li>Step 1: Click on the chart.</li>
+<li>Step 2: Chart Tools -&gt; Layout -&gt; Axes -&gt; Secondary axis -&gt; None</li>
+</ul>
+<p>Or just click on the axis and press delete.</p>
+</div>
+</div>
 
 
           </div>
@@ -70,6 +82,15 @@ Installing and using the &#8220;xlwt&#8221; package in Windows:</p>
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Interaction with Excel</a><ul>
+<li><a class="reference internal" href="#reading-and-writing-excel-files-with-csv-xls-or-xlsx-extension-using-python">Reading and writing Excel files with &#8221;.csv&#8221;, &#8221;.xls&#8221; or &#8221;.xlsx&#8221; extension using Python</a></li>
+<li><a class="reference internal" href="#adding-and-removing-secondary-axes-in-excel-charts">Adding and removing secondary axes in excel charts</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Welcome to the Tensile Strain Capacity documentation!</a></p>

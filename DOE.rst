@@ -77,12 +77,12 @@ From :ref:`strain profile 1<firstStrainProfile>` and :ref:`Axial strain gauges b
          <tr><th>Frame</th><th>Remote measurement (%)</th><th>2/3 Gauge reading</th><th>Crack side strain measurement (%)</th></tr>
       </thead>
       <tbody>
-         <tr><td>600</td><td>0.0477</td><td> 0.03115 </td><td>0.03566 </td></tr>
-         <tr> <td>800</td><td>0.2496</td><td>0.22352</td><td>0.2265 </td></tr>
-         <tr><td>1000</td><td>0.6781</td><td>0.68817</td><td>0.6731</td></tr>
-         <tr><td>1200</td><td>2.099</td><td>1.31304</td><td>1.44583</td></tr>
-         <tr><td>1300</td><td>3.4</td><td><span style="color:red">2.09108</span></td><td>1.86875</td></tr>
-         <tr><td>1382</td><td>4.8013</td><td><span style="color:red">2.83762</span></td><td>2.39687</td></tr>
+         <tr><td>600</td><td style="text-align:center">0.0477</td><td> 0.03115 </td><td style="text-align:center">0.03566 </td></tr>
+         <tr><td>800</td><td style="text-align:center">0.2496</td><td>0.22352</td><td style="text-align:center">0.2265 </td></tr>
+         <tr><td>1000</td><td style="text-align:center">0.6781</td><td>0.68817</td><td style="text-align:center">0.6731</td></tr>
+         <tr><td>1200</td><td style="text-align:center">2.099</td><td>1.31304</td><td style="text-align:center">1.44583</td></tr>
+         <tr><td>1300</td><td style="text-align:center">3.4</td><td><span style="color:red">2.09108</span></td><td style="text-align:center">1.86875</td></tr>
+         <tr><td>1382</td><td style="text-align:center">4.8013</td><td><span style="color:red">2.83762</span></td><td style="text-align:center">2.39687</td></tr>
       </tbody>
    </table>
    <table border="1">
