@@ -1,4 +1,4 @@
-Interaction with Excel
+Interaction with Excel and Eclipse
 ======================================
 Reading and writing Excel files with ".csv", ".xls" or ".xlsx" extension using Python
 ---------------------------------------------------------------------------------------
@@ -17,6 +17,16 @@ Installing the "XlsxWriter" package in Windows:
 
 Adding and removing secondary axes in excel charts
 --------------------------------------------------------------
+**Adding a secondary axis**
+
+- Step 1: Click on the chart
+
+- Step 2: Chart Tools -> Format
+
+- Step 3: Click on the arrow in "Current selection", then click on the data series which you want on a secondary axis.
+
+- Step 4: Format Selection -> Series Options -> Secondary axis.
+
 **Remove a secondary axis**
 
 - Step 1: Click on the chart.
@@ -24,3 +34,7 @@ Adding and removing secondary axes in excel charts
 - Step 2: Chart Tools -> Layout -> Axes -> Secondary axis -> None
 
 Or just click on the axis and press delete.
+
+Installing Eclipse and the Python plugin (PyDev)
+-----------------------------------------------------
+- Step 1: Download python from `here <https://www.python.org/downloads/>`_ and install.

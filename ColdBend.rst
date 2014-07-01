@@ -23,24 +23,19 @@ Cold bending is applied in order to change the direction of a pipeline in a hori
 +------------------+---------------------------------------------------+
 
 Rate of Increase of the PEEQ at the compression and tension sides at different levels of internal pressure
-----------------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+
+
 .. _35PercX65:
-.. figure:: _static/35PercX65.png
-   :height: 515px
-   :width: 1015 px
-   :scale: 70 %
-   :align: left
+.. figure:: coldBend/35PercX65.png
+    :height: 614px
+    :width: 903 px
+    :scale: 85 %
+    :align: center
 
-.. _75PercX65:
-.. figure:: _static/75PercX65.png
-   :height: 515px
-   :width: 1015 px
-   :scale: 70 %
-   :align: right
+.. container:: clearer
 
- .. container:: clearer
-
-    .. image :: spacer.png
+   .. image :: spacer.png
 
 Axial and Hoop Stresses as Functions of Internal Pressure, Diameter and Wall Thickness
 -------------------------------------------------------------------------------------------

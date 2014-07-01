@@ -15,6 +15,7 @@ Contents:
    ColdBend.rst
    DOE.rst
    MachineLearning.rst
+   SiemensNX.rst
    DigitalFilters.rst
    FourierSeriesAndTransform.rst
 
