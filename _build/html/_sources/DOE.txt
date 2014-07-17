@@ -268,7 +268,7 @@ Strain Profile of the Second Experiment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. _secondStrainProfile:
-.. figure:: exp\StrainProfileTest2.png
+.. figure:: StrainProfileTest2.png
    :height: 515px
    :width: 1015 px
    :scale: 70 %
