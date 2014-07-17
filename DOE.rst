@@ -81,8 +81,8 @@ From :ref:`strain profile 1<firstStrainProfile>` and :ref:`Axial strain gauges b
          <tr><td>800</td><td style="text-align:center">0.2496</td><td>0.22352</td><td style="text-align:center">0.2265 </td></tr>
          <tr><td>1000</td><td style="text-align:center">0.6781</td><td>0.68817</td><td style="text-align:center">0.6731</td></tr>
          <tr><td>1200</td><td style="text-align:center">2.099</td><td>1.31304</td><td style="text-align:center">1.44583</td></tr>
-         <tr><td>1300</td><td style="text-align:center">3.4</td><td><span style="color:red">2.09108</span></td><td style="text-align:center">1.86875</td></tr>
-         <tr><td>1382</td><td style="text-align:center">4.8013</td><td><span style="color:red">2.83762</span></td><td style="text-align:center">2.39687</td></tr>
+         <tr><td>1300</td><td style="text-align:center">3.4</td><td><span style="color:red">1.97407</span></td><td style="text-align:center">1.86875</td></tr>
+         <tr><td>1382</td><td style="text-align:center">4.8013</td><td><span style="color:red">2.72061</span></td><td style="text-align:center">2.39687</td></tr>
       </tbody>
    </table>
    <table border="1">
@@ -93,8 +93,8 @@ From :ref:`strain profile 1<firstStrainProfile>` and :ref:`Axial strain gauges b
          <tr><td>800</td><td>0.2019</td><td>1.04954</td><td>0.19237</td><td>1.008017</td><td>0.19084</td></tr>
          <tr><td>1000</td><td>0.4285</td><td>0.922199</td><td>0.46465</td><td>1.040417</td><td>0.4466</td></tr>
          <tr><td>1200</td><td>1.4209</td><td>2.273938</td><td>0.62486</td><td>0.808644</td><td>0.77273</td></tr>
-         <tr><td>1300</td><td>1.301</td><td></td><td></td><td></td><td>0.42292</td></tr>
-         <tr><td>1382</td><td>1.40125</td><td></td><td></td><td></td><td>0.52812</td></tr>
+         <tr><td>1300</td><td>1.301</td><td></td><td><span style="color:red">0.66103</span></td><td></td><td>0.42292</td></tr>
+         <tr><td>1382</td><td>1.40125</td><td></td><td><span style="color:red">0.74654</span></td><td></td><td>0.52812</td></tr>
          <tr><td></td><td>Mean</td><td><strong>1.415226</strong></td><td></td><td><strong>0.952359</strong></td><td></td></tr>
       </tbody>
    </table>
@@ -268,12 +268,47 @@ Strain Profile of the Second Experiment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. _secondStrainProfile:
-.. figure:: StrainProfileTest2.png
+.. figure:: exp\StrainProfileTest2.png
    :height: 515px
    :width: 1015 px
    :scale: 70 %
    :align: left
 
    Strain profile of the second full scale specimen.
+
+.. raw:: html
+
+   <table border="1" class="docutils">
+      <thead>
+         <caption> Strain profile of Test 2    </caption>
+         <tr><th>Frame</th><th>Remote measurement (%)</th><th>1/2 Gauge reading</th><th>Crack side strain measurement (%)</th></tr>
+      </thead>
+      <tbody>
+         <tr><td>600</td><td style="text-align:center">0.573</td><td> 0.48217 </td><td style="text-align:center">0.45 </td></tr>
+         <tr><td>800</td><td style="text-align:center">1.836</td><td>1.21325</td><td style="text-align:center">0.902 </td></tr>
+         <tr><td>1000</td><td style="text-align:center">3.08</td><td>1.98298</td><td style="text-align:center">1.37</td></tr>
+         <tr><td>1200</td><td style="text-align:center">4.273</td><td>2.56218</td><td style="text-align:center">1.72</td></tr>
+         <tr><td>1400</td><td style="text-align:center">4.89</td><td>2.91849</td><td style="text-align:center">2.036</td></tr>
+         <tr><td>1500</td><td style="text-align:center">4.91875</td><td>2.93615</td><td style="text-align:center">2.046</td></tr>
+         <tr><td>1600</td><td style="text-align:center">5.983</td><td><span style="color:red">3.71934</span></td><td style="text-align:center">2.66</td></tr>
+         <tr><td>1797</td><td style="text-align:center">7.66</td><td><span style="color:red">4.95241</span></td><td style="text-align:center">3.85</td></tr>
+      </tbody>
+   </table>
+   <table border="1">
+      <thead>
+         <tr><th>Frame</th><th>Increase in the remote strain (%)</th><th>Ratio(left/right)</th><th>Increase in the gauge reading</th><th>Ratio (left/right)</th><th>Increase of the crack side strain (%)</th></tr>
+      </thead>
+      <tbody>
+         <tr><td>800</td><td>1.263</td><td>1.727581</td><td>0.73108</td><td>1.617434</td><td>0.452</td></tr>
+         <tr><td>1000</td><td>1.244</td><td>1.616151</td><td>0.76973</td><td>1.644722</td><td>0.468</td></tr>
+         <tr><td>1200</td><td>1.193</td><td>2.059738</td><td>0.5792</td><td>1.654857</td><td>0.35</td></tr>
+         <tr><td>1400</td><td>0.617</td><td>1.731638</td><td>0.35631</td><td>1.127563</td><td>0.316</td></tr>
+         <tr><td>1500</td><td>0.02875</td><td>1.627973</td><td>0.01766</td><td>1.766</td><td>0.01</td></tr>
+         <tr><td>1600</td><td>1.06425</td><td></td><td><span style="color:red">0.783187</td><td></td><td>0.614</td></tr>
+         <tr><td>1797</td><td>1.677</td><td></td><td><span style="color:red">1.233076</td><td></td><td>1.19</td></tr>
+         <tr><td></td><td>Average</td><td><strong>1.752616</strong></td><td></td><td><strong>1.562115</strong></td><td></td></tr>
+      </tbody>
+   </table>
+
 
 In the second full scale test, starting from Frame 800 significant strain values are recorded. In  :ref:`strain profile 2<secondStrainProfile>`, the profile of each frame is plotted by joining strain at three different points on the pipe surface. The point denoted by **Remote** is where the strain is obtained from the edge of the DIC area of interest close to the end plate. The point denoted by **Gauge** is where the strain is measured using an axial strain gauge located in the mid-length of the bottom side of the girth weld. The point denoted by **Crack** is where the strain is obtained from the edge of the DIC area of interest around the flaw.   
