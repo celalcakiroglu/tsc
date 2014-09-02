@@ -1,23 +1,40 @@
 Machine Learning
 ======================================
 
-**Hyperplane:** :math:`\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace`, :math:`\mathbf{w,x}\in \mathbb{R}^n`, :math:`b\in \mathbb{R}`. This is a set of points in :math:`\mathbb{R}^n` with a constant inner product to a given vector :math:`\textbf{w} \in \mathbb{R}^n`. The constant :math:`b` determines the offset of the hyperplane :math:`(\textbf{w},b)` from the origin. 
+Basic Concepts
+--------------------------------------
 
-**Input Space** :math:`X` **:** Space of the examples :math:`\mathbf{x}_i`, :math:`i \in \lbrace 1, 2, ..., l \rbrace`. :math:`X` is a subset of :math:`\mathbb{R}^n`. :math:`X` may be a vector space of image vectors or vectors containing any data.
+**Hyperplane:** :math:`\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace`, :math:`\mathbf{w,x}\in \mathbb{R}^n`, :math:`b\in \mathbb{R}`. This is a set of points in :math:`\mathbb{R}^d` with a constant inner product to a given vector :math:`\textbf{w} \in \mathbb{R}^d`. The constant :math:`b` determines the offset of the hyperplane :math:`(\textbf{w},b)` from the origin. 
 
-**Output Domain** :math:`Y` **:** For binary classification of the vectors in :math:`X`, :math:`Y=\lbrace -1, 1  \rbrace`. For every :math:`\mathbf{x}_i \in X`, there is a label :math:`y_i \in Y`.
+**Input Space** :math:`X` **:** Space of the examples :math:`\mathbf{x}_t`, :math:`t \in \lbrace 1, 2, ..., l \rbrace`. :math:`X` is a subset of :math:`\mathbb{R}^d`. :math:`X` may be a vector space of image vectors or vectors containing any data.
 
+**Output Domain** :math:`Y` **:** For binary classification of the vectors in :math:`X`, :math:`Y=\lbrace -1, 1  \rbrace`. 
+Every :math:`\mathbf{x}_t` in the training set :math:`S\subseteq X` must be assigned a label :math:`y_t \in Y` in order to train the classification function. Therefore we could think of the training set :math:`S` as a set consisting of pairs of data vectors and their corresponding labels :math:`(\mathbf{x}_t, y_t)`.
 
-**Classification function:** Based on the assumption that there exists a hyperplane :math:`(\mathbf{w},b)` that correctly classifies all the vectors in the training data :math:`S\subseteq X` , the classification function is defined as
+Linear Binary Classification
+---------------------------------------
 
-.. math:: \forall \mathbf{x}_i \in S, f(\mathbf{x}_i)=\mathbf{w}^T \mathbf{x}_i + b
+**Classification function:**  The classification function is defined as
 
-For the classification :math:`sign(f(\mathbf{x}_i))` is used. If :math:`y_i=sign(f(\mathbf{x}_i))` this implies correct classification. The convention :math:`sign(0)=1` is used.
+.. math:: f(\mathbf{x}_t;\mathbf{w}, b)= \left\{ \begin{array}{ll}
+  1 & \mbox{ if $ \langle \mathbf{w}, \mathbf{x}_t \rangle +b \geq 0$}\\
+   -1 & \mbox{else}
+  \end{array}
+  \right.
+  :label: linClassF  
 
-**Margin:** The margin of an example :math:`(\mathbf{x}_i, y_i)` with respect to a hyperplane :math:`(\mathbf{w},b)` is given as 
+In Eq. :eq:`linClassF` :math:`\mathbf{w}` is a parameter vector having the same dimension as the training sample vectors :math:`\mathbf{x}_t` and :math:`b` is the bias parameter which sets the distance of the decision boundary between two classes (:math:`DB`) from the origin. It can be proven that the vector :math:`\mathbf{w}` is orthogonal to the decision boundary which is defined as :math:`DB=\lbrace \mathbf{x} \in \mathbb{R}^d : \langle \mathbf{x}, \mathbf{w} \rangle + b = 0 \rbrace`.
+
+Let :math:`\mathbf{x}_A, \mathbf{x}_B \in DB` and :math:`\mathbf{x}_A \neq \mathbf{x}_B`. Then, :math:`\langle \mathbf{x}_A, \mathbf{w} \rangle +b =0` and :math:`\langle \mathbf{x}_B, \mathbf{w} \rangle + b = 0`. It follows that :math:`\langle \mathbf{x}_A, \mathbf{w} \rangle = \langle \mathbf{x}_B, \mathbf{w} \rangle` and :math:`\langle \mathbf{x}_A - \mathbf{x}_B, \mathbf{w} \rangle = 0`. Therefore :math:`\mathbf{w}` is orthogonal to any line joining any two elements in :math:`DB`.
+
+that correctly classifies all the vectors in the training data :math:`S\subseteq X` ,
+
+For the classification :math:`sign(f(\mathbf{x}_t))` is used. If :math:`y_t=sign(f(\mathbf{x}_t))` this implies correct classification. The convention :math:`sign(0)=1` is used.
+
+**Margin:** The margin of an example :math:`(\mathbf{x}_t, y_t)` with respect to a hyperplane :math:`(\mathbf{w},b)` is given as 
 
 .. math::
-	\gamma_i = y_i(\mathbf{w}^T\mathbf{x}_i +b)
+	\gamma_t = y_t(\mathbf{w}^T\mathbf{x}_i +b)
 
 .. math::
 	\left\{ \begin{array}{ll}

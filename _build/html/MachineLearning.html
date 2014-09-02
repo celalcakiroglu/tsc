@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
-    <link rel="next" title="Discrete Time Signals" href="DigitalFilters.html" />
+    <link rel="next" title="3D Modeling Tutorials" href="SiemensNX.html" />
     <link rel="prev" title="Design and Outcome of Tensile Strain Experiments" href="DOE.html" /> 
   </head>
   <body>
@@ -36,7 +36,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="DigitalFilters.html" title="Discrete Time Signals"
+          <a href="SiemensNX.html" title="3D Modeling Tutorials"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="DOE.html" title="Design and Outcome of Tensile Strain Experiments"
@@ -52,16 +52,29 @@
             
   <div class="section" id="machine-learning">
 <h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h1>
-<p><strong>Hyperplane:</strong> <span class="math">\(\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace\)</span>, <span class="math">\(\mathbf{w,x}\in \mathbb{R}^n\)</span>, <span class="math">\(b\in \mathbb{R}\)</span>. This is a set of points in <span class="math">\(\mathbb{R}^n\)</span> with a constant inner product to a given vector <span class="math">\(\textbf{w} \in \mathbb{R}^n\)</span>. The constant <span class="math">\(b\)</span> determines the offset of the hyperplane <span class="math">\((\textbf{w},b)\)</span> from the origin.</p>
-<p><strong>Input Space</strong> <span class="math">\(X\)</span> <strong>:</strong> Space of the examples <span class="math">\(\mathbf{x}_i\)</span>, <span class="math">\(i \in \lbrace 1, 2, ..., l \rbrace\)</span>. <span class="math">\(X\)</span> is a subset of <span class="math">\(\mathbb{R}^n\)</span>. <span class="math">\(X\)</span> may be a vector space of image vectors or vectors containing any data.</p>
-<p><strong>Output Domain</strong> <span class="math">\(Y\)</span> <strong>:</strong> For binary classification of the vectors in <span class="math">\(X\)</span>, <span class="math">\(Y=\lbrace -1, 1  \rbrace\)</span>. For every <span class="math">\(\mathbf{x}_i \in X\)</span>, there is a label <span class="math">\(y_i \in Y\)</span>.</p>
-<p><strong>Classification function:</strong> Based on the assumption that there exists a hyperplane <span class="math">\((\mathbf{w},b)\)</span> that correctly classifies all the vectors in the training data <span class="math">\(S\subseteq X\)</span> , the classification function is defined as</p>
+<div class="section" id="basic-concepts">
+<h2>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline">¶</a></h2>
+<p><strong>Hyperplane:</strong> <span class="math">\(\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace\)</span>, <span class="math">\(\mathbf{w,x}\in \mathbb{R}^n\)</span>, <span class="math">\(b\in \mathbb{R}\)</span>. This is a set of points in <span class="math">\(\mathbb{R}^d\)</span> with a constant inner product to a given vector <span class="math">\(\textbf{w} \in \mathbb{R}^d\)</span>. The constant <span class="math">\(b\)</span> determines the offset of the hyperplane <span class="math">\((\textbf{w},b)\)</span> from the origin.</p>
+<p><strong>Input Space</strong> <span class="math">\(X\)</span> <strong>:</strong> Space of the examples <span class="math">\(\mathbf{x}_t\)</span>, <span class="math">\(t \in \lbrace 1, 2, ..., l \rbrace\)</span>. <span class="math">\(X\)</span> is a subset of <span class="math">\(\mathbb{R}^d\)</span>. <span class="math">\(X\)</span> may be a vector space of image vectors or vectors containing any data.</p>
+<p><strong>Output Domain</strong> <span class="math">\(Y\)</span> <strong>:</strong> For binary classification of the vectors in <span class="math">\(X\)</span>, <span class="math">\(Y=\lbrace -1, 1  \rbrace\)</span>.
+Every <span class="math">\(\mathbf{x}_t\)</span> in the training set <span class="math">\(S\subseteq X\)</span> must be assigned a label <span class="math">\(y_t \in Y\)</span> in order to train the classification function. Therefore we could think of the training set <span class="math">\(S\)</span> as a set consisting of pairs of data vectors and their corresponding labels <span class="math">\((\mathbf{x}_t, y_t)\)</span>.</p>
+</div>
+<div class="section" id="linear-binary-classification">
+<h2>Linear Binary Classification<a class="headerlink" href="#linear-binary-classification" title="Permalink to this headline">¶</a></h2>
+<p><strong>Classification function:</strong>  The classification function is defined as</p>
+<div class="math" id="equation-linClassF">
+<span class="eqno">(1)</span>\[\begin{split}f(\mathbf{x}_t;\mathbf{w}, b)= \left\{ \begin{array}{ll}
+1 &amp; \mbox{ if $ \langle \mathbf{w}, \mathbf{x}_t \rangle +b \geq 0$}\\
+ -1 &amp; \mbox{else}
+\end{array}
+\right.\end{split}\]</div>
+<p>In Eq. <a href="#equation-linClassF">(1)</a> <span class="math">\(\mathbf{w}\)</span> is a parameter vector having the same dimension as the training sample vectors <span class="math">\(\mathbf{x}_t\)</span> and <span class="math">\(b\)</span> is the bias parameter which sets the distance of the decision boundary between two classes (<span class="math">\(DB\)</span>) from the origin. It can be proven that the vector <span class="math">\(\mathbf{w}\)</span> is orthogonal to the decision boundary which is defined as <span class="math">\(DB=\lbrace \mathbf{x} \in \mathbb{R}^d : \langle \mathbf{x}, \mathbf{w} \rangle + b = 0 \rbrace\)</span>.</p>
+<p>Let <span class="math">\(\mathbf{x}_A, \mathbf{x}_B \in DB\)</span> and <span class="math">\(\mathbf{x}_A \neq \mathbf{x}_B\)</span>. Then, <span class="math">\(\langle \mathbf{x}_A, \mathbf{w} \rangle +b =0\)</span> and <span class="math">\(\langle \mathbf{x}_B, \mathbf{w} \rangle + b = 0\)</span>. It follows that <span class="math">\(\langle \mathbf{x}_A, \mathbf{w} \rangle = \langle \mathbf{x}_B, \mathbf{w} \rangle\)</span> and <span class="math">\(\langle \mathbf{x}_A - \mathbf{x}_B, \mathbf{w} \rangle = 0\)</span>. Therefore <span class="math">\(\mathbf{w}\)</span> is orthogonal to any line joining any two elements in <span class="math">\(DB\)</span>.</p>
+<p>that correctly classifies all the vectors in the training data <span class="math">\(S\subseteq X\)</span> ,</p>
+<p>For the classification <span class="math">\(sign(f(\mathbf{x}_t))\)</span> is used. If <span class="math">\(y_t=sign(f(\mathbf{x}_t))\)</span> this implies correct classification. The convention <span class="math">\(sign(0)=1\)</span> is used.</p>
+<p><strong>Margin:</strong> The margin of an example <span class="math">\((\mathbf{x}_t, y_t)\)</span> with respect to a hyperplane <span class="math">\((\mathbf{w},b)\)</span> is given as</p>
 <div class="math">
-\[\forall \mathbf{x}_i \in S, f(\mathbf{x}_i)=\mathbf{w}^T \mathbf{x}_i + b\]</div>
-<p>For the classification <span class="math">\(sign(f(\mathbf{x}_i))\)</span> is used. If <span class="math">\(y_i=sign(f(\mathbf{x}_i))\)</span> this implies correct classification. The convention <span class="math">\(sign(0)=1\)</span> is used.</p>
-<p><strong>Margin:</strong> The margin of an example <span class="math">\((\mathbf{x}_i, y_i)\)</span> with respect to a hyperplane <span class="math">\((\mathbf{w},b)\)</span> is given as</p>
-<div class="math">
-\[\gamma_i = y_i(\mathbf{w}^T\mathbf{x}_i +b)\]</div>
+\[\gamma_t = y_t(\mathbf{w}^T\mathbf{x}_i +b)\]</div>
 <div class="math">
 \[\begin{split}\left\{ \begin{array}{ll}
 \gamma _i &gt;0 &amp; \mbox{ $\Rightarrow$ the classification is correct}\\
@@ -72,6 +85,7 @@
 <p id="jaakkola">Tommi Jaakkola, course materials for 6.867 Machine Learning, Fall 2006. MIT OpenCourseWare (<a class="reference external" href="http://ocw.mit.edu/">http://ocw.mit.edu/</a>), Massachusetts Institute of Technology. Downloaded on [26 May 2014].</p>
 <p id="cristianini">Cristianini N., Shawe-Taylor John: An Introduction to Support Vector Machines and other Kernel Based Learning Methods, Cambridge University Press 2000</p>
 </div>
+</div>
 
 
           </div>
@@ -79,12 +93,21 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Machine Learning</a><ul>
+<li><a class="reference internal" href="#basic-concepts">Basic Concepts</a></li>
+<li><a class="reference internal" href="#linear-binary-classification">Linear Binary Classification</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="DOE.html"
                         title="previous chapter">Design and Outcome of Tensile Strain Experiments</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="DigitalFilters.html"
-                        title="next chapter">Discrete Time Signals</a></p>
+  <p class="topless"><a href="SiemensNX.html"
+                        title="next chapter">3D Modeling Tutorials</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/MachineLearning.txt"
@@ -114,7 +137,7 @@
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="DigitalFilters.html" title="Discrete Time Signals"
+          <a href="SiemensNX.html" title="3D Modeling Tutorials"
              >next</a> |</li>
         <li class="right" >
           <a href="DOE.html" title="Design and Outcome of Tensile Strain Experiments"
