@@ -71,6 +71,20 @@ From :ref:`strain profile 1<firstStrainProfile>` and :ref:`Axial strain gauges b
 
 .. raw:: html
 
+   <button type="button"
+   onclick="document.getElementById('demo').innerHTML = Date()">
+   Click me to display Date and Time.</button>
+
+   <p id="demo"></p>
+   <canvas id="glcanvas" width="440" height="200">
+    Your browser doesn't appear to support the HTML5
+   </canvas>
+   <script>
+      var canvas = document.getElementById("glcanvas");
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle='rgba(0,0,256,1.0)';
+      ctx.fillRect(120, 10, 150, 150);
+   </script>
    <table border="1" class="docutils">
       <thead>
          <caption> Strain profile of Test 1    </caption>

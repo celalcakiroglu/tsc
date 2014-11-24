@@ -16,6 +16,7 @@ Contents:
    DOE.rst
    MachineLearning.rst
    SiemensNX.rst
+   ColorfulMouseclicks/WebGL.rst
    DigitalFilters.rst
    FourierSeriesAndTransform.rst
 

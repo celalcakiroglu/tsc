@@ -4,7 +4,7 @@ Machine Learning
 Basic Concepts
 --------------------------------------
 
-**Hyperplane:** :math:`\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace`, :math:`\mathbf{w,x}\in \mathbb{R}^n`, :math:`b\in \mathbb{R}`. This is a set of points in :math:`\mathbb{R}^d` with a constant inner product to a given vector :math:`\textbf{w} \in \mathbb{R}^d`. The constant :math:`b` determines the offset of the hyperplane :math:`(\textbf{w},b)` from the origin. 
+**Hyperplane:** :math:`\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace`, :math:`\mathbf{w,x}\in \mathbb{R}^d`, :math:`b\in \mathbb{R}`. This is a set of points in :math:`\mathbb{R}^d` with a constant inner product to a given vector :math:`\textbf{w} \in \mathbb{R}^d`. The constant :math:`b` determines the offset of the hyperplane :math:`(\textbf{w},b)` from the origin. 
 
 **Input Space** :math:`X` **:** Space of the examples :math:`\mathbf{x}_t`, :math:`t \in \lbrace 1, 2, ..., l \rbrace`. :math:`X` is a subset of :math:`\mathbb{R}^d`. :math:`X` may be a vector space of image vectors or vectors containing any data.
 
@@ -25,7 +25,7 @@ Linear Binary Classification
 
 In Eq. :eq:`linClassF` :math:`\mathbf{w}` is a parameter vector having the same dimension as the training sample vectors :math:`\mathbf{x}_t` and :math:`b` is the bias parameter which sets the distance of the decision boundary between two classes (:math:`DB`) from the origin. It can be proven that the vector :math:`\mathbf{w}` is orthogonal to the decision boundary which is defined as :math:`DB=\lbrace \mathbf{x} \in \mathbb{R}^d : \langle \mathbf{x}, \mathbf{w} \rangle + b = 0 \rbrace`.
 
-Let :math:`\mathbf{x}_A, \mathbf{x}_B \in DB` and :math:`\mathbf{x}_A \neq \mathbf{x}_B`. Then, :math:`\langle \mathbf{x}_A, \mathbf{w} \rangle +b =0` and :math:`\langle \mathbf{x}_B, \mathbf{w} \rangle + b = 0`. It follows that :math:`\langle \mathbf{x}_A, \mathbf{w} \rangle = \langle \mathbf{x}_B, \mathbf{w} \rangle` and :math:`\langle \mathbf{x}_A - \mathbf{x}_B, \mathbf{w} \rangle = 0`. Therefore :math:`\mathbf{w}` is orthogonal to any line joining any two elements in :math:`DB`.
+Let :math:`\mathbf{x}_A, \mathbf{x}_B \in DB` and :math:`\mathbf{x}_A \neq \mathbf{x}_B`. Then, :math:`\langle \mathbf{x}_A, \mathbf{w} \rangle +b =0` and :math:`\langle \mathbf{x}_B, \mathbf{w} \rangle + b = 0`. It follows that :math:`\langle \mathbf{x}_A, \mathbf{w} \rangle = \langle \mathbf{x}_B, \mathbf{w} \rangle` and :math:`\langle \mathbf{x}_A - \mathbf{x}_B, \mathbf{w} \rangle = 0`. Therefore :math:`\mathbf{w}` is orthogonal to any line joining any two elements in :math:`DB` and defines the direction of :math:`DB`.
 
 that correctly classifies all the vectors in the training data :math:`S\subseteq X` ,
 

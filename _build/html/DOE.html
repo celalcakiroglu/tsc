@@ -173,6 +173,20 @@
 </div>
 <p>In Test 1 strain gauge data was available throughout the test ( <a class="reference internal" href="#axial0atest1"><em>Axial strain gauges bottom side 1</em></a>). However this time instead of the gauge in the middle, the gauge 2 OD away from the end plate is used in the plots( <a class="reference internal" href="#firststrainprofile"><em>strain profile 1</em></a>). The reason for this was the erroneous measurements of the middle gauge. In  <a class="reference internal" href="#firststrainprofile"><em>strain profile 1</em></a>, the profile of each frame is plotted by joining strain at three different points on the pipe surface. The point denoted by <strong>Remote</strong> is where the strain is obtained from the edge of the DIC area of interest close to the end plate. The point denoted by <strong>Gauge</strong> is where the strain is measured using an axial strain gauge located in the mid-length of the bottom side of the girth weld. The point denoted by <strong>Crack</strong> is where the strain is obtained from the edge of the DIC area of interest around the flaw.</p>
 <p>From <a class="reference internal" href="#firststrainprofile"><em>strain profile 1</em></a> and <a class="reference internal" href="#axial0atest1"><em>Axial strain gauges bottom side 1</em></a>  it can be seen that there is a sudden decrease in the strain gauge measurements after Frame 1200. This could possibly be due to a malfunctioning of the strain gauge. In order to have more realistic strain data for the location of the strain gauge, the gauge measurement values of frames 1300 and 1382 are estimated using the relationship between the DIC strains and gauge strains of the previous frames. The details of this method are given below.</p>
+<button type="button"
+onclick="document.getElementById('demo').innerHTML = Date()">
+Click me to display Date and Time.</button>
+
+<p id="demo"></p>
+<canvas id="glcanvas" width="440" height="200">
+ Your browser doesn't appear to support the HTML5
+</canvas>
+<script>
+   var canvas = document.getElementById("glcanvas");
+   var ctx = canvas.getContext('2d');
+   ctx.fillStyle='rgba(0,0,256,1.0)';
+   ctx.fillRect(120, 10, 150, 150);
+</script>
 <table border="1" class="docutils">
    <thead>
       <caption> Strain profile of Test 1    </caption>

@@ -4,7 +4,7 @@ Machine Learning
 Basic Concepts
 --------------------------------------
 
-**Hyperplane:** :math:`\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace`, :math:`\mathbf{w,x}\in \mathbb{R}^n`, :math:`b\in \mathbb{R}`. This is a set of points in :math:`\mathbb{R}^d` with a constant inner product to a given vector :math:`\textbf{w} \in \mathbb{R}^d`. The constant :math:`b` determines the offset of the hyperplane :math:`(\textbf{w},b)` from the origin. 
+**Hyperplane:** :math:`\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace`, :math:`\mathbf{w,x}\in \mathbb{R}^d`, :math:`b\in \mathbb{R}`. This is a set of points in :math:`\mathbb{R}^d` with a constant inner product to a given vector :math:`\textbf{w} \in \mathbb{R}^d`. The constant :math:`b` determines the offset of the hyperplane :math:`(\textbf{w},b)` from the origin. 
 
 **Input Space** :math:`X` **:** Space of the examples :math:`\mathbf{x}_t`, :math:`t \in \lbrace 1, 2, ..., l \rbrace`. :math:`X` is a subset of :math:`\mathbb{R}^d`. :math:`X` may be a vector space of image vectors or vectors containing any data.
 
