@@ -1021,5 +1021,6 @@
             }
          }
       </script>
+      The above canvas responds to mouse clicks by drawing a dot. The color of each dot depends on the position of the mouse click.
    </body>
    </html>
