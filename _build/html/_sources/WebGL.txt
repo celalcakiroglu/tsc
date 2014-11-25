@@ -2,8 +2,7 @@
 ===================================================
 
 .. raw:: html
-   <!DOCTYPE html>
-   <html lang="en">
+
    <head>
       <meta charset="utf-8" />
       <title>Draw a blue rectangle (canvas version)</title>
@@ -1023,4 +1022,4 @@
          }
       </script>
    </body>
-   
+   </html>
