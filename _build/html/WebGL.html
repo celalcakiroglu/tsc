@@ -1139,7 +1139,7 @@ Use html supporting browser
         var theta =0.0; var thetaRad=0.0;//Circle vertices
         for(var j=14;j<=84; j+=2){
           thetaRad=theta*(Math.PI)/180;
-          vertices[j]=0.3*Math.cos(thetaRad);vertices[j+1]=0.3*Math.sin(thetaRad);
+          vertices[j]=0.5*Math.cos(thetaRad);vertices[j+1]=0.5*Math.sin(thetaRad);
           theta +=10.0;
         }
         vertices[86]=-0.5;vertices[87]=0.0;vertices[88]=0.5;vertices[89]=0.0;//Line vertices
