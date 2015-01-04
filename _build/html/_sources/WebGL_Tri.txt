@@ -8,7 +8,7 @@ Polygon Meshing through Triangulation
       <title>Draw a blue rectangle (canvas version)</title>
    </head>
    <body onload="listen()">
-      <canvas id="webgl" width ="400" height="400">
+      <canvas id="webgl" width ="650" height="650">
       Use html supporting browser
       </canvas>
       <p>
