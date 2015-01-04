@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3D Modelling using WebGL &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
+    <title>Dual N-Back with Geometry and Tunes &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -25,8 +25,8 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
-    <link rel="next" title="Discrete Time Signals" href="DigitalFilters.html" />
-    <link rel="prev" title="3D Modeling Tutorials" href="SiemensNX.html" /> 
+    <link rel="next" title="Dual N-Back with Colors and Tunes" href="WebGL_DNBackColors.html" />
+    <link rel="prev" title="3D Modelling using WebGL" href="WebGL_Tri.html" /> 
   </head>
   <body>
     <div class="related">
@@ -36,10 +36,10 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="DigitalFilters.html" title="Discrete Time Signals"
+          <a href="WebGL_DNBackColors.html" title="Dual N-Back with Colors and Tunes"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="SiemensNX.html" title="3D Modeling Tutorials"
+          <a href="WebGL_Tri.html" title="3D Modelling using WebGL"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>
@@ -50,8 +50,8 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="d-modelling-using-webgl">
-<h1>3D Modelling using WebGL<a class="headerlink" href="#d-modelling-using-webgl" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dual-n-back-with-geometry-and-tunes">
+<h1>Dual N-Back with Geometry and Tunes<a class="headerlink" href="#dual-n-back-with-geometry-and-tunes" title="Permalink to this headline">¶</a></h1>
 <head>
    <meta charset="utf-8" />
    <title>Draw a blue rectangle (canvas version)</title>
@@ -60,9 +60,13 @@
    <canvas id="webgl" width ="400" height="400">
    Use html supporting browser
    </canvas>
+   <p>
+     <button type="button" onclick="start()">START</button>
+     <button type="button" onclick="pause()">PAUSE</button>
+   </p>
    <script>
      function listen(){
-     main();main2();
+     main();
      }
    </script>
    <script>
@@ -1004,225 +1008,145 @@
    </script>
    <script>
       //Vertex shader program
-      var VSHADER_SOURCE=
-      'attribute vec4 a_Position;\n'+
-      'void main(){\n'+
-      'gl_Position=a_Position;\n'+
-      'gl_PointSize=10.0;\n'+
-      '}\n';
-      //Fragment shader Program
-      var FSHADER_SOURCE=
-      'precision mediump float;\n'+
-      'uniform vec4 u_FragColor;\n'+
-      'void main(){\n'+
-      'gl_FragColor=u_FragColor;\n'+
-      '}\n';
-      function main(){
+       var VSHADER_SOURCE=
+       'attribute vec4 a_Position;\n'+
+       'void main(){\n'+
+       'gl_Position=a_Position;\n'+
+       '}\n';
+       //Fragment shader Program
+       var FSHADER_SOURCE=
+       'void main(){\n'+
+       'gl_FragColor=vec4(1.0, 0.0, 0.0, 1.0);\n'+
+       '}\n';
+       var initialTime=Date.now();
+       var randNum;
+       var isPaused=false;
+       function main(){
          var canvas = document.getElementById('webgl');
          var gl=getWebGLContext(canvas);
          if(!gl){
-            console.log('Failed to get the rendering context for WebGL');
-            return;
+           console.log('Failed to get the rendering context for WebGL');
+           return;
          }
          else{console.log('success getting the rendering context');}
          if(!initShaders(gl, VSHADER_SOURCE, FSHADER_SOURCE)){
-            console.log('Failed to initialize shaders');
-            return;
+           console.log('Failed to initialize shaders');
+           return;
          }
          else{console.log('success initializing the shaders');}
-         var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
-         if(a_Position<0){
-            console.log('Failed to get the storage location of a_Position');
-            return;
+         n=initVertexBuffers(gl);
+         console.log(n);
+         if(n<0){
+           console.log("Failed to set the positions of vertices");return;
          }
-         else{console.log('success getting the storage location of a_Position');}
-         var u_FragColor=gl.getUniformLocation(gl.program, 'u_FragColor');
-         if(!u_FragColor){
-            console.log('Failed to get the storage location of u_FragColor');
-            return;
-         }
-         else{console.log('success getting the storage location of u_FragColor');}
-         canvas.onmousedown=function(ev){click(ev, gl, canvas, a_Position, u_FragColor)};
          gl.clearColor(0.78,0.87,0.88,1.0);//blueish grey
          gl.clear(gl.COLOR_BUFFER_BIT);
-      }
-      var g_points=[];
-      var g_colors=[];
-      function click(ev, gl, canvas, a_Position, u_FragColor){
-         var x = ev.clientX;
-         var y = ev.clientY;
-         var rect=ev.target.getBoundingClientRect();//Gets the position of canvas in the client area
-         x=((x-rect.left)-canvas.width/2)/(canvas.width/2);
-         y=(canvas.height/2-(y-rect.top))/(canvas.height/2);
-         g_points.push([x,y]);
-         gl.clear(gl.COLOR_BUFFER_BIT);
-         if(x>=0.0 && y>=0.0){
-            g_colors.push([1.0, 0.0, 0.0, 1.0]); //red
-         }
-         else if(x<0.0 && y<0.0){
-            g_colors.push([0.0, 1.0, 0.0, 1.0]); // green
-         }
-         else{
-            g_colors.push([0.5, 0.0, 1.0, 1.0]);
-         }
-         console.log('g_points.length = '+g_points.length);
-         console.log('g_colors.length = '+g_colors.length);
-         for(var i=0; i < g_points.length; i++){
-            console.log(i);
-            gl.vertexAttrib3f(a_Position, g_points[i][0], g_points[i][1], 0.0);
-            gl.uniform4f(u_FragColor, g_colors[i][0], g_colors[i][1], g_colors[i][2], g_colors[i][3]);
-            gl.drawArrays(gl.POINTS, 0, 1);
-         }
-      }
-   </script>
+         setInterval(draw, 1000, gl);//gl is the parameter that I am passing to draw
+       //This interval has to be consistent with the one in the draw function
+       }
 
+       function initVertexBuffers(gl){
+         var vertices=new Float32Array(185);//6+8+72+4+8+16+32+38
+         vertices[0]=-0.5;vertices[1]=-0.5;vertices[2]=0;vertices[3]=0.5;vertices[4]=0.5;vertices[5]=-0.5;//Triangle vertices
+         vertices[6]=-0.5;vertices[7]=-0.5;vertices[8]=-0.5;vertices[9]=0.5;vertices[10]=0.5;vertices[11]=0.5;vertices[12]=0.5;vertices[13]=-0.5;//Rectanglevertices
+         var theta = 0.0; var thetaRad=0.0;//Circle vertices
+         for(var j=14;j<=84; j+=2){
+           thetaRad=theta*(Math.PI)/180;
+           vertices[j]=0.5*Math.cos(thetaRad);vertices[j+1]=0.5*Math.sin(thetaRad);
+           theta +=10.0;
+         }
+         vertices[86]=-0.5;vertices[87]=0.0;vertices[88]=0.5;vertices[89]=0.0;//Line vertices
+         vertices[90]=-0.5;vertices[91]=0.0;vertices[92]=0.5;vertices[93]=0.0;
+         vertices[94]=0.0;vertices[95]=0.5;vertices[96]=0.0;vertices[97]=-0.5;//Plus vertices
+         vertices[98]=0.18;vertices[99]=0.5;vertices[100]=0.5;vertices[101]=0.2;
+         vertices[102]=0.5;vertices[103]=-0.2;vertices[104]=0.18;vertices[105]=-0.5;
+         vertices[106]=-0.18;vertices[107]=-0.5;vertices[108]=-0.5;vertices[109]=-0.2;
+         vertices[110]=-0.5;vertices[111]=0.2;vertices[112]=-0.18;vertices[113]=0.5;//Octagon vertices
+         vertices[114]=-0.5;vertices[115]=-0.5;vertices[116]=-0.5;vertices[117]=0.2;
+         vertices[118]=0.2;vertices[119]=0.2;vertices[120]=0.2;vertices[121]=-0.5;
+         vertices[122]=0.5;vertices[123]=-0.2;vertices[124]=-0.2;vertices[125]=-0.2;
+         vertices[126]=-0.2;vertices[127]=0.5;vertices[128]=0.5;vertices[129]=0.5;
+         vertices[130]=-0.5;vertices[131]=-0.5;vertices[132]=-0.2;vertices[133]=-0.2;
+         vertices[134]=0.5;vertices[135]=-0.2;vertices[136]=0.2;vertices[137]=-0.5;
+         vertices[138]=-0.5;vertices[139]=0.2;vertices[140]=-0.2;vertices[141]=0.5;
+         vertices[142]=0.5;vertices[143]=0.5;vertices[144]=0.2;vertices[145]=0.2;//2D cube vertices
+         theta =0.0; thetaRad=0.0;//Half circle vertices
+         for(var j=146;j<=183; j+=2){
+           thetaRad=theta*(Math.PI)/180;
+           vertices[j]=0.5*Math.cos(thetaRad);vertices[j+1]=0.5*Math.sin(thetaRad);
+           theta +=10.0;
+         }
+         var vertexBuffer = gl.createBuffer();
+         if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;}
+         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
+         gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);//Write data into buffer
+         var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
+         if(a_Position<0){
+           console.log('Failed to get the storage location of a_Position');
+           return;
+         }
+         else{console.log('success getting the storage location of a_Position');}
+         gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+         gl.enableVertexAttribArray(a_Position);
+         return n=73;
+       }
+       function start(){
+         initialTime=Date.now();
+         isPaused=false;
+       }
+       function pause(){
+         isPaused=true;
+         console.log('pause is clicked on');
+       }
+       function draw(gl){
+         var now=Date.now();
+         var elapsedTime=now-initialTime;
+         if(elapsedTime%2000 < 1000 && isPaused==false){
+           gl.clear(gl.COLOR_BUFFER_BIT);
+         }
+         else if(elapsedTime%2000 > 1000 && isPaused==false){
+           randNum=Math.floor((Math.random() * 8));//Returns random number from 0 to 7
+           if(randNum ==0){//Draw a triangle
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINE_LOOP, 0, 3);
+           }
+           else if(randNum == 1){//Draw a rectangle
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINE_LOOP, 3, 4);
+           }
+           else if(randNum == 2){//Draw a circle
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINE_LOOP, 7, 36);
+           }
+           else if(randNum == 3){//Draw a line
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINE_LOOP, 43, 2);
+           }
+           else if(randNum == 4){//Draw a plus
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINES, 45, 4);
+           }
+           else if(randNum == 5){//Draw an octagon
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINE_LOOP, 49, 8);
+           }
+           else if(randNum == 6){//Draw a cube(2D)
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINE_LOOP, 57, 4);
+             gl.drawArrays(gl.LINE_LOOP, 61, 4);
+             gl.drawArrays(gl.LINE_LOOP, 65, 4);
+             gl.drawArrays(gl.LINE_LOOP, 69, 4);
+           }
+           else if(randNum == 7){//Draw a half circle
+             gl.clear(gl.COLOR_BUFFER_BIT);
+             gl.drawArrays(gl.LINE_LOOP, 73, 19);
+           }
+         }
+       }
+   </script>
 </body>
 </html><p>The above canvas responds to mouse clicks by drawing a dot. The color of each dot depends on the position of the mouse click.</p>
-<canvas id="webgl2" width ="400" height="400">
-Use html supporting browser
-</canvas>
-<p>
-    <button type="button" onclick="start()">START</button>
-    <button type="button" onclick="pause()">PAUSE</button>
-</p>
-<script>
-     //Vertex shader program
-      var VSHADER_SOURCE2=
-      'attribute vec4 a_Position;\n'+
-      'void main(){\n'+
-      'gl_Position=a_Position;\n'+
-      '}\n';
-      //Fragment shader Program
-      var FSHADER_SOURCE2=
-      'void main(){\n'+
-      'gl_FragColor=vec4(1.0, 0.0, 0.0, 1.0);\n'+
-      '}\n';
-      var initialTime=Date.now();
-      var shapeCodes=(["Triangle", "Rectangle"]);
-      var randNum, shapeCode;
-      var drawMode=true;
-      var isPaused=false;
-      function getDrawMode(){
-        return drawMode;
-      }
-
-      function setDrawMode(mode){
-        drawMode=mode;
-      }
-      function main2(){
-        var canvas = document.getElementById('webgl2');
-        var gl=getWebGLContext(canvas);
-        if(!gl){
-          console.log('Failed to get the rendering context for WebGL');
-          return;
-        }
-        else{console.log('success getting the rendering context');}
-        if(!initShaders(gl, VSHADER_SOURCE2, FSHADER_SOURCE2)){
-          console.log('Failed to initialize shaders');
-          return;
-        }
-        else{console.log('success initializing the shaders');}
-        n=initVertexBuffers(gl);
-        console.log(n);
-        if(n<0){
-          console.log("Failed to set the positions of vertices");return;
-        }
-        gl.clearColor(0.78,0.87,0.88,1.0);//blueish grey
-        setInterval(draw, 1000, gl);//gl is the parameter that I am passing to draw
-      //This interval has to be consistent with the one in the draw function
-      }
-
-      function initVertexBuffers(gl){
-        var vertices=new Float32Array(146);//6+8+72+4+8+16+32
-        vertices[0]=-0.5;vertices[1]=-0.5;vertices[2]=0;vertices[3]=0.5;vertices[4]=0.5;vertices[5]=-0.5;//Triangle vertices
-        vertices[6]=-0.5;vertices[7]=-0.5;vertices[8]=-0.5;vertices[9]=0.5;vertices[10]=0.5;vertices[11]=0.5;vertices[12]=0.5;vertices[13]=-0.5;//Rectangle vertices
-        var theta =0.0; var thetaRad=0.0;//Circle vertices
-        for(var j=14;j<=84; j+=2){
-          thetaRad=theta*(Math.PI)/180;
-          vertices[j]=0.5*Math.cos(thetaRad);vertices[j+1]=0.5*Math.sin(thetaRad);
-          theta +=10.0;
-        }
-        vertices[86]=-0.5;vertices[87]=0.0;vertices[88]=0.5;vertices[89]=0.0;//Line vertices
-        vertices[90]=-0.5;vertices[91]=0.0;vertices[92]=0.5;vertices[93]=0.0;
-        vertices[94]=0.0;vertices[95]=0.5;vertices[96]=0.0;vertices[97]=-0.5;//Plus vertices
-        vertices[98]=0.18;vertices[99]=0.5;vertices[100]=0.5;vertices[101]=0.2;
-        vertices[102]=0.5;vertices[103]=-0.2;vertices[104]=0.18;vertices[105]=-0.5;
-        vertices[106]=-0.18;vertices[107]=-0.5;vertices[108]=-0.5;vertices[109]=-0.2;
-        vertices[110]=-0.5;vertices[111]=0.2;vertices[112]=-0.18;vertices[113]=0.5;//Octagon vertices
-        vertices[114]=-0.5;vertices[115]=-0.5;vertices[116]=-0.5;vertices[117]=0.2;
-        vertices[118]=0.2;vertices[119]=0.2;vertices[120]=0.2;vertices[121]=-0.5;
-        vertices[122]=0.5;vertices[123]=-0.2;vertices[124]=-0.2;vertices[125]=-0.2;
-        vertices[126]=-0.2;vertices[127]=0.5;vertices[128]=0.5;vertices[129]=0.5;
-        vertices[130]=-0.5;vertices[131]=-0.5;vertices[132]=-0.2;vertices[133]=-0.2;
-        vertices[134]=0.5;vertices[135]=-0.2;vertices[136]=0.2;vertices[137]=-0.5;
-        vertices[138]=-0.5;vertices[139]=0.2;vertices[140]=-0.2;vertices[141]=0.5;
-        vertices[142]=0.5;vertices[143]=0.5;vertices[144]=0.2;vertices[145]=0.2;//2D cube vertices
-        var vertexBuffer = gl.createBuffer();
-        if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;}
-        gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
-        gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);//Write data into buffer
-        var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
-        if(a_Position<0){
-          console.log('Failed to get the storage location of a_Position');
-          return;
-        }
-        else{console.log('success getting the storage location of a_Position');}
-        gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
-        gl.enableVertexAttribArray(a_Position);
-        return n=73;
-      }
-      function start(){
-        isPaused=false;
-      }
-      function pause(){
-        isPaused=true;
-        console.log('pause is clicked on');
-      }
-      function draw(gl){
-        var now=Date.now();
-        var elapsedTime=now-initialTime;
-        if(elapsedTime%2000 < 1000 && isPaused==false){
-          setDrawMode(false);
-          gl.clear(gl.COLOR_BUFFER_BIT);
-        }
-        else if(elapsedTime%2000 > 1000 && isPaused==false){
-          setDrawMode(true);
-          randNum=Math.floor((Math.random() * 7));//Returns random number from 0 to 6
-          console.log('randNum is'+randNum);
-          if(randNum ==0){//Draw a triangle
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINE_LOOP, 0, 3);
-          }
-          else if(randNum == 1){//Draw a rectangle
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINE_LOOP, 3, 4);
-          }
-          else if(randNum == 2){//Draw a circle
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINE_LOOP, 7, 36);
-          }
-          else if(randNum == 3){//Draw a line
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINE_LOOP, 43, 2);
-          }
-          else if(randNum == 4){//Draw a plus
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINES, 45, 4);
-          }
-          else if(randNum == 5){//Draw an octagon
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINE_LOOP, 49, 8);
-          }
-          else if(randNum == 6){//Draw a cube(2D)
-            gl.clear(gl.COLOR_BUFFER_BIT);
-            gl.drawArrays(gl.LINE_LOOP, 57, 4);
-            gl.drawArrays(gl.LINE_LOOP, 61, 4);
-            gl.drawArrays(gl.LINE_LOOP, 65, 4);
-            gl.drawArrays(gl.LINE_LOOP, 69, 4);
-          }
-        }
-      }
-</script></div>
+</div>
 
 
           </div>
@@ -1231,14 +1155,14 @@ Use html supporting browser
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="SiemensNX.html"
-                        title="previous chapter">3D Modeling Tutorials</a></p>
+  <p class="topless"><a href="WebGL_Tri.html"
+                        title="previous chapter">3D Modelling using WebGL</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="DigitalFilters.html"
-                        title="next chapter">Discrete Time Signals</a></p>
+  <p class="topless"><a href="WebGL_DNBackColors.html"
+                        title="next chapter">Dual N-Back with Colors and Tunes</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
-    <li><a href="_sources/WebGL.txt"
+    <li><a href="_sources/WebGL_DNBackShapes.txt"
            rel="nofollow">Show Source</a></li>
   </ul>
 <div id="searchbox" style="display: none">
@@ -1265,10 +1189,10 @@ Use html supporting browser
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="DigitalFilters.html" title="Discrete Time Signals"
+          <a href="WebGL_DNBackColors.html" title="Dual N-Back with Colors and Tunes"
              >next</a> |</li>
         <li class="right" >
-          <a href="SiemensNX.html" title="3D Modeling Tutorials"
+          <a href="WebGL_Tri.html" title="3D Modelling using WebGL"
              >previous</a> |</li>
         <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>

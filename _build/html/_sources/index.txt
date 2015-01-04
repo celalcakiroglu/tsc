@@ -16,7 +16,9 @@ Contents:
    DOE.rst
    MachineLearning.rst
    SiemensNX.rst
-   WebGL.rst
+   WebGL_Tri.rst
+   WebGL_DNBackShapes.rst
+   WebGL_DNBackColors.rst
    DigitalFilters.rst
    FourierSeriesAndTransform.rst
 
