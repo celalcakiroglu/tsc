@@ -64,6 +64,8 @@
        <button id="bDefine" type="button">BOUNDARY DEFINED</button>
        <button id="reDefine" type="button">REDEFINE BOUNDARY</button>
    </p>
+   How many interior points? <input type="text" id="iPoints">
+   <button id="iPointsApply" type="button">Apply</button>
    <script>
      function listen(){
      main();
@@ -1025,13 +1027,22 @@
        'gl_FragColor=vec4(1.0, 0.0, 0.0, 1.0);\n'+
        '}\n';
 
-       var g_points=new Float32Array(300);
+       var b_coords=new Float32Array(300);//boundary points
+       var i_coords=new Float32Array(600);//interior points
+       var n_coords=new Float32Array(900);//all points
        var bDefined=false;//The boundary isn't defined yet
-       var nCoords=0;//Number of vertex coordinates
+       var nCoords=0;//Number of vertex coordinates (total)
+       var bCoords=0;//Number of boundary coordinates
+       var iCoords=0;//Number of interior coordinates
+       var nInteriorPts;//Number of interior vertices
+       var nBoundaryPts;//Number of boundary vertices
+       var nPts;//Total number of vertices
        function main(){
          var canvas = document.getElementById('webgl');
          var bDefineBtn=document.getElementById('bDefine');
          var reDefineBtn=document.getElementById('reDefine');
+         var iPointsTxt=document.getElementById('iPoints');
+         var iPointsBtn=document.getElementById('iPointsApply');
          var gl=getWebGLContext(canvas);
          if(!gl){
            console.log('Failed to get the rendering context for WebGL');
@@ -1046,6 +1057,7 @@
          canvas.onmousedown=function(ev){click(ev, gl, canvas)};
          bDefineBtn.onclick=function(ev){bDefine(ev,gl)};//Make sure this syntax is correct
          reDefineBtn.onclick=function(ev){reDefine(ev,gl)};//Make sure this syntax is correct
+         iPointsBtn.onclick=function(ev){iPoints(ev,gl,iPointsTxt)};
          gl.clearColor(0.78,0.87,0.88,1.0);//blueish grey
          gl.clear(gl.COLOR_BUFFER_BIT);
        }
@@ -1058,13 +1070,13 @@
              x=((x-rect.left)-canvas.width/2)/(canvas.width/2);
              y=(canvas.height/2-(y-rect.top))/(canvas.height/2);
              console.log('in click x= '+x+' y= '+y);
-             g_points[nCoords]=x;
-             g_points[nCoords+1]=y;
-             nCoords+=2;
+             b_coords[bCoords]=x;n_coords[bCoords]=x;
+             b_coords[bCoords+1]=y;n_coords[bCoords+1]=y;
+             bCoords+=2;
              var vertexBuffer = gl.createBuffer();
              if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;}
              gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
-             gl.bufferData(gl.ARRAY_BUFFER, g_points, gl.STATIC_DRAW);//Write data into buffer
+             gl.bufferData(gl.ARRAY_BUFFER, b_coords, gl.STATIC_DRAW);//Write data into buffer
              var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
              if(a_Position<0){
                console.log('Failed to get the storage location of a_Position inside click');
@@ -1074,26 +1086,19 @@
              gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
              gl.enableVertexAttribArray(a_Position);
              gl.clear(gl.COLOR_BUFFER_BIT);
-             gl.drawArrays(gl.POINTS, 0, nCoords/2);
+             gl.drawArrays(gl.POINTS, 0, bCoords/2);
            }
          }
 
 
        function bDefine(ev,gl){
          if(bDefined==false){
-           var nV =nCoords/2;//number of vertices
-           console.log('number of vertices = '+nV);
-           //var vertices = new Float32Array(nCoords);
-           //for(var j=0;j<nCoords;j+=2){
-           //  vertices[j]=g_points[j];vertices[j+1]=g_points[j+1];
-           //  console.log('in bDefine x= '+vertices[j]+' y= '+vertices[j+1]);
-           //}
-
+           nBoundaryPts=bCoords/2;//number of vertices
+           console.log('number of boundary vertices = '+nBoundaryPts);
            var vertexBuffer = gl.createBuffer();
            if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;}
            gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
-           //gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);//Write data into buffer
-           gl.bufferData(gl.ARRAY_BUFFER, g_points, gl.STATIC_DRAW);//Write data into buffer
+           gl.bufferData(gl.ARRAY_BUFFER, b_coords, gl.STATIC_DRAW);//Write data into buffer
            var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
            if(a_Position<0){
              console.log('Failed to get the storage location of a_Position');
@@ -1103,14 +1108,165 @@
            gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
            gl.enableVertexAttribArray(a_Position);
            gl.clear(gl.COLOR_BUFFER_BIT);
-           gl.drawArrays(gl.LINE_LOOP, 0, nV);
+           gl.drawArrays(gl.LINE_LOOP, 0, nBoundaryPts);
          }
          bDefined=true;
        }
        function reDefine(ev, gl){
          gl.clear(gl.COLOR_BUFFER_BIT);
-         nCoords=0;
+         bCoords=0;iCoords=0;nCoords=0;nBoundaryPts=0;nInteriorPts=0;nPts=0;
          bDefined=false;
+       }
+
+       function iPoints(ev, gl, iPointsTxt){
+         nInteriorPts=parseInt(iPointsTxt.value);
+         iCoords=nInteriorPts*2;
+         nCoords=bCoords+iCoords;
+         var leftMin=b_coords[0];//Minimum x boundary coordinate
+         var botMin=b_coords[1];//Minimum y boundary coordinate
+         var rightMax=b_coords[0];//Maximum x boundary coordinate
+         var upMax=b_coords[1];//Maximum y boundary coordinate
+         for(var k=0;k<bCoords;k+=2){
+           if(b_coords[k]<leftMin)leftMin=b_coords[k];
+           if(b_coords[k]>rightMax)rightMax=b_coords[k];
+         }
+         for(var k=1;k<bCoords;k+=2){
+           if(b_coords[k]<botMin)botMin=b_coords[k];
+           if(b_coords[k]>upMax)upMax=b_coords[k];
+         }
+         var n=0;
+         while(n<iCoords){
+         //Add the interior vertices to i_coords and n_coords one by one
+           var newX=leftMin+(rightMax-leftMin)*Math.random();
+           var newY=botMin+(upMax-botMin)*Math.random();
+           var yThreshold = newY;
+           var LHS=0, RHS=0;//no of intersection pts at the left and right
+           t=bCoords-3;
+           for(var b=1;b<=t;b+=2){//Traverse all edges except the last one
+             var H;//Total y difference of upper and lower edge nodes
+             var W;//Total x difference of upper and lower edge nodes
+             var lH;//y difference between yThreshold and lower node
+             var lW;//x difference between yThreshold and lower node
+             var midX;//x coordinate of the intersection point
+             if(b_coords[b]>=yThreshold && b_coords[b+2]<yThreshold){
+               if(b_coords[b-1]<=newX && b_coords[b+1]<=newX){LHS+=1;}
+               else if(b_coords[b-1]>=newX && b_coords[b+1]>=newX){RHS+=1;}
+               else if(b_coords[b-1]<newX && b_coords[b+1]>=newX){
+                 H=b_coords[b]-b_coords[b+2];
+                 W=b_coords[b+1]-b_coords[b-1];
+                 lH=yThreshold-b_coords[b+2];
+                 lW=lH*W/H;
+                 midX=b_coords[b+1]-lW;
+                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+               }
+               else if(b_coords[b-1]>=newX && b_coords[b+1]<newX){
+                 H=b_coords[b]-b_coords[b+2];
+                 W=b_coords[b-1]-b_coords[b+1];
+                 lH=yThreshold-b_coords[b+2];
+                 lW=lH*W/H;
+                 midX=b_coords[b+1]+lW;
+                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+               }
+             }
+             else if(b_coords[b]<yThreshold && b_coords[b+2]>=yThreshold){
+               if(b_coords[b-1]<=newX && b_coords[b+1]<=newX){LHS+=1;}
+               else if(b_coords[b-1]>=newX && b_coords[b+1]>=newX){RHS+=1;}
+               else if(b_coords[b-1]<newX && b_coords[b+1]>=newX){
+                 H=b_coords[b+2]-b_coords[b];
+                 W=b_coords[b+1]-b_coords[b-1];
+                 lH=yThreshold-b_coords[b];
+                 lW=lH*W/H;//H shouldn't be zero
+                 midX=b_coords[b-1]+lW;
+                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+               }
+               else if(b_coords[b-1]>=newX && b_coords[b+1]<newX){
+                 H=b_coords[b+2]-b_coords[b];
+                 W=b_coords[b-1]-b_coords[b+1];
+                 lH=yThreshold-b_coords[b];
+                 lW=lH*W/H;
+                 midX=b_coords[b-1]-lW;
+                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+               }
+             }
+           }
+           //Traverse the last edge
+           if(b_coords[1]>=yThreshold && b_coords[bCoords-1]<yThreshold){
+             if(b_coords[0]<=newX && b_coords[bCoords-2]<=newX){LHS+=1;}
+             else if(b_coords[0]>=newX && b_coords[bCoords-2]>=newX){RHS+=1;}
+             else if(b_coords[0]<newX && b_coords[bCoords-2]>=newX){
+               H=b_coords[1]-b_coords[bCoords-1];
+               W=b_coords[bCoords-2]-b_coords[0];
+               lH=yThreshold-b_coords[bCoords-1];
+               lW=lH*W/H;
+               midX=b_coords[bCoords-2]-lW;
+               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+             }
+             else if(b_coords[0]>=newX && b_coords[bCoords-2]<newX){
+               H=b_coords[1]-b_coords[bCoords-1];
+               W=b_coords[0]-b_coords[bCoords-2];
+               lH=yThreshold-b_coords[bCoords-1];
+               lW=lH*W/H;
+               midX=b_coords[bCoords-2]+lW;
+               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+             }
+           }
+           else if(b_coords[1]<yThreshold && b_coords[bCoords-1]>=yThreshold){
+             if(b_coords[0]<=newX && b_coords[bCoords-2]<=newX){LHS+=1;}
+             else if(b_coords[0]>=newX && b_coords[bCoords-2]>=newX){RHS+=1;}
+             else if(b_coords[0]<newX && b_coords[bCoords-2]>=newX){
+               H=b_coords[bCoords-1]-b_coords[1];
+               W=b_coords[bCoords-2]-b_coords[0];
+               lH=yThreshold-b_coords[1];
+               lW=lH*W/H;//H shouldn't be zero
+               midX=b_coords[b-1]+lW;
+               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+             }
+             else if(b_coords[0]>=newX && b_coords[bCoords-2]<newX){
+               H=b_coords[bCoords-1]-b_coords[1];
+               W=b_coords[0]-b_coords[bCoords-2];
+               lH=yThreshold-b_coords[1];
+               lW=lH*W/H;
+               midX=b_coords[0]-lW;
+               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
+             }
+           }
+           console.log('LHS = '+ LHS);
+           console.log('RHS = '+ RHS);
+           if((LHS%2) == 1 && (RHS%2) == 1){
+             i_coords[n]=newX;
+             i_coords[n+1]=newY;
+             n_coords[bCoords+n]=newX;
+             n_coords[bCoords+n+1]=newY;
+             console.log('newX is '+newX);
+             console.log('newY is '+newY);
+             n+=2;
+           }
+         }
+         nBoundaryPts =bCoords/2;//Number of boundary vertices
+         nPts = nInteriorPts+nBoundaryPts;//total number of vertices
+         console.log('number of vertices = '+nPts);
+         var vertexBuffer = gl.createBuffer();
+         if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;}
+         gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
+         gl.bufferData(gl.ARRAY_BUFFER, n_coords, gl.STATIC_DRAW);//Write data into buffer
+         var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
+         if(a_Position<0){
+           console.log('Failed to get the storage location of a_Position');
+           return;
+         }
+         else{console.log('success getting the storage location of a_Position');}
+         gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+         gl.enableVertexAttribArray(a_Position);
+         gl.clear(gl.COLOR_BUFFER_BIT);
+         console.log('nBoundaryPts = '+nBoundaryPts);
+         console.log('nInteriorPts = '+nInteriorPts);
+         console.log('nPts = '+nPts);
+         console.log('bCoords = '+bCoords);
+         console.log('nCoords = '+nCoords);
+         console.log('n_coords looks like this: ');
+         for(var z=0;z<nCoords;z+=2){console.log(n_coords[z]+' , '+n_coords[z+1]);}
+         gl.drawArrays(gl.POINTS, nBoundaryPts, nInteriorPts);
+         gl.drawArrays(gl.LINE_LOOP, 0, nBoundaryPts);
        }
    </script>
 

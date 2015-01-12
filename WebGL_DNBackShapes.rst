@@ -15,6 +15,8 @@ Dual N-Back with Geometry and Tunes
         <button type="button" onclick="start()">START</button>
         <button type="button" onclick="pause()">PAUSE</button>
       </p>
+      <audio id="audio_A" src="Mike_Koenig_A.mp3"  type="audio/mp3"  preload="none"></audio>
+      <audio id="audio_B" src="Mike_Koenig_B.mp3"  type="audio/mp3"  preload="none"></audio>
       <script>
         function listen(){
         main();
@@ -1056,41 +1058,58 @@ Dual N-Back with Geometry and Tunes
               gl.clear(gl.COLOR_BUFFER_BIT);
             }
             else if(elapsedTime%2000 > 1000 && isPaused==false){
-              randNum=Math.floor((Math.random() * 8));//Returns random number from 0 to 7
-              if(randNum ==0){//Draw a triangle
+              randNumShape=Math.floor((Math.random() * 8));//Returns random number from 0 to 7
+              randNumAudio=Math.floor((Math.random() * 2));//Returns random number from 0 to 1
+              if(randNumShape ==0){//Draw a triangle
                 gl.clear(gl.COLOR_BUFFER_BIT);
-                gl.drawArrays(gl.LINE_LOOP, 0, 3);    
+                gl.drawArrays(gl.LINE_LOOP, 0, 3);   
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
-              else if(randNum == 1){//Draw a rectangle
+              else if(randNumShape == 1){//Draw a rectangle
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.LINE_LOOP, 3, 4);  
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
-              else if(randNum == 2){//Draw a circle
+              else if(randNumShape == 2){//Draw a circle
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.LINE_LOOP, 7, 36); 
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
-              else if(randNum == 3){//Draw a line
+              else if(randNumShape == 3){//Draw a line
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.LINE_LOOP, 43, 2); 
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
-              else if(randNum == 4){//Draw a plus
+              else if(randNumShape == 4){//Draw a plus
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.LINES, 45, 4); 
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
-              else if(randNum == 5){//Draw an octagon
+              else if(randNumShape == 5){//Draw an octagon
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.LINE_LOOP, 49, 8); 
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
-              else if(randNum == 6){//Draw a cube(2D)
+              else if(randNumShape == 6){//Draw a cube(2D)
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.LINE_LOOP, 57, 4); 
                 gl.drawArrays(gl.LINE_LOOP, 61, 4); 
                 gl.drawArrays(gl.LINE_LOOP, 65, 4);
                 gl.drawArrays(gl.LINE_LOOP, 69, 4);
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
-              else if(randNum == 7){//Draw a half circle
+              else if(randNumShape == 7){//Draw a half circle
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.LINE_LOOP, 73, 19);  
+                if(randNumAudio == 0)document.getElementById('audio_A').play();
+                else if(randNumAudio == 1)document.getElementById('audio_B').play();
               }
             }
           }
