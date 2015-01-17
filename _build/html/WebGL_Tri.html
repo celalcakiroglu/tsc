@@ -1277,8 +1277,21 @@
 <li><strong>Step 2</strong>: Locate all points on the boundary where a straight horizontal line through the test vertex intersects the boundary. These are the points on the edges found in Step 1 having the same y-coordinate as the y-threshold. This can be done by interpolating between the two ends of the edge for the x coordinate that corresponds to the y-threshold. If the interpolated x-coordinate is less than the x-coordinate of the test vertex, then the intersection point is on the left hand side of the test vertex.</li>
 <li><strong>Step 3</strong>: If both on the left and right hand side of the test vertex there are odd number of intersection points (like 3 and 3), then the test vertex is inside the polygon. If there are even number of intersection points on both sides, then it is outside the polygon.</li>
 </ul>
+<div class="section" id="auxiliary-functions">
+<h2>Auxiliary Functions<a class="headerlink" href="#auxiliary-functions" title="Permalink to this headline">¶</a></h2>
+<p><strong>Finding if a point lies to the left or right of a line</strong>:</p>
+<p><strong>Finding the intersection point of two line segments</strong>: We start this procedure by determining if two segments intersect or not. This can be done by checking the orientation of the segments with respect to each other [<a class="reference internal" href="#id2">2</a>]. As an example the orientation of the segment <span class="math">\((p_1, p_2)\)</span> in Figure 1 with respect to the vertex <span class="math">\(p_3\)</span> is counterclockwise and <span class="math">\(((p_2-p_1) \Lambda (p_3 - p_2))\cdot \mathbf{k}&gt;0\)</span>. Similarly the orientation of the segment <span class="math">\((p_1, p_2)\)</span> with respect to the vertex <span class="math">\(p_4\)</span> is clockwise and <span class="math">\(((p_2-p_1) \Lambda (p_4 - p_2))\cdot \mathbf{k}&lt; 0\)</span>. Here the symbol <span class="math">\(\Lambda\)</span> denotes the cross product operation and <span class="math">\(\mathbf{k}\)</span> denotes a unit vector in the positive z-direction according to the right hand rule.</p>
+<div class="figure align-center" id="twosegs">
+<a class="reference internal image-reference" href="_images/Segments.JPG"><img alt="_images/Segments.JPG" src="_images/Segments.JPG" style="width: 457.5px; height: 257.5px;" /></a>
+<p class="caption">Figure 1: Intersection of Segments</p>
+</div>
+<p>The necessary conditions for 2 segments oriented as in Figure 1, to intersect each other are:</p>
+<p><strong>Condition1</strong>: <span class="math">\(p_3\)</span> and <span class="math">\(p_4\)</span> must have opposite orientation with respect to the segment <span class="math">\((p_1, p_2)\)</span>.</p>
+<p><strong>Condition2</strong>: <span class="math">\(p_1\)</span> and <span class="math">\(p_2\)</span> must have opposite orientation with respect to the segment <span class="math">\((p_3, p_4)\)</span>.</p>
 <p><strong>References</strong></p>
 <p id="id1">[1] <a class="reference external" href="http://alienryderflex.com/polygon/">http://alienryderflex.com/polygon/</a></p>
+<p id="id2">[2] <a class="reference external" href="http://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/">http://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/</a></p>
+</div>
 </div>
 
 
@@ -1287,6 +1300,14 @@
       </div>
       <div class="sphinxsidebar">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Polygon Meshing through Triangulation</a><ul>
+<li><a class="reference internal" href="#auxiliary-functions">Auxiliary Functions</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="SiemensNX.html"
                         title="previous chapter">3D Modeling Tutorials</a></p>

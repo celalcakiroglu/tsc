@@ -1232,11 +1232,35 @@ The above canvas responds to mouse clicks by drawing a dot. Using mouse clicks t
 
 - **Step 3**: If both on the left and right hand side of the test vertex there are odd number of intersection points (like 3 and 3), then the test vertex is inside the polygon. If there are even number of intersection points on both sides, then it is outside the polygon.
 
+Auxiliary Functions
+------------------------------------------
+**Finding if a point lies to the left or right of a line**:
+
+**Finding the intersection point of two line segments**: We start this procedure by determining if two segments intersect or not. This can be done by checking the orientation of the segments with respect to each other [2_]. As an example the orientation of the segment :math:`(p_1, p_2)` in Figure 1 with respect to the vertex :math:`p_3` is counterclockwise and :math:`((p_2-p_1) \Lambda (p_3 - p_2))\cdot \mathbf{k}>0`. Similarly the orientation of the segment :math:`(p_1, p_2)` with respect to the vertex :math:`p_4` is clockwise and :math:`((p_2-p_1) \Lambda (p_4 - p_2))\cdot \mathbf{k}< 0`. Here the symbol :math:`\Lambda` denotes the cross product operation and :math:`\mathbf{k}` denotes a unit vector in the positive z-direction according to the right hand rule. 
+
+.. _TwoSegs:
+.. figure:: Segments.JPG
+   :height: 515px
+   :width: 915 px
+   :scale: 50 %
+   :align: center
+
+   Figure 1: Intersection of Segments
+
+The necessary conditions for 2 segments oriented as in Figure 1, to intersect each other are:
+
+**Condition1**: :math:`p_3` and :math:`p_4` must have opposite orientation with respect to the segment :math:`(p_1, p_2)`.
+
+**Condition2**: :math:`p_1` and :math:`p_2` must have opposite orientation with respect to the segment :math:`(p_3, p_4)`.
+
 **References**
 
 .. _1: 
 
 [1] http://alienryderflex.com/polygon/
 
+.. _2: 
+
+[2] http://www.geeksforgeeks.org/check-if-two-given-line-segments-intersect/
    
    
