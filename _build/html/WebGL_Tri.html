@@ -1139,100 +1139,7 @@
          //Add the interior vertices to i_coords and n_coords one by one
            var newX=leftMin+(rightMax-leftMin)*Math.random();
            var newY=botMin+(upMax-botMin)*Math.random();
-           var yThreshold = newY;
-           var LHS=0, RHS=0;//no of intersection pts at the left and right
-           t=bCoords-3;
-           for(var b=1;b<=t;b+=2){//Traverse all edges except the last one
-             var H;//Total y difference of upper and lower edge nodes
-             var W;//Total x difference of upper and lower edge nodes
-             var lH;//y difference between yThreshold and lower node
-             var lW;//x difference between yThreshold and lower node
-             var midX;//x coordinate of the intersection point
-             if(b_coords[b]>=yThreshold && b_coords[b+2]<yThreshold){
-               if(b_coords[b-1]<=newX && b_coords[b+1]<=newX){LHS+=1;}
-               else if(b_coords[b-1]>=newX && b_coords[b+1]>=newX){RHS+=1;}
-               else if(b_coords[b-1]<newX && b_coords[b+1]>=newX){
-                 H=b_coords[b]-b_coords[b+2];
-                 W=b_coords[b+1]-b_coords[b-1];
-                 lH=yThreshold-b_coords[b+2];
-                 lW=lH*W/H;
-                 midX=b_coords[b+1]-lW;
-                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-               }
-               else if(b_coords[b-1]>=newX && b_coords[b+1]<newX){
-                 H=b_coords[b]-b_coords[b+2];
-                 W=b_coords[b-1]-b_coords[b+1];
-                 lH=yThreshold-b_coords[b+2];
-                 lW=lH*W/H;
-                 midX=b_coords[b+1]+lW;
-                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-               }
-             }
-             else if(b_coords[b]<yThreshold && b_coords[b+2]>=yThreshold){
-               if(b_coords[b-1]<=newX && b_coords[b+1]<=newX){LHS+=1;}
-               else if(b_coords[b-1]>=newX && b_coords[b+1]>=newX){RHS+=1;}
-               else if(b_coords[b-1]<newX && b_coords[b+1]>=newX){
-                 H=b_coords[b+2]-b_coords[b];
-                 W=b_coords[b+1]-b_coords[b-1];
-                 lH=yThreshold-b_coords[b];
-                 lW=lH*W/H;//H shouldn't be zero
-                 midX=b_coords[b-1]+lW;
-                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-               }
-               else if(b_coords[b-1]>=newX && b_coords[b+1]<newX){
-                 H=b_coords[b+2]-b_coords[b];
-                 W=b_coords[b-1]-b_coords[b+1];
-                 lH=yThreshold-b_coords[b];
-                 lW=lH*W/H;
-                 midX=b_coords[b-1]-lW;
-                 if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-               }
-             }
-           }
-           //Traverse the last edge
-           if(b_coords[1]>=yThreshold && b_coords[bCoords-1]<yThreshold){
-             if(b_coords[0]<=newX && b_coords[bCoords-2]<=newX){LHS+=1;}
-             else if(b_coords[0]>=newX && b_coords[bCoords-2]>=newX){RHS+=1;}
-             else if(b_coords[0]<newX && b_coords[bCoords-2]>=newX){
-               H=b_coords[1]-b_coords[bCoords-1];
-               W=b_coords[bCoords-2]-b_coords[0];
-               lH=yThreshold-b_coords[bCoords-1];
-               lW=lH*W/H;
-               midX=b_coords[bCoords-2]-lW;
-               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-             }
-             else if(b_coords[0]>=newX && b_coords[bCoords-2]<newX){
-               H=b_coords[1]-b_coords[bCoords-1];
-               W=b_coords[0]-b_coords[bCoords-2];
-               lH=yThreshold-b_coords[bCoords-1];
-               lW=lH*W/H;
-               midX=b_coords[bCoords-2]+lW;
-               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-             }
-           }
-           else if(b_coords[1]<yThreshold && b_coords[bCoords-1]>=yThreshold){
-             if(b_coords[0]<=newX && b_coords[bCoords-2]<=newX){LHS+=1;}
-             else if(b_coords[0]>=newX && b_coords[bCoords-2]>=newX){RHS+=1;}
-             else if(b_coords[0]<newX && b_coords[bCoords-2]>=newX){
-               H=b_coords[bCoords-1]-b_coords[1];
-               W=b_coords[bCoords-2]-b_coords[0];
-               lH=yThreshold-b_coords[1];
-               lW=lH*W/H;//H shouldn't be zero
-               midX=b_coords[b-1]+lW;
-               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-             }
-             else if(b_coords[0]>=newX && b_coords[bCoords-2]<newX){
-               H=b_coords[bCoords-1]-b_coords[1];
-               W=b_coords[0]-b_coords[bCoords-2];
-               lH=yThreshold-b_coords[1];
-               lW=lH*W/H;
-               midX=b_coords[0]-lW;
-               if(midX<newX){LHS+=1;}else if(midX>=newX){RHS+=1;}
-             }
-           }
-           console.log('LHS = '+ LHS);
-           console.log('RHS = '+ RHS);
-           if((LHS%2) == 1 && (RHS%2) == 1){
+           if(isInside(newX, newY, b_coords, bCoords)){
              i_coords[n]=newX;
              i_coords[n+1]=newY;
              n_coords[bCoords+n]=newX;
@@ -1258,15 +1165,81 @@
          gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
          gl.enableVertexAttribArray(a_Position);
          gl.clear(gl.COLOR_BUFFER_BIT);
-         console.log('nBoundaryPts = '+nBoundaryPts);
-         console.log('nInteriorPts = '+nInteriorPts);
-         console.log('nPts = '+nPts);
-         console.log('bCoords = '+bCoords);
-         console.log('nCoords = '+nCoords);
-         console.log('n_coords looks like this: ');
-         for(var z=0;z<nCoords;z+=2){console.log(n_coords[z]+' , '+n_coords[z+1]);}
          gl.drawArrays(gl.POINTS, nBoundaryPts, nInteriorPts);
          gl.drawArrays(gl.LINE_LOOP, 0, nBoundaryPts);
+       }
+       function isInside(newX, newY, b_coords, bCoords){
+         var yThreshold = newY;
+         var LHS=0, RHS=0;//no of intersection pts at the left and right
+         for(var b=1;b<=bCoords-3;b+=2){//Traverse all edges except the last one
+           //Here I used b as counter letter
+           var interR=intersects(newX, newY, 1.1, newY, b_coords[b-1], b_coords[b],b_coords[b+1], b_coords[b+2]);
+           var interL=intersects(newX, newY,-1.1, newY, b_coords[b-1], b_coords[b],b_coords[b+1], b_coords[b+2]);
+           if(interR[2]==true){RHS+=1;}
+           else if(interL[2]==true){LHS+=1;}
+         }//bCoords-3 loop
+         //Traverse the last edge
+         var interR=intersects(newX, newY, 1.1, newY, b_coords[bCoords-2], b_coords[bCoords-1],b_coords[0], b_coords[1]);
+         var interL=intersects(newX, newY, -1.1, newY, b_coords[bCoords-2], b_coords[bCoords-1],b_coords[0], b_coords[1]);
+         if(interR[2]==true){RHS+=1;}
+         else if(interL[2]==true){LHS+=1;}
+         console.log('LHS = '+ LHS);
+         console.log('RHS = '+ RHS);
+         if((LHS%2) == 1 && (RHS%2) == 1){
+           return true;
+         }
+         else{
+           return false;
+         }
+       }
+       function intersects(pX, pY, farX, farY, edgeX1, edgeY1, edgeX2, edgeY2){
+         var o1=(farX-pX)*(edgeY1-farY)-(edgeX1-farX)*(farY-pY);//Orientation of edge wrt p to far
+         var o2=(farX-pX)*(edgeY2-farY)-(edgeX2-farX)*(farY-pY);
+         var o3=(edgeX2-edgeX1)*(pY-edgeY2)-(pX-edgeX2)*(edgeY2-edgeY1);//Orientation of p to far wrt edge
+         var o4=(edgeX2-edgeX1)*(farY-edgeY2)-(farX-edgeX2)*(edgeY2-edgeY1);
+         if(o1*o2<=0 && o3*o4<=0){
+           if(edgeY2==edgeY1)edgeY2=edgeY1+0.0000001;if(edgeX2==edgeX1)edgeX2=edgeX1+0.0000001;
+           var m=(edgeY2-edgeY1)/(edgeX2-edgeX1);var b =edgeY1-m*edgeX1;
+           var xInt = (pY-b)/m;//intersection x
+           var yInt = pY; //intersection y
+           return [xInt, yInt, true];
+         }
+         else{return [50000,50000,false];}
+       }
+       function isPointLeftOfEdge(px, py, edgeStartX, edgeStartY, edgeEndX, edgeEndY){
+         //The determinant of the cross product of the vector between the first and second edge vertices
+         //and the vector between the first edge vertex and the test point
+         //is positive if the test point is on the left hand side(looking from the start point in the direction of the end point)
+         //negative if the test point is on the right hand side
+         //zero if the test point is exactly in between
+         return ((edgeEndX-edgeStartX)*(py-edgeStartY)-(px-edgeStartX)*(edgeEndY-edgeStartY))>0;
+       }
+       function rightMostYMaxIndex(b_coords, bCoords){
+         var rightMost=b_coords[0];//Maximum x boundary coordinate
+         var yMax=b_coords[1];//Maximum y boundary coordinate
+         var yMaxIndex;//Index of the maximum y boundary coordinate
+         for(var k=1;k<bCoords;k+=2){
+           if(b_coords[k]>yMax){yMax=b_coords[k];yMaxIndex=k;}
+         }
+         for(var k=1;k<bCoords;k+=2){
+           if(b_coords[k]==yMax && b_coords[k-1]>b_coords[yMaxIndex-1]){
+             yMaxIndex=k;
+           }
+         }
+         console.log('rightmost yMax node is ('+b_coords[yMaxIndex-1]+','+ b_coords[yMaxIndex]+')');
+         console.log('yMaxIndex is '+ yMaxIndex);
+         return yMaxIndex;
+       }
+       function mesh(ev, b_coords, bCoords, i_coords, iCoords){
+         p0index=rightMostYMaxIndex(b_coords, bCoords);
+         var pMinusOne= new Float32Array([-5000, -1.1]);var pMinusTwo= new Float32Array([5000, -1.1]);
+         var Tau= new Float32Array(3000);
+         Tau[0]=b_coords[p0index-1]; Tau[1]=b_coords[p0index];
+         Tau[2]=pMinusOne[0];Tau[3]=pMinusOne[1];Tau[4]=pMinusTwo[0];Tau[5]=pMinusTwo[1];
+         console.log('p0 = ('+Tau[0]+' , '+Tau[1]+')');
+         for(var z=0;z<bCoords-1;z+=2){
+           console.log(isInside(b_coords[z],b_coords[z+1], Tau, 6));
+         }
        }
    </script>
 
