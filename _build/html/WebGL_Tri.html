@@ -1131,6 +1131,8 @@
          var reDefineBtn=document.getElementById('reDefine');
          var iPointsTxt=document.getElementById('iPoints');
          var iPointsBtn=document.getElementById('iPointsApply');
+         var meshBtn=document.getElementById('meshBtn');
+         var flipBtn=document.getElementById('flipBtn');
          var gl=getWebGLContext(canvas);
          if(!gl){
            console.log('Failed to get the rendering context for WebGL');
@@ -1163,6 +1165,8 @@
              b_coords[bCoords]=x;n_coords[bCoords]=x;
              b_coords[bCoords+1]=y;n_coords[bCoords+1]=y;
              bCoords+=2;
+             var boundaryNode= new node(x,y, numNodes, -1);
+             nodes.push(boundaryNode);numBNodes+=1;numNodes+=1;
              var vertexBuffer = gl.createBuffer();
              if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;}
              gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
@@ -1176,7 +1180,7 @@
              gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
              gl.enableVertexAttribArray(a_Position);
              gl.clear(gl.COLOR_BUFFER_BIT);
-             gl.drawArrays(gl.POINTS, 0, bCoords/2);
+             gl.drawArrays(gl.POINTS, 0, numBNodes);
            }
          }
 
