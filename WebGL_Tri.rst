@@ -9,7 +9,7 @@ Polygon Meshing through Triangulation
    </head>
    <body onload="listen()">
       <canvas id="webgl" width ="650" height="650">
-      Use html supporting browser
+      Use html5 supporting browser
       </canvas>
       <p>
           <button id="bDefine" type="button">BOUNDARY DEFINED</button>
