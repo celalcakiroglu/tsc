@@ -17,6 +17,8 @@ Polygon Meshing through Triangulation
       </p>
       How many interior points? <input type="text" id="iPoints">
       <button id="iPointsApply" type="button">Apply</button>
+      <button id="meshBtn" type="button">Mesh</button>
+      <button id="flipBtn" type="button">Flip</button>
       <script>
         function listen(){
         main();
