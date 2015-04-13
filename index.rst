@@ -18,6 +18,7 @@ Contents:
    DOE.rst
    MachineLearning.rst
    SiemensNX.rst
+   CalculusStory.rst
    WebGL_Tri.rst
    WebGL_DNBackShapes.rst
    WebGL_DNBackColors.rst

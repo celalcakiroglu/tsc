@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>A Calculus Story &mdash; Tensile Strain Capacity 1.0.2 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.2',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="index.html" />
+    <link rel="next" title="Polygon Meshing through Triangulation" href="WebGL_Tri.html" />
+    <link rel="prev" title="3D Modeling Tutorials" href="SiemensNX.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="WebGL_Tri.html" title="Polygon Meshing through Triangulation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="SiemensNX.html" title="3D Modeling Tutorials"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="a-calculus-story">
+<h1>A Calculus Story<a class="headerlink" href="#a-calculus-story" title="Permalink to this headline">¶</a></h1>
+<p>I would like to start this story with the proof of the IMHO the most useful formula in all calculus, which is the formula for the cosine of an angle between two vectors. Once the cosine of an angle is known, the angle itself can be computed using the Math.acos() function of JavaScript. The Math.acos() function can be executed from the &#8220;Web Console&#8221; of the Firefox web browser which can be invoked by pressing &#8220;F12&#8221; or &#8220;CTRL+shift+k&#8221;.</p>
+<div class="figure align-center" id="percx65">
+<a class="reference internal image-reference" href="_images/twoVectors.JPG"><img alt="_images/twoVectors.JPG" src="_images/twoVectors.JPG" style="width: 393.25px; height: 315.15px;" /></a>
+</div>
+<div class="clearer container">
+<img alt="_images/spacer.png" src="_images/spacer.png" />
+</div>
+<p>In the above figure, the cosines and sines of the angles <span class="math">\(\theta_a\)</span> , <span class="math">\(\theta_b\)</span> and the angle between the vectors can be expressed as follows:</p>
+<div class="math">
+\[\cos{\theta_a}=\frac{a_1}{\Vert \mathbf{a} \Vert},\quad \cos{\theta_b}=\frac{b_1}{\Vert \mathbf{b} \Vert},\quad
+\sin{\theta_a}=\frac{a_2}{\Vert \mathbf{a} \Vert},\quad \sin{\theta_b}=\frac{b_2}{\Vert \mathbf{b} \Vert}\]</div>
+<div class="math">
+\[\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert a \Vert}\frac{b_1}{\Vert b \Vert}+\frac{a_2}{\Vert a \Vert}\frac{b_2}{\Vert b \Vert}\]</div>
+<p>where <span class="math">\(\Vert\cdot \Vert\)</span> denotes the Euclidean norm or the magnitude of a vector. The formula for the cosine of the difference between two angles can be proven as follows(<a class="reference internal" href="#muldowney">muldowney</a>):
+Let <span class="math">\(f:\mathbb{R}\to\mathbb{R}\)</span> be a twice differentiable function with <span class="math">\(f(0)=f^{'}(0)=0\)</span> and <span class="math">\(f(x)+f^{''}(x)=0\)</span> for all <span class="math">\(x\in \mathbb{R}\)</span>. Let&#8217;s define <span class="math">\(g:\mathbb{R}\to\mathbb{R}\)</span> as <span class="math">\(g(x)=(f(x))^2+(f^{'}(x))^2\)</span>. Then <span class="math">\(g^{'}(x)=2f(x)f^{'}(x)+2f^{'}(x)f^{''}(x)=2f^{'}(x)(f(x)+f^{''}(x))=0\)</span>. Since <span class="math">\(g^{'}(x)=0\)</span> for all <span class="math">\(x\in\mathbb{R}\)</span>, <span class="math">\(g(x)\)</span> is a constant function and equal to <span class="math">\(g(0)=(f(0))^2+(f^{'}(0))^2=0\)</span> for all <span class="math">\(x\in\mathbb{R}\)</span>. Assume that <span class="math">\(f(x_0)\neq 0\)</span> for some <span class="math">\(x_0 \in\mathbb{R}\)</span>. Then <span class="math">\(g(x_0)=(f(x_0))^2+(f^{'}(x_0))^2&gt;0\)</span>. This contradiction proves that <span class="math">\(f(x)=0\)</span> everywhere on <span class="math">\(\mathbb{R}\)</span>.</p>
+<p>In the above proof we used the fact that if the derivative of a function is zero everywhere, then this function has a constant value. This can be proven using the mean value theorem as follows: Let <span class="math">\([a,b]\subset\mathbb{R}\)</span> with <span class="math">\(a&lt;b\)</span>. Then <span class="math">\(g(x)\)</span> is differentiable on <span class="math">\([a,b]\)</span>. According to the mean value theorem, there exists <span class="math">\(\xi \in (a,b)\)</span> such that</p>
+<div class="math">
+\[g^{'}(\xi)=\frac{g(b)-g(a)}{b-a}=0 \Rightarrow g(b)=g(a), \forall a,b \in \mathbb{R}, \therefore g(x)=const\]</div>
+<p><strong>References</strong></p>
+<p id="muldowney">Muldowney J.S. ; “Mathematics 117 Lecture Notes”</p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="SiemensNX.html"
+                        title="previous chapter">3D Modeling Tutorials</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="WebGL_Tri.html"
+                        title="next chapter">Polygon Meshing through Triangulation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/CalculusStory.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="WebGL_Tri.html" title="Polygon Meshing through Triangulation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="SiemensNX.html" title="3D Modeling Tutorials"
+             >previous</a> |</li>
+        <li><a href="index.html">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Celal Cakiroglu.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
