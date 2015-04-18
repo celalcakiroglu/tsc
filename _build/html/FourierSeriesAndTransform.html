@@ -51,23 +51,24 @@
 <div class="section" id="fourier-series">
 <h2>Fourier Series<a class="headerlink" href="#fourier-series" title="Permalink to this headline">¶</a></h2>
 <p>The Fourier series representation of a periodic discrete-time signal <span class="math">\(x(n)\)</span> is defined as</p>
-<div class="math" id="equation-fourier">
-<span class="eqno">(1)</span>\[x(n)=\sum_{k=0}^{N-1}c_k e^{j2\pi kn/N}\]</div>
-<p>where <span class="math">\(N\)</span> is the fundamental period of <span class="math">\(x(n)\)</span>. In equation <a href="#equation-fourier">(1)</a>, <span class="math">\(c_k\)</span> denotes the Fourier coefficients of <span class="math">\(x(n)\)</span> and they represent the frequency components contained in <span class="math">\(x(n)\)</span>. For each <span class="math">\(k \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>, <span class="math">\(c_k\)</span> can be calculated as</p>
+<div class="math">
+\[x(n)=\sum_{k=0}^{N-1}c_k e^{j2\pi kn/N}
+      :label: fourier\]</div>
+<p>where <span class="math">\(N\)</span> is the fundamental period of <span class="math">\(x(n)\)</span>. In equation <a href="#equation-fourier">(?)</a>, <span class="math">\(c_k\)</span> denotes the Fourier coefficients of <span class="math">\(x(n)\)</span> and they represent the frequency components contained in <span class="math">\(x(n)\)</span>. For each <span class="math">\(k \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>, <span class="math">\(c_k\)</span> can be calculated as</p>
 <div class="math" id="equation-fourierCoeff">
-<span class="eqno">(2)</span>\[c_k=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}\]</div>
-<p>Equation <a href="#equation-fourierCoeff">(2)</a> can be derived applying the following 4 steps:</p>
+<span class="eqno">(1)</span>\[c_k=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N}\]</div>
+<p>Equation <a href="#equation-fourierCoeff">(1)</a> can be derived applying the following 4 steps:</p>
 <ul class="simple">
-<li><strong>Step 1</strong>: Both sides of equation <a href="#equation-fourier">(1)</a> are multiplied by <span class="math">\(e^{-j2\pi ln/N}\)</span>, where <span class="math">\(l \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>.</li>
+<li><strong>Step 1</strong>: Both sides of equation <a href="#equation-fourier">(?)</a> are multiplied by <span class="math">\(e^{-j2\pi ln/N}\)</span>, where <span class="math">\(l \in \lbrace 0, 1, ..., N-1 \rbrace\)</span>.</li>
 </ul>
 <div class="math" id="equation-fourierArranged">
-<span class="eqno">(3)</span>\[\begin{split}x(n) e^{-j2\pi ln/N} &amp; = \sum _{k=0}^{N-1} c_k e^{j 2\pi (k-l) n/N }                        \\
+<span class="eqno">(2)</span>\[\begin{split}x(n) e^{-j2\pi ln/N} &amp; = \sum _{k=0}^{N-1} c_k e^{j 2\pi (k-l) n/N }                        \\
            &amp; = \sum _{k=0}^{N-1} c_k \Big\lbrace e^{j2\pi (k-l)/N}\Big\rbrace^n   \\\end{split}\]</div>
 <ul class="simple">
-<li><strong>Step 2</strong>: Let <span class="math">\(r=e^{j2\pi (k-l)/N}\)</span> and sum both sides of equation <a href="#equation-fourierArranged">(3)</a> over the index <span class="math">\(n\)</span></li>
+<li><strong>Step 2</strong>: Let <span class="math">\(r=e^{j2\pi (k-l)/N}\)</span> and sum both sides of equation <a href="#equation-fourierArranged">(2)</a> over the index <span class="math">\(n\)</span></li>
 </ul>
 <div class="math" id="equation-fourierSum1">
-<span class="eqno">(4)</span>\[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = \sum _{k=0}^{N-1} c_k \sum _{n=0}^{N-1} r^n\]</div>
+<span class="eqno">(3)</span>\[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = \sum _{k=0}^{N-1} c_k \sum _{n=0}^{N-1} r^n\]</div>
 <ul class="simple">
 <li><strong>Step 3</strong>: Using the geometric series summation:</li>
 </ul>
@@ -90,7 +91,7 @@ N &amp; \mbox{ if $ k=l$}\\
 \end{array}
 \right.\end{split}\]</div>
 <ul class="simple">
-<li><strong>Step 4</strong>: Plugging the result of step 3 in equation <a href="#equation-fourierSum1">(4)</a> we obtain:</li>
+<li><strong>Step 4</strong>: Plugging the result of step 3 in equation <a href="#equation-fourierSum1">(3)</a> we obtain:</li>
 </ul>
 <div class="math">
 \[\sum _{n=0}^{N-1}x(n)e^{-j2\pi ln/N} = c_0 \cdot 0 + c_1 \cdot 0 + ... + c_l \cdot N + c_{l+1}\cdot 0 + ... +c_{N-1}\cdot 0 = c_l \cdot N\]</div>
@@ -102,14 +103,14 @@ N &amp; \mbox{ if $ k=l$}\\
 <div class="math">
 \[e^{\displaystyle{j\Big(-\frac{2\pi}{3}\Big)n}}=e^{\displaystyle{j\Big(-\frac{2\pi}{3}+2\pi\Big)n}}=e^{\displaystyle{j\frac{4\pi}{3}n}}, \quad e^{\displaystyle{j\Big(-\frac{2\pi}{5}\Big)n}}=e^{\displaystyle{j\Big(-\frac{2\pi}{5}+2\pi\Big)n}}=e^{\displaystyle{j\frac{8\pi}{5}n}}\]</div>
 <div class="math" id="equation-quiz41bxn">
-<span class="eqno">(5)</span>\[\Rightarrow x(n)=\frac{1}{2j}e^{\displaystyle{j\frac{2\pi}{5}n}}+\frac{1}{2}e^{\displaystyle{j\frac{2\pi}{3}n}}+\frac{1}{2}e^{\displaystyle{j\frac{4\pi}{3}n}}-\frac{1}{2j}e^{\displaystyle{j\frac{8\pi}{5}n}}\]</div>
+<span class="eqno">(4)</span>\[\Rightarrow x(n)=\frac{1}{2j}e^{\displaystyle{j\frac{2\pi}{5}n}}+\frac{1}{2}e^{\displaystyle{j\frac{2\pi}{3}n}}+\frac{1}{2}e^{\displaystyle{j\frac{4\pi}{3}n}}-\frac{1}{2j}e^{\displaystyle{j\frac{8\pi}{5}n}}\]</div>
 <dl class="docutils">
 <dt>Let <span class="math">\(x_1(n)=\cos(2\pi\frac{1}{3}n)\)</span>, <span class="math">\(x_2(n)=\sin(2\pi\frac{1}{5}n)\)</span>.</dt>
 <dd>The fundamental periods of <span class="math">\(x_1\)</span> and <span class="math">\(x_2\)</span> are  <span class="math">\(=3\)</span> and <span class="math">\(5`respectively. The fundamental period of :math:`x(n)\)</span> is the smallest common factor of these two funsamental periods such that <span class="math">\(N=15\)</span>. It follows that</dd>
 </dl>
 <div class="math" id="equation-ex1eq1">
-<span class="eqno">(6)</span>\[x(n)=\sum_{k=0}^{14}c_k e^{\displaystyle{j\frac{2\pi}{15}kn}}\]</div>
-<p>The only nonzero terms in <a href="#equation-ex1eq1">(6)</a> are the ones in <a href="#equation-quiz41bxn">(5)</a></p>
+<span class="eqno">(5)</span>\[x(n)=\sum_{k=0}^{14}c_k e^{\displaystyle{j\frac{2\pi}{15}kn}}\]</div>
+<p>The only nonzero terms in <a href="#equation-ex1eq1">(5)</a> are the ones in <a href="#equation-quiz41bxn">(4)</a></p>
 <div class="math">
 \[j\frac{2\pi}{5}n=j\frac{2\pi}{15}3n \Rightarrow k=3, c_3=-j/2 \quad;\quad j\frac{2\pi}{3}n=j\frac{2\pi}{15}5n \Rightarrow k=5, c_5 =1/2\]</div>
 <div class="math">
@@ -175,41 +176,41 @@ N &amp; \mbox{ if $ k=l$}\\
 \[P_x=\lim_{N\to\infty}\frac{1}{2N+1}\sum_{n=-N}^{N} |x(n)|^2\]</div>
 <p>According to this formula the power of the signal is equal to the average value of <span class="math">\(|x(n)|^2\)</span> over the entire discrete time domain. In case of a periodic signal, since the fundamental period of the signal is repeating itself, it is enough to take the average of <span class="math">\(|x(n)|^2\)</span> over the fundamental period as follows</p>
 <div class="math" id="equation-pxperiodic">
-<span class="eqno">(7)</span>\[P_x=\frac{1}{N}\sum_{n=0}^{N-1}|x(n)|^2\]</div>
+<span class="eqno">(6)</span>\[P_x=\frac{1}{N}\sum_{n=0}^{N-1}|x(n)|^2\]</div>
 <ul class="simple">
-<li><strong>Step 2:</strong> <a href="#equation-pxperiodic">(7)</a> can be rearranged using the following 2 identities:</li>
+<li><strong>Step 2:</strong> <a href="#equation-pxperiodic">(6)</a> can be rearranged using the following 2 identities:</li>
 </ul>
 <div class="math">
 \[|x(n)|^2=x(n)\cdot {x(n)}^*\]</div>
 <div class="math" id="equation-pxident">
-<span class="eqno">(8)</span>\[{x(n)}^*=\sum_{k=0}^{N-1}{c_k}^*e^{-j2\pi kn/N}\]</div>
-<p>The derivation of <a href="#equation-pxident">(8)</a> is as follows:</p>
+<span class="eqno">(7)</span>\[{x(n)}^*=\sum_{k=0}^{N-1}{c_k}^*e^{-j2\pi kn/N}\]</div>
+<p>The derivation of <a href="#equation-pxident">(7)</a> is as follows:</p>
 <div class="math">
 \[\begin{split}x(n) &amp;= \sum_{k=0}^{N-1}c_k e^{j2\pi kn/N } \\
 &amp;= \sum _{k=0}^{N-1}c_k\lbrace \cos(\displaystyle\frac{2\pi k }{N}n) + j\sin(\displaystyle\frac{2\pi k }{N}n)\end{split}\]</div>
 <p>For any two complex numbers <span class="math">\(z_1, z_2 \in \mathbb{C}\)</span>, <span class="math">\(((z_1+z_2)^*={z_1}^* + {z_2}^*)\)</span>. In order to prove this let <span class="math">\(z_1=a_1 + jb_1\)</span> and <span class="math">\(z_2=a_2 + jb_2\)</span>.</p>
 <div class="math" id="equation-conjugateOfsum">
-<span class="eqno">(9)</span>\[\begin{split}\Rightarrow (z_1 + z_2)^* &amp;=(a_1 + a_2 + j(b_1 + b_2))^* \\
+<span class="eqno">(8)</span>\[\begin{split}\Rightarrow (z_1 + z_2)^* &amp;=(a_1 + a_2 + j(b_1 + b_2))^* \\
 &amp; = a_1+a_2-j(b_1 + b_2)=(a_1-jb_1)+(a_2-jb_2)={z_1}^* + {z_2}^*\end{split}\]</div>
 <p>Using this result the complex conjugate of <span class="math">\(x(n)\)</span> can be calculated as</p>
 <div class="math" id="equation-xnstar1">
-<span class="eqno">(10)</span>\[{x(n)}^*=\sum_{k=0}^{N-1}\Big\lbrace c_k \cos\Big(\frac{2\pi k}{N}n\Big) + jc_k\sin\Big(\frac{2\pi k }{N}n\Big) \Big\rbrace ^*\]</div>
-<p>Let <span class="math">\(c_k=a_k +jb_k\)</span>. Then <a href="#equation-xnstar1">(10)</a> becomes:</p>
+<span class="eqno">(9)</span>\[{x(n)}^*=\sum_{k=0}^{N-1}\Big\lbrace c_k \cos\Big(\frac{2\pi k}{N}n\Big) + jc_k\sin\Big(\frac{2\pi k }{N}n\Big) \Big\rbrace ^*\]</div>
+<p>Let <span class="math">\(c_k=a_k +jb_k\)</span>. Then <a href="#equation-xnstar1">(9)</a> becomes:</p>
 <div class="math" id="equation-xnstar2">
-<span class="eqno">(11)</span>\[\begin{split}{x(n)}^* &amp;=\sum_{k=0}^{N-1}\Big\lbrace (a_k + jb_k)\cos\Big(\displaystyle\frac{2\pi k}{N}n\Big) + j(a_k + jb_k)\sin\Big(\displaystyle\frac{2\pi k }{N}n\Big) \Big\rbrace ^* \\
+<span class="eqno">(10)</span>\[\begin{split}{x(n)}^* &amp;=\sum_{k=0}^{N-1}\Big\lbrace (a_k + jb_k)\cos\Big(\displaystyle\frac{2\pi k}{N}n\Big) + j(a_k + jb_k)\sin\Big(\displaystyle\frac{2\pi k }{N}n\Big) \Big\rbrace ^* \\
 &amp;=\sum _{k=0}^{N-1}\Big\lbrace \Big( a_k\cos\Big(\displaystyle\frac{2\pi k}{N}n   \Big) - b_k\sin\Big( \displaystyle\frac{2\pi k}{N}n  \Big)  \Big)+j\Big(b_k\cos\Big( \displaystyle\frac{2\pi k }{N}n \Big) + a_k\sin\Big( \displaystyle\frac{2\pi k }{N}n  \Big)  \Big)  \Big\rbrace ^* \\
 &amp;=\sum_{k=0}^{N-1}\Big(a_k\cos\Big(\displaystyle\frac{2\pi k}{N}n\Big) - b_k\sin\Big(\displaystyle\frac{2\pi k}{N}n\Big)\Big)-j\Big(b_k\cos\Big(\displaystyle\frac{2\pi k}{N}n\Big) +a_k\sin\Big(\displaystyle\frac{2\pi k}{N}n\Big)\Big) \\
 &amp;=\sum_{k=0}^{N-1}\Big(a_k -jb_k\Big)\cos\Big(\displaystyle\frac{2\pi k}{N}n\Big)-j\Big(a_k - jb_k\Big)\sin\Big(\displaystyle\frac{2\pi k}{N}n\Big) \\
 &amp;=\sum_{k=0}^{N-1}\Big(a_k - jb_k\Big)\Big(\cos\Big(\displaystyle\frac{2\pi k}{N}n\Big)-j\sin\Big(\displaystyle\frac{2\pi k}{N}n\Big)\Big) \\
 &amp;=\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N}\end{split}\]</div>
 <ul class="simple">
-<li><strong>Step 3:</strong> Using equation <a href="#equation-pxident">(8)</a>, the power of a periodic signal <span class="math">\(x(n)\)</span> can be written as:</li>
+<li><strong>Step 3:</strong> Using equation <a href="#equation-pxident">(7)</a>, the power of a periodic signal <span class="math">\(x(n)\)</span> can be written as:</li>
 </ul>
 <div class="math" id="equation-powerCk">
-<span class="eqno">(12)</span>\[\begin{split}P_x &amp;= \frac{1}{N}\sum_{n=0}^{N-1}x(n)\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N} \\
+<span class="eqno">(11)</span>\[\begin{split}P_x &amp;= \frac{1}{N}\sum_{n=0}^{N-1}x(n)\sum_{k=0}^{N-1}{c_k}^* e^{-j2\pi kn/N} \\
 &amp;=\sum_{k=0}^{N-1}{c_k}^*\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{-j2\pi kn/N} \\
 &amp;=\sum_{k=0}^{N-1}{c_k}^*c_k=\sum_{k=0}^{N-1}|c_k|^2\end{split}\]</div>
-<p>Using equation <a href="#equation-powerCk">(12)</a> the power of the signal in <a class="reference internal" href="#fourierex1"><em>Example 1</em></a> can be determined as follows:</p>
+<p>Using equation <a href="#equation-powerCk">(11)</a> the power of the signal in <a class="reference internal" href="#fourierex1"><em>Example 1</em></a> can be determined as follows:</p>
 <div class="math">
 \[P_x = |c_3|^2 + |c^5|^2 + |c_{10}|^2 + |c_{12}|^2 = 4\Big(\frac{1}{2}\Big)^2 = 1\]</div>
 <p>Each frequency component <span class="math">\(\frac{2\pi k}{N}\)</span> has a contribution to the total power of the signal. These variation of these contributions constitutes the <strong>power density spectrum</strong> of the signal. In case of <a class="reference internal" href="#fourierex1"><em>Example 1</em></a> the power density spectrum is plotted below:</p>
@@ -226,7 +227,7 @@ N &amp; \mbox{ if $ k=l$}\\
 <div class="math">
 \[x_4(n)=\displaystyle\frac{1}{2}\cos\Big(2\pi \frac{3}{8}n\Big) \Rightarrow f_4=3/8 \Rightarrow N_4 = 8\]</div>
 <p>The smallest common factor of <span class="math">\(N_1, N_2, N_3\)</span> is <span class="math">\(N=8\)</span> which is the fundamental period of the signal.</p>
-<p><span class="math">\(x(n)\)</span> can be written in form of equation <a href="#equation-fourier">(1)</a> as follows:</p>
+<p><span class="math">\(x(n)\)</span> can be written in form of equation <a href="#equation-fourier">(?)</a> as follows:</p>
 <div class="math">
 \[x_1(n)=2e^{\displaystyle{j0n}}=2e^{\displaystyle{j\frac{2\pi 0}{8}n}} \Rightarrow k=0,\quad \boxed{c_0=2}\]</div>
 <div class="math">
@@ -247,11 +248,11 @@ N &amp; \mbox{ if $ k=l$}\\
 <div class="math">
 \[x(n) = {x(n)}^* \Rightarrow c_0 = {c_0}^*, \quad c_{-1} = {c_1}^*,  . . .,  c_{-(N-2)} = {c_{(N-2)}}^*, \quad c_{-(N-1)} = {c_{(N-1)}}^*\]</div>
 <div class="math" id="equation-realCk">
-<span class="eqno">(13)</span>\[c_{-k} = {c_k}^* , \quad \forall k \in {0, ..., N-1}\]</div>
-<p>An immediate result of equation <a href="#equation-realCk">(13)</a> is as follows:</p>
+<span class="eqno">(12)</span>\[c_{-k} = {c_k}^* , \quad \forall k \in {0, ..., N-1}\]</div>
+<p>An immediate result of equation <a href="#equation-realCk">(12)</a> is as follows:</p>
 <div class="math" id="equation-realCk2">
-<span class="eqno">(14)</span>\[\begin{split}&amp;|{c_k}^*| = |c_k| = |c_{-k}|=|c_{N-k}| \\ &amp;\angle {c_k}^* = \angle c_{-k} =\angle c_{N-k}= -\angle c_k\end{split}\]</div>
-<p>In equation <a href="#equation-realCk2">(14)</a> the periodicty of <span class="math">\(c_k\)</span> and the relationship <span class="math">\(\angle {c_k}^*=-\angle c_k\)</span> are used. The periodicity of <span class="math">\(c_k\)</span> implies that <span class="math">\(\forall k\)</span>, <span class="math">\(c_k = c_{k+N}\)</span>. This can be shown using equation <a href="#equation-fourierCoeff">(2)</a> as follows:</p>
+<span class="eqno">(13)</span>\[\begin{split}&amp;|{c_k}^*| = |c_k| = |c_{-k}|=|c_{N-k}| \\ &amp;\angle {c_k}^* = \angle c_{-k} =\angle c_{N-k}= -\angle c_k\end{split}\]</div>
+<p>In equation <a href="#equation-realCk2">(13)</a> the periodicty of <span class="math">\(c_k\)</span> and the relationship <span class="math">\(\angle {c_k}^*=-\angle c_k\)</span> are used. The periodicity of <span class="math">\(c_k\)</span> implies that <span class="math">\(\forall k\)</span>, <span class="math">\(c_k = c_{k+N}\)</span>. This can be shown using equation <a href="#equation-fourierCoeff">(1)</a> as follows:</p>
 <div class="math">
 \[c_{k+N}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi (k+N)n/N}}=\frac{1}{N}\sum_{n=0}^{N-1}x(n)e^{\displaystyle{-j2\pi kn/N}}e^{\displaystyle{-j2\pi Nn/N}}\]</div>
 <div class="math">
@@ -263,7 +264,7 @@ N &amp; \mbox{ if $ k=l$}\\
 <div class="figure align-center" id="fourierex3fig">
 <a class="reference internal image-reference" href="_images/fourierEx3fig.png"><img alt="_images/fourierEx3fig.png" src="_images/fourierEx3fig.png" style="width: 507.5px; height: 257.5px;" /></a>
 </div>
-<p>The above plot shows one period of the signal <span class="math">\(x(n)\)</span>. The fundamental period of the signal is <span class="math">\(N=10\)</span>. The Fourier coefficients of <span class="math">\(x(n)\)</span> can be calculated using equation <a href="#equation-fourierCoeff">(2)</a>. For <span class="math">\(n \in [3,7]\)</span>, <span class="math">\(x(n)=0\)</span>. Therefore equation <a href="#equation-fourierCoeff">(2)</a> becomes:</p>
+<p>The above plot shows one period of the signal <span class="math">\(x(n)\)</span>. The fundamental period of the signal is <span class="math">\(N=10\)</span>. The Fourier coefficients of <span class="math">\(x(n)\)</span> can be calculated using equation <a href="#equation-fourierCoeff">(1)</a>. For <span class="math">\(n \in [3,7]\)</span>, <span class="math">\(x(n)=0\)</span>. Therefore equation <a href="#equation-fourierCoeff">(1)</a> becomes:</p>
 <div class="math">
 \[\begin{split}c_k&amp;=\frac{1}{10}\Big ( x(0)e^{\displaystyle{-j2\pi 0k/10}} + x(1)e^{\displaystyle{-j2\pi 1k/10}} + x(2)e^{\displaystyle{-j2\pi 2k/10}} + x(8)e^{\displaystyle{-j2\pi 8k/10}} + x(9)e^{\displaystyle{-j2\pi 9k/10}}  \Big) \\ &amp;=\frac{1}{10}\Big( 1+ e^{\displaystyle{-j\pi k/5}} + e^{\displaystyle{-j2\pi k/5}} + e^{\displaystyle{-j\pi 8k/5}} + e^{\displaystyle{-j\pi 9k/5}} \Big) \\ &amp;=\frac{1}{10}\Big( 1 + e^{\displaystyle{-j\pi k/5}} + e^{\displaystyle{-j2\pi k/5}} + e^{\displaystyle{j2\pi k/5}} + e^{\displaystyle{j\pi k/5}} \Big) \\ &amp;= \frac{1}{10}e^{\displaystyle{-j2\pi k/5}}\Big( 1+ e^{\displaystyle{j\pi k/5}} + e^{\displaystyle{j2\pi k/5}} + e^{\displaystyle{j3\pi k/5}} + e^{\displaystyle{j4\pi k/5}} \Big)\end{split}\]</div>
 <p>Let <span class="math">\(r=e^{j\pi k/5}\)</span>. Then</p>

@@ -5,7 +5,8 @@ Fourier Series
 ---------------------------
 The Fourier series representation of a periodic discrete-time signal :math:`x(n)` is defined as
 
-.. math:: x(n)=\sum_{k=0}^{N-1}c_k e^{j2\pi kn/N}
+.. math:: 
+  x(n)=\sum_{k=0}^{N-1}c_k e^{j2\pi kn/N}
 	:label: fourier
 
 where :math:`N` is the fundamental period of :math:`x(n)`. In equation :eq:`fourier`, :math:`c_k` denotes the Fourier coefficients of :math:`x(n)` and they represent the frequency components contained in :math:`x(n)`. For each :math:`k \in \lbrace 0, 1, ..., N-1 \rbrace`, :math:`c_k` can be calculated as
