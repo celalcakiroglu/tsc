@@ -49,6 +49,8 @@ Biography of Celal Cakiroglu
 
 **Favourite Music:**
 
+- Morgan Page
+
 **Nationality:** Turkish
 
 **Religion:** Newage
@@ -57,6 +59,10 @@ Biography of Celal Cakiroglu
 Installing Sphinx and making it work properly, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure
 
 https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/
+
+https://www.youtube.com/watch?v=oJsUvBQyHBs
+
+http://numericjs.com/index.php
 
 
 
