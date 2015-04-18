@@ -26,6 +26,10 @@ where :math:`\Vert\cdot \Vert` denotes the Euclidean norm or the magnitude of a 
 
 Let :math:`f(\theta)=\cos(\theta-\beta)+\alpha_1\cos(\theta)+\alpha_2\sin(\theta)` where :math:`f:\mathbb{R}\to\mathbb{R}` and :math:`\beta,\alpha_1, \alpha_2 \in \mathbb{R}` are arbitrary. The first and second derivatives of :math:`f(\theta)` look like:
 
+.. math::
+	&f^{'}(\theta)=-\sin(\theta-\beta)-\alpha_1\sin(\theta)+\alpha_2\cos(\theta)\\
+	&f^{''}(\theta)=-\cos(\theta-\beta)-\alpha_1\cos(\theta)-\alpha_2\sin(\theta)
+
 from which
 
 .. math::
@@ -39,14 +43,21 @@ follows. If we choose :math:`\alpha_1` and :math:`\alpha_2` as
 we obtain
 
 .. math::
+	f(\theta)=\cos(\theta-\beta)-\cos(\theta)\cos(\beta)-\sin(\theta)\sin(\beta)
+.. math::
 	f(0)=f^{'}(0)=0
 
-Let :math:`f:\mathbb{R}\to\mathbb{R}` be a twice differentiable function with :math:`f(0)=f^{'}(0)=0` and :math:`f(x)+f^{''}(x)=0` for all :math:`x\in \mathbb{R}`. Let's define :math:`g:\mathbb{R}\to\mathbb{R}` as :math:`g(x)=(f(x))^2+(f^{'}(x))^2`. Then :math:`g^{'}(x)=2f(x)f^{'}(x)+2f^{'}(x)f^{''}(x)=2f^{'}(x)(f(x)+f^{''}(x))=0`. Since :math:`g^{'}(x)=0` for all :math:`x\in\mathbb{R}`, :math:`g(x)` is a constant function and equal to :math:`g(0)=(f(0))^2+(f^{'}(0))^2=0` for all :math:`x\in\mathbb{R}`. Assume that :math:`f(x_0)\neq 0` for some :math:`x_0 \in\mathbb{R}`. Then :math:`g(x_0)=(f(x_0))^2+(f^{'}(x_0))^2>0`. This contradiction proves that :math:`f(x)=0` everywhere on :math:`\mathbb{R}`.
+Let's define :math:`g:\mathbb{R}\to\mathbb{R}` as :math:`g(\theta)=(f(\theta))^2+(f^{'}(\theta))^2`. Then :math:`g^{'}(\theta)=2f(\theta)f^{'}(\theta)+2f^{'}(\theta)f^{''}(\theta)=2f^{'}(\theta)(f(\theta)+f^{''}(\theta))=0`. Since :math:`g^{'}(\theta)=0` for all :math:`\theta\in\mathbb{R}`, :math:`g(\theta)` is a constant function and equal to :math:`g(0)=(f(0))^2+(f^{'}(0))^2=0` for all :math:`\theta\in\mathbb{R}`. Assume that :math:`f(\theta_0)\neq 0` for some :math:`\theta_0 \in\mathbb{R}`. Then :math:`g(\theta_0)=(f(\theta_0))^2+(f^{'}(\theta_0))^2>0`. This contradiction proves that :math:`f(\theta)=0` everywhere on :math:`\mathbb{R}` and therefore :math:`\boxed{\cos(\theta-\beta)=\cos(\theta)\cos(\beta)+\sin(\theta)\sin(\beta)}`.
 
-In the above proof we used the fact that if the derivative of a function is zero everywhere, then this function has a constant value. This can be proven using the mean value theorem as follows: Let :math:`[a,b]\subset\mathbb{R}` with :math:`a<b`. Then :math:`g(x)` is differentiable on :math:`[a,b]`. According to the mean value theorem, there exists :math:`\xi \in (a,b)` such that 
+In the above proof we used the fact that if the derivative of a function is zero everywhere, then this function has a constant value. This can be proven using the mean value theorem as follows: Let :math:`[a,b]\subset\mathbb{R}` with :math:`a<b`. Then :math:`g(\theta)` is differentiable on :math:`[a,b]`. According to the mean value theorem, there exists :math:`\xi \in (a,b)` such that 
 
 .. math::
-	g^{'}(\xi)=\frac{g(b)-g(a)}{b-a}=0 \Rightarrow g(b)=g(a), \forall a,b \in \mathbb{R}, \therefore g(x)=const
+	g^{'}(\xi)=\frac{g(b)-g(a)}{b-a}=0 \Rightarrow g(b)=g(a), \forall a,b \in \mathbb{R}, \quad\therefore \boxed{g(\theta)=const}
+
+In order to prove the mean value theorem it is possible to define another function :math:`G:\mathbb{R}\to\mathbb{R}` as :math:`G(\theta)=g(\theta)+\alpha\theta` for some :math:`\alpha\in\mathbb{R}`. Then for any interval :math:`[a,b]\subset\mathbb{R}`, :math:`G(\theta)` is differentiable on :math:`[a,b]`. Also, :math:`\alpha` can be chosen in such a way that :math:`G(a)=G(b)`. Since :math:`G(a)=g(a)+\alpha a` and :math:`G(b)=g(b)+\alpha b`, Choosing :math:`\alpha=(g(b)-g(a))/(a-b)` would imply that :math:`G(a)=G(b)`. Since :math:`G(\theta)` is differentiable on :math:`[a,b]`, according to Rolle's theorem, there exists :math:`\xi \in (a,b)` such that
+
+.. math::
+	G^{'}(\xi)=0=g^{'}(\xi)+\frac{g(b)-g(a)}{a-b}\Rightarrow \boxed{g^{'}(\xi)=\displaystyle\frac{g(b)-g(a)}{b-a}}
 
 **References**
 
