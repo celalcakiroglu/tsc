@@ -27,8 +27,38 @@ Contents:
 
 Biography of Celal Cakiroglu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Celal was born in 1985 in Istanbul. In the early years of his life he was introduced to the game of chess. After a while it turned out that he was good at this game. However he followed the advice of his parents to concentrate on the high school entrance exams and didn't pursue a chess carrier. He attended the German high school of Istanbul (Istanbul Erkek Lisesi) between 1995 and 2003. Afterwards he attended the civil engineering program in Istanbul Technical University. During this time Celal got interested in the simulation of structural engineering systems and related software development. In the scope of his bachelor's thesis he contributed to the development of a basic level finite element simulation program. Afterwards he went to Braunschweig for studying in the master's program "Computational Sciences in Engineering".    
-In his free time he reads science fiction novels like Frank Herbert's Dune or Asimov's Foundation. He still plays chess sometimes too.
+**Education:**
+
+- MSc. Computational Sciences in Engineering, Technische Universitaet Carolo Wilhelmina zu Braunschweig
+
+- BSc. Civil Engineering, Istanbul Technical University
+
+**Professional Service:**
+
+- Research Assistant at the German Aerospace Center (master thesis)
+
+**Favourite Books:**
+
+- Dune, F. Herbert
+- The Player of Games, Iain M Banks
+
+**Favourite Movies:**
+
+- Her
+- Matrix
+
+**Favourite Music:**
+
+**Nationality:** Turkish
+
+**Religion:** Newage
+
+**How I made this website:**
+Installing Sphinx and making it work properly, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure
+
+https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/
+
+
 
 Indices and tables
 ==================
