@@ -54,7 +54,7 @@
 <h1>A Calculus Story<a class="headerlink" href="#a-calculus-story" title="Permalink to this headline">¶</a></h1>
 <p>I would like to start this story with the proof of the IMHO the most useful formula in all calculus, which is the formula for the cosine of an angle between two vectors. Once the cosine of an angle is known, the angle itself can be computed using the Math.acos() function of JavaScript. The Math.acos() function can be executed from the &#8220;Web Console&#8221; of the Firefox web browser which can be invoked by pressing &#8220;F12&#8221; or &#8220;CTRL+shift+k&#8221;.</p>
 <div class="figure align-center" id="percx65">
-<a class="reference internal image-reference" href="_images/twoVectors.JPG"><img alt="_images/twoVectors.JPG" src="_images/twoVectors.JPG" style="width: 393.25px; height: 315.15px;" /></a>
+<a class="reference internal image-reference" href="_images/twoVectors.JPG"><img alt="_images/twoVectors.JPG" src="_images/twoVectors.JPG" style="width: 357.5px; height: 286.5px;" /></a>
 </div>
 <div class="clearer container">
 <img alt="_images/spacer.png" src="_images/spacer.png" />
@@ -64,14 +64,14 @@
 \[\cos{\theta_a}=\frac{a_1}{\Vert \mathbf{a} \Vert},\quad \cos{\theta_b}=\frac{b_1}{\Vert \mathbf{b} \Vert},\quad
 \sin{\theta_a}=\frac{a_2}{\Vert \mathbf{a} \Vert},\quad \sin{\theta_b}=\frac{b_2}{\Vert \mathbf{b} \Vert}\]</div>
 <div class="math">
-\[\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert a \Vert}\frac{b_1}{\Vert b \Vert}+\frac{a_2}{\Vert a \Vert}\frac{b_2}{\Vert b \Vert}\]</div>
-<p>where <span class="math">\(\Vert\cdot \Vert\)</span> denotes the Euclidean norm or the magnitude of a vector. The formula for the cosine of the difference between two angles can be proven as follows(<a class="reference internal" href="#muldowney">muldowney</a>):
+\[\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert a \Vert}\frac{b_1}{\Vert b \Vert}+\frac{a_2}{\Vert a \Vert}\frac{b_2}{\Vert b \Vert}=\frac{\langle a { , } b \rangle}{\Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert}\]</div>
+<p>where <span class="math">\(\Vert\cdot \Vert\)</span> denotes the Euclidean norm or the magnitude of a vector and <span class="math">\(\langle { \quad ,\quad } \rangle\)</span> denotes the scalar product or dot product. The formula for the cosine of the difference between two angles can be proven as follows[<a class="reference internal" href="#id1">1</a>]:
 Let <span class="math">\(f:\mathbb{R}\to\mathbb{R}\)</span> be a twice differentiable function with <span class="math">\(f(0)=f^{'}(0)=0\)</span> and <span class="math">\(f(x)+f^{''}(x)=0\)</span> for all <span class="math">\(x\in \mathbb{R}\)</span>. Let&#8217;s define <span class="math">\(g:\mathbb{R}\to\mathbb{R}\)</span> as <span class="math">\(g(x)=(f(x))^2+(f^{'}(x))^2\)</span>. Then <span class="math">\(g^{'}(x)=2f(x)f^{'}(x)+2f^{'}(x)f^{''}(x)=2f^{'}(x)(f(x)+f^{''}(x))=0\)</span>. Since <span class="math">\(g^{'}(x)=0\)</span> for all <span class="math">\(x\in\mathbb{R}\)</span>, <span class="math">\(g(x)\)</span> is a constant function and equal to <span class="math">\(g(0)=(f(0))^2+(f^{'}(0))^2=0\)</span> for all <span class="math">\(x\in\mathbb{R}\)</span>. Assume that <span class="math">\(f(x_0)\neq 0\)</span> for some <span class="math">\(x_0 \in\mathbb{R}\)</span>. Then <span class="math">\(g(x_0)=(f(x_0))^2+(f^{'}(x_0))^2&gt;0\)</span>. This contradiction proves that <span class="math">\(f(x)=0\)</span> everywhere on <span class="math">\(\mathbb{R}\)</span>.</p>
 <p>In the above proof we used the fact that if the derivative of a function is zero everywhere, then this function has a constant value. This can be proven using the mean value theorem as follows: Let <span class="math">\([a,b]\subset\mathbb{R}\)</span> with <span class="math">\(a&lt;b\)</span>. Then <span class="math">\(g(x)\)</span> is differentiable on <span class="math">\([a,b]\)</span>. According to the mean value theorem, there exists <span class="math">\(\xi \in (a,b)\)</span> such that</p>
 <div class="math">
 \[g^{'}(\xi)=\frac{g(b)-g(a)}{b-a}=0 \Rightarrow g(b)=g(a), \forall a,b \in \mathbb{R}, \therefore g(x)=const\]</div>
 <p><strong>References</strong></p>
-<p id="muldowney">Muldowney J.S. ; “Mathematics 117 Lecture Notes”</p>
+<p id="id1">[1] Muldowney, James S. ; “Mathematics 117 Lecture Notes”</p>
 </div>
 
 
