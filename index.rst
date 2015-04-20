@@ -45,7 +45,7 @@ Biography of Celal Cakiroglu
 **Favourite Movies:**
 
 - Her
-- Matrix
+- The Matrix
 
 **Favourite Music:**
 
@@ -53,7 +53,7 @@ Biography of Celal Cakiroglu
 
 **Nationality:** Turkish
 
-**Religion:** Newage
+**Religion:** Newage (Teal Swan follower)
 
 **How I made this website:**
 Installing Sphinx and making it work properly, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure
