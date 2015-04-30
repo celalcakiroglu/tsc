@@ -14,12 +14,12 @@ Contents:
    :maxdepth: 15
 
    2DTruss.rst
-..   ColdBend.rst
    DOE.rst
    MachineLearning.rst
    SiemensNX.rst
    CalculusStory.rst
    WebGL_Tri.rst
+..   ColdBend.rst
 ..   WebGL_DNBackShapes.rst
 ..   WebGL_DNBackColors.rst
 ..   DigitalFilters.rst
@@ -46,7 +46,7 @@ Biography of Celal Cakiroglu
 - Dune, F. Herbert
 - The Player of Games, Iain M Banks
 
- **Favourite Movies:**
+**Favourite Movies:**
 
 - Her
 - The Matrix
