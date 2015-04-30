@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Tensile Strain Capacity 1.0.2 documentation" href="#" />
-    <link rel="next" title="Interaction with Excel and Eclipse" href="ReadExcelFromPython.html" /> 
+    <link rel="next" title="2D Truss System Solver" href="2DTruss.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,7 +35,7 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="ReadExcelFromPython.html" title="Interaction with Excel and Eclipse"
+          <a href="2DTruss.html" title="2D Truss System Solver"
              accesskey="N">next</a> |</li>
         <li><a href="#">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>
@@ -51,61 +51,8 @@
 <p>Contents:</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="ReadExcelFromPython.html">Interaction with Excel and Eclipse</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ReadExcelFromPython.html#reading-and-writing-excel-files-with-csv-xls-or-xlsx-extension-using-python">Reading and writing Excel files with &#8221;.csv&#8221;, &#8221;.xls&#8221; or &#8221;.xlsx&#8221; extension using Python</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadExcelFromPython.html#adding-and-removing-secondary-axes-in-excel-charts">Adding and removing secondary axes in excel charts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ReadExcelFromPython.html#installing-eclipse-and-the-python-plugin-pydev">Installing Eclipse and the Python plugin (PyDev)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ColdBend.html">Tension Side Fracture of Cold Bends</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ColdBend.html#rate-of-increase-of-the-peeq-at-the-compression-and-tension-sides-at-different-levels-of-internal-pressure">Rate of Increase of the PEEQ at the compression and tension sides at different levels of internal pressure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ColdBend.html#axial-and-hoop-stresses-as-functions-of-internal-pressure-diameter-and-wall-thickness">Axial and Hoop Stresses as Functions of Internal Pressure, Diameter and Wall Thickness</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="DOE.html">Design and Outcome of Tensile Strain Experiments</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="DOE.html#end-plate-design">End Plate Design</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DOE.html#first-tensile-strain-experiment">First Tensile Strain Experiment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DOE.html#strain-measurements-of-the-first-test">Strain measurements of the first test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DOE.html#second-tensile-strain-experiment">Second Tensile Strain Experiment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DOE.html#strain-measurements-of-second-test">Strain measurements of second test</a></li>
-<li class="toctree-l2"><a class="reference internal" href="DOE.html#deflection-of-the-pipe-axis">Deflection of the Pipe Axis</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="DOE.html#strain-profile-of-the-second-experiment">Strain Profile of the Second Experiment</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">Machine Learning</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="MachineLearning.html#basic-concepts">Basic Concepts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="MachineLearning.html#linear-binary-classification">Linear Binary Classification</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="SiemensNX.html">3D Modeling Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="SiemensNX.html#intersection-of-a-datum-plane-with-an-extruded-body">Intersection of a Datum Plane with an Extruded Body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiemensNX.html#mirroring-of-curves-created-by-intersection-of-datum-planes-and-extruded-bodies">Mirroring of curves created by intersection of datum planes and extruded bodies</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiemensNX.html#assigning-different-colors-to-different-partitions-of-a-body">Assigning Different Colors To Different Partitions of a Body</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SiemensNX.html#changing-the-background-color-of-the-model">Changing the Background Color of the Model</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="CalculusStory.html">A Calculus Story</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebGL_Tri.html">Polygon Meshing through Triangulation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="WebGL_Tri.html#auxiliary-functions">Auxiliary Functions</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="WebGL_DNBackShapes.html">Dual N-Back with Geometry and Tunes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="WebGL_DNBackColors.html">Dual N-Back with Colors and Tunes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="DigitalFilters.html">Discrete Time Signals</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="DigitalFilters.html#power-and-energy-of-a-signal">Power and energy of a signal</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="DigitalFilters.html#exponentially-weighted-moving-average-ewma-filters">Exponentially Weighted Moving Average (EWMA) Filters</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="FourierSeriesAndTransform.html">Fourier Series and the Fourier Transform</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="FourierSeriesAndTransform.html#fourier-series">Fourier Series</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="FourierSeriesAndTransform.html#power-density-spectrum-of-a-periodic-signal">Power density spectrum of a periodic signal</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="FourierSeriesAndTransform.html#the-fourier-transform">The Fourier Transform</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2DTruss.html">2D Truss System Solver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="2DTruss.html#direct-stiffness-method-for-2d-trusses">Direct Stiffness Method for 2D Trusses</a></li>
 </ul>
 </li>
 </ul>
@@ -114,11 +61,13 @@
 <h2>Biography of Celal Cakiroglu<a class="headerlink" href="#biography-of-celal-cakiroglu" title="Permalink to this headline">¶</a></h2>
 <p><strong>Education:</strong></p>
 <ul class="simple">
+<li>Ph.D. Candidate Structural Engineering, University of Alberta</li>
 <li>MSc. Computational Sciences in Engineering, Technische Universitaet Carolo Wilhelmina zu Braunschweig</li>
 <li>BSc. Civil Engineering, Istanbul Technical University</li>
 </ul>
 <p><strong>Professional Service:</strong></p>
 <ul class="simple">
+<li>Research and Teaching Assistant at the University of Alberta</li>
 <li>Research Assistant at the German Aerospace Center (master thesis)</li>
 </ul>
 <p><strong>Favourite Books:</strong></p>
@@ -126,17 +75,12 @@
 <li>Dune, F. Herbert</li>
 <li>The Player of Games, Iain M Banks</li>
 </ul>
-<p><strong>Favourite Movies:</strong></p>
+<blockquote>
+<div><strong>Favourite Movies:</strong></div></blockquote>
 <ul class="simple">
 <li>Her</li>
 <li>The Matrix</li>
 </ul>
-<p><strong>Favourite Music:</strong></p>
-<ul class="simple">
-<li>Morgan Page</li>
-</ul>
-<p><strong>Nationality:</strong> Turkish</p>
-<p><strong>Religion:</strong> Newage (Teal Swan follower)</p>
 <p><strong>How I made this website:</strong>
 Installing Sphinx and making it work properly, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure</p>
 <p><a class="reference external" href="https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/">https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/</a></p>
@@ -169,8 +113,8 @@ Installing Sphinx and making it work properly, linking the git repository with t
 </ul>
 
   <h4>Next topic</h4>
-  <p class="topless"><a href="ReadExcelFromPython.html"
-                        title="next chapter">Interaction with Excel and Eclipse</a></p>
+  <p class="topless"><a href="2DTruss.html"
+                        title="next chapter">2D Truss System Solver</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/index.txt"
@@ -200,7 +144,7 @@ Installing Sphinx and making it work properly, linking the git repository with t
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="ReadExcelFromPython.html" title="Interaction with Excel and Eclipse"
+          <a href="2DTruss.html" title="2D Truss System Solver"
              >next</a> |</li>
         <li><a href="#">Tensile Strain Capacity 1.0.2 documentation</a> &raquo;</li> 
       </ul>

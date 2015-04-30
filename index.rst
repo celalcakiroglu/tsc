@@ -13,27 +13,31 @@ Contents:
 .. toctree::
    :maxdepth: 15
 
-   ReadExcelFromPython.rst
-   ColdBend.rst
+   2DTruss.rst
+..   ColdBend.rst
    DOE.rst
    MachineLearning.rst
    SiemensNX.rst
    CalculusStory.rst
    WebGL_Tri.rst
-   WebGL_DNBackShapes.rst
-   WebGL_DNBackColors.rst
-   DigitalFilters.rst
-   FourierSeriesAndTransform.rst
+..   WebGL_DNBackShapes.rst
+..   WebGL_DNBackColors.rst
+..   DigitalFilters.rst
+..   FourierSeriesAndTransform.rst
 
 Biography of Celal Cakiroglu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Education:**
+
+- Ph.D. Candidate Structural Engineering, University of Alberta
 
 - MSc. Computational Sciences in Engineering, Technische Universitaet Carolo Wilhelmina zu Braunschweig
 
 - BSc. Civil Engineering, Istanbul Technical University
 
 **Professional Service:**
+
+- Research and Teaching Assistant at the University of Alberta
 
 - Research Assistant at the German Aerospace Center (master thesis)
 
@@ -42,18 +46,18 @@ Biography of Celal Cakiroglu
 - Dune, F. Herbert
 - The Player of Games, Iain M Banks
 
-**Favourite Movies:**
+ **Favourite Movies:**
 
 - Her
 - The Matrix
 
-**Favourite Music:**
+.. **Favourite Music:**
 
-- Morgan Page
+.. - Morgan Page
 
-**Nationality:** Turkish
+.. **Nationality:** Turkish
 
-**Religion:** Newage (Teal Swan follower)
+.. **Religion:** Newage (Teal Swan follower)
 
 **How I made this website:**
 Installing Sphinx and making it work properly, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure

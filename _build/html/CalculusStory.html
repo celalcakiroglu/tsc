@@ -65,7 +65,7 @@
 \sin{\theta_a}=\frac{a_2}{\Vert \mathbf{a} \Vert},\quad \sin{\theta_b}=\frac{b_2}{\Vert \mathbf{b} \Vert}\]</div>
 <div class="math">
 \[\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert a \Vert}\frac{b_1}{\Vert b \Vert}+\frac{a_2}{\Vert a \Vert}\frac{b_2}{\Vert b \Vert}=\frac{\langle a { , } b \rangle}{\Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert}\]</div>
-<p>where <span class="math">\(\Vert\cdot \Vert\)</span> denotes the Euclidean norm or the magnitude of a vector and <span class="math">\(\langle { \cdot { , } \cdot } \rangle\)</span> denotes the scalar product or dot product of two vectors. The formula for the cosine of the difference between two angles(or an angle between two vectors) can be proven as follows[<a class="reference internal" href="#id1">1</a>]:</p>
+<p>where <span class="math">\(\Vert\cdot \Vert\)</span> denotes the Euclidean norm or the magnitude of a vector and <span class="math">\(\langle { \cdot { , } \cdot } \rangle\)</span> denotes the scalar product or dot product of two vectors. The formula for the cosine of the difference between two angles(or an angle between two vectors) can be derived as follows[<a class="reference internal" href="#id1">1</a>]:</p>
 <p>Let <span class="math">\(f(\theta)=\cos(\theta-\beta)+\alpha_1\cos(\theta)+\alpha_2\sin(\theta)\)</span> where <span class="math">\(f:\mathbb{R}\to\mathbb{R}\)</span> and <span class="math">\(\beta,\alpha_1, \alpha_2 \in \mathbb{R}\)</span> are arbitrary. The first and second derivatives of <span class="math">\(f(\theta)\)</span> look like:</p>
 <div class="math">
 \[\begin{split}&amp;f^{'}(\theta)=-\sin(\theta-\beta)-\alpha_1\sin(\theta)+\alpha_2\cos(\theta)\\
@@ -97,7 +97,7 @@
 <p>The second possibility is that for some <span class="math">\(\theta_0 \in (a,b)\)</span>, <span class="math">\(G(\theta_0)&gt;G(a)=G(b)\)</span>. In this case the Weierstrass&#8217; maximum-minimum theorem guarantees the existence of some <span class="math">\(\xi\in(a,b)\)</span> such that for any <span class="math">\(\theta \in (a,b)\)</span>, <span class="math">\(G(\theta)\leq G(\xi)\)</span>. We also know that <span class="math">\(G^{'}(\xi)\)</span> exits. From the left- and right limit expressions of <span class="math">\(G^{'}(\xi)\)</span>:</p>
 <div class="math">
 \[0\leq\underset{\theta \to \xi^{-}}{\lim}\frac{G(\theta)-G(\xi)}{\theta -\xi}=G^{'}(\xi)=\underset{\theta \to \xi^{+}}{\lim}\frac{G(\theta)-G(\xi)}{\theta -\xi}\leq 0\]</div>
-<p>it is clear that <span class="math">\(G^{'}(\xi)=0\)</span>. This completes the proof of Rolle`s theorem since the only remaining possibility is that for some <span class="math">\(\theta_0 \in (a,b)\)</span>, <span class="math">\(G(\theta_0)&lt;G(a)=G(b)\)</span> and the proof of this case is identical to the previous case.</p>
+<p>it is clear that <span class="math">\(\boxed{G^{'}(\xi)=0}\)</span>. This completes the proof of Rolle`s theorem since the only remaining possibility is that for some <span class="math">\(\theta_0 \in (a,b)\)</span>, <span class="math">\(G(\theta_0)&lt;G(a)=G(b)\)</span> and the proof of this case is identical to the previous case.</p>
 <p><strong>References</strong></p>
 <p id="id1">[1] Muldowney, James S. ; “Mathematics 117 Lecture Notes”</p>
 </div>

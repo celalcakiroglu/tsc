@@ -22,7 +22,7 @@ In the above figure, the cosines and sines of the angles :math:`\theta_a` , :mat
 .. math::
 	\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert a \Vert}\frac{b_1}{\Vert b \Vert}+\frac{a_2}{\Vert a \Vert}\frac{b_2}{\Vert b \Vert}=\frac{\langle a { , } b \rangle}{\Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert}
 
-where :math:`\Vert\cdot \Vert` denotes the Euclidean norm or the magnitude of a vector and :math:`\langle { \cdot { , } \cdot } \rangle` denotes the scalar product or dot product of two vectors. The formula for the cosine of the difference between two angles(or an angle between two vectors) can be proven as follows[1_]:
+where :math:`\Vert\cdot \Vert` denotes the Euclidean norm or the magnitude of a vector and :math:`\langle { \cdot { , } \cdot } \rangle` denotes the scalar product or dot product of two vectors. The formula for the cosine of the difference between two angles(or an angle between two vectors) can be derived as follows[1_]:
 
 Let :math:`f(\theta)=\cos(\theta-\beta)+\alpha_1\cos(\theta)+\alpha_2\sin(\theta)` where :math:`f:\mathbb{R}\to\mathbb{R}` and :math:`\beta,\alpha_1, \alpha_2 \in \mathbb{R}` are arbitrary. The first and second derivatives of :math:`f(\theta)` look like:
 
@@ -74,7 +74,7 @@ The second possibility is that for some :math:`\theta_0 \in (a,b)`, :math:`G(\th
 .. math::
 	0\leq\underset{\theta \to \xi^{-}}{\lim}\frac{G(\theta)-G(\xi)}{\theta -\xi}=G^{'}(\xi)=\underset{\theta \to \xi^{+}}{\lim}\frac{G(\theta)-G(\xi)}{\theta -\xi}\leq 0
 
-it is clear that :math:`G^{'}(\xi)=0`. This completes the proof of Rolle`s theorem since the only remaining possibility is that for some :math:`\theta_0 \in (a,b)`, :math:`G(\theta_0)<G(a)=G(b)` and the proof of this case is identical to the previous case.  
+it is clear that :math:`\boxed{G^{'}(\xi)=0}`. This completes the proof of Rolle`s theorem since the only remaining possibility is that for some :math:`\theta_0 \in (a,b)`, :math:`G(\theta_0)<G(a)=G(b)` and the proof of this case is identical to the previous case.  
 
 **References**
 
