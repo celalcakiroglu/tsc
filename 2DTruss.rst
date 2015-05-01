@@ -12,13 +12,17 @@
       Use html5 supporting browser
       </canvas>
       <p>The larger of total system width and height[mm]
-        <input type="text" id="totalSize" style="width: 70px;">
+      <input type="text" id="totalSize" style="width: 70px;">
       </p>
       <p>
         x[mm] <input type="text" id="x" style="width: 70px;">
         y[mm] <input type="text" id="y" style="width: 70px;">
         <input type="checkbox" id="xConstraint" >x constraint
         <input type="checkbox" id="yConstraint" >y constraint
+      </p>
+      <p>
+        x-Force[N] <input type="text" id="xForce" style="width: 70px;">
+        y-Force[N] <input type="text" id="yForce" style="width: 70px;">
         <button id="addNode" type="button">Add Node</button>
       </p>
       <p>
@@ -34,7 +38,6 @@
         Bar List <select id="barList" size="1"></select>
         <button id="solve" type="button">Solve</button>
       </p>
-      <script src="numeric-1.2.6.js"></script>
       <script>
         function listen(){
         main();
