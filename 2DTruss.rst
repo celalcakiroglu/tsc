@@ -5684,5 +5684,5 @@ In Figure 1 :math:`u_{1x},u_{1y}, u_{2x}, u_{2y}` and :math:`q_{1x},q_{1y}, q_{2
 
 .. _1: 
 
-[1] Hibbeler, Structural Analysis
+[1] Hibbeler R.C., Structural Analysis, 8th edition, ISBN:9780132570534
    
