@@ -1,4 +1,4 @@
-A Calculus Story
+Calculus
 ===================================================
 I would like to start this story with the proof of the IMHO the most useful formula in all calculus, which is the formula for the cosine of an angle between two vectors. Once the cosine of an angle is known, the angle itself can be computed using the Math.acos() function of JavaScript. The Math.acos() function can be executed from the "Web Console" of the Firefox web browser which can be invoked by pressing "F12" or "CTRL+shift+k".
 
