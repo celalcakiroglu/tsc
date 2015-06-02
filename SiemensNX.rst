@@ -35,12 +35,12 @@ Changing the Background Color of the Model (8.0)
 
 Preferences -> Color Palette -> Selected Color -> Edit Background
 
-Making a Part Transparent
------------------------------
+Making a Part Transparent (10.0)
+---------------------------------
 
-- Step 1: Select the part that you want to make transparent
-- Step 2: Go to the "View" menu at the top
-- Step 3: Click on "Preferences" in the "View" menu
-- Step 4: In the "Visual Preferences" window that opens, go to "Visual"
-- Step 5: Check "Translucency"
+- Step 1: Go to the "View" menu at the top
+- Step 2: Click on "Edit Object Display" in the "View" menu
+- Step 3: Select the part that you want to make transparent
+- Step 4: Click "OK"
+- Step 5: Adjust the value of "Translucency" under "Shaded Display"
 

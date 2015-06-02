@@ -48,8 +48,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Tensile Strain Capacity'
-copyright = u'2014, Celal Cakiroglu'
+project = u'Celal Cakiroglu'
+copyright = u'2015, Celal Cakiroglu'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
