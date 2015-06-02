@@ -14,11 +14,11 @@ Contents:
    :maxdepth: 15
 
    2DTruss.rst
-..   DOE.rst
    MachineLearning.rst
    SiemensNX.rst
    CalculusStory.rst
    WebGL_Tri.rst
+..   DOE.rst
 ..   ColdBend.rst
 ..   WebGL_DNBackShapes.rst
 ..   WebGL_DNBackColors.rst
