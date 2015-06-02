@@ -14,7 +14,7 @@ Contents:
    :maxdepth: 15
 
    2DTruss.rst
-   DOE.rst
+..   DOE.rst
    MachineLearning.rst
    SiemensNX.rst
    CalculusStory.rst
