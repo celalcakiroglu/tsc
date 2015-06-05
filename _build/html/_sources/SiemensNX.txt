@@ -14,7 +14,7 @@ Also typing "Intersect" in the "Command Finder" helps. The "Command Finder" is b
 To switch between different modules of the program like "Modeling" and "NX Sheet Metal" the **Start** button at the upper left corner, right below "File" can be used.
 
 Mirroring of curves created by intersection of datum planes and extruded bodies(8.0)
------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------
 
 There is a function called "Mirror curve" which is hidden by default. In order to make this function available:  
 
