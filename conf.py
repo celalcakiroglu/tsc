@@ -58,7 +58,8 @@ copyright = u'2015, Celal Cakiroglu'
 # built documents.
 #
 # The short X.Y version.
-version = '1.0.2'
+#version = '1.0.2'
+version = ''
 # The full version, including alpha/beta/rc tags.
 release = '1.0.2'
 
