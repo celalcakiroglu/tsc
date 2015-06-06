@@ -55,12 +55,9 @@ Biography of Celal Cakiroglu
 
 .. - Morgan Page
 
-.. **Nationality:** Turkish
-
-.. **Religion:** Newage (Teal Swan follower)
 
 **How I made this documentation:**
-Installing Sphinx and making it work properly, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure
+Installing Sphinx and making it work the way you want, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure
 
 https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/
 

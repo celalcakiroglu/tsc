@@ -1,1 +1,1 @@
-console.log('bu da ikinci deneme')
+console.log('bu ilk deneme')
