@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to the website of Celal Cakiroglu!
+Welcome to Celal's documentation!
 ======================================================
 
 
@@ -59,7 +59,7 @@ Biography of Celal Cakiroglu
 
 .. **Religion:** Newage (Teal Swan follower)
 
-**How I made this website:**
+**How I made this documentation:**
 Installing Sphinx and making it work properly, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure
 
 https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/
