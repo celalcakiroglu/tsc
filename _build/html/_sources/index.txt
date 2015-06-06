@@ -13,7 +13,7 @@ Contents:
 .. toctree::
    :maxdepth: 15
 
-   2DTruss.rst
+   2DTruss2.rst
    MachineLearning.rst
    SiemensNX.rst
    CalculusStory.rst
