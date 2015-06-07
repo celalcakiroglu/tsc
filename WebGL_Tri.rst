@@ -1360,13 +1360,58 @@ Polygon Meshing through Triangulation
    </body>
    </html>
 
-The above canvas responds to mouse clicks by drawing a dot. Using mouse clicks the boundary of the domain to be meshed is defined. In the next step the interior of the boundary is populated with vertices with random position. In this process the random vertices are generated between the maximum and minimum x and y coordinates of the boundary vertices. In order to determine if a randomly generated vertex is inside the boundary or not, the following steps are applied [1_]:
+The above canvas responds to mouse clicks by drawing a dot. Using mouse clicks the boundary of the domain to be meshed can be defined. Once the vertices constituting the boundary are positioned on the canvas, the "boundary defined" button should be clicked. It is important that the boundary is defined either in a clockwise or in a counterclockwise manner. Also, the boundary should be convex (Any two points inside the boundary can be joined with a line which does not intersect the boundary). In the next step the interior of the boundary is populated with vertices with random position. In this process the random vertices are generated between the maximum and minimum x and y coordinates of the boundary vertices. In order to determine if a randomly generated vertex is inside the boundary or not, the following steps are applied [1_]:
 
 - **Step 1**: For each newly generated interior vertex (test vertex), the y coordinate of this vertex is called the y-threshold. Find the edges constituting the boundary, which have one end above, the other end below the y-threshold. If one vertex of an edge is exactly on the y-threshold, then this vertex is assumed to be above the threshold. This is an arbitrary decision. If we choose the other way round it would work too as long as this rule is applied consistently.
 
 - **Step 2**: Locate all points on the boundary where a straight horizontal line through the test vertex intersects the boundary. These are the points on the edges found in Step 1 having the same y-coordinate as the y-threshold. This can be done by interpolating between the two ends of the edge for the x coordinate that corresponds to the y-threshold. If the interpolated x-coordinate is less than the x-coordinate of the test vertex, then the intersection point is on the left hand side of the test vertex.
 
 - **Step 3**: If both on the left and right hand side of the test vertex there are odd number of intersection points (like 3 and 3), then the test vertex is inside the polygon. If there are even number of intersection points on both sides, then it is outside the polygon.
+
+Once the interior of the boundary is populated with the desired number of interior vertices, the domain can be triangulated by clicking the "mesh" button. Depending on the positions of the interior vertices, the resulting triangular mesh may or may not be acceptable. In order to improve the quality of the mesh, the "Flip" button can be clicked repeatedly until the mesh quality is satisfactory. This procedure is not automated in order to clearly demonstrate the process of step-by-step mesh improvement. The "Flip" button invokes a function which fulfills one step of mesh improvement in the following steps:
+
+- **Step 1**: Based on the fact that every interior edge of the triangular mesh has two opposite angles, all internal edges are traversed and to each of them these two opposite angles are assigned.
+- **Step 2**: Also, every interior edge has two neighbour triangles. If for any interior edge the sum of its opposite angles is greater than :math:`180^{\circ}` then from the list of triangles these two neighbourtriangles are deleted using the "neighbourTriangleIndices" property of the interior edge.
+- **Step 3**: In the place of the two deleted triangles, two new triangles are added to the list of triangles. The first of these triangles is defined using the indices of the opposite nodes and the first node index of the interior edge. The second new triangle is defined using the opposite node indices and the second node index of the interior edge.
+- **Step 4**: The interior edge having the sum of its opposite angles greater than :math:`180^{\circ}` is replaced with a new edge between the opposite nodes of the old edge. 
+
+**How does an edge flip improve the mesh quality ?**
+
+The idea behind this operation is to make each triangle in the mesh look as much as possible like an equilateral triangle. Without changing the positions of the vertices, this can be achieved by arranging the internal edges in such a way that the circumscribed circle of each triangle contains no other vertices than the ones belonging to that triangle.
+
+.. _EdgeFlip:
+.. figure:: EdgeFlip.JPG
+   :height: 431px
+   :width: 866 px
+   :scale: 70 %
+   :align: center
+
+This idea is illustrated in the above image. As we can see on the left hand side, the triangle abc has a very desirable shape. However the vertex d is so close to it that it falls inside the circumscribed circle of the triangle abc. As a result the triangle that this vertex forms (acd) has very small angles and needs improvement. As it is shown on the left image the sum of the opposite angles of the edge ac is greater than :math:`180^{\circ}`. This condition triggers the edge flip function and the result of it is shown in the right image. Clearly, the circumscribed circles of the new triangles do not contain any other vertices than the ones belonging to the triangles that they circumscribe. Also it can be seen that the sum of the opposite angles of the newly created edge db is less than :math:`180^{\circ}`. 
+
+Data Structures
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+**Node**: All the vertices defining the boundary and the triangular mesh are stored in a list of "Node" objects. The Node object has the following properties:
+
+- *index*: Every node is assigned an integer valued index. Boundary node indices have values from "zero" up to  "number of boundary nodes -1" and interior nodes have indices from "number of boundary nodes" up to "total number of nodes -1". 
+- *interior*: A boolean property that has a "false" default value and becomes "true" for interior nodes.
+- x and y coordinates.
+- A list of triangles that contain that particular vertex.
+- A list of edges that contain that particular vertex.
+
+**Edge**:
+
+- *index*: Every edge is assigned an integer valued index. Boundary edge indices have values from "zero" up to  "number of boundary edges -1" and interior edges have indices from "number of boundary edges" up to "total number of edges -1". 
+- *nodeIndices*: A list containing the indices of the two nodes defining the edge.
+- coords: A one dimensional Float32Array, containing the x and y coordinates of the nodes defining the edge (for OpenGL purposes).
+- *interior*: A boolean property that has a "false" default value and becomes "true" for interior nodes.
+- *oppositeNodeIndices*: Every interior edge has two opposite nodes. The indices of these opposite nodes are pushed into this initially empty list if the edge is interior.
+- *oppositeAngles*: Similar to oppositeNodeIndices.
+- *neighbourTriangleIndices*: A list containing the indices of the triangles having this edge in common.
+- *addOppositeAngles()*: This is a function which identifies the opposite angles of the interior edge and pushes them into the initially empty list "oppositeAngles".
+- *sumOpAngles*: The sum of the opposite angles of an interior edge
+- *zero()*: After each edge flip operation this function empties the lists "oppositeNodeIndices", "oppositeAngles" and "neighbourTriangleIndices" otherwise these lists would keep on growing with each edgeFlip operation.
+
+**Triangle**:
 
 Auxiliary Functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
