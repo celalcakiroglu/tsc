@@ -1386,7 +1386,7 @@ The idea behind this operation is to make each triangle in the mesh look as much
    :scale: 70 %
    :align: center
 
-This idea is illustrated in the above image. As we can see on the left hand side, the triangle abc has a very desirable shape. However the vertex d is so close to it that it falls inside the circumscribed circle of the triangle abc. As a result the triangle that this vertex forms (acd) has very small angles and needs improvement. As it is shown on the left image the sum of the opposite angles of the edge ac is greater than :math:`180^{\circ}`. This condition triggers the edge flip function and the result of it is shown in the right image. Clearly, the circumscribed circles of the new triangles do not contain any other vertices than the ones belonging to the triangles that they circumscribe. Also it can be seen that the sum of the opposite angles of the newly created edge db is less than :math:`180^{\circ}`. 
+This idea is illustrated in the above image. As we can see on the left hand side, the triangle abc has a very desirable shape. However the vertex d is so close to it that it falls inside the circumscribed circle of the triangle abc. As a result the triangle that this vertex forms (acd) has very small angles and needs improvement. As it is shown on the left image, the sum of the opposite angles of the edge ac is greater than :math:`180^{\circ}`. This condition triggers the edge flip function and the result of it is shown in the right image. Clearly, the circumscribed circles of the new triangles do not contain any other vertices than the ones belonging to the triangles that they circumscribe. Also it can be seen that the sum of the opposite angles of the newly created edge db is less than :math:`180^{\circ}`. 
 
 Data Structures
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1402,7 +1402,7 @@ Data Structures
 
 - *index*: Every edge is assigned an integer valued index. Boundary edge indices have values from "zero" up to  "number of boundary edges -1" and interior edges have indices from "number of boundary edges" up to "total number of edges -1". 
 - *nodeIndices*: A list containing the indices of the two nodes defining the edge.
-- coords: A one dimensional Float32Array, containing the x and y coordinates of the nodes defining the edge (for OpenGL purposes).
+- A one dimensional Float32Array, containing the x and y coordinates of the nodes defining the edge (for OpenGL purposes).
 - *interior*: A boolean property that has a "false" default value and becomes "true" for interior nodes.
 - *oppositeNodeIndices*: Every interior edge has two opposite nodes. The indices of these opposite nodes are pushed into this initially empty list if the edge is interior.
 - *oppositeAngles*: Similar to oppositeNodeIndices.
@@ -1412,6 +1412,13 @@ Data Structures
 - *zero()*: After each edge flip operation this function empties the lists "oppositeNodeIndices", "oppositeAngles" and "neighbourTriangleIndices" otherwise these lists would keep on growing with each edgeFlip operation.
 
 **Triangle**:
+
+- *index*
+- *nodeIndices*: A list containing the indices of the three vertices that belong to the triangle. Each triangle has a first, second and third node index. As a result the vertices of a triangle are ordered.
+- A Float32Array with six members consisting of the x and y coordinates of the triangle (for OpenGL purposes).
+- For each vertex of the triangle two vectors are defining pointing from the vertex towards the other two vertices. Using these vectors the interior angles of the triangle are computed.
+- An array containing the interior angles of the triangle. The interior angles have the same order as the vertices.
+
 
 Auxiliary Functions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

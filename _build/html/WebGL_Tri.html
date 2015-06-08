@@ -1433,7 +1433,7 @@
 <div class="figure align-center" id="edgeflip">
 <a class="reference internal image-reference" href="_images/EdgeFlip.JPG"><img alt="_images/EdgeFlip.JPG" src="_images/EdgeFlip.JPG" style="width: 606.2px; height: 301.7px;" /></a>
 </div>
-<p>This idea is illustrated in the above image. As we can see on the left hand side, the triangle abc has a very desirable shape. However the vertex d is so close to it that it falls inside the circumscribed circle of the triangle abc. As a result the triangle that this vertex forms (acd) has very small angles and needs improvement. As it is shown on the left image the sum of the opposite angles of the edge ac is greater than <span class="math">\(180^{\circ}\)</span>. This condition triggers the edge flip function and the result of it is shown in the right image. Clearly, the circumscribed circles of the new triangles do not contain any other vertices than the ones belonging to the triangles that they circumscribe. Also it can be seen that the sum of the opposite angles of the newly created edge db is less than <span class="math">\(180^{\circ}\)</span>.</p>
+<p>This idea is illustrated in the above image. As we can see on the left hand side, the triangle abc has a very desirable shape. However the vertex d is so close to it that it falls inside the circumscribed circle of the triangle abc. As a result the triangle that this vertex forms (acd) has very small angles and needs improvement. As it is shown on the left image, the sum of the opposite angles of the edge ac is greater than <span class="math">\(180^{\circ}\)</span>. This condition triggers the edge flip function and the result of it is shown in the right image. Clearly, the circumscribed circles of the new triangles do not contain any other vertices than the ones belonging to the triangles that they circumscribe. Also it can be seen that the sum of the opposite angles of the newly created edge db is less than <span class="math">\(180^{\circ}\)</span>.</p>
 <div class="section" id="data-structures">
 <h2>Data Structures<a class="headerlink" href="#data-structures" title="Permalink to this headline">¶</a></h2>
 <p><strong>Node</strong>: All the vertices defining the boundary and the triangular mesh are stored in a list of &#8220;Node&#8221; objects. The Node object has the following properties:</p>
@@ -1448,7 +1448,7 @@
 <ul class="simple">
 <li><em>index</em>: Every edge is assigned an integer valued index. Boundary edge indices have values from &#8220;zero&#8221; up to  &#8220;number of boundary edges -1&#8221; and interior edges have indices from &#8220;number of boundary edges&#8221; up to &#8220;total number of edges -1&#8221;.</li>
 <li><em>nodeIndices</em>: A list containing the indices of the two nodes defining the edge.</li>
-<li>coords: A one dimensional Float32Array, containing the x and y coordinates of the nodes defining the edge (for OpenGL purposes).</li>
+<li>A one dimensional Float32Array, containing the x and y coordinates of the nodes defining the edge (for OpenGL purposes).</li>
 <li><em>interior</em>: A boolean property that has a &#8220;false&#8221; default value and becomes &#8220;true&#8221; for interior nodes.</li>
 <li><em>oppositeNodeIndices</em>: Every interior edge has two opposite nodes. The indices of these opposite nodes are pushed into this initially empty list if the edge is interior.</li>
 <li><em>oppositeAngles</em>: Similar to oppositeNodeIndices.</li>
@@ -1458,6 +1458,13 @@
 <li><em>zero()</em>: After each edge flip operation this function empties the lists &#8220;oppositeNodeIndices&#8221;, &#8220;oppositeAngles&#8221; and &#8220;neighbourTriangleIndices&#8221; otherwise these lists would keep on growing with each edgeFlip operation.</li>
 </ul>
 <p><strong>Triangle</strong>:</p>
+<ul class="simple">
+<li><em>index</em></li>
+<li><em>nodeIndices</em>: A list containing the indices of the three vertices that belong to the triangle. Each triangle has a first, second and third node index. As a result the vertices of a triangle are ordered.</li>
+<li>A Float32Array with six members consisting of the x and y coordinates of the triangle (for OpenGL purposes).</li>
+<li>For each vertex of the triangle two vectors are defining pointing from the vertex towards the other two vertices. Using these vectors the interior angles of the triangle are computed.</li>
+<li>An array containing the interior angles of the triangle. The interior angles have the same order as the vertices.</li>
+</ul>
 </div>
 <div class="section" id="auxiliary-functions">
 <h2>Auxiliary Functions<a class="headerlink" href="#auxiliary-functions" title="Permalink to this headline">¶</a></h2>
