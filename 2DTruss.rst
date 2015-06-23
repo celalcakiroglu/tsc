@@ -5435,11 +5435,68 @@
             //console.log("zero matrix:");
             //console.log(numeric.mul(0,numeric.random([3, 3])));
             //++++++++++++++++++++++++++++++++++++++++++
+            defaultSys(ev,gl,ctx);
             canvas.onmousedown=function(ev){click(ev, gl, canvas)};
             addNodeBtn.onclick=function(ev){addNode(ev,gl, totalSizeTxt, xTxt, yTxt, xForceTxt, yForceTxt,
               xConstraintCheckBox, yConstraintCheckBox,firstNodeDropDown,secondNodeDropDown)};
             addBarBtn.onclick=function(ev){addBar(ev,gl, firstNodeDropDown, secondNodeDropDown,elementListDropDown, ETxt, ATxt)};   
             solveBtn.onclick=function(ev){solve(ev, gl, ctx)};
+          }
+          function defaultSys(ev, gl, ctx){
+              scaleFactor=2/(1.2*200);
+              n_coords[0]=-100*scaleFactor;n_coords[1]=-50*scaleFactor;
+              n_coords[2]=0;n_coords[3]=-50;
+              n_coords[4]=100*scaleFactor;n_coords[5]=-50*scaleFactor;
+              n_coords[6]=-50*scaleFactor;n_coords[7]=50*scaleFactor;
+              n_coords[8]=50*scaleFactor;n_coords[9]=50*scaleFactor;
+              nCoords=10;
+              nodes[0]=new node(-100, -50, 0,0,0,true, true);
+              nodes[0].codeVec.push(0);nodes[0].codeVec.push(1);
+              nodes[1]=new node(0, -50, 0, 0, 1, false, false);dofCodeVec.push(2);dofCodeVec.push(3);
+              nodes[1].codeVec.push(2);nodes[1].codeVec.push(3);
+              nodes[2]=new node(100, -50, 0, 0, 2, false, true);dofCodeVec.push(4);
+              nodes[2].codeVec.push(4);nodes[2].codeVec.push(5);
+              nodes[3]=new node(-50, 50, 0, -500, 3, false, false);dofCodeVec.push(6);dofCodeVec.push(7);
+              nodes[3].codeVec.push(6);nodes[3].codeVec.push(7);
+              nodes[4]=new node(50, 50, 0, -500, 4, false, false);dofCodeVec.push(8);dofCodeVec.push(9);
+              nodes[4].codeVec.push(8);nodes[4].codeVec.push(9);
+              numNodes=5;
+              bars[0]=new bar(0,1,0,200000,10000);
+              bars[1]=new bar(1,2,1,200000,10000);
+              bars[2]=new bar(0,3,2,200000,10000);
+              bars[3]=new bar(1,3,3,200000,10000);
+              bars[4]=new bar(1,4,4,200000,10000);
+              bars[5]=new bar(2,4,5,200000,10000);
+              bars[6]=new bar(3,4,6,200000,10000);
+              numBars=7;
+              //Draw
+              var vertexBuffer = gl.createBuffer(); 
+              if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;} 
+              gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
+              gl.bufferData(gl.ARRAY_BUFFER, n_coords, gl.STATIC_DRAW);//Write data into buffer
+              var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
+              if(a_Position<0){
+                console.log('Failed to get the storage location of a_Position');
+                return;
+              }
+              else{console.log('success getting the storage location of a_Position');}
+              gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+              gl.enableVertexAttribArray(a_Position);
+              gl.clear(gl.COLOR_BUFFER_BIT);
+              gl.drawArrays(gl.POINTS, 0, numNodes);
+              for(var i=0;i<numBars;i+=1){
+                var dizi=new Float32Array([bars[i].scaledCoords[0], bars[i].scaledCoords[1],
+                  bars[i].scaledCoords[2],bars[i].scaledCoords[3]]);
+                gl.bufferData(gl.ARRAY_BUFFER, dizi, gl.STATIC_DRAW);//Write data into buffer
+                gl.drawArrays(gl.LINES, 0, 2);
+              }
+              solve(ev, gl, ctx);
+            }
+          function newSystem(){
+              scaleFactor=1;
+              n_coords=new Float32Array(1200);
+              nodes=[];bars=[];dofCodeVec=[];
+              numNodes=0;numBars=0;
           }
           
           function addNode(ev,gl, totalSizeTxt, xTxt, yTxt, xForceTxt,yForceTxt, xConstraintCheckBox, 
@@ -5533,6 +5590,10 @@
                 for(var k=0;k<4;k+=1){
                   var index1=bars[i].codeVec[j];
                   var index2=bars[i].codeVec[k];
+                  console.log("i="+i);
+                  console.log("index1 = "+index1);
+                  console.log("index2 = "+index2);
+                  console.log("K[index1] = "+K[index1]);
                   K[index1][index2]+=parseFloat(bars[i].globStifMat[j][k]); 
                 }
               }
@@ -5604,7 +5665,23 @@
             ctx.beginPath();
             ctx.font = '18px "Times New Roman"';
             ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // Set the letter color
-            ctx.fillText('HUD: Head Up Display', 40, 180);
+            for(var p=0;p<numBars;p++){
+              //First increase the order of magnitude then adjust the coordinate system
+              var newX1 = bars[p].coords[0]*scaleFactor;
+              var newX2 = bars[p].coords[2]*scaleFactor;
+              newX1= 650*newX1/2;newX2=650*newX2/2;
+              newX1=newX1+325;newX2=newX2+325;
+              var newY1=bars[p].coords[1]*scaleFactor;
+              var newY2=bars[p].coords[3]*scaleFactor;
+              newY1=newY1*650/2;newY2=newY2*650/2;
+              newY1=325-newY1;newY2=325-newY2;
+              var newX=(newX1+newX2)/2;
+              var newY=(newY1+newY2)/2;
+              console.log("newX="+newX);
+              console.log("newY="+newY);
+              //ctx.fillText('HUD', newX, newY);  
+              ctx.fillText(Math.round(bars[p].locForceVec[1]), newX, newY);  
+            }
           }
       </script>
       
