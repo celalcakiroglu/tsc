@@ -5664,7 +5664,7 @@
             ctx.clearRect(0, 0, 650, 650);
             ctx.beginPath();
             ctx.font = '18px "Times New Roman"';
-            ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // Set the letter color
+            ctx.fillStyle = 'rgba(0, 0, 0, 1)'; // Set the letter color
             for(var p=0;p<numBars;p++){
               //First increase the order of magnitude then adjust the coordinate system
               var newX1 = bars[p].coords[0]*scaleFactor;
