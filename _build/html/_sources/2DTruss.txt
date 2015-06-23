@@ -8,19 +8,21 @@
       <title>2 Dimensional Truss Solver</title>
    </head>
    <body onload="listen()">
-      <canvas id="webgl" width ="650" height="650">
+      <canvas id="webgl" width ="650" height="650" style="position:absolute; z-index: 0">
       Use html5 supporting browser
       </canvas>
-      <p>The larger of total system width and height[mm]
-      <input type="text" id="totalSize" style="width: 70px;">
+      <canvas id="hud" width="650" height="650" style="position:relative; z-index: 1">
+      </canvas>
+      <p style="position:relative; z-index: 0">The larger of total system width and height[mm]
+      <input type="text" id="totalSize" style="width: 70px; position:relative; z-index:0" >
       </p>
-      <p>
+      <p style="position:relative; z-index: 0">
         x[mm] <input type="text" id="x" style="width: 70px;">
         y[mm] <input type="text" id="y" style="width: 70px;">
         <input type="checkbox" id="xConstraint" >x constraint
         <input type="checkbox" id="yConstraint" >y constraint
       </p>
-      <p>
+      <p style="position:relative; z-index: 0">
         x-Force[N] <input type="text" id="xForce" style="width: 70px;">
         y-Force[N] <input type="text" id="yForce" style="width: 70px;">
         <button id="addNode" type="button">Add Node</button>
@@ -5311,7 +5313,6 @@
           '}\n';
 
           var n_coords=new Float32Array(1200);//all points
-          var bDefined=false;//The boundary isn't defined yet
           var nCoords=0;//Number of vertex coordinates (total)
           var bars=[];//all bars
           var nodes=[];//all nodes
@@ -5372,6 +5373,7 @@
 
           function main(){
             var canvas = document.getElementById('webgl');
+            var hud= document.getElementById('hud');
             var addNodeBtn=document.getElementById('addNode');
             var addBarBtn=document.getElementById('addBar');
             var solveBtn=document.getElementById('solve');
@@ -5388,8 +5390,14 @@
             var secondNodeDropDown=document.getElementById('secondNode');
             var elementListDropDown=document.getElementById('barList');
             var gl=getWebGLContext(canvas); 
+            var ctx=hud.getContext('2d');
             if(!gl){
               console.log('Failed to get the rendering context for WebGL');
+              return;
+            }
+            else{console.log('success getting the rendering context');}
+            if(!ctx){
+              console.log('Failed to get the rendering context for hud');
               return;
             }
             else{console.log('success getting the rendering context');}
@@ -5431,7 +5439,7 @@
             addNodeBtn.onclick=function(ev){addNode(ev,gl, totalSizeTxt, xTxt, yTxt, xForceTxt, yForceTxt,
               xConstraintCheckBox, yConstraintCheckBox,firstNodeDropDown,secondNodeDropDown)};
             addBarBtn.onclick=function(ev){addBar(ev,gl, firstNodeDropDown, secondNodeDropDown,elementListDropDown, ETxt, ATxt)};   
-            solveBtn.onclick=function(ev){solve(ev, gl)};
+            solveBtn.onclick=function(ev){solve(ev, gl, ctx)};
           }
           
           function addNode(ev,gl, totalSizeTxt, xTxt, yTxt, xForceTxt,yForceTxt, xConstraintCheckBox, 
@@ -5515,7 +5523,7 @@
             }
           }
           
-          function solve(ev, gl){
+          function solve(ev, gl, ctx){
             var K=numeric.mul(0,numeric.random([nCoords, nCoords]));//nCoords and the largest code in any code vector are identical
             for(var i=0;i<nCoords;i++){
               for(var j=0;j<nCoords;j++)K[i][j]=parseFloat(K[i][j]);
@@ -5525,7 +5533,7 @@
                 for(var k=0;k<4;k+=1){
                   var index1=bars[i].codeVec[j];
                   var index2=bars[i].codeVec[k];
-                    K[index1][index2]+=parseFloat(bars[i].globStifMat[j][k]); 
+                  K[index1][index2]+=parseFloat(bars[i].globStifMat[j][k]); 
                 }
               }
             }
@@ -5592,6 +5600,11 @@
             console.log(bars[0].locForceVec[1]);
             console.log("Second member:");
             console.log(bars[1].locForceVec[1]);
+            ctx.clearRect(0, 0, 650, 650);
+            ctx.beginPath();
+            ctx.font = '18px "Times New Roman"';
+            ctx.fillStyle = 'rgba(255, 255, 255, 1)'; // Set the letter color
+            ctx.fillText('HUD: Head Up Display', 40, 180);
           }
       </script>
       

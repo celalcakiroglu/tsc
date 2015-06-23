@@ -1415,8 +1415,8 @@ Data Structures
 
 - *index*
 - *nodeIndices*: A list containing the indices of the three vertices that belong to the triangle. Each triangle has a first, second and third node index. As a result the vertices of a triangle are ordered.
-- A Float32Array with six members consisting of the x and y coordinates of the triangle (for OpenGL purposes).
-- For each vertex of the triangle two vectors are defining pointing from the vertex towards the other two vertices. Using these vectors the interior angles of the triangle are computed.
+- A Float32Array with six members consisting of the x and y coordinates of the vertices (for OpenGL purposes).
+- For each vertex of the triangle two vectors are defined pointing from the vertex towards the other two vertices. Using these vectors the interior angles of the triangle are computed.
 - An array containing the interior angles of the triangle. The interior angles have the same order as the vertices.
 
 
