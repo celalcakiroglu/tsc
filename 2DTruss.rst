@@ -13,6 +13,9 @@
       </canvas>
       <canvas id="hud" width="650" height="650" style="position:relative; z-index: 1">
       </canvas>
+      <p style="position:relative; z-index: 0">
+        <button id="newSys" type="button">New System</button>
+      </p>
       <p style="position:relative; z-index: 0">The larger of total system width and height[mm]
       <input type="text" id="totalSize" style="width: 70px; position:relative; z-index:0" >
       </p>
@@ -5325,6 +5328,8 @@
             this.index=index;
             this.x=x;
             this.y=y;
+            this.xScaled=scaleFactor*this.x;
+            this.yScaled=scaleFactor*this.y;
             if(!isNaN(xForce)){
               this.xForce=xForce; 
             }
@@ -5374,6 +5379,7 @@
           function main(){
             var canvas = document.getElementById('webgl');
             var hud= document.getElementById('hud');
+            var newSysBtn=document.getElementById('newSys');
             var addNodeBtn=document.getElementById('addNode');
             var addBarBtn=document.getElementById('addBar');
             var solveBtn=document.getElementById('solve');
@@ -5435,15 +5441,16 @@
             //console.log("zero matrix:");
             //console.log(numeric.mul(0,numeric.random([3, 3])));
             //++++++++++++++++++++++++++++++++++++++++++
-            defaultSys(ev,gl,ctx);
+            defaultSys(ev,gl,ctx,totalSizeTxt);
             canvas.onmousedown=function(ev){click(ev, gl, canvas)};
-            addNodeBtn.onclick=function(ev){addNode(ev,gl, totalSizeTxt, xTxt, yTxt, xForceTxt, yForceTxt,
+            newSysBtn.onclick=function(ev){newSystem(ev,gl,ctx,firstNodeDropDown, secondNodeDropDown,elementListDropDown)};
+            addNodeBtn.onclick=function(ev){addNode(ev,gl,ctx, totalSizeTxt, xTxt, yTxt, xForceTxt, yForceTxt,
               xConstraintCheckBox, yConstraintCheckBox,firstNodeDropDown,secondNodeDropDown)};
-            addBarBtn.onclick=function(ev){addBar(ev,gl, firstNodeDropDown, secondNodeDropDown,elementListDropDown, ETxt, ATxt)};   
-            solveBtn.onclick=function(ev){solve(ev, gl, ctx)};
+            addBarBtn.onclick=function(ev){addBar(ev,gl,ctx,totalSizeTxt,firstNodeDropDown, secondNodeDropDown,elementListDropDown, ETxt, ATxt)};   
+            solveBtn.onclick=function(ev){solve(ev, gl, ctx, totalSizeTxt)};
           }
-          function defaultSys(ev, gl, ctx){
-              scaleFactor=2/(1.2*200);
+          function defaultSys(ev, gl, ctx,totalSizeTxt){
+              scaleFactor=2/(1.25*200);
               n_coords[0]=-100*scaleFactor;n_coords[1]=-50*scaleFactor;
               n_coords[2]=0;n_coords[3]=-50;
               n_coords[4]=100*scaleFactor;n_coords[5]=-50*scaleFactor;
@@ -5490,18 +5497,59 @@
                 gl.bufferData(gl.ARRAY_BUFFER, dizi, gl.STATIC_DRAW);//Write data into buffer
                 gl.drawArrays(gl.LINES, 0, 2);
               }
-              solve(ev, gl, ctx);
+              //The following code is to draw the force vectors
+              for(var j=0;j<numNodes;j++){
+                if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+                  var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+                  var arrowTipLength =arrowLength/5;
+                  var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowLength, nodes[j].yScaled]);
+                  gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+                  gl.drawArrays(gl.LINES, 0, 2);
+                  var dizi2=new Float32Array([nodes[j].xScaled+arrowLength, nodes[j].yScaled,nodes[j].xScaled+arrowLength-arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+                  gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+                  gl.drawArrays(gl.LINES, 0, 2);
+                  var dizi3=new Float32Array([nodes[j].xScaled+arrowLength, nodes[j].yScaled,nodes[j].xScaled+arrowLength-arrowTipLength, nodes[j].yScaled-arrowTipLength]);
+                  gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+                  gl.drawArrays(gl.LINES, 0, 2);
+               }
+               if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+                  console.log("There is a y force");
+                  var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+                  var arrowTipLength =arrowLength/5;
+                  var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled, nodes[j].yScaled+arrowLength]);
+                  gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+                  gl.drawArrays(gl.LINES, 0, 2);
+                  var dizi2=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled-arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+                  gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+                  gl.drawArrays(gl.LINES, 0, 2);
+                  var dizi3=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+                  gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+                  gl.drawArrays(gl.LINES, 0, 2);
+                }
+              }
+              solve(ev, gl, ctx, totalSizeTxt);
             }
-          function newSystem(){
+          function newSystem(ev,gl, ctx,firstNodeDropDown, secondNodeDropDown,elementListDropDown){
               scaleFactor=1;
               n_coords=new Float32Array(1200);
               nodes=[];bars=[];dofCodeVec=[];
-              numNodes=0;numBars=0;
+              numNodes=0;numBars=0;nCoords=0;
+              gl.clear(gl.COLOR_BUFFER_BIT);
+              ctx.clearRect(0, 0, 650, 650);
+              while(firstNodeDropDown.length>0){
+                firstNodeDropDown.remove(0);
+              }
+              while(secondNodeDropDown.length>0){
+                secondNodeDropDown.remove(0);
+              }
+              while(elementListDropDown.length>0){
+                elementListDropDown.remove(0);
+              }
           }
           
-          function addNode(ev,gl, totalSizeTxt, xTxt, yTxt, xForceTxt,yForceTxt, xConstraintCheckBox, 
+          function addNode(ev,gl,ctx, totalSizeTxt, xTxt, yTxt, xForceTxt,yForceTxt, xConstraintCheckBox, 
             yConstraintCheckBox,firstNodeDropDown,secondNodeDropDown){
-            scaleFactor=2/(1.2*parseFloat(totalSizeTxt.value));//A very small number, the entered coordinates will be multiplied with this before being plotted
+            scaleFactor=2/(1.25*parseFloat(totalSizeTxt.value));//A very small number, the entered coordinates will be multiplied with this before being plotted
             var xCoord=parseFloat(xTxt.value);var xCoordScaled=scaleFactor*parseFloat(xTxt.value);
             var yCoord=parseFloat(yTxt.value);var yCoordScaled=scaleFactor*parseFloat(yTxt.value);
             var xForce=parseFloat(xForceTxt.value);
@@ -5545,9 +5593,57 @@
               gl.bufferData(gl.ARRAY_BUFFER, dizi, gl.STATIC_DRAW);//Write data into buffer
               gl.drawArrays(gl.LINES, 0, 2);
             }
+            //The following code is to draw the force vectors
+            ctx.clearRect(0, 0, 650, 650);
+            ctx.beginPath();
+            ctx.font = '18px "Times New Roman"';
+            ctx.fillStyle = 'rgba(0, 0, 0, 1)'; // Set the letter color
+            for(var j=0;j<numNodes;j++){
+              if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+               var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+               var arrowTipLength =arrowLength/5;
+               var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowLength, nodes[j].yScaled]);
+               gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+               gl.drawArrays(gl.LINES, 0, 2);
+               var dizi2=new Float32Array([nodes[j].xScaled+arrowLength, nodes[j].yScaled,nodes[j].xScaled+arrowLength-arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+                gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+                gl.drawArrays(gl.LINES, 0, 2);
+                var dizi3=new Float32Array([nodes[j].xScaled+arrowLength, nodes[j].yScaled,nodes[j].xScaled+arrowLength-arrowTipLength, nodes[j].yScaled-arrowTipLength]);
+                gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+                gl.drawArrays(gl.LINES, 0, 2);
+                var textX=nodes[j].xScaled+arrowLength/2;
+                textX= 650*textX/2;
+                textX=textX+325;
+                var textY=nodes[j].yScaled+arrowLength/5;
+                textY=textY*650/2;
+                textY=325-textY;
+                ctx.fillText(Math.round(nodes[j].xForce), textX, textY); 
+             }
+             if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+                var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+                var arrowTipLength =arrowLength/5;
+                var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled, nodes[j].yScaled+arrowLength]);
+                gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+                gl.drawArrays(gl.LINES, 0, 2);
+                var dizi2=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled-arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+               gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+               gl.drawArrays(gl.LINES, 0, 2);
+               var dizi3=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+               gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+               gl.drawArrays(gl.LINES, 0, 2);
+               var textX=nodes[j].xScaled+arrowLength/5;
+               textX=650*textX/2;
+               textX=textX+325;
+               var textY=nodes[j].yScaled+arrowLength/2;
+               textY=textY*650/2;
+               textY=325-textY;
+               ctx.fillText(Math.round(nodes[j].yForce), textX, textY);
+              }
+            }
           }
           
-          function addBar(ev, gl, firstNodeDropDown, secondNodeDropDown, elementListDropDown, ETxt, ATxt){
+          function addBar(ev, gl, ctx, totalSizeTxt,
+           firstNodeDropDown, secondNodeDropDown, elementListDropDown, ETxt, ATxt){
             var firstNodeIndex=firstNodeDropDown.selectedIndex;
             var secondNodeIndex=secondNodeDropDown.selectedIndex;
             var Emodul=parseFloat(ETxt.value);
@@ -5578,9 +5674,39 @@
               gl.bufferData(gl.ARRAY_BUFFER, dizi, gl.STATIC_DRAW);//Write data into buffer
               gl.drawArrays(gl.LINES, 0, 2);
             }
+            //The following code is to draw the force vectors
+            for(var j=0;j<numNodes;j++){
+              if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+               var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+               var arrowTipLength =arrowLength/5;
+               var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowLength, nodes[j].yScaled]);
+               gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+               gl.drawArrays(gl.LINES, 0, 2);
+               var dizi2=new Float32Array([nodes[j].xScaled+arrowLength, nodes[j].yScaled,nodes[j].xScaled+arrowLength-arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+                gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+                gl.drawArrays(gl.LINES, 0, 2);
+                var dizi3=new Float32Array([nodes[j].xScaled+arrowLength, nodes[j].yScaled,nodes[j].xScaled+arrowLength-arrowTipLength, nodes[j].yScaled-arrowTipLength]);
+                gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+                gl.drawArrays(gl.LINES, 0, 2);
+             }
+             if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+                console.log("There is a y force");
+                var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+                var arrowTipLength =arrowLength/5;
+                var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled, nodes[j].yScaled+arrowLength]);
+                gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+                gl.drawArrays(gl.LINES, 0, 2);
+                var dizi2=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled-arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+               gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+               gl.drawArrays(gl.LINES, 0, 2);
+               var dizi3=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+               gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+               gl.drawArrays(gl.LINES, 0, 2);
+              }
+            }
           }
           
-          function solve(ev, gl, ctx){
+          function solve(ev, gl, ctx, totalSizeTxt){
             var K=numeric.mul(0,numeric.random([nCoords, nCoords]));//nCoords and the largest code in any code vector are identical
             for(var i=0;i<nCoords;i++){
               for(var j=0;j<nCoords;j++)K[i][j]=parseFloat(K[i][j]);
@@ -5677,10 +5803,34 @@
               newY1=325-newY1;newY2=325-newY2;
               var newX=(newX1+newX2)/2;
               var newY=(newY1+newY2)/2;
-              console.log("newX="+newX);
-              console.log("newY="+newY);
-              //ctx.fillText('HUD', newX, newY);  
               ctx.fillText(Math.round(bars[p].locForceVec[1]), newX, newY);  
+            }
+            //The following code is to show the applied force magnitudes
+            for(var j=0;j<numNodes;j++){
+              if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+               var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+               var arrowTipLength =arrowLength/5;
+               console.log("xForce="+nodes[j].xForce);
+               var textX=nodes[j].xScaled+arrowLength/2;
+               textX= 650*textX/2;
+               textX=textX+325;
+               var textY=nodes[j].yScaled+arrowLength/5;
+               textY=textY*650/2;
+               textY=325-textY;
+               ctx.fillText(Math.round(nodes[j].xForce), textX, textY);  
+              }
+             if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+                var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
+                var arrowTipLength =arrowLength/5;
+                console.log("yForce="+nodes[j].yForce);
+                var textX=nodes[j].xScaled+arrowLength/5;
+                textX=650*textX/2;
+                textX=textX+325;
+                var textY=nodes[j].yScaled+arrowLength/2;
+                textY=textY*650/2;
+                textY=325-textY;
+                ctx.fillText(Math.round(nodes[j].yForce), textX, textY);
+              }
             }
           }
       </script>
