@@ -5510,7 +5510,7 @@
          addNodeBtn.onclick=function(ev){addNode(ev,gl,ctx, totalSizeTxt, xTxt, yTxt, xForceTxt, yForceTxt,
            xConstraintCheckBox, yConstraintCheckBox,firstNodeDropDown,secondNodeDropDown)};
          addBarBtn.onclick=function(ev){addBar(ev,gl,ctx,totalSizeTxt,firstNodeDropDown, secondNodeDropDown,elementListDropDown, ETxt, ATxt)};
-         solveBtn.onclick=function(ev){solve(ev, gl, ctx, totalSizeTxt)};
+         solveBtn.onclick=function(ev){solve(ev, gl, ctx)};
        }
        function defaultSys(ev, gl, ctx,totalSizeTxt){
            scaleFactor=2/(1.25*200);
@@ -5614,7 +5614,7 @@
                gl.drawArrays(gl.LINES, 0, 2);
              }
            }
-           solve(ev, gl, ctx, totalSizeTxt);
+           solve(ev, gl, ctx);
          }
        function newSystem(ev,gl, ctx,firstNodeDropDown, secondNodeDropDown,elementListDropDown){
            scaleFactor=1;
@@ -5649,7 +5649,7 @@
          n_coords[nCoords]=xCoordScaled;//These are for drawing
          n_coords[nCoords+1]=yCoordScaled;
          nCoords+=2;
-         var newNode= new node(xCoord, yCoord,xForce, yForce, numNodes,xIsConstrained, yIsConstrained);
+         var newNode= new node(xCoord, yCoord,xForce, yForce, numNodes, xIsConstrained, yIsConstrained);
          newNode.codeVec.push(nCoords-2);newNode.codeVec.push(nCoords-1);
          nodes.push(newNode);
          var newNodeOptionFirstNode=document.createElement("option");
@@ -5713,18 +5713,18 @@
              gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
              gl.drawArrays(gl.LINES, 0, 2);
              var dizi2=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled-arrowTipLength, nodes[j].yScaled+arrowTipLength]);
-            gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
-            gl.drawArrays(gl.LINES, 0, 2);
-            var dizi3=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength]);
-            gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
-            gl.drawArrays(gl.LINES, 0, 2);
-            var textX=nodes[j].xScaled+arrowLength/5;
-            textX=650*textX/2;
-            textX=textX+325;
-            var textY=nodes[j].yScaled+arrowLength/2;
-            textY=textY*650/2;
-            textY=325-textY;
-            ctx.fillText(Math.round(nodes[j].yForce), textX, textY);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var dizi3=new Float32Array([nodes[j].xScaled, nodes[j].yScaled,nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var textX=nodes[j].xScaled+arrowLength/5;
+             textX=650*textX/2;
+             textX=textX+325;
+             var textY=nodes[j].yScaled+arrowLength/2;
+             textY=textY*650/2;
+             textY=325-textY;
+             ctx.fillText(Math.round(nodes[j].yForce), textX, textY);
            }
            if(nodes[j].xConstraint && nodes[j].yConstraint){
              console.log("this node is constrained in both directions");
@@ -5750,6 +5750,21 @@
              gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
              gl.drawArrays(gl.LINES, 0, 2);
              var dizi4=new Float32Array([nodes[j].xScaled-arrowTipLength, nodes[j].yScaled-7*arrowTipLength/5, nodes[j].xScaled+arrowTipLength, nodes[j].yScaled-7*arrowTipLength/5]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi4, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+           }
+           if(nodes[j].xConstraint && !nodes[j].yConstraint){
+             console.log("this node is constrained in x direction only");
+             var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowTipLength, nodes[j].yScaled-arrowTipLength]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var dizi2=new Float32Array([nodes[j].xScaled+arrowTipLength, nodes[j].yScaled-arrowTipLength, nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var dizi3=new Float32Array([nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength,nodes[j].xScaled, nodes[j].yScaled]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var dizi4=new Float32Array([nodes[j].xScaled+7*arrowTipLength/5, nodes[j].yScaled-7*arrowTipLength/5, nodes[j].xScaled+7*arrowTipLength/5, nodes[j].yScaled+7*arrowTipLength/5]);
              gl.bufferData(gl.ARRAY_BUFFER, dizi4, gl.STATIC_DRAW);//Write data into buffer
              gl.drawArrays(gl.LINES, 0, 2);
            }
@@ -5841,10 +5856,25 @@
              gl.bufferData(gl.ARRAY_BUFFER, dizi4, gl.STATIC_DRAW);//Write data into buffer
              gl.drawArrays(gl.LINES, 0, 2);
            }
+           if(nodes[j].xConstraint && !nodes[j].yConstraint){
+             console.log("this node is constrained in x direction only");
+             var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowTipLength, nodes[j].yScaled-arrowTipLength]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var dizi2=new Float32Array([nodes[j].xScaled+arrowTipLength, nodes[j].yScaled-arrowTipLength, nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi2, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var dizi3=new Float32Array([nodes[j].xScaled+arrowTipLength, nodes[j].yScaled+arrowTipLength,nodes[j].xScaled, nodes[j].yScaled]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+             var dizi4=new Float32Array([nodes[j].xScaled+7*arrowTipLength/5, nodes[j].yScaled-7*arrowTipLength/5, nodes[j].xScaled+7*arrowTipLength/5, nodes[j].yScaled+7*arrowTipLength/5]);
+             gl.bufferData(gl.ARRAY_BUFFER, dizi4, gl.STATIC_DRAW);//Write data into buffer
+             gl.drawArrays(gl.LINES, 0, 2);
+           }
          }
        }
 
-       function solve(ev, gl, ctx, totalSizeTxt){
+       function solve(ev, gl, ctx){
          var K=numeric.mul(0,numeric.random([nCoords, nCoords]));//nCoords and the largest code in any code vector are identical
          for(var i=0;i<nCoords;i++){
            for(var j=0;j<nCoords;j++)K[i][j]=parseFloat(K[i][j]);
