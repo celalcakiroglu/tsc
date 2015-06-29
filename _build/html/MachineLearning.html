@@ -67,9 +67,9 @@
 <h1>Machine Learning<a class="headerlink" href="#machine-learning" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="basic-concepts">
 <h2>Basic Concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline">¶</a></h2>
-<p><strong>Hyperplane:</strong> <span class="math">\(\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace\)</span>, <span class="math">\(\mathbf{w,x}\in \mathbb{R}^d\)</span>, <span class="math">\(b\in \mathbb{R}\)</span>. This is a set of points in <span class="math">\(\mathbb{R}^d\)</span> with a constant inner product to a given vector <span class="math">\(\textbf{w} \in \mathbb{R}^d\)</span>. The constant <span class="math">\(b\)</span> determines the offset of the hyperplane <span class="math">\((\textbf{w},b)\)</span> from the origin.</p>
+<p><strong>Hyperplane:</strong> <span class="math">\(\lbrace \mathbf{x} : \mathbf{w}^T\mathbf{x}=b \rbrace\)</span>, <span class="math">\(\mathbf{w,x}\in \mathbb{R}^d\)</span>, <span class="math">\(b\in \mathbb{R}\)</span>. A set of points in <span class="math">\(\mathbb{R}^d\)</span> with a constant inner product to a given vector <span class="math">\(\textbf{w} \in \mathbb{R}^d\)</span>. The constant <span class="math">\(b\)</span> determines the offset of the hyperplane <span class="math">\((\textbf{w},b)\)</span> from the origin.</p>
 <p><strong>Training Set</strong> <span class="math">\(T\)</span> <strong>:</strong> The set of pairs <span class="math">\((\mathbf{x}_t , y_t ) \subset \mathbb{R}^d \times \mathbb{R}\)</span> where the vectors <span class="math">\(\mathbf{x}_t\)</span> are samples  with known behaviour and <span class="math">\(y_t\)</span> are their labels. In classification, for each sample <span class="math">\(\mathbf{x}_t\)</span> in the training set, a label <span class="math">\(y_t\)</span> is assigned which classifies the sample in one of any given number of classes. In the notation <span class="math">\(\mathbf{x}_t\)</span>, <span class="math">\(t\)</span> belongs to the set <span class="math">\(\lbrace 1, 2, ..., l \rbrace\)</span> where <span class="math">\(l\)</span> is the total number of samples in the training set.</p>
-<p><strong>Output Domain</strong> <span class="math">\(Y\)</span> <strong>:</strong> For binary classification of the vectors in <span class="math">\(T\)</span>, the output domain is <span class="math">\(Y=\lbrace -1, 1  \rbrace\)</span>. A classifier function is developed based on the training set which assigns any new d-dimensional vectors to one of the classes -1 and 1 correctly. In the ideal case the samples in the training set describe the general behavour of the vectors in the class sufficiently so that the classifier function is able to classify any vector correctly, otherwise the classifier needs to be further updated.</p>
+<p><strong>Output Domain</strong> <span class="math">\(Y\)</span> <strong>:</strong> For binary classification of the vectors in <span class="math">\(T\)</span>, the output domain is <span class="math">\(Y=\lbrace -1, 1  \rbrace\)</span>. A classifier function is developed based on the training set which assigns any new d-dimensional vector to one of the classes -1 and 1 correctly. In the ideal case the samples in the training set describe the general behavour of the vectors in the class sufficiently well so that the classifier function is able to classify any vector correctly, otherwise the classifier needs to be updated using new training samples.</p>
 </div>
 <div class="section" id="linear-binary-classification">
 <h2>Linear Binary Classification<a class="headerlink" href="#linear-binary-classification" title="Permalink to this headline">¶</a></h2>
@@ -80,9 +80,9 @@
  -1 &amp; \mbox{else}
 \end{array}
 \right.\end{split}\]</div>
-<p>In Eq. <a href="#equation-linClassF">(1)</a> <span class="math">\(\mathbf{w}\)</span> is a parameter vector having the same dimension as the training sample vectors <span class="math">\(\mathbf{x}_t\)</span> and <span class="math">\(b\)</span> is the bias parameter which sets the distance of the decision boundary between two classes (<span class="math">\(DB\)</span>) from the origin. It can be proven that the vector <span class="math">\(\mathbf{w}\)</span> is orthogonal to the decision boundary which is defined as <span class="math">\(DB=\lbrace \mathbf{x} \in \mathbb{R}^d : \langle \mathbf{x}, \mathbf{w} \rangle + b = 0 \rbrace\)</span>.</p>
-<p>Let <span class="math">\(\mathbf{x}_A, \mathbf{x}_B \in DB\)</span> and <span class="math">\(\mathbf{x}_A \neq \mathbf{x}_B\)</span>. Then, <span class="math">\(\langle \mathbf{x}_A, \mathbf{w} \rangle +b =0\)</span> and <span class="math">\(\langle \mathbf{x}_B, \mathbf{w} \rangle + b = 0\)</span>. It follows that <span class="math">\(\langle \mathbf{x}_A, \mathbf{w} \rangle = \langle \mathbf{x}_B, \mathbf{w} \rangle\)</span> and <span class="math">\(\langle \mathbf{x}_A - \mathbf{x}_B, \mathbf{w} \rangle = 0\)</span>. Therefore <span class="math">\(\mathbf{w}\)</span> is orthogonal to any vector contained in the <span class="math">\(DB\)</span> and defines the direction of <span class="math">\(DB\)</span>.</p>
-<p><strong>The Perceptron Algorithm:</strong> This is a supervised learnign algorithm that is based on the gradual improvement of a classifier function until it classifies all the samples in the taining set correctly.</p>
+<p>In Eq. <a href="#equation-linClassF">(1)</a> <span class="math">\(\mathbf{w}\)</span> is the weight vector having the same dimension as the training sample vectors <span class="math">\(\mathbf{x}_t\)</span> and <span class="math">\(b\)</span> is the bias coefficient. The symbol <span class="math">\(\langle\cdot,\cdot\rangle\)</span> denotes the scalar product of two vectors.</p>
+<p>The classifier function can be obtained using the perceptron algorithm.</p>
+<p><strong>The Perceptron Algorithm:</strong> A supervised learnign algorithm based on the gradual improvement of a classifier function until it classifies all the samples in the taining set correctly. The steps of the algorithm can be summarized as follows:</p>
 <ul class="simple">
 <li>Initialize: <span class="math">\(\mathbf{w}^{(0)}=\mathbf{0}\)</span>, <span class="math">\(b^{(0)}=0\)</span>, total number of updates=0, number of misclassifications in one pass=0, <span class="math">\(R=\max \Vert\mathbf{x}_t\Vert\)</span></li>
 <li>for t=1 to number of samples: Check if <span class="math">\(y_t(\langle \mathbf{w}^{(k)}, \mathbf{x}_t \rangle + b^{(k)} )&gt;0\)</span> is satisfied.</li>
@@ -92,19 +92,94 @@
 </ul>
 </li>
 </ul>
-<p>For the classification <span class="math">\(sign(f(\mathbf{x}_t))\)</span> is used. If <span class="math">\(y_t=sign(f(\mathbf{x}_t))\)</span> this implies correct classification. The convention <span class="math">\(sign(0)=1\)</span> is used.</p>
-<p><strong>Margin:</strong> The margin of an example <span class="math">\((\mathbf{x}_t, y_t)\)</span> with respect to a hyperplane <span class="math">\((\mathbf{w},b)\)</span> is given as</p>
+<p>The perceptron algorithm uses a training set <span class="math">\(T=\lbrace(\mathbf{x}_t,y_t):\mathbf{x}_t\in\mathbb{R}^d, y_t\in\lbrace-1,1\rbrace\rbrace\)</span> of samples with known behaviour in order to obtain a proper weight vector and bias coefficient. The letter <span class="math">\(t\)</span> in the notation for a training sample <span class="math">\(\mathbf{x}_t\)</span> is the index of the training sample and belongs to the set <span class="math">\(\lbrace 1,...,l\rbrace\)</span> where <span class="math">\(l\)</span> is the total number of training samples. For each training sample <span class="math">\(\mathbf{x}_t\)</span> in the training set, a label <span class="math">\(y_t\)</span> is assigned according to the known behaviour of the sample.</p>
+<p>The classifier function in Eq. <a href="#equation-linClassF">(1)</a> makes a decision about the class of a vector <span class="math">\(\mathbf{x}_t\)</span> which depends on the expression <span class="math">\(\langle \mathbf{w}, \mathbf{x}_t\rangle+b\)</span> having a value greater than 0 or not. Therefore the set of vectors <span class="math">\(\mathbf{x}\)</span> in the <span class="math">\(\mathbb{R}^d\)</span> space for which
+this expression is equal to 0 builds the decision boundary of the training set.</p>
+<p>Formally the decision boundary is defined as <span class="math">\(DB =\lbrace \mathbf{x}\in\mathbb{R}^d:\langle\mathbf{w},\mathbf{x}\rangle+b = 0\rbrace\)</span>.The weight vector <span class="math">\(\mathbf{w}\)</span> determines the orientation of the decision boundary and is perpendicular to it. In order to show this, let <span class="math">\(\mathbf{v}_1\)</span> and <span class="math">\(\mathbf{v}_2\)</span> be any two vectors in <span class="math">\(DB\)</span>. Then <span class="math">\(\langle\mathbf{w},\mathbf{v}_1\rangle+b=\langle\mathbf{w},\mathbf{v}_2\rangle+b=0\)</span> and <span class="math">\(\langle\mathbf{w},\mathbf{v}_1-\mathbf{v}_2\rangle=0\)</span>. Therefore any vector lying within <span class="math">\(DB\)</span> is perpendicular to <span class="math">\(\mathbf{w}\)</span>. This can be easily visualized in <span class="math">\(\mathbb{R}^2\)</span>.</p>
+<div class="figure align-center" id="dbr2">
+<a class="reference internal image-reference" href="_images/DecisionBoundaryTheory.JPG"><img alt="_images/DecisionBoundaryTheory.JPG" src="_images/DecisionBoundaryTheory.JPG" style="width: 438.2px; height: 327.6px;" /></a>
+</div>
+<p>In the above figure, the symbols &#8216;x&#8217; and &#8216;o&#8217; represent the samples of two different classes and <span class="math">\(\gamma_G\)</span> denotes the geometric margin of the decision boundary <span class="math">\(DB\)</span> between these two classes. The geometric margin is the smallest distance between any sample in the training set and the hyperplane that separates the two classes in the training set (the decision boundary). An expression to compute the magnitude of the geometric margin can be obtained as follow: Let <span class="math">\(\mathbf{x}_t\)</span> be the training sample having the least distance to the decision
+boundary. Then, <span class="math">\(\mathbf{x}_t\)</span> can be expressed as the sum of its orthogonal projection on <span class="math">\(DB ((\mathbf{x}t)_\bot)\)</span> and another vector which is parallel to the weight vector <span class="math">\(\mathbf{w}\)</span>
+as in Eq. <a href="#equation-orthProj">(2)</a></p>
+<div class="math" id="equation-orthProj">
+<span class="eqno">(2)</span>\[\mathbf{x}_t= (\mathbf{x}_t)_{\bot}+(\gamma_G+d_O)\frac{\mathbf{w}}{\Vert\mathbf{w}\Vert}\]</div>
+<p>In Eq. <a href="#equation-orthProj">(2)</a>, <span class="math">\(d_O\)</span> is the distance of the decision boundary from the origin and is
+closely related to the bias coefficient b first introduced in Eq. <a href="#equation-linClassF">(1)</a>. In order to
+see that, let <span class="math">\(\mathbf{x}_0\)</span> be a vector that is perpendicular to the decision boundary
+and has a magnitude equal to the distance of the decision boundary from the
+origin such that <span class="math">\(\Vert \mathbf{x}_0 \Vert = d_O\)</span>. then <span class="math">\(\mathbf{x}_0\)</span> has the same direction as <span class="math">\(\mathbf{w}\)</span> and can be written as <span class="math">\(\mathbf{x}_0=\Vert\mathbf{x}_0\Vert\displaystyle\frac{\mathbf{w}}{\Vert\mathbf{w}\Vert}\)</span>. Clearly, <span class="math">\(\mathbf{x}_0\)</span> is also in the decision boundary and therefore <span class="math">\(\langle\mathbf{w},\mathbf{x}_0\rangle+b=\displaystyle\frac{\Vert\mathbf{x}_0\Vert}{\Vert\mathbf{w}\Vert}\langle \mathbf{w},\mathbf{w} \rangle + b=\Vert\mathbf{x}_0\Vert\Vert\mathbf{w}\Vert + b=0\)</span>. Therefore <span class="math">\(d_O\)</span> can be computed as in Eq. <a href="#equation-dO">(3)</a>.</p>
+<div class="math" id="equation-dO">
+<span class="eqno">(3)</span>\[d_O=-\frac{b}{\Vert\mathbf{w}\Vert}\]</div>
+<p>Plugging the expression for <span class="math">\(d_O\)</span> from Eq. <a href="#equation-dO">(3)</a> into Eq. <a href="#equation-orthProj">(2)</a> and taking the scalar product of both sides of the equation with <span class="math">\(\mathbf{w}\)</span> we obtain Eq. <a href="#equation-dOExpand">(4)</a></p>
+<div class="math" id="equation-dOExpand">
+<span class="eqno">(4)</span>\[\langle\mathbf{w},\mathbf{x}_t\rangle=\langle\mathbf{w},(\mathbf{x}_t)_{\bot}\rangle+\frac{\gamma_G}{\Vert\mathbf{w}\Vert}\langle\mathbf{w},\mathbf{w}\rangle-\frac{b}{\Vert\mathbf{w}\Vert^2}\langle\mathbf{w},\mathbf{w}\rangle\]</div>
+<p>Since <span class="math">\(\mathbf{w}\)</span> and <span class="math">\((\mathbf{x}_t)_{\bot}\)</span> are perpendicular to each other, the <span class="math">\(\langle\mathbf{w},(\mathbf{x}_t)_{\bot}\rangle\)</span> term in Eq. <a href="#equation-dOExpand">(4)</a> vanishes. After adding <span class="math">\(b\)</span> to both sides of Eq. <a href="#equation-dOExpand">(4)</a>, we obtain Eq. <a href="#equation-geomMargin">(5)</a> which shows the expression for the geometric margin <span class="math">\(\gamma_G\)</span> [<a class="reference internal" href="#id3">3</a>].</p>
+<div class="math" id="equation-geomMargin">
+<span class="eqno">(5)</span>\[\langle\mathbf{w},\mathbf{x}_t\rangle+b=\gamma\Vert\mathbf{w}\Vert \Rightarrow \boxed{\gamma_G=\frac{\langle \mathbf{w},\mathbf{x}_t \rangle + b}{\Vert \mathbf{w} \Vert}}\]</div>
+<p>The perceptron algorithm starts with the initialization of <span class="math">\(\mathbf{w}\)</span> and <span class="math">\(b\)</span> as
+<span class="math">\(\mathbf{w}^{(0)} = \mathbf{0}\)</span>, <span class="math">\(b^{(0)} = 0\)</span>. In the next step the algorithm traverses the training set. For each pipe sample <span class="math">\(\mathbf{x}_t\)</span> in the training set, if the product y_t(langlemathbf{w}^{(k)}, mathbf{x}_trangle+b^{(k)}) is less than or equal to zero, then this would imply that the actual label of the
+training sample and the predicted label have opposite signs and the training sample is misclassified. In this case, <span class="math">\(\mathbf{w}^{(k)}\)</span> and <span class="math">\(b^{(k)}\)</span> are updated as follows:</p>
+<div class="math" id="equation-update1">
+<span class="eqno">(6)</span>\[\mathbf{w}^{k+1}=\mathbf{w}^{k}+y_t\mathbf{x}_t\]</div>
+<div class="math" id="equation-update2">
+<span class="eqno">(7)</span>\[b^{(k+1)}=b^{(k)}+y_tR^2\]</div>
+<p>where <span class="math">\(R=\max\Vert\mathbf{x}_t\Vert\)</span>. It can be proven that the above updates improve the weight vector
+and the bias coefficient as follows [<a class="reference internal" href="#id1">1</a>]: Assume that after the updates, another attempt is made in order to classify the same training sample <span class="math">\(\mathbf{x}_t\)</span>. Then Eq. <a href="#equation-getsBetter">(8)</a> shows that the new product <span class="math">\(y_t(\langle \mathbf{w}^{(k+1)},\mathbf{x}_t\rangle+b^{(k+1)})\)</span> is closer to a positive value compared to <span class="math">\(y_t(\langle \mathbf{w}^{(k)}, \mathbf{x}_t\rangle + b^{(k)})\)</span>.</p>
+<div class="math" id="equation-getsBetter">
+<span class="eqno">(8)</span>\[\begin{split}\begin{split}
+y_t( \langle \mathbf{w}^{(k+1)},\mathbf{x}_t \rangle+b^{(k+1)} ) &amp;= y_t( \langle \mathbf{w}^{(k)}+y_t\mathbf{x}_t,\mathbf{x}_t \rangle+b^{(k)}+y_tR^2 )   \\
+&amp;=y_t(\langle \mathbf{w}^{(k)}, \mathbf{x}_t  \rangle+y_t\Vert \mathbf{x}_t \Vert^2+b^{(k)}+y_tR^2) \\
+&amp;=y_t(\langle \mathbf{w}^{(k)}, \mathbf{x}_t  \rangle +b^{(k)})+\Vert \mathbf{x}_t \Vert^2+R^2 \\
+&amp;\geq y_t(\langle \mathbf{w}^{(k)}, \mathbf{x}_t \rangle+b^{(k)})
+\end{split}\end{split}\]</div>
+<p>It can also be proven that after a finite number of updates a proper classifier function can be obtained as long as the samples in the training set are linearly separable with a functional margin <span class="math">\(\gamma_F &gt; 0\)</span>. The functional margin <span class="math">\(\gamma_t\)</span> of a training sample <span class="math">\(\mathbf{x}_t\)</span> with respect to a separating hyperplane (decision boundary) <span class="math">\((\mathbf{w}, b)\)</span> is defined as [<a class="reference internal" href="#id2">2</a>]:</p>
+<div class="math" id="equation-funcMargin">
+<span class="eqno">(9)</span>\[\gamma_t=y_t(\langle\mathbf{w},\mathbf{x}_t\rangle + b)\]</div>
+<p>anf the functional margin <span class="math">\(\gamma_F\)</span> of a separating hyperplane <span class="math">\((\mathbf{w},b)\)</span> is defined as the minimum of all functional margins associated with a training set. A larger functinal margin implies that the training samples are geometrically farther away from the separating hyperplane and therefore the two classes are
+more distinctly separated. The relationship between the functional margin and the geometric separateness of the classes can be reckoned by comparing the expressions for the geometric margin (Eq. <a href="#equation-geomMargin">(5)</a>) and the functional margin (Eq. <a href="#equation-funcMargin">(9)</a>).</p>
+<p>In order to prove that the perceptron algorithm converges to a solution after a finite number of iterations, the following new weight vectors <span class="math">\(\mathbf{\widetilde{w}}\)</span> and training samples <span class="math">\(\mathbf{\widetilde{x}}_t\)</span> are defined by appending <span class="math">\(R\)</span> to every training sample and <span class="math">\(b^{(k)}/R\)</span> to every weight vector <span class="math">\(\mathbf{w}^{(k)}\)</span>:</p>
+<div class="math" id="equation-appended">
+<span class="eqno">(10)</span>\[\mathbf{\widetilde{x}}_t=(\mathbf{x}_t^T,R),\quad \mathbf{\widetilde{w}}^{(k)}=({\mathbf{w}^{(k)}}^T,b^{(k)}/R)\]</div>
+<p>Given that the training samples are linearly separable, there exists a separating hyperplane <span class="math">\(( \mathbf{w}^{*},b^{*} )\)</span> such that for any <span class="math">\((\mathbf{x}_t,y_t) \in T\)</span>, <span class="math">\(y_t(\langle \mathbf{w}^{*},\mathbf{x}_t\rangle+b^{*})=y_t\langle\widetilde{\mathbf{w}}^{*},\widetilde{\mathbf{x}}_t\rangle\geq \gamma^{*}\)</span> where <span class="math">\(\gamma^{*}\)</span> is the functional margin of <span class="math">\(( \mathbf{w}^{*},b^{*})\)</span>.</p>
+<p>Assume that the weight vector <span class="math">\(\widetilde{\mathbf{w}}^{(k-1)}\)</span> resulted in a misclassification of the sample <span class="math">\(\widetilde{\mathbf{x}}_t\)</span> and is therefore updated to <span class="math">\(\widetilde{\mathbf{w}}^{(k)}\)</span>. <span class="math">\(\widetilde{\mathbf{w}}^{(k)}\)</span> and <span class="math">\(\widetilde{\mathbf{w}}^{*}\)</span> both belong to the vector space <span class="math">\(\mathbb{R}^3\)</span> and the cosine of the angle between them is defined as in Eq. <a href="#equation-cosineOne">(11)</a>.</p>
+<div class="math" id="equation-cosineOne">
+<span class="eqno">(11)</span>\[\cos(\widetilde{\mathbf{w}}^{*}, \widetilde{\mathbf{w}}^{(k)})=\frac{\langle \widetilde{\mathbf{w}}^{*} , \widetilde{\mathbf{w}}^{(k)} \rangle}{\Vert \widetilde{\mathbf{w}}^{*}\Vert\Vert \widetilde{\mathbf{w}}^{(k)}\Vert}\leq 1\]</div>
+<p>In Eq. <a href="#equation-cosineOne">(11)</a>, the expression for <span class="math">\(\widetilde{\mathbf{w}}^{(k)}\)</span> can be expanded as follows.</p>
 <div class="math">
-\[\gamma_t = y_t(\mathbf{w}^T\mathbf{x}_i +b)\]</div>
+\[\begin{split}\begin{split}
+\widetilde{\mathbf{w}}^{(k)}&amp;=\Big({\mathbf{w}^{(k)}}^T, \frac{b^{(k)}}{R}\Big)=\Big({\mathbf{w}^{(k-1)}}^T+y_t\mathbf{x}_t^T,\frac{b^{(k-1)}+y_tR^2}{R}\Big)\\
+&amp;=\Big({\mathbf{w}^{(k-1)}}^T+y_t\mathbf{x}_t^T, \frac{b^{(k-1)}}{R}+y_tR\Big) \\
+&amp;=\widetilde{\mathbf{w}}^{(k-1)}+y_t\widetilde{\mathbf{x}}_t
+\end{split}\end{split}\]</div>
+<p>It can also be shown that the scalar product term in Eq. <a href="#equation-cosineOne">(11)</a> is greater than or equal to <span class="math">\(k\gamma^*\)</span>. In order to show this let <span class="math">\(k=1\)</span>, then <span class="math">\(\langle \widetilde{\mathbf{w}}^*, \widetilde{\mathbf{w}}^{(1)}  \rangle=\langle \widetilde{\mathbf{w}}^*, \widetilde{\mathbf{w}}^{(0)}+y_t\widetilde{\mathbf{x}}_t  \rangle=y_t\langle \widetilde{\mathbf{w}}^*,\widetilde{\mathbf{x}}_t  \rangle\geq \gamma^*\)</span> since <span class="math">\(\widetilde{\mathbf{w}}^{(0)}\)</span> is initialized as the zero vector. If for some <span class="math">\(n\in\mathbb{N}\)</span>, <span class="math">\(\langle\widetilde{\mathbf{w}}^*,\widetilde{\mathbf{w}}^{(n)}\rangle\geq n\gamma^*\)</span>, then
+<span class="math">\(\langle \widetilde{\mathbf{w}}^{*} , \widetilde{\mathbf{w}}^{(n+1)} \rangle=\langle \widetilde{\mathbf{w}}^*, \widetilde{\mathbf{w}}^{(n)}+y_t\widetilde{\mathbf{x}}_t  \rangle=y_t\langle \widetilde{\mathbf{w}}^*, \widetilde{\mathbf{x}}_t \rangle + \langle \widetilde{\mathbf{w}}^*, \widetilde{\mathbf{w}}^{(n)}  \rangle\geq\gamma^*+n\gamma^*=(n+1)\gamma^*\)</span>. By induction it follows that for any <span class="math">\(k\in\mathbb{N}\)</span>, <span class="math">\(\langle\widetilde{\mathbf{w}}^*, \widetilde{\mathbf{w}}^{(k)}\rangle\geq k\gamma^*\)</span>. Using this result the inequality in Eq. <a href="#equation-ineq1st">(12)</a> is established.</p>
+<div class="math" id="equation-ineq1st">
+<span class="eqno">(12)</span>\[\frac{k\gamma^*}{\Vert\widetilde{\mathbf{w}}^* \Vert\Vert\widetilde{\mathbf{w}}^{(k)}\Vert}\leq 1\]</div>
+<p>Furthermore, the boundedness of the norm <span class="math">\(\Vert \widetilde{\mathbf{w}}^{(k)}\Vert\)</span> can be shown as follows:</p>
 <div class="math">
-\[\begin{split}\left\{ \begin{array}{ll}
-\gamma _i &gt;0 &amp; \mbox{ $\Rightarrow$ the classification is correct}\\
- \gamma _i &lt;0 &amp; \mbox{incorrect classification $\Rightarrow \mathbf{w}$ has to be updated}
-\end{array}
-\right.\end{split}\]</div>
+\[\begin{split}\begin{split}
+\Vert \widetilde{\mathbf{w}}^{(k)} \Vert^2&amp;=\langle \widetilde{\mathbf{w}}^{(k-1)}+y_t\widetilde{\mathbf{x}}_t,\widetilde{\mathbf{w}}^{(k-1)}+y_t\widetilde{\mathbf{x}}_t  \rangle\\
+&amp;=\Vert\widetilde{\mathbf{w}}^{(k-1)}\Vert^2+2y_t\langle\widetilde{\mathbf{w}}^{(k-1)}, \widetilde{\mathbf{x}}_t\rangle+\Vert\widetilde{\mathbf{x}}_t\Vert^2
+\end{split}\end{split}\]</div>
+<p>Since the weight vector <span class="math">\(\widetilde{\mathbf{w}}^{(k-1)}\)</span> resulted in a misclassification, it is known that <span class="math">\(y_t\langle \widetilde{\mathbf{w}}^{(k-1)},\widetilde{\mathbf{x}}_t \rangle\leq 0\)</span>. Therefore,</p>
+<div class="math">
+\[\Vert \widetilde{\mathbf{w}}^{(k)} \Vert^2\leq\Vert \widetilde{\mathbf{w}}^{(k-1)} \Vert^2+\Vert \widetilde{\mathbf{x}}_t \Vert^2\]</div>
+<p>Using <span class="math">\(\Vert \widetilde{\mathbf{x}}_t \Vert^2=\Vert\mathbf{x}_t\Vert^2+R^2\)</span> yields</p>
+<div class="math" id="equation-bounded1st">
+<span class="eqno">(13)</span>\[\Vert\widetilde{\mathbf{w}}^{(k)}\Vert^2\leq\Vert \widetilde{\mathbf{w}}^{(k-1)} \Vert^2+2R^2\]</div>
+<p>Eq. <a href="#equation-bounded1st">(13)</a> implies the boundedness of <span class="math">\(\Vert\widetilde{\mathbf{w}}^{(k)}\Vert\)</span>. In order to prove this, consider that for <span class="math">\(k=1\)</span>, <span class="math">\(\Vert \widetilde{\mathbf{w}}^{(1)} \Vert^2\leq\Vert \widetilde{\mathbf{w}}^{(0)} \Vert^2+2R^2=2R^2=2kR^2\)</span>. If for some <span class="math">\(n\in \mathbb{N}\)</span>, <span class="math">\(\Vert\widetilde{\mathbf{w}}^{(n)}\Vert^2\leq 2 n  R^2\)</span> then using Eq. <a href="#equation-bounded1st">(13)</a> we obtain <span class="math">\(\Vert\widetilde{\mathbf{w}}^{(n+1)}\Vert^2\leq\Vert\widetilde{\mathbf{w}}^{(n)}\Vert^2+2R^2\leq 2nR^2+2R^2=(n+1)2R^2\)</span>. By induction it follows that:</p>
+<div class="math" id="equation-wkbound">
+<span class="eqno">(14)</span>\[\forall k\in\mathbb{N}, \Vert \widetilde{\mathbf{w}}^{(k)} \Vert^2\leq k2R^2\]</div>
+<p>By plugging Eq. <a href="#equation-wkbound">(14)</a> in Eq. <a href="#equation-ineq1st">(12)</a>, squaring both sides of the inequality and using the boundedness of <span class="math">\(\widetilde{\mathbf{w}}^*\)</span>, Eq. <a href="#equation-proofComp">(15)</a> shows that only a finite number of iterations are needed in order to obtain a proper classifier function.</p>
+<div class="math" id="equation-proofComp">
+<span class="eqno">(15)</span>\[\begin{split}
+\frac{k\gamma^*}{\Vert\widetilde{\mathbf{w}}^*\Vert R\sqrt{2k}}\leq 1 \Rightarrow \frac{k^2(\gamma^*)^2}{\Vert\widetilde{\mathbf{w}}^*\Vert^2 R^22k}\leq 1 \Rightarrow\boxed{ k\leq\frac{2R^2\Vert \widetilde{\mathbf{w}}^*\Vert^2}{(\gamma^*)^2}}
+\end{split}\]</div>
 <p><strong>References</strong></p>
-<p id="jaakkola">Tommi Jaakkola, course materials for 6.867 Machine Learning, Fall 2006. MIT OpenCourseWare (<a class="reference external" href="http://ocw.mit.edu/">http://ocw.mit.edu/</a>), Massachusetts Institute of Technology. Downloaded on [26 May 2014].</p>
-<p id="cristianini">Cristianini N., Shawe-Taylor John: An Introduction to Support Vector Machines and other Kernel Based Learning Methods, Cambridge University Press 2000</p>
+<p id="id1">Tommi Jaakkola, course materials for 6.867 Machine Learning, Fall 2006. MIT OpenCourseWare (<a class="reference external" href="http://ocw.mit.edu/">http://ocw.mit.edu/</a>), Massachusetts Institute of Technology. Downloaded on [26 May 2014].</p>
+<p id="id2">Cristianini N., Shawe-Taylor John: An Introduction to Support Vector Machines and other Kernel Based Learning Methods, Cambridge University Press 2000</p>
+<p id="id3">Bishop C.M. (2006); “Pattern Recognition and Machine Learning”, Springer; 1st ed., ISBN-10: 0-387-31073-8</p>
 </div>
 </div>
 

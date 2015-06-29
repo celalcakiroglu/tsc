@@ -65,6 +65,9 @@ https://www.youtube.com/watch?v=oJsUvBQyHBs
 
 http://numericjs.com/index.php
 
+Send an email to Celal_.
+
+.. _Celal: cakirogl@ualberta.ca
 
 
 Indices and tables
