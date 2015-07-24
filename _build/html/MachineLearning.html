@@ -26,7 +26,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Celal&#39;s documentation" href="index.html" />
     <link rel="next" title="3D Modeling Tutorials" href="SiemensNX.html" />
-    <link rel="prev" title="2D Truss System Solver" href="2DTruss.html" />
+    <link rel="prev" title="2D Frame System Solver" href="2DFrame.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
     <script src="_static/deneme.js" type="text/javascript"></script>
@@ -43,7 +43,7 @@
     <ul>
         <li>
           &larr;
-          <a href="2DTruss.html" title="Previous document">2D Truss System Solver</a>
+          <a href="2DFrame.html" title="Previous document">2D Frame System Solver</a>
         </li>
         <li>
           <a href="SiemensNX.html" title="Next document">3D Modeling Tutorials</a>
@@ -136,7 +136,7 @@ y_t( \langle \mathbf{w}^{(k+1)},\mathbf{x}_t \rangle+b^{(k+1)} ) &amp;= y_t( \la
 <p>It can also be proven that after a finite number of updates a proper classifier function can be obtained as long as the samples in the training set are linearly separable with a functional margin <span class="math">\(\gamma_F &gt; 0\)</span>. The functional margin <span class="math">\(\gamma_t\)</span> of a training sample <span class="math">\(\mathbf{x}_t\)</span> with respect to a separating hyperplane (decision boundary) <span class="math">\((\mathbf{w}, b)\)</span> is defined as [<a class="reference internal" href="#id2">2</a>]:</p>
 <div class="math" id="equation-funcMargin">
 <span class="eqno">(9)</span>\[\gamma_t=y_t(\langle\mathbf{w},\mathbf{x}_t\rangle + b)\]</div>
-<p>anf the functional margin <span class="math">\(\gamma_F\)</span> of a separating hyperplane <span class="math">\((\mathbf{w},b)\)</span> is defined as the minimum of all functional margins associated with a training set. A larger functinal margin implies that the training samples are geometrically farther away from the separating hyperplane and therefore the two classes are
+<p>and the functional margin <span class="math">\(\gamma_F\)</span> of a separating hyperplane <span class="math">\((\mathbf{w},b)\)</span> is defined as the minimum of all functional margins associated with a training set. A larger functinal margin implies that the training samples are geometrically farther away from the separating hyperplane and therefore the two classes are
 more distinctly separated. The relationship between the functional margin and the geometric separateness of the classes can be reckoned by comparing the expressions for the geometric margin (Eq. <a href="#equation-geomMargin">(5)</a>) and the functional margin (Eq. <a href="#equation-funcMargin">(9)</a>).</p>
 <p>In order to prove that the perceptron algorithm converges to a solution after a finite number of iterations, the following new weight vectors <span class="math">\(\mathbf{\widetilde{w}}\)</span> and training samples <span class="math">\(\mathbf{\widetilde{x}}_t\)</span> are defined by appending <span class="math">\(R\)</span> to every training sample and <span class="math">\(b^{(k)}/R\)</span> to every weight vector <span class="math">\(\mathbf{w}^{(k)}\)</span>:</p>
 <div class="math" id="equation-appended">
@@ -192,6 +192,7 @@ more distinctly separated. The relationship between the functional margin and th
 <h3><a href="index.html">Table Of Contents</a></h3>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="2DTruss.html">2D Truss System Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2DFrame.html">2D Frame System Solver</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Machine Learning</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-concepts">Basic Concepts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linear-binary-classification">Linear Binary Classification</a></li>
@@ -211,7 +212,7 @@ more distinctly separated. The relationship between the functional margin and th
     <ul>
         <li>
           &larr;
-          <a href="2DTruss.html" title="Previous document">2D Truss System Solver</a>
+          <a href="2DFrame.html" title="Previous document">2D Frame System Solver</a>
         </li>
         <li>
           <a href="SiemensNX.html" title="Next document">3D Modeling Tutorials</a>

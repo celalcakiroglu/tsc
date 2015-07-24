@@ -101,7 +101,7 @@ It can also be proven that after a finite number of updates a proper classifier 
 .. math:: \gamma_t=y_t(\langle\mathbf{w},\mathbf{x}_t\rangle + b)
   :label: funcMargin
 
-anf the functional margin :math:`\gamma_F` of a separating hyperplane :math:`(\mathbf{w},b)` is defined as the minimum of all functional margins associated with a training set. A larger functinal margin implies that the training samples are geometrically farther away from the separating hyperplane and therefore the two classes are
+and the functional margin :math:`\gamma_F` of a separating hyperplane :math:`(\mathbf{w},b)` is defined as the minimum of all functional margins associated with a training set. A larger functinal margin implies that the training samples are geometrically farther away from the separating hyperplane and therefore the two classes are
 more distinctly separated. The relationship between the functional margin and the geometric separateness of the classes can be reckoned by comparing the expressions for the geometric margin (Eq. :eq:`geomMargin`) and the functional margin (Eq. :eq:`funcMargin`).
 
 In order to prove that the perceptron algorithm converges to a solution after a finite number of iterations, the following new weight vectors :math:`\mathbf{\widetilde{w}}` and training samples :math:`\mathbf{\widetilde{x}}_t` are defined by appending :math:`R` to every training sample and :math:`b^{(k)}/R` to every weight vector :math:`\mathbf{w}^{(k)}`:

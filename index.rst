@@ -14,6 +14,7 @@ Contents:
    :maxdepth: 15
 
    2DTruss.rst
+   2DFrame.rst
    MachineLearning.rst
    SiemensNX.rst
    CalculusStory.rst
