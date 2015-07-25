@@ -6052,10 +6052,30 @@
 
 Direct Stiffness Method for 2D Frames
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The elements that make up a frame structure are capable of carrying shear forces and bending moments in addition to the axial forces. Also, in addition to the translational degrees of freedom at the two nodes of an element frame members have rotational degrees of freedom. The numbering convention and the positive directions of these degrees of freedom are shown below.
+The elements that make up a frame structure are capable of carrying shear forces and bending moments in addition to the axial forces. Also, in addition to the translational degrees of freedom at the two nodes of an element, frame members have rotational degrees of freedom. The numbering convention and the positive directions of these degrees of freedom are shown below.
 
+.. _DofsFrame:
+.. figure:: 2DFrame/Dofs.JPG
+   :height: 198 px
+   :width: 856 px
+   :scale: 65 %
+   :align: center
 
+The first step in the derivation of the element stiffness matrix is to describe the flexural displacement :math:`v(x)` and axial displacement :math:`u(x)` of the frame members in polynomial form.
 
+.. math::
+  v(x) = c_1+c_2x+c_3x^2+c_4x^3
+
+.. math::
+  u(x) = c_5+c_6x
+
+In the Euler-Bernoulli beam theory the equation for the bending moment is :math:`M(x)=EI\displaystyle\frac{d^2v}{dx^2}`. Also, since in the finite element method loads are applied at the nodes of an element, :math:`M(x)` must vary linearly between the nodes (the contributions of the distributed loads to the bending moments are added after the system equations are solved). Therefore :math:`v(x)` is described as a third order polynomial so that its second derivative varies linearly between the element nodes. The description of the axial displacement as a first order polynomial follows from the fact that the axial force carried by a member is assumed to be constant along the member length. This leads to constant axial strain which has the equation :math:`\varepsilon_x=\displaystyle\frac{du}{dx}`. After the application of the boundary conditions :math:`u(x)\vert_{x=0}=u_1`, :math:`v(x)\vert_{x=0}=v_1`, :math:`v'(x)\vert_{x=0}=\theta_1`, :math:`u(x)\vert_{x=L}=u_2`, :math:`v(x)\vert_{x=L}=v_2`, :math:`v'(x)\vert_{x=L}=\theta_2`, we obtain the following expression for :math:`v(x)` and :math:`u(x)`:
+
+.. math::
+  v(x) = (1-\frac{3x^2}{L^2}+\frac{2x^3}{L^3})v_1+(x-\frac{2x^2}{L}+\frac{x^3}{L^2})\theta_1+(\frac{3x^2}{L^2}-\frac{2x^3}{L^3})v_2+(\frac{x^3}{L^2}-\frac{x^2}{L})\theta_2
+
+.. math::
+  u(x) = u_1+\frac{(u_2-u_1)}{L}x
 
 .. math::
   \mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} & -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} & \displaystyle\frac{EA}{L} \end{bmatrix}
