@@ -6077,6 +6077,17 @@ In the Euler-Bernoulli beam theory the equation for the bending moment is :math:
 .. math::
   u(x) = u_1+\frac{(u_2-u_1)}{L}x
 
+The strain energy in a member can be computed as :math:`U=\displaystyle\frac{1}{2}\displaystyle\int_V\sigma_x\varepsilon_xdV` where :math:`V` is the total volume of the member. The strain energy can be computed as the superposition of the strain energies related to flexure :math:`(U_f)` and axial loading :math:`(U_a)`. In case of axial loading stress, strain and resulting strain energy are computed as follows:
+
+.. math::
+  \varepsilon_x = \frac{du}{dx}=\frac{(u_2-u_1)}{L},\quad \sigma_x=E\varepsilon_x=E\frac{du}{dx}
+
+.. math::
+  U_a = \frac{1}{2}\int_VE\Big(\frac{du}{dx}\Big)^2dV=\frac{1}{2}E\int_0^L\Big(\frac{du}{dx}\Big)^2\int_AdAdx=\frac{1}{2}EA\int_0^L\frac{(u_2-u_1)^2}{L^2}dx
+
+.. math::
+  U_a = \frac{EA}{2L}(u_2-u_1)^2
+
 .. math::
   \mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} & -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} & \displaystyle\frac{EA}{L} \end{bmatrix}
 
