@@ -6056,8 +6056,8 @@ The elements that make up a frame structure are capable of carrying shear forces
 
 .. _DofsFrame:
 .. figure:: 2DFrame/Dofs.JPG
-   :height: 198 px
-   :width: 856 px
+   :height: 219 px
+   :width: 903 px
    :scale: 65 %
    :align: center
 
@@ -6072,7 +6072,7 @@ The first step in the derivation of the element stiffness matrix is to describe 
 In the Euler-Bernoulli beam theory the equation for the bending moment is :math:`M(x)=EI\displaystyle\frac{d^2v}{dx^2}`. Also, since in the finite element method loads are applied at the nodes of an element, :math:`M(x)` must vary linearly between the nodes (the contributions of the distributed loads to the bending moments are added after the system equations are solved). Therefore :math:`v(x)` is described as a third order polynomial so that its second derivative varies linearly between the element nodes. The description of the axial displacement as a first order polynomial follows from the fact that the axial force carried by a member is assumed to be constant along the member length. This leads to constant axial strain which has the equation :math:`\varepsilon_x=\displaystyle\frac{du}{dx}`. After the application of the boundary conditions :math:`u(x)\vert_{x=0}=u_1`, :math:`v(x)\vert_{x=0}=v_1`, :math:`v'(x)\vert_{x=0}=\theta_1`, :math:`u(x)\vert_{x=L}=u_2`, :math:`v(x)\vert_{x=L}=v_2`, :math:`v'(x)\vert_{x=L}=\theta_2`, we obtain the following expression for :math:`v(x)` and :math:`u(x)`:
 
 .. math::
-  v(x) = (1-\frac{3x^2}{L^2}+\frac{2x^3}{L^3})v_1+(x-\frac{2x^2}{L}+\frac{x^3}{L^2})\theta_1+(\frac{3x^2}{L^2}-\frac{2x^3}{L^3})v_2+(\frac{x^3}{L^2}-\frac{x^2}{L})\theta_2
+  v(x) = \Big(1-\frac{3x^2}{L^2}+\frac{2x^3}{L^3}\Big)v_1+\Big(x-\frac{2x^2}{L}+\frac{x^3}{L^2}\Big)\theta_1+\Big(\frac{3x^2}{L^2}-\frac{2x^3}{L^3}\Big)v_2+\Big(\frac{x^3}{L^2}-\frac{x^2}{L}\Big)\theta_2
 
 .. math::
   u(x) = u_1+\frac{(u_2-u_1)}{L}x
@@ -6087,6 +6087,57 @@ The strain energy in a member can be computed as :math:`U=\displaystyle\frac{1}{
 
 .. math::
   U_a = \frac{EA}{2L}(u_2-u_1)^2
+
+The stress, strain and strain energy associated with the flexural loading can be computed as follows:
+
+.. math::
+  \varepsilon_x = -y\frac{d^2v}{dx^2}=-y(2c_3+6c_4x),\quad \sigma_x=E\varepsilon_x=-yE\frac{d^2v}{dx^2}
+
+.. math::
+  U_f = \frac{1}{2}E\int_Vy^2\Big(\frac{d^2v}{dx^2}\Big)^2dV=\frac{1}{2}E\int_0^L\Big(\frac{d^2v}{dx^2}\Big)^2\int_Ay^2dAdx=\frac{1}{2}EI\int_0^L\Big(\frac{d^2v}{dx^2}\Big)^2dx
+
+At this point it is convenient to describe :math:`v(x)` as a combination of 4 shape functions
+
+.. math::
+  N_1=1-\frac{3x^2}{L^2}+\frac{2x^3}{L^3},\quad N_2=x-\frac{2x^2}{L}+\frac{x^3}{L^2} 
+
+.. math::
+  N_3=\frac{3x^2}{L^2}-\frac{2x^3}{L^3},\quad N_4=\frac{x^3}{L^2}-\frac{x^2}{L}
+
+.. math::
+  v(x) = N_1v_1+N_2\theta_1+N_3v_2+N_4\theta_2
+
+.. math::
+  U_f =\frac{1}{2}EI\int_0^L\Big(\frac{d^2N_1}{dx^2}v_1+\frac{d^2N_2}{dx^2}\theta_1+\frac{d^2N_3}{dx^2}v_2+\frac{d^2N_4}{dx^2}\theta_2\Big)^2dx
+
+The total strain energy of the frame member can be computed using the superposition of :math:`U_a` and :math:`U_f` as follows:
+
+.. math::
+  U =\frac{EA}{2L}(u_2-u_1)^2+\frac{1}{2}EI\int_0^L\Big(\frac{d^2N_1}{dx^2}v_1+\frac{d^2N_2}{dx^2}\theta_1+\frac{d^2N_3}{dx^2}v_2+\frac{d^2N_4}{dx^2}\theta_2\Big)^2dx 
+
+Once the total strain energy of a member is known, the forces and moments in the local coordinates acting at its nodes can be computed using Castigliano's first theorem such that:
+
+.. math::
+  N_1 =\frac{\partial U}{\partial u_1}=\frac{EA}{L}(u_1-u_2)
+
+.. math::
+  V_1 =\frac{\partial U}{\partial v_1}=EI\int_0^L(N_1^{''}N_1^{''}v_1+N_2^{''}N_1^{''}\theta_1+N_3^{''}N_1^{''}v_2+N_4^{''}N_1^{''}\theta_2)dx
+
+.. math::
+  M_1 =\frac{\partial U}{\partial \theta_1}=EI\int_0^L(N_1^{''}N_2^{''}v_1+N_2^{''}N_2^{''}\theta_1+N_3^{''}N_2^{''}v_2+N_4^{''}N_2^{''}\theta_2)dx
+
+.. math::
+  N_2 =\frac{\partial U}{\partial u_2}=\frac{EA}{L}(u_2-u_1)
+
+.. math::
+  V_2 =\frac{\partial U}{\partial v_2}=EI\int_0^L(N_1^{''}N_3^{''}v_1+N_2^{''}N_3^{''}\theta_1+N_3^{''}N_3^{''}v_2+N_4^{''}N_3^{''}\theta_2)dx
+
+.. math::
+  M_2 =\frac{\partial U}{\partial \theta_2}=EI\int_0^L(N_1^{''}N_4^{''}v_1+N_2^{''}N_4^{''}\theta_1+N_3^{''}N_4^{''}v_2+N_4^{''}N_4^{''}\theta_2)dx
+
+The above equations can be written in matrix form:
+
+
 
 .. math::
   \mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} & -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} & \displaystyle\frac{EA}{L} \end{bmatrix}

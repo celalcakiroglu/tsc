@@ -6113,7 +6113,7 @@
 <h2>Direct Stiffness Method for 2D Frames<a class="headerlink" href="#direct-stiffness-method-for-2d-frames" title="Permalink to this headline">¶</a></h2>
 <p>The elements that make up a frame structure are capable of carrying shear forces and bending moments in addition to the axial forces. Also, in addition to the translational degrees of freedom at the two nodes of an element, frame members have rotational degrees of freedom. The numbering convention and the positive directions of these degrees of freedom are shown below.</p>
 <div class="figure align-center" id="dofsframe">
-<a class="reference internal image-reference" href="_images/Dofs.JPG"><img alt="_images/Dofs.JPG" src="_images/Dofs.JPG" style="width: 556.4px; height: 128.7px;" /></a>
+<a class="reference internal image-reference" href="_images/Dofs.JPG"><img alt="_images/Dofs.JPG" src="_images/Dofs.JPG" style="width: 586.95px; height: 142.35px;" /></a>
 </div>
 <p>The first step in the derivation of the element stiffness matrix is to describe the flexural displacement <span class="math">\(v(x)\)</span> and axial displacement <span class="math">\(u(x)\)</span> of the frame members in polynomial form.</p>
 <div class="math">
@@ -6122,7 +6122,7 @@
 \[u(x) = c_5+c_6x\]</div>
 <p>In the Euler-Bernoulli beam theory the equation for the bending moment is <span class="math">\(M(x)=EI\displaystyle\frac{d^2v}{dx^2}\)</span>. Also, since in the finite element method loads are applied at the nodes of an element, <span class="math">\(M(x)\)</span> must vary linearly between the nodes (the contributions of the distributed loads to the bending moments are added after the system equations are solved). Therefore <span class="math">\(v(x)\)</span> is described as a third order polynomial so that its second derivative varies linearly between the element nodes. The description of the axial displacement as a first order polynomial follows from the fact that the axial force carried by a member is assumed to be constant along the member length. This leads to constant axial strain which has the equation <span class="math">\(\varepsilon_x=\displaystyle\frac{du}{dx}\)</span>. After the application of the boundary conditions <span class="math">\(u(x)\vert_{x=0}=u_1\)</span>, <span class="math">\(v(x)\vert_{x=0}=v_1\)</span>, <span class="math">\(v'(x)\vert_{x=0}=\theta_1\)</span>, <span class="math">\(u(x)\vert_{x=L}=u_2\)</span>, <span class="math">\(v(x)\vert_{x=L}=v_2\)</span>, <span class="math">\(v'(x)\vert_{x=L}=\theta_2\)</span>, we obtain the following expression for <span class="math">\(v(x)\)</span> and <span class="math">\(u(x)\)</span>:</p>
 <div class="math">
-\[v(x) = (1-\frac{3x^2}{L^2}+\frac{2x^3}{L^3})v_1+(x-\frac{2x^2}{L}+\frac{x^3}{L^2})\theta_1+(\frac{3x^2}{L^2}-\frac{2x^3}{L^3})v_2+(\frac{x^3}{L^2}-\frac{x^2}{L})\theta_2\]</div>
+\[v(x) = \Big(1-\frac{3x^2}{L^2}+\frac{2x^3}{L^3}\Big)v_1+\Big(x-\frac{2x^2}{L}+\frac{x^3}{L^2}\Big)\theta_1+\Big(\frac{3x^2}{L^2}-\frac{2x^3}{L^3}\Big)v_2+\Big(\frac{x^3}{L^2}-\frac{x^2}{L}\Big)\theta_2\]</div>
 <div class="math">
 \[u(x) = u_1+\frac{(u_2-u_1)}{L}x\]</div>
 <p>The strain energy in a member can be computed as <span class="math">\(U=\displaystyle\frac{1}{2}\displaystyle\int_V\sigma_x\varepsilon_xdV\)</span> where <span class="math">\(V\)</span> is the total volume of the member. The strain energy can be computed as the superposition of the strain energies related to flexure <span class="math">\((U_f)\)</span> and axial loading <span class="math">\((U_a)\)</span>. In case of axial loading stress, strain and resulting strain energy are computed as follows:</p>
@@ -6132,6 +6132,36 @@
 \[U_a = \frac{1}{2}\int_VE\Big(\frac{du}{dx}\Big)^2dV=\frac{1}{2}E\int_0^L\Big(\frac{du}{dx}\Big)^2\int_AdAdx=\frac{1}{2}EA\int_0^L\frac{(u_2-u_1)^2}{L^2}dx\]</div>
 <div class="math">
 \[U_a = \frac{EA}{2L}(u_2-u_1)^2\]</div>
+<p>The stress, strain and strain energy associated with the flexural loading can be computed as follows:</p>
+<div class="math">
+\[\varepsilon_x = -y\frac{d^2v}{dx^2}=-y(2c_3+6c_4x),\quad \sigma_x=E\varepsilon_x=-yE\frac{d^2v}{dx^2}\]</div>
+<div class="math">
+\[U_f = \frac{1}{2}E\int_Vy^2\Big(\frac{d^2v}{dx^2}\Big)^2dV=\frac{1}{2}E\int_0^L\Big(\frac{d^2v}{dx^2}\Big)^2\int_Ay^2dAdx=\frac{1}{2}EI\int_0^L\Big(\frac{d^2v}{dx^2}\Big)^2dx\]</div>
+<p>At this point it is convenient to describe <span class="math">\(v(x)\)</span> as a combination of 4 shape functions</p>
+<div class="math">
+\[N_1=1-\frac{3x^2}{L^2}+\frac{2x^3}{L^3},\quad N_2=x-\frac{2x^2}{L}+\frac{x^3}{L^2}\]</div>
+<div class="math">
+\[N_3=\frac{3x^2}{L^2}-\frac{2x^3}{L^3},\quad N_4=\frac{x^3}{L^2}-\frac{x^2}{L}\]</div>
+<div class="math">
+\[v(x) = N_1v_1+N_2\theta_1+N_3v_2+N_4\theta_2\]</div>
+<div class="math">
+\[U_f =\frac{1}{2}EI\int_0^L\Big(\frac{d^2N_1}{dx^2}v_1+\frac{d^2N_2}{dx^2}\theta_1+\frac{d^2N_3}{dx^2}v_2+\frac{d^2N_4}{dx^2}\theta_2\Big)^2dx\]</div>
+<p>The total strain energy of the frame member can be computed using the superposition of <span class="math">\(U_a\)</span> and <span class="math">\(U_f\)</span> as follows:</p>
+<div class="math">
+\[U =\frac{EA}{2L}(u_2-u_1)^2+\frac{1}{2}EI\int_0^L\Big(\frac{d^2N_1}{dx^2}v_1+\frac{d^2N_2}{dx^2}\theta_1+\frac{d^2N_3}{dx^2}v_2+\frac{d^2N_4}{dx^2}\theta_2\Big)^2dx\]</div>
+<p>Once the total strain energy of a member is known, the forces and moments in the local coordinates acting at its nodes can be computed using Castigliano&#8217;s first theorem such that:</p>
+<div class="math">
+\[N_1 =\frac{\partial U}{\partial u_1}=\frac{EA}{L}(u_1-u_2)\]</div>
+<div class="math">
+\[V_1 =\frac{\partial U}{\partial v_1}=EI\int_0^L(N_1^{''}N_1^{''}v_1+N_2^{''}N_1^{''}\theta_1+N_3^{''}N_1^{''}v_2+N_4^{''}N_1^{''}\theta_2)dx\]</div>
+<div class="math">
+\[M_1 =\frac{\partial U}{\partial \theta_1}=EI\int_0^L(N_1^{''}N_2^{''}v_1+N_2^{''}N_2^{''}\theta_1+N_3^{''}N_2^{''}v_2+N_4^{''}N_2^{''}\theta_2)dx\]</div>
+<div class="math">
+\[N_2 =\frac{\partial U}{\partial u_2}=\frac{EA}{L}(u_2-u_1)\]</div>
+<div class="math">
+\[V_2 =\frac{\partial U}{\partial v_2}=EI\int_0^L(N_1^{''}N_3^{''}v_1+N_2^{''}N_3^{''}\theta_1+N_3^{''}N_3^{''}v_2+N_4^{''}N_3^{''}\theta_2)dx\]</div>
+<div class="math">
+\[M_2 =\frac{\partial U}{\partial \theta_2}=EI\int_0^L(N_1^{''}N_4^{''}v_1+N_2^{''}N_4^{''}\theta_1+N_3^{''}N_4^{''}v_2+N_4^{''}N_4^{''}\theta_2)dx\]</div>
 <div class="math">
 \[\begin{split}\mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} &amp; -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} &amp; \displaystyle\frac{EA}{L} \end{bmatrix}\end{split}\]</div>
 <ul class="simple">
