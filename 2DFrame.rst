@@ -5329,20 +5329,23 @@
           var dofCodeVec=[];//This vector contains the codes for the unknown displacements
           var maxMomMagnitude=0;//The largest moment magnitude (at the nodes)
 
-          function node(x,y, xForce, yForce, BM, index, xConstraint, yConstraint,rotConstraint){
+          function node(x,y, xForce, yForce, BM, index, xConstraint, yConstraint, rotConstraint){
             this.index=index;
             this.x=x;
             this.y=y;
+            this.CLoad=[0,0];
             this.xScaled=scaleFactor*this.x;
             this.yScaled=scaleFactor*this.y;
             if(!isNaN(xForce)){
               this.xForce=xForce; 
+              this.CLoad[0]=xForce;
             }
             else{
               this.xForce=0;
             }
             if(!isNaN(yForce)){
               this.yForce=yForce; 
+              this.CLoad[1]=yForce;
             }
             else{
               this.yForce=0;  
@@ -5519,7 +5522,7 @@
               for(var j=0;j<numNodes;j++){
                 var arrowLength = 0.09*scaleFactor*parseFloat(maxSysLength);
                 var arrowTipLength =arrowLength/5;
-                if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+                if(Math.abs(nodes[j].CLoad[0]-0.0)>0.00001){
                   var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowLength, nodes[j].yScaled]);
                   gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
                   gl.drawArrays(gl.LINES, 0, 2);
@@ -5530,7 +5533,7 @@
                   gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
                   gl.drawArrays(gl.LINES, 0, 2);
                 }
-                if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+                if(Math.abs(nodes[j].CLoad[1]-0.0)>0.00001){
                   var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled, nodes[j].yScaled+arrowLength]);
                   gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
                   gl.drawArrays(gl.LINES, 0, 2);
@@ -5681,7 +5684,7 @@
               var arrowLength = 0.09*scaleFactor*parseFloat(totalSizeTxt.value);
               var arrowTipLength =arrowLength/5;
               console.log('numNodes is'+numNodes);
-              if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+              if(Math.abs(nodes[j].CLoad[0]-0.0)>0.00001){
                 var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowLength, nodes[j].yScaled]);
                 gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
                 gl.drawArrays(gl.LINES, 0, 2);
@@ -5699,7 +5702,7 @@
                 textY=325-textY;
                 ctx.fillText(Math.round(nodes[j].xForce), textX, textY); 
               }
-              if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+              if(Math.abs(nodes[j].CLoad[1]-0.0)>0.00001){
                 var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled, nodes[j].yScaled+arrowLength]);
                 gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
                 gl.drawArrays(gl.LINES, 0, 2);
@@ -5809,7 +5812,7 @@
             for(var j=0;j<numNodes;j++){
               var arrowLength = 0.09*scaleFactor*maxSysLength;
               var arrowTipLength =arrowLength/5;
-              if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+              if(Math.abs(nodes[j].CLoad[0]-0.0)>0.00001){
                 var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled+arrowLength, nodes[j].yScaled]);
                 gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
                 gl.drawArrays(gl.LINES, 0, 2);
@@ -5820,7 +5823,7 @@
                 gl.bufferData(gl.ARRAY_BUFFER, dizi3, gl.STATIC_DRAW);//Write data into buffer
                 gl.drawArrays(gl.LINES, 0, 2);
               }
-              if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+              if(Math.abs(nodes[j].CLoad[1]-0.0)>0.00001){
                 var dizi1 = new Float32Array([nodes[j].xScaled, nodes[j].yScaled, nodes[j].xScaled, nodes[j].yScaled+arrowLength]);
                 gl.bufferData(gl.ARRAY_BUFFER, dizi1, gl.STATIC_DRAW);//Write data into buffer
                 gl.drawArrays(gl.LINES, 0, 2);
@@ -5983,7 +5986,7 @@
             for(var j=0;j<numNodes;j++){
               var arrowLength = 0.09*scaleFactor*maxSysLength;
               var arrowTipLength =arrowLength/5;
-              if(Math.abs(nodes[j].xForce-0.0)>0.00001){
+              if(Math.abs(nodes[j].CLoad[0]-0.0)>0.00001){
                 console.log("xForce="+nodes[j].xForce);
                 var textX=nodes[j].xScaled+arrowLength/2;
                 textX= 650*textX/2;
@@ -5991,9 +5994,9 @@
                 var textY=nodes[j].yScaled+arrowLength/5;
                 textY=textY*650/2;
                 textY=325-textY;
-                ctx.fillText(Math.round(nodes[j].xForce), textX, textY);  
+                ctx.fillText(Math.round(nodes[j].CLoad[0]), textX, textY);  
               }
-             if(Math.abs(nodes[j].yForce-0.0)>0.00001){
+             if(Math.abs(nodes[j].CLoad[1]-0.0)>0.00001){
                 //console.log("yForce="+nodes[j].yForce);
                 var textX=nodes[j].xScaled+arrowLength/5;
                 textX=650*textX/2;
@@ -6001,7 +6004,7 @@
                 var textY=nodes[j].yScaled+arrowLength/2;
                 textY=textY*650/2;
                 textY=325-textY;
-                ctx.fillText(Math.round(nodes[j].yForce), textX, textY);
+                ctx.fillText(Math.round(nodes[j].CLoad[1]), textX, textY);
               }
             }
             //The following code draws the moment diagram
@@ -6047,11 +6050,12 @@
    </html>
 
 
-Direct Stiffness Method for 2D Trusses
+Direct Stiffness Method for 2D Frames
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-- **Step 1:** Definition of the joint positions and the truss members between the joints. This includes the cross section area and Young's modulus for each truss member as well as the boundary conditions for each joint. In the process of defining the joint positions, also for each joint a code vector is defined. The code vector of each joint consists of two numbers corresponding to the two possible directions of displacement that the joint can undergo. The assignment of code numbers to the joints(also called "nodes" in the rest of this text) is such that the first node has the code vector :math:`(0,1)`, the second node has the code vector :math:`(2,3)` and so on. The joint positions and these code vectors are packed together in a data structure called "node". Later on, while the truss members are being defined, the geometry and material properties of each truss member are packed together in a data structure called "bar". The "bar" data structure also contains a code vector which is established by joining the code vectors of the two nodes belonging to the particular truss member.  
+The elements that make up a frame structure are capable of carrying shear forces and bending moments in addition to the axial forces. Also, in addition to the translational degrees of freedom at the two nodes of an element frame members have rotational degrees of freedom. The numbering convention and the positive directions of these degrees of freedom are shown below.
 
-- **Step 2:** Definition of the local member stiffness matrices :math:`\mathbf{k^{'}}`. These matrices are defined with respect to the local coordinate system :math:`(`:math:`(x^{'},y^{'})` in Figure 1 :math:`)` of each member.
+
+
 
 .. math::
   \mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} & -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} & \displaystyle\frac{EA}{L} \end{bmatrix}
