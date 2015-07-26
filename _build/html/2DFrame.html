@@ -6162,6 +6162,14 @@
 \[V_2 =\frac{\partial U}{\partial v_2}=EI\int_0^L(N_1^{''}N_3^{''}v_1+N_2^{''}N_3^{''}\theta_1+N_3^{''}N_3^{''}v_2+N_4^{''}N_3^{''}\theta_2)dx\]</div>
 <div class="math">
 \[M_2 =\frac{\partial U}{\partial \theta_2}=EI\int_0^L(N_1^{''}N_4^{''}v_1+N_2^{''}N_4^{''}\theta_1+N_3^{''}N_4^{''}v_2+N_4^{''}N_4^{''}\theta_2)dx\]</div>
+<p>The above equations can be written in matrix form:</p>
+<div class="math">
+\[\begin{split}\begin{bmatrix} N_1 \\ V_1 \\ M_1 \\N_2\\V_2\\M_2  \end{bmatrix} = \begin{bmatrix} \frac{EA}{L} &amp;0&amp;0&amp;-\frac{EA}{L}&amp;0&amp;0\\
+0 &amp;EI\int_0^L N_1^{''}N_1^{''}dx&amp;EI\int_0^L N_2^{''}N_1^{''}dx &amp; 0&amp;EI\int_0^L N_3^{''}N_1^{''}dx&amp;EI\int_0^L N_4^{''}N_1^{''}dx \\
+0 &amp;EI\int_0^L N_1^{''}N_2^{''}dx&amp;EI\int_0^L N_2^{''}N_2^{''}dx&amp; 0 &amp; EI\int_0^LN_3^{''}N_2^{''}dx &amp; EI\int_0^L N_4^{''}N_2^{''}dx\\
+-\frac{EA}{L}&amp;0&amp;0&amp;\frac{EA}{L}&amp;0&amp;0\\0&amp;EI\int_0^L N_1^{''}N_3^{''}dx &amp;EI\int_0^L N_2^{''}N_3^{''}dx &amp;0&amp;EI\int_0^L N_3^{''}N_3^{''}dx&amp;EI\int_0^L N_4^{''}N_3^{''}dx\\
+0&amp;EI\int_0^L N_1^{''}N_4^{''}dx &amp; EI\int_0^L N_2^{''}N_4^{''}dx &amp; 0 &amp; EI\int_0^L N_3^{''}N_4^{''}dx &amp; EI\int_0^L N_4^{''}N_4^{''}dx\end{bmatrix}\begin{bmatrix} u_1\\v_1\\\theta_1\\u_2\\v_2\\\theta_2\end{bmatrix}\end{split}\]</div>
+<p>After evaluating the integrals in the above matrix equation, the frame member stiffness matrix in local coordinates is found as</p>
 <div class="math">
 \[\begin{split}\mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} &amp; -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} &amp; \displaystyle\frac{EA}{L} \end{bmatrix}\end{split}\]</div>
 <ul class="simple">
