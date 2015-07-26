@@ -6138,16 +6138,21 @@ Once the total strain energy of a member is known, the forces and moments in the
 The above equations can be written in matrix form:
 
 .. math::
-  \begin{bmatrix} N_1 \\ V_1 \\ M_1 \\N_2\\V_2\\M_2  \end{bmatrix} = \begin{bmatrix} \frac{EA}{L} &0&0&-\frac{EA}{L}&0&0\\
+  \begin{bmatrix} N_1 \\ V_1 \\ M_1 \\N_2\\V_2\\M_2  \end{bmatrix} = \begin{bmatrix} \displaystyle\frac{EA}{L} &0&0&-\displaystyle\frac{EA}{L}&0&0\\
   0 &EI\int_0^L N_1^{''}N_1^{''}dx&EI\int_0^L N_2^{''}N_1^{''}dx & 0&EI\int_0^L N_3^{''}N_1^{''}dx&EI\int_0^L N_4^{''}N_1^{''}dx \\ 
   0 &EI\int_0^L N_1^{''}N_2^{''}dx&EI\int_0^L N_2^{''}N_2^{''}dx& 0 & EI\int_0^LN_3^{''}N_2^{''}dx & EI\int_0^L N_4^{''}N_2^{''}dx\\
-  -\frac{EA}{L}&0&0&\frac{EA}{L}&0&0\\0&EI\int_0^L N_1^{''}N_3^{''}dx &EI\int_0^L N_2^{''}N_3^{''}dx &0&EI\int_0^L N_3^{''}N_3^{''}dx&EI\int_0^L N_4^{''}N_3^{''}dx\\ 
+  -\displaystyle\frac{EA}{L}&0&0&\displaystyle\frac{EA}{L}&0&0\\0&EI\int_0^L N_1^{''}N_3^{''}dx &EI\int_0^L N_2^{''}N_3^{''}dx &0&EI\int_0^L N_3^{''}N_3^{''}dx&EI\int_0^L N_4^{''}N_3^{''}dx\\ 
   0&EI\int_0^L N_1^{''}N_4^{''}dx & EI\int_0^L N_2^{''}N_4^{''}dx & 0 & EI\int_0^L N_3^{''}N_4^{''}dx & EI\int_0^L N_4^{''}N_4^{''}dx\end{bmatrix}\begin{bmatrix} u_1\\v_1\\\theta_1\\u_2\\v_2\\\theta_2\end{bmatrix}
 
 After evaluating the integrals in the above matrix equation, the frame member stiffness matrix in local coordinates is found as
 
 .. math::
-  \mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} & -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} & \displaystyle\frac{EA}{L} \end{bmatrix}
+  \mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} &0&0& -\displaystyle\frac{EA}{L}&0&0 \\ 
+  0&\displaystyle\frac{12EI}{L^3}&\displaystyle\frac{6EI}{L^2}&0&-\displaystyle\frac{12EI}{L^3}&\displaystyle\frac{6EI}{L^2}\\
+  0&\displaystyle\frac{6EI}{L^2}&\displaystyle\frac{4EI}{L}&0&-\displaystyle\frac{6EI}{L^2}&\displaystyle\frac{2EI}{L}\\
+  -\displaystyle\frac{EA}{L} &0&0& \displaystyle\frac{EA}{L}&0&0\\
+  0&-\displaystyle\frac{12EI}{L^3}&-\displaystyle\frac{6EI}{L^2}&0&\displaystyle\frac{12EI}{L^3}&-\displaystyle\frac{6EI}{L^2}\\
+  0&\displaystyle\frac{6EI}{L^2}&\displaystyle\frac{2EI}{L}&0&-\displaystyle\frac{6EI}{L^2}&\displaystyle\frac{4EI}{L} \end{bmatrix}
 
 - **Step 3**: Definition of the coordinate transformation matrices :math:`\mathbf{t}` for each truss member. Using these matrices the local member stiffness matrices, local displacements(:math:`u_1^{'}, u_2^{'}`) and forces(:math:`q_1^{'}, q_2^{'}`) at each end of the truss members are transformed into the global coordinate system. These matrices are populated by the cosines and sines of the angle between the member axis and the global x-coordinate system (usually a horizontal axis).
 

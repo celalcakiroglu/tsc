@@ -6164,14 +6164,19 @@
 \[M_2 =\frac{\partial U}{\partial \theta_2}=EI\int_0^L(N_1^{''}N_4^{''}v_1+N_2^{''}N_4^{''}\theta_1+N_3^{''}N_4^{''}v_2+N_4^{''}N_4^{''}\theta_2)dx\]</div>
 <p>The above equations can be written in matrix form:</p>
 <div class="math">
-\[\begin{split}\begin{bmatrix} N_1 \\ V_1 \\ M_1 \\N_2\\V_2\\M_2  \end{bmatrix} = \begin{bmatrix} \frac{EA}{L} &amp;0&amp;0&amp;-\frac{EA}{L}&amp;0&amp;0\\
+\[\begin{split}\begin{bmatrix} N_1 \\ V_1 \\ M_1 \\N_2\\V_2\\M_2  \end{bmatrix} = \begin{bmatrix} \displaystyle\frac{EA}{L} &amp;0&amp;0&amp;-\displaystyle\frac{EA}{L}&amp;0&amp;0\\
 0 &amp;EI\int_0^L N_1^{''}N_1^{''}dx&amp;EI\int_0^L N_2^{''}N_1^{''}dx &amp; 0&amp;EI\int_0^L N_3^{''}N_1^{''}dx&amp;EI\int_0^L N_4^{''}N_1^{''}dx \\
 0 &amp;EI\int_0^L N_1^{''}N_2^{''}dx&amp;EI\int_0^L N_2^{''}N_2^{''}dx&amp; 0 &amp; EI\int_0^LN_3^{''}N_2^{''}dx &amp; EI\int_0^L N_4^{''}N_2^{''}dx\\
--\frac{EA}{L}&amp;0&amp;0&amp;\frac{EA}{L}&amp;0&amp;0\\0&amp;EI\int_0^L N_1^{''}N_3^{''}dx &amp;EI\int_0^L N_2^{''}N_3^{''}dx &amp;0&amp;EI\int_0^L N_3^{''}N_3^{''}dx&amp;EI\int_0^L N_4^{''}N_3^{''}dx\\
+-\displaystyle\frac{EA}{L}&amp;0&amp;0&amp;\displaystyle\frac{EA}{L}&amp;0&amp;0\\0&amp;EI\int_0^L N_1^{''}N_3^{''}dx &amp;EI\int_0^L N_2^{''}N_3^{''}dx &amp;0&amp;EI\int_0^L N_3^{''}N_3^{''}dx&amp;EI\int_0^L N_4^{''}N_3^{''}dx\\
 0&amp;EI\int_0^L N_1^{''}N_4^{''}dx &amp; EI\int_0^L N_2^{''}N_4^{''}dx &amp; 0 &amp; EI\int_0^L N_3^{''}N_4^{''}dx &amp; EI\int_0^L N_4^{''}N_4^{''}dx\end{bmatrix}\begin{bmatrix} u_1\\v_1\\\theta_1\\u_2\\v_2\\\theta_2\end{bmatrix}\end{split}\]</div>
 <p>After evaluating the integrals in the above matrix equation, the frame member stiffness matrix in local coordinates is found as</p>
 <div class="math">
-\[\begin{split}\mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} &amp; -\displaystyle\frac{EA}{L} \\ -\displaystyle\frac{EA}{L} &amp; \displaystyle\frac{EA}{L} \end{bmatrix}\end{split}\]</div>
+\[\begin{split}\mathbf{k^{'}} = \begin{bmatrix} \displaystyle\frac{EA}{L} &amp;0&amp;0&amp; -\displaystyle\frac{EA}{L}&amp;0&amp;0 \\
+0&amp;\displaystyle\frac{12EI}{L^3}&amp;\displaystyle\frac{6EI}{L^2}&amp;0&amp;-\displaystyle\frac{12EI}{L^3}&amp;\displaystyle\frac{6EI}{L^2}\\
+0&amp;\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{4EI}{L}&amp;0&amp;-\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{2EI}{L}\\
+-\displaystyle\frac{EA}{L} &amp;0&amp;0&amp; \displaystyle\frac{EA}{L}&amp;0&amp;0\\
+0&amp;-\displaystyle\frac{12EI}{L^3}&amp;-\displaystyle\frac{6EI}{L^2}&amp;0&amp;\displaystyle\frac{12EI}{L^3}&amp;-\displaystyle\frac{6EI}{L^2}\\
+0&amp;\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{2EI}{L}&amp;0&amp;-\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{4EI}{L} \end{bmatrix}\end{split}\]</div>
 <ul class="simple">
 <li><strong>Step 3</strong>: Definition of the coordinate transformation matrices <span class="math">\(\mathbf{t}\)</span> for each truss member. Using these matrices the local member stiffness matrices, local displacements(<span class="math">\(u_1^{'}, u_2^{'}\)</span>) and forces(<span class="math">\(q_1^{'}, q_2^{'}\)</span>) at each end of the truss members are transformed into the global coordinate system. These matrices are populated by the cosines and sines of the angle between the member axis and the global x-coordinate system (usually a horizontal axis).</li>
 </ul>
