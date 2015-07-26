@@ -6177,69 +6177,10 @@
 -\displaystyle\frac{EA}{L} &amp;0&amp;0&amp; \displaystyle\frac{EA}{L}&amp;0&amp;0\\
 0&amp;-\displaystyle\frac{12EI}{L^3}&amp;-\displaystyle\frac{6EI}{L^2}&amp;0&amp;\displaystyle\frac{12EI}{L^3}&amp;-\displaystyle\frac{6EI}{L^2}\\
 0&amp;\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{2EI}{L}&amp;0&amp;-\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{4EI}{L} \end{bmatrix}\end{split}\]</div>
-<ul class="simple">
-<li><strong>Step 3</strong>: Definition of the coordinate transformation matrices <span class="math">\(\mathbf{t}\)</span> for each truss member. Using these matrices the local member stiffness matrices, local displacements(<span class="math">\(u_1^{'}, u_2^{'}\)</span>) and forces(<span class="math">\(q_1^{'}, q_2^{'}\)</span>) at each end of the truss members are transformed into the global coordinate system. These matrices are populated by the cosines and sines of the angle between the member axis and the global x-coordinate system (usually a horizontal axis).</li>
-</ul>
-<div class="figure align-center" id="coordtrans">
-<a class="reference internal image-reference" href="_images/LocalGlobalDispsForces.JPG"><img alt="_images/LocalGlobalDispsForces.JPG" src="_images/LocalGlobalDispsForces.JPG" style="width: 595.4px; height: 382.85px;" /></a>
-<p class="caption">Figure 1: Member end forces and displacements in local and global coordinates</p>
-</div>
-<div class="math">
-\[\begin{split}\mathbf{t} = \begin{bmatrix} \cos{\theta_x} &amp; \sin{\theta_x} &amp; 0 &amp; 0 \\ 0 &amp; 0 &amp; \cos{\theta_x} &amp; \sin{\theta_x} \end{bmatrix}\end{split}\]</div>
-<p>In Figure 1 <span class="math">\(u_{1x},u_{1y}, u_{2x}, u_{2y}\)</span> and <span class="math">\(q_{1x},q_{1y}, q_{2x}, q_{2y}\)</span> denote the global end displacements and end forces respectively.The conversion of the forces, displacements and the stiffness matrices between the local and global coordinate systems can be done as follows:</p>
-<div class="math">
-\[\mathbf{q} = \mathbf{t^T}\mathbf{q^{'}}, \quad \mathbf{u^{'}} = \mathbf{t}\mathbf{u}, \quad \mathbf{q}=\mathbf{k}\mathbf{u} \Rightarrow \mathbf{k}=\mathbf{t^T}\mathbf{k^{'}}\mathbf{t}\]</div>
-<ul>
-<li><p class="first"><strong>Step 5</strong>: Assemblage of the global stiffness matrix for the entire system from the global stiffness matrices of the bars. This operation uses the code vectors of the truss members. As mentioned in step 1, each 2D truss member is assigned a code vector consisting of 4 numbers. As an example if a bar is located between the first and third (in the order of definition) nodes of the system, then the code vector of this bar would be <span class="math">\((0, 1, 4, 5)\)</span>. The data structure &#8220;bar&#8221; contains a vector called &#8220;codeVec&#8221; where the numbers <span class="math">\((0, 1, 4, 5)\)</span> would be stored for this particular bar. Let&#8217;s assume as an example that the total number of nodes in the system is 3. Then the total number of possible joint displacements (in other words the total degrees of freedom of the system) would be 6 and the global system stiffness matrix would be a 6X6 matrix. Let&#8217;s call this matrix <span class="math">\(\mathbf{K}\)</span>. In the process of programming this method, <span class="math">\(\mathbf{K}\)</span> is initialized as a zero matrix. Afterwards the entries of the member global stiffness matrices are added to the proper parts of <span class="math">\(\mathbf{K}\)</span>. In case of the example bar the following operations would be necessary: <span class="math">\(\mathbf{K}[0][0]+=\mathbf{k}[0][0]\)</span>, <span class="math">\(\mathbf{K}[0][1]+=\mathbf{k}[0][1]\)</span>, <span class="math">\(\mathbf{K}[0][4]+=\mathbf{k}[0][2]\)</span>, <span class="math">\(\mathbf{K}[0][5]+=\mathbf{k}[0][3]\)</span>, <span class="math">\(\mathbf{K}[1][4]+=\mathbf{k}[1][2]\)</span>, <span class="math">\(\mathbf{K}[1][5]+=\mathbf{k}[1][3]\)</span> and so on. The following pseudocode would do this operation for all bars in the system and assemble the system global stiffness matrix</p>
-<div class="highlight-python"><div class="highlight"><pre>for(i =0;i&lt;total number of bars;i++)
-  for(j=0;j&lt;4;j++)
-    for(m=0;m&lt;4;m++)
-      index1=bars[i].codeVec[j]
-      index2=bars[i].codeVec[m]
-      K[index1][index2]+=bars[i].k[j][m]
-    next
-  next
-next
-</pre></div>
-</div>
-</li>
-<li><p class="first"><strong>Step 6</strong>: Partitioning of the global stiffness matrix <span class="math">\(\mathbf{K}\)</span>, the global displacement vector <span class="math">\(\mathbf{U}\)</span> and the global force vector <span class="math">\(\mathbf{Q}\)</span>. <span class="math">\(\mathbf{Q}\)</span> and <span class="math">\(\mathbf{U}\)</span> are related to each other as follows:</p>
-<div class="math">
-\[\mathbf{Q} = \mathbf{K}\mathbf{U}\]</div>
-<p>In the above equation both <span class="math">\(\mathbf{Q}\)</span> and <span class="math">\(\mathbf{U}\)</span> have known and unknown parts by the definition of the system such that where <span class="math">\(\mathbf{U}\)</span> is known, <span class="math">\(\mathbf{Q}\)</span> is unknown and vice versa. In order to come up with an equation system from which the unknown parts of <span class="math">\(\mathbf{U}\)</span> can be solved, a sub global stiffness matrix <span class="math">\(\mathbf{K_s}\)</span> as well as sub load and displacement vectors <span class="math">\(\mathbf{Q_s}\)</span> and <span class="math">\(\mathbf{U_s}\)</span> have to be defined. For this purpose the code values in the entire system corresponding to the degrees of freedom where the displacement is unknown but the force is known, are packed into a vector called &#8220;subIndices&#8221;. Also, the known forces at these degrees of freedom are packed into the vector <span class="math">\(\mathbf{Q_s}\)</span>. The next step is to initialize <span class="math">\(\mathbf{K_s}\)</span> as a zero matrix and then to populate it using the following pseudocode.</p>
-<div class="highlight-python"><div class="highlight"><pre>for(i=0;i&lt;length of subIndices;i++)
-  for(j=0;j&lt;length of subIndices;j++)
-    Ks[i][j]=K[subIndices[i]][subIndices[j]]
-  next
-next
-</pre></div>
-</div>
-</li>
-<li><p class="first"><strong>Step 7</strong>: The unknown displacements <span class="math">\(\mathbf{U_s}\)</span> are solved from the equation system <span class="math">\(\mathbf{Q_s}=\mathbf{K_s}\mathbf{U_s}\)</span>. Afterwards the values in <span class="math">\(\mathbf{U_s}\)</span> are added to the initially zero vector <span class="math">\(\mathbf{U}\)</span> using the following pseudocode.</p>
-<div class="highlight-python"><div class="highlight"><pre>for(i=0;i&lt;length of subIndices;i++)
-  U[subIndices[i]]=Us[i]
-next
-</pre></div>
-</div>
-</li>
-<li><p class="first"><strong>Step 8</strong>: Computation of the force vector with <span class="math">\(\mathbf{Q}=\mathbf{K}\mathbf{U}\)</span>.</p>
-</li>
-<li><p class="first"><strong>Step 9</strong>: Using <span class="math">\(\mathbf{Q}\)</span> and <span class="math">\(\mathbf{U}\)</span>, global force and displacement vectors <span class="math">\(\mathbf{q}\)</span> and <span class="math">\(\mathbf{u}\)</span> are assigned to each truss member as follows.</p>
-<div class="highlight-python"><div class="highlight"><pre>for(i=0;i&lt;total number of bars;i++)
-  for(j=0;j&lt;4;j++)
-    index=bars[i].codeVec[j]
-    bars[i].q[j]=Q[index]
-    bars[i].u[j]=U[index]
-  next
-next
-</pre></div>
-</div>
-</li>
-<li><p class="first"><strong>Step 10</strong>: For each truss member, the global load and displacement vectors are transformed into the local coordinate system in order to compute the axial forces and displacements of each truss member. The equations <span class="math">\(\mathbf{u^{'}}=\mathbf{t}\mathbf{u}\)</span> and <span class="math">\(\mathbf{q^{'}}=\mathbf{k^{'}}\mathbf{u^{'}}\)</span> are used. As shown in Figure 1 the local force <span class="math">\(\mathbf{q_2^{'}}\)</span> is defined as a tensile force. In Figure 1, <span class="math">\(\mathbf{q_1^{'}}\)</span> and <span class="math">\(\mathbf{q_2^{'}}\)</span> correspond to <span class="math">\(\mathbf{q^{'}[0]}\)</span> and <span class="math">\(\mathbf{q^{'}[1]}\)</span> respectively. Therefore a positive value of <span class="math">\(\mathbf{q^{'}[1]}\)</span> indicates tension in the member whereas a negative value indicates compression.</p>
-</li>
-</ul>
+<p>The transformation of the stiffness matrices into the global coordinate system and the assemblage of the global stiffness matrix can be done similar to 2 dimensional trusses.</p>
 <p><strong>References</strong></p>
-<p id="id1">[1] Hibbeler R.C., Structural Analysis, 8th edition, ISBN:9780132570534</p>
+<p id="id1">[1] Hibbeler R.C., Structural Analysis, 8th edition, ISBN:978-0132570534</p>
+<p id="id2">[2] Hutton D.V., Fundamentals of Finite Element Analysis, ISBN:0072395362</p>
 </div>
 </div>
 
