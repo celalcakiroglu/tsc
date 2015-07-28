@@ -6061,6 +6061,8 @@ The elements that make up a frame structure are capable of carrying shear forces
    :scale: 65 %
    :align: center
 
+   Figure 1: Translational and rotational degrees of freedom of a frame member
+
 The first step in the derivation of the element stiffness matrix is to describe the flexural displacement :math:`v(x)` and axial displacement :math:`u(x)` of the frame members in polynomial form.
 
 .. math::
@@ -6154,8 +6156,22 @@ After evaluating the integrals in the above matrix equation, the frame member st
   0&-\displaystyle\frac{12EI}{L^3}&-\displaystyle\frac{6EI}{L^2}&0&\displaystyle\frac{12EI}{L^3}&-\displaystyle\frac{6EI}{L^2}\\
   0&\displaystyle\frac{6EI}{L^2}&\displaystyle\frac{2EI}{L}&0&-\displaystyle\frac{6EI}{L^2}&\displaystyle\frac{4EI}{L} \end{bmatrix}
 
-The transformation of the stiffness matrices into the global coordinate system and the assemblage of the global stiffness matrix can be done similar to 2 dimensional trusses.  
+The transformation of the stiffness matrices into the global coordinate system and the assemblage of the global stiffness matrix can be done similar to 2 dimensional trusses. 
 
+In case of elements carrying distributed loading, the reaction forces that the distributed load would cause on a single beam element, are added to the load vectors of the element nodes. These reaction forces and moments are shown in Figure 2.  
+
+.. _RFsFrame:
+.. figure:: 2DFrame/EndMoments.JPG
+   :height: 722 px
+   :width: 766 px
+   :scale: 65 %
+   :align: center
+
+   Figure 2: Reaction forces and moments of a frame member
+
+In Figure 2 the nodes at the two ends of the frame element are denoted with :math:`N_1` and :math:`N_2`. From elementary strength of materials we know that a distributed load :math:`q` on a beam of length :math:`L` clamped at both ends would cause end moments in magnitude :math:`\displaystyle\frac{qL^2}{12}` and support shear forces in magnitude :math:`\displaystyle\frac{qL}{2}`. In Figure 2, the reaction forces and moments acting in the opposite directions of the degrees of freedom given in Figure 1, have negative sign. On the other hand the forces and moments acting on the nodes of the element because of the distributed load, act in the opposite directions of the reaction forces and moments. A nodal force or moment caused by :math:`q` is only added to the system load vector if the node is not constrained in the direction of that force or moment.
+
+After solving the system equations, the shear forces and bending moments are transformed to local coordinates. Finally according to the sign convention of Figure 1, :math:`qL/2` and :math:`qL^2/12` are added to the local forces and moments. 
 
 **References**
 

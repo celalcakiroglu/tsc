@@ -6114,6 +6114,7 @@
 <p>The elements that make up a frame structure are capable of carrying shear forces and bending moments in addition to the axial forces. Also, in addition to the translational degrees of freedom at the two nodes of an element, frame members have rotational degrees of freedom. The numbering convention and the positive directions of these degrees of freedom are shown below.</p>
 <div class="figure align-center" id="dofsframe">
 <a class="reference internal image-reference" href="_images/Dofs.JPG"><img alt="_images/Dofs.JPG" src="_images/Dofs.JPG" style="width: 586.95px; height: 142.35px;" /></a>
+<p class="caption">Figure 1: Translational and rotational degrees of freedom of a frame member</p>
 </div>
 <p>The first step in the derivation of the element stiffness matrix is to describe the flexural displacement <span class="math">\(v(x)\)</span> and axial displacement <span class="math">\(u(x)\)</span> of the frame members in polynomial form.</p>
 <div class="math">
@@ -6178,6 +6179,13 @@
 0&amp;-\displaystyle\frac{12EI}{L^3}&amp;-\displaystyle\frac{6EI}{L^2}&amp;0&amp;\displaystyle\frac{12EI}{L^3}&amp;-\displaystyle\frac{6EI}{L^2}\\
 0&amp;\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{2EI}{L}&amp;0&amp;-\displaystyle\frac{6EI}{L^2}&amp;\displaystyle\frac{4EI}{L} \end{bmatrix}\end{split}\]</div>
 <p>The transformation of the stiffness matrices into the global coordinate system and the assemblage of the global stiffness matrix can be done similar to 2 dimensional trusses.</p>
+<p>In case of elements carrying distributed loading, the reaction forces that the distributed load would cause on a single beam element, are added to the load vectors of the element nodes. These reaction forces and moments are shown in Figure 2.</p>
+<div class="figure align-center" id="rfsframe">
+<a class="reference internal image-reference" href="_images/EndMoments.JPG"><img alt="_images/EndMoments.JPG" src="_images/EndMoments.JPG" style="width: 497.9px; height: 469.3px;" /></a>
+<p class="caption">Figure 2: Reaction forces and moments of a frame member</p>
+</div>
+<p>In Figure 2 the nodes at the two ends of the frame element are denoted with <span class="math">\(N_1\)</span> and <span class="math">\(N_2\)</span>. From elementary strength of materials we know that a distributed load <span class="math">\(q\)</span> on a beam of length <span class="math">\(L\)</span> clamped at both ends would cause end moments in magnitude <span class="math">\(\displaystyle\frac{qL^2}{12}\)</span> and support shear forces in magnitude <span class="math">\(\displaystyle\frac{qL}{2}\)</span>. In Figure 2, the reaction forces and moments acting in the opposite directions of the degrees of freedom given in Figure 1, have negative sign. On the other hand the forces and moments acting on the nodes of the element because of the distributed load, act in the opposite directions of the reaction forces and moments. A nodal force or moment caused by <span class="math">\(q\)</span> is only added to the system load vector if the node is not constrained in the direction of that force or moment.</p>
+<p>After solving the system equations, the shear forces and bending moments are transformed to local coordinates. Finally according to the sign convention of Figure 1, <span class="math">\(qL/2\)</span> and <span class="math">\(qL^2/12\)</span> are added to the local forces and moments.</p>
 <p><strong>References</strong></p>
 <p id="id1">[1] Hibbeler R.C., Structural Analysis, 8th edition, ISBN:978-0132570534</p>
 <p id="id2">[2] Hutton D.V., Fundamentals of Finite Element Analysis, ISBN:0072395362</p>
