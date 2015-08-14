@@ -3,8 +3,6 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Celal's documentation!
-======================================================
 
 
 
@@ -44,7 +42,7 @@ Biography of Celal Cakiroglu
 
 **Favourite Books:**
 
-- Dune, F. Herbert
+- Stranger in a Strange Land, Robert A. Heinlein
 - The Player of Games, Iain M Banks
 
 **Favourite Movies:**

@@ -80,4 +80,4 @@ it is clear that :math:`\boxed{G^{'}(\xi)=0}`. This completes the proof of Rolle
 
 .. _1:
 
-[1] Muldowney, James S. ; “Mathematics 117 Lecture Notes”
+[1] Muldowney, James S. ; “Mathematics 117 Lecture Notes”, University of Alberta

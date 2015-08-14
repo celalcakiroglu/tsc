@@ -1075,7 +1075,37 @@ Polygon Meshing through Triangulation
             var angle3=(Math.acos(this.vec5DotVec6/(this.vec5Norm*this.vec6Norm)))*180/Math.PI;
             this.angles=[angle1, angle2, angle3];//The key is that node 1 has angle 1 and so on
           }
-
+          function defaultSys(gl, iPointsTxt, bDefineBtn){
+            //Define the boundary nodes
+            nodes.push(new node(-0.9, -0.8, 0, -1));
+            b_coords[0]=-0.9;b_coords[1]=-0.8;n_coords[0]=-0.9;n_coords[1]=-0.8;
+            nodes.push(new node(-0.8, -0.9, 1, -1));
+            b_coords[2]=-0.8;b_coords[3]=-0.9;n_coords[2]=-0.8;n_coords[3]=-0.9;
+            nodes.push(new node(0.0, -0.95, 2, -1));
+            b_coords[4]=0.0;b_coords[5]=-0.95;n_coords[4]=0.0;n_coords[5]=-0.95;
+            nodes.push(new node(0.6, -0.6, 3, -1));
+            b_coords[6]=0.6;b_coords[7]=-0.6;n_coords[6]=0.6;n_coords[7]=-0.6;
+            nodes.push(new node(0.7, -0.4, 4, -1));
+            b_coords[8]=0.7;b_coords[9]=-0.4;n_coords[8]=0.7;n_coords[9]=-0.4;
+            nodes.push(new node(0.8, 0.3, 5, -1));
+            b_coords[10]=0.8;b_coords[11]=0.3;n_coords[10]=0.8;n_coords[11]=0.3;
+            nodes.push(new node(0.6, 0.5, 6, -1));
+            b_coords[12]=0.6;b_coords[13]=0.5;n_coords[12]=0.6;n_coords[13]=0.5;
+            nodes.push(new node(0.1, 0.9, 7, -1));
+            b_coords[14]=0.1;b_coords[15]=0.9;n_coords[14]=0.1;n_coords[15]=0.9;
+            nodes.push(new node(-0.2, 0.85, 8, -1));
+            b_coords[16]=-0.2;b_coords[17]=0.85;n_coords[16]=-0.2;n_coords[17]=0.85;
+            nodes.push(new node(-0.8, 0.3, 9, -1));
+            b_coords[18]=-0.8;b_coords[19]=0.3;n_coords[18]=-0.8;n_coords[19]=0.3;
+            nodes.push(new node(-0.95, 0.0, 10, -1));
+            b_coords[20]=-0.95;b_coords[21]=0.0;n_coords[20]=-0.95;n_coords[21]=0.0;
+            bCoords=22;numBNodes=11;numNodes=11;
+            bDefineDefault(gl);
+            iPointsTxt.value='45';
+            iPointsDefault(gl, iPointsTxt);
+            meshDefault(gl, b_coords, bCoords, i_coords, iCoords);
+            for(p=0;p<iCoords;p++)edgeFlipDefault(gl,b_coords, bCoords, i_coords, iCoords);
+          }
           function main(){
             var canvas = document.getElementById('webgl');
             var bDefineBtn=document.getElementById('bDefine');
@@ -1097,12 +1127,13 @@ Polygon Meshing through Triangulation
             else{console.log('success initializing the shaders');}
             gl.clearColor(0.78,0.87,0.88,1.0);//blueish grey
             gl.clear(gl.COLOR_BUFFER_BIT);
+            defaultSys(gl, iPointsTxt, bDefineBtn);
             canvas.onmousedown=function(ev){click(ev, gl, canvas)};
             bDefineBtn.onclick=function(ev){bDefine(ev,gl)};//Make sure this syntax is correct
             reDefineBtn.onclick=function(ev){reDefine(ev,gl)};//Make sure this syntax is correct
-            iPointsBtn.onclick=function(ev){iPoints(ev,gl,iPointsTxt)};
-            meshBtn.onclick=function(ev){mesh(ev,gl,b_coords, bCoords, i_coords, iCoords)};
-            flipBtn.onclick=function(ev){edgeFlip(ev,gl,b_coords, bCoords, i_coords, iCoords)};
+            iPointsBtn.onclick=function(ev){iPoints(ev, gl,iPointsTxt)};
+            meshBtn.onclick=function(ev){mesh(ev, gl,b_coords, bCoords, i_coords, iCoords)};
+            flipBtn.onclick=function(ev){edgeFlip(ev, gl,b_coords, bCoords, i_coords, iCoords)};
           }
 
           function click(ev, gl, canvas){
@@ -1134,8 +1165,30 @@ Polygon Meshing through Triangulation
                 gl.drawArrays(gl.POINTS, 0, numBNodes);
               }
             }
-          
-          function bDefine(ev,gl){
+          function bDefineDefault(gl){
+            if(bDefined==false){
+              for(var i=0;i<numBNodes;i+=1){
+                var boundaryEdge=new edge(nodes[i].index, nodes[(i+1)%numBNodes].index, numEdges, -1);//-1 indicates that it is a boundary edge
+                edges.push(boundaryEdge);numEdges+=1;numBEdges+=1;
+              }
+              var vertexBuffer = gl.createBuffer(); 
+              if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;} 
+              gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
+              gl.bufferData(gl.ARRAY_BUFFER, b_coords, gl.STATIC_DRAW);//Write data into buffer
+              var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
+              if(a_Position<0){
+                console.log('Failed to get the storage location of a_Position');
+                return;
+              }
+              else{console.log('success getting the storage location of a_Position');}
+              gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+              gl.enableVertexAttribArray(a_Position);
+              gl.clear(gl.COLOR_BUFFER_BIT);
+              gl.drawArrays(gl.LINE_LOOP, 0, numBNodes);
+            }
+            bDefined=true;
+          }
+          function bDefine(ev, gl){
             if(bDefined==false){
               for(var i=0;i<numBNodes;i+=1){
                 var boundaryEdge=new edge(nodes[i].index, nodes[(i+1)%numBNodes].index, numEdges, -1);//-1 indicates that it is a boundary edge
@@ -1161,9 +1214,61 @@ Polygon Meshing through Triangulation
           function reDefine(ev, gl){
             gl.clear(gl.COLOR_BUFFER_BIT);
             bCoords=0;iCoords=0;nCoords=0;numBNodes=0;numINodes=0;numNodes=0;
+            numBEdges=0;numIEdges=0;numEdges=0;numTriangles=0;
             bDefined=false;
+            b_coords=new Float32Array(600);i_coords=new Float32Array(900);
+            n_coords=new Float32Array(1200);
+            edges=[];nodes=[];triangles=[];
           }
-
+          function iPointsDefault(gl, iPointsTxt){
+            for(var i=numBNodes;i<numNodes;i+=1){nodes.pop();}
+            numNodes-=numINodes;
+            numINodes=parseInt(iPointsTxt.value);
+            iCoords=numINodes*2;
+            nCoords=bCoords+iCoords;
+            var leftMin=b_coords[0];//Minimum x boundary coordinate
+            var botMin=b_coords[1];//Minimum y boundary coordinate
+            var rightMax=b_coords[0];//Maximum x boundary coordinate
+            var upMax=b_coords[1];//Maximum y boundary coordinate
+            for(var k=0;k<bCoords;k+=2){
+              if(b_coords[k]<leftMin)leftMin=b_coords[k];
+              if(b_coords[k]>rightMax)rightMax=b_coords[k];
+            }
+            for(var k=1;k<bCoords;k+=2){
+              if(b_coords[k]<botMin)botMin=b_coords[k];
+              if(b_coords[k]>upMax)upMax=b_coords[k];
+            }
+            var n=0;
+            while(n<iCoords){
+            //Add the interior vertices to i_coords and n_coords one by one
+              var newX=leftMin+(rightMax-leftMin)*Math.random();
+              var newY=botMin+(upMax-botMin)*Math.random();
+              if(isInside(newX, newY, b_coords, bCoords)){
+                i_coords[n]=newX;
+                i_coords[n+1]=newY;
+                n_coords[bCoords+n]=newX;
+                n_coords[bCoords+n+1]=newY;
+                var interiorNode=new node(newX, newY, numNodes, 1);
+                nodes.push(interiorNode);numNodes+=1;
+                n+=2;
+              }
+            }
+            var vertexBuffer = gl.createBuffer(); 
+            if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;} 
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
+            gl.bufferData(gl.ARRAY_BUFFER, n_coords, gl.STATIC_DRAW);//Write data into buffer
+            var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
+            if(a_Position<0){
+              console.log('Failed to get the storage location of a_Position');
+              return;
+            }
+            else{console.log('success getting the storage location of a_Position');}
+            gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(a_Position);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawArrays(gl.POINTS, numBNodes, numINodes);
+            gl.drawArrays(gl.LINE_LOOP, 0, numBNodes);
+          }
           function iPoints(ev, gl, iPointsTxt){
             for(var i=numBNodes;i<numNodes;i+=1){nodes.pop();}
             numNodes-=numINodes;
@@ -1257,6 +1362,57 @@ Polygon Meshing through Triangulation
             //zero if the test point is exactly in between
             return ((edgeEndX-edgeStartX)*(py-edgeStartY)-(px-edgeStartX)*(edgeEndY-edgeStartY))>0;
           }
+          function meshDefault(gl, b_coords, bCoords, i_coords, iCoords){
+            for(var i =0;i<numBNodes;i+=1){ //Define the initial edges and triangles
+            var interiorEdge=new edge(nodes[numBNodes].index, nodes[i].index, numEdges, 1);//1 indicates that it is an interior edge
+            edges.push(interiorEdge);numEdges+=1;numIEdges+=1;
+            var newTriangle=new triangle(nodes[numBNodes].index, nodes[i].index, nodes[(i+1)%numBNodes].index, numTriangles);
+            triangles.push(newTriangle);numTriangles+=1;
+            }
+            for(var i=numBNodes+1;i<numNodes;i+=1){//This loop adds the interior points starting from the second one
+              var initialNumOfTriangles=triangles.length;
+              for(var t=0; t<initialNumOfTriangles;t++){
+                if(isInside(nodes[i].x, nodes[i].y, triangles[t].tb_coords,6)){
+                  console.log("node is inside");
+                  var interiorEdge1 = new edge(nodes[i].index, triangles[t].nodeIndices[0], numEdges, 1);//1 indicates that this is an interior edge
+                  edges.push(interiorEdge1);numEdges+=1;numIEdges+=1;
+                  var interiorEdge2 = new edge(nodes[i].index, triangles[t].nodeIndices[1], numEdges, 1);//1 indicates that this is an interior edge
+                  edges.push(interiorEdge2);numEdges+=1;numIEdges+=1;
+                  var interiorEdge3 = new edge(nodes[i].index, triangles[t].nodeIndices[2], numEdges, 1);//1 indicates that this is an interior edge
+                  edges.push(interiorEdge3);numEdges+=1;numIEdges+=1;
+                  var triangle1=new triangle(nodes[i].index, triangles[t].nodeIndices[0], triangles[t].nodeIndices[1], numTriangles);
+                  //triangles.push(triangle1);
+                  var triangle2=new triangle(nodes[i].index, triangles[t].nodeIndices[1], triangles[t].nodeIndices[2], numTriangles);
+                  var triangle3=new triangle(nodes[i].index, triangles[t].nodeIndices[2], triangles[t].nodeIndices[0], numTriangles);
+                  delete triangles[t];
+                  triangles[t]=triangle1;
+                  triangles.push(triangle2);numTriangles+=1;
+                  triangles.push(triangle3);numTriangles+=1;
+                }
+              } 
+            }
+            //Draw
+            var vertexBuffer = gl.createBuffer(); 
+            if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;} 
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
+            gl.bufferData(gl.ARRAY_BUFFER, n_coords, gl.STATIC_DRAW);//Write data into buffer
+            var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
+            if(a_Position<0){
+              console.log('Failed to get the storage location of a_Position');
+              return;
+            }
+            else{console.log('success getting the storage location of a_Position');}
+            gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(a_Position);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawArrays(gl.POINTS, numBNodes, numINodes);
+            gl.drawArrays(gl.LINE_LOOP, 0, numBNodes);
+            for(var i=numBEdges;i<numEdges;i+=1){
+              var dizi=new Float32Array([edges[i].coords[0], edges[i].coords[1],edges[i].coords[2],edges[i].coords[3]]);
+              gl.bufferData(gl.ARRAY_BUFFER, dizi, gl.STATIC_DRAW);//Write data into buffer
+              gl.drawArrays(gl.LINES, 0, 2);
+            }
+          }
           function mesh(ev, gl, b_coords, bCoords, i_coords, iCoords){
             for(var i =0;i<numBNodes;i+=1){ //Define the initial edges and triangles
             var interiorEdge=new edge(nodes[numBNodes].index, nodes[i].index, numEdges, 1);//1 indicates that it is an interior edge
@@ -1308,7 +1464,54 @@ Polygon Meshing through Triangulation
               gl.drawArrays(gl.LINES, 0, 2);
             }
           }
-          function edgeFlip(ev,gl,b_coords, bCoords, i_coords, iCoords){
+          function edgeFlipDefault(gl,b_coords, bCoords, i_coords, iCoords){
+            console.log("NOW WE ARE IN EDGE FLIP");
+            for(var z=0;z<numEdges;z++){edges[z].index=z}
+            for(var z=0;z<numTriangles;z++){triangles[z].index=z;}
+            console.log("here we check the node indices of all triangles");
+            for(var p=0;p<numTriangles;p++)console.log(triangles[p]);
+            console.log("here we check the node indices of all internal edges");
+            for(var p=numBEdges;p<numEdges;p++)console.log(edges[p]);
+            for(var i=numBEdges;i<numEdges;i++){//traverse all the internal edges
+              edges[i].zero();
+              edges[i].addOppositeAngles();
+              if(edges[i].oppositeAngles.length!=2){
+                break;
+              }
+              if(edges[i].sumOpAngles>180){
+                delete triangles[edges[i].neighbourTriangleIndices[0]];
+                delete triangles[edges[i].neighbourTriangleIndices[1]];
+                triangles[edges[i].neighbourTriangleIndices[0]] = new triangle(edges[i].oppositeNodeIndices[0], edges[i].oppositeNodeIndices[1], edges[i].nodeIndices[0]);
+                triangles[edges[i].neighbourTriangleIndices[1]] = new triangle(edges[i].oppositeNodeIndices[0], edges[i].oppositeNodeIndices[1], edges[i].nodeIndices[1]);
+                var i1=edges[i].oppositeNodeIndices[0];var i2=edges[i].oppositeNodeIndices[1];
+                delete edges[i];
+                edges[i]=new edge(i1, i2, numEdges, 1);
+                break;//If we don't do this, it keeps flipping without updating the new ones
+              }
+            }
+            //Draw
+            var vertexBuffer = gl.createBuffer(); 
+            if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;} 
+            gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);//Binding the buffer object to target
+            gl.bufferData(gl.ARRAY_BUFFER, n_coords, gl.STATIC_DRAW);//Write data into buffer
+            var a_Position=gl.getAttribLocation(gl.program, 'a_Position');
+            if(a_Position<0){
+              console.log('Failed to get the storage location of a_Position');
+              return;
+            }
+            else{console.log('success getting the storage location of a_Position');}
+            gl.vertexAttribPointer(a_Position, 2, gl.FLOAT, false, 0, 0);
+            gl.enableVertexAttribArray(a_Position);
+            gl.clear(gl.COLOR_BUFFER_BIT);
+            gl.drawArrays(gl.POINTS, numBNodes, numINodes);
+            gl.drawArrays(gl.LINE_LOOP, 0, numBNodes);
+            for(var i=numBEdges;i<numEdges;i+=1){
+              var dizi=new Float32Array([edges[i].coords[0], edges[i].coords[1],edges[i].coords[2],edges[i].coords[3]]);
+              gl.bufferData(gl.ARRAY_BUFFER, dizi, gl.STATIC_DRAW);//Write data into buffer
+              gl.drawArrays(gl.LINES, 0, 2);
+            }
+          }
+          function edgeFlip(ev, gl,b_coords, bCoords, i_coords, iCoords){
             console.log("NOW WE ARE IN EDGE FLIP");
             for(var z=0;z<numEdges;z++){edges[z].index=z}
             for(var z=0;z<numTriangles;z++){triangles[z].index=z;}
@@ -1360,7 +1563,9 @@ Polygon Meshing through Triangulation
    </body>
    </html>
 
-The above canvas responds to mouse clicks by drawing a dot. Using mouse clicks the boundary of the domain to be meshed can be defined. Once the vertices constituting the boundary are positioned on the canvas, the "boundary defined" button should be clicked. It is important that the boundary is defined either in a clockwise or in a counterclockwise manner. Also, the boundary should be convex (Any two points inside the boundary can be joined with a line which does not intersect the boundary). In the next step the interior of the boundary is populated with vertices with random position. In this process the random vertices are generated between the maximum and minimum x and y coordinates of the boundary vertices. In order to determine if a randomly generated vertex is inside the boundary or not, the following steps are applied [1_]:
+The quality of the triangular mesh in the above example can be improved by clicking on the 'Flip' button.
+
+In the above canvas a new triangulation can be started by clicking on the 'Redefine boundary' button. The canvas responds to mouse clicks by drawing a dot. Using mouse clicks the boundary of the domain can be defined. Once the vertices constituting the boundary are positioned on the canvas, the "boundary defined" button should be clicked. It is important that the boundary is defined either in clockwise or in counterclockwise direction. Also, the boundary should be convex (Any two points inside the boundary can be joined with a line which does not intersect the boundary). In the next step the interior of the boundary is populated with vertices with random position. In this process the random vertices are generated between the maximum and minimum x and y coordinates of the boundary vertices. In order to determine if a randomly generated vertex is inside the boundary or not, the following steps are applied [1_]:
 
 - **Step 1**: For each newly generated interior vertex (test vertex), the y coordinate of this vertex is called the y-threshold. Find the edges constituting the boundary, which have one end above, the other end below the y-threshold. If one vertex of an edge is exactly on the y-threshold, then this vertex is assumed to be above the threshold. This is an arbitrary decision. If we choose the other way round it would work too as long as this rule is applied consistently.
 
