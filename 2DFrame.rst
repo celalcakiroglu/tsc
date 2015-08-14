@@ -29,6 +29,7 @@
       <p style="position:relative; z-index: 0">
         x-Force[N] <input type="text" id="xForce" style="width: 70px;">
         y-Force[N] <input type="text" id="yForce" style="width: 70px;">
+        B.Moment[Nmm] <input type="text" id="BM" style="width: 70px;">
         <button id="addNode" type="button">Add Node</button>
       </p>
       <p>
@@ -5333,7 +5334,7 @@
             this.index=index;
             this.x=x;
             this.y=y;
-            this.CLoad=[0,0];
+            this.CLoad=[0,0,0];
             this.xScaled=scaleFactor*this.x;
             this.yScaled=scaleFactor*this.y;
             if(!isNaN(xForce)){
@@ -5352,6 +5353,7 @@
             }
             if(!isNaN(BM)){
               this.BM=BM; 
+              this.CLoad[2]=BM;
             }
             else{
               this.BM=0;  
@@ -5417,6 +5419,7 @@
             var yTxt=document.getElementById('y');
             var xForceTxt=document.getElementById('xForce');xForceTxt.defaultValue="0";
             var yForceTxt=document.getElementById('yForce');yForceTxt.defaultValue="0";
+            var BMTxt=document.getElementById('BM');BMTxt.defaultValue="0";
             var ETxt=document.getElementById('eModul');
             var ATxt=document.getElementById('area');
             var IzTxt=document.getElementById('Iz');
@@ -5472,15 +5475,15 @@
             //console.log("zero matrix:");
             //console.log(numeric.mul(0,numeric.random([3, 3])));
             //++++++++++++++++++++++++++++++++++++++++++
-            defaultSys(ev,gl,ctx,totalSizeTxt);
+            defaultSys(ev,gl,ctx,totalSizeTxt,firstNodeDropDown,secondNodeDropDown);
             canvas.onmousedown=function(ev){click(ev, gl, canvas)};
             newSysBtn.onclick=function(ev){newSystem(ev,gl,ctx,firstNodeDropDown, secondNodeDropDown,elementListDropDown)};
             addNodeBtn.onclick=function(ev){addNode(ev,gl,ctx, totalSizeTxt, xTxt, yTxt, xForceTxt, yForceTxt,
-              xConstraintCheckBox, yConstraintCheckBox,firstNodeDropDown,secondNodeDropDown)};
-            addBarBtn.onclick=function(ev){addBar(ev,gl,ctx,totalSizeTxt,firstNodeDropDown, secondNodeDropDown,elementListDropDown, ETxt, ATxt, IzTxt)};   
+              BMTxt, xConstraintCheckBox, yConstraintCheckBox, rotConstraintCheckBox, firstNodeDropDown, secondNodeDropDown)};
+            addBarBtn.onclick=function(ev){addBar(ev,gl,ctx,totalSizeTxt,firstNodeDropDown, secondNodeDropDown,elementListDropDown, ETxt, ATxt, IzTxt, distLoadTxt)};   
             solveBtn.onclick=function(ev){solve(ev, gl, ctx)};
           }
-          function defaultSys(ev, gl, ctx,totalSizeTxt){
+          function defaultSys(ev, gl, ctx,totalSizeTxt,firstNodeDropDown,secondNodeDropDown){
               scaleFactor=2/(1.25*480);
               n_coords[0]=-240*scaleFactor;n_coords[1]=-90*scaleFactor;
               n_coords[2]=0*scaleFactor;n_coords[3]=90*scaleFactor;
@@ -5488,11 +5491,23 @@
               nCoords=6;
               nodes[0]=new node(-240, -90, 0, 0,0, 0, true, true, true);
               nodes[0].codeVec.push(0);nodes[0].codeVec.push(1);nodes[0].codeVec.push(2);
+              firstNodeDropDown.add(document.createElement("option"));
+              firstNodeDropDown.options[0].text=nodes[0].string;
+              secondNodeDropDown.add(document.createElement("option"));
+              secondNodeDropDown.options[0].text=nodes[0].string;
               nodes[1]=new node(0, 90, 0,0,0,1,false, false, false);
               nodes[1].codeVec.push(3);nodes[1].codeVec.push(4);nodes[1].codeVec.push(5);
               dofCodeVec.push(3);dofCodeVec.push(4);dofCodeVec.push(5);
+              firstNodeDropDown.add(document.createElement("option"));
+              firstNodeDropDown.options[1].text=nodes[1].string;
+              secondNodeDropDown.add(document.createElement("option"));
+              secondNodeDropDown.options[1].text=nodes[1].string;
               nodes[2]=new node(240, 90, 0, 0,0, 2, true, true, true);
               nodes[2].codeVec.push(6);nodes[2].codeVec.push(7);nodes[2].codeVec.push(8);
+              firstNodeDropDown.add(document.createElement("option"));
+              firstNodeDropDown.options[2].text=nodes[2].string;
+              secondNodeDropDown.add(document.createElement("option"));
+              secondNodeDropDown.options[2].text=nodes[2].string;
               numNodes=3;
               bars[0]=new bar(0,1,0,29000,12, 600, 0);
               bars[1]=new bar(1,2,1,29000,12, 600, 0.25);
@@ -5626,14 +5641,15 @@
                 elementListDropDown.remove(0);
               }
           }
-          function addNode(ev,gl,ctx, totalSizeTxt, xTxt, yTxt, xForceTxt,yForceTxt, xConstraintCheckBox, 
-            yConstraintCheckBox,rotConstraintCheckBox,firstNodeDropDown,secondNodeDropDown){
+          function addNode(ev,gl,ctx, totalSizeTxt, xTxt, yTxt, xForceTxt,yForceTxt, BMTxt, xConstraintCheckBox, 
+            yConstraintCheckBox,rotConstraintCheckBox,firstNodeDropDown, secondNodeDropDown){
             maxSysLength=parseFloat(totalSizeTxt.value);
             scaleFactor=2/(1.25*maxSysLength);//A very small number, the entered coordinates will be multiplied with this before being plotted
             var xCoord=parseFloat(xTxt.value);var xCoordScaled=scaleFactor*parseFloat(xTxt.value);
             var yCoord=parseFloat(yTxt.value);var yCoordScaled=scaleFactor*parseFloat(yTxt.value);
             var xForce=parseFloat(xForceTxt.value);
             var yForce=parseFloat(yForceTxt.value);
+            var BM = parseFloat(BMTxt.value);
             var xIsConstrained=xConstraintCheckBox.checked;
             var yIsConstrained=yConstraintCheckBox.checked;
             var rotIsConstrained=rotConstraintCheckBox.checked;
@@ -5643,15 +5659,15 @@
             n_coords[nCoords]=xCoordScaled;//These are for drawing
             n_coords[nCoords+1]=yCoordScaled;
             nCoords+=2;
-            var newNode= new node(xCoord, yCoord,xForce, yForce, numNodes, xIsConstrained, yIsConstrained, rotIsConstrained);
+            var newNode= new node(xCoord, yCoord,xForce, yForce, BM, numNodes, xIsConstrained, yIsConstrained, rotIsConstrained);
+            console.log(newNode);
             newNode.codeVec.push(3*Math.round(nCoords/2)-3);newNode.codeVec.push(3*Math.round(nCoords/2)-2);newNode.codeVec.push(3*Math.round(nCoords/2)-1);
             nodes.push(newNode);
-            var newNodeOptionFirstNode=document.createElement("option");
-            var newNodeOptionSecondNode=document.createElement("option");
-            newNodeOptionFirstNode.text=newNode.string;//The entries of the drop-down are called options
-            newNodeOptionSecondNode.text=newNode.string;
-            firstNodeDropDown.add(newNodeOptionFirstNode);
-            secondNodeDropDown.add(newNodeOptionSecondNode);
+            //The entries of the drop-down are called options
+            firstNodeDropDown.add(document.createElement("option"));
+            firstNodeDropDown.options[newNode.index].text=newNode.string;
+            secondNodeDropDown.add(document.createElement("option"));
+            secondNodeDropDown.options[newNode.index].text=newNode.string;
             numNodes+=1;
             var vertexBuffer = gl.createBuffer(); 
             if(!vertexBuffer){console.log('Failed to create the buffer object');return -1;} 

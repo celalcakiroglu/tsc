@@ -64,7 +64,7 @@ https://www.youtube.com/watch?v=oJsUvBQyHBs
 
 http://numericjs.com/index.php
 
-Send an email to Celal_.
+Contact Celal_.
 
 .. _Celal: cakirogl@ualberta.ca
 
