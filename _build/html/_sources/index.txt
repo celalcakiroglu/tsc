@@ -17,6 +17,7 @@ Contents:
    SiemensNX.rst
    CalculusStory.rst
    WebGL_Tri.rst
+   CoutteOpenFoam.rst
 ..   DOE.rst
 ..   ColdBend.rst
 ..   WebGL_DNBackShapes.rst
