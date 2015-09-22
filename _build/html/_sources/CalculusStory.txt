@@ -77,6 +77,7 @@ The second possibility is that for some :math:`\theta_0 \in (a,b)`, :math:`G(\th
 it is clear that :math:`\boxed{G^{'}(\xi)=0}`. This completes the proof of Rolle`s theorem since the only remaining possibility is that for some :math:`\theta_0 \in (a,b)`, :math:`G(\theta_0)<G(a)=G(b)` and the proof of this case is identical to the previous case.  
 
 Weierstrass' theorem
+
 **References**
 
 .. _1:
