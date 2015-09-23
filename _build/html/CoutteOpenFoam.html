@@ -106,15 +106,22 @@
 <p>Since in the above equation the left hand side is a function of z only and the right hand side is a function of x only, both the left and the right hand sides must be equal to a constant value such that:</p>
 <div class="math">
 \[\rho \nu u''=\partial_x f_1=\partial_x p=C\]</div>
-<p>A second expression for the pressure field can be obtained by integrating the equation <span class="math">\(\partial_x p=C\)</span> with respect to x once. This expression is given in Eq. (2)</p>
+<p>A second expression for the pressure field can be obtained by integrating the equation <span class="math">\(\partial_x p=C\)</span> with respect to x once. This expression is given in Eq.(2)</p>
 <div class="math">
 \[p(x,z)=Cx+f_2(z)  \qquad (2)\]</div>
-<p>A comparison of Eq. (1) and Eq. (2) shows that <span class="math">\(f_1(x)=Cx\)</span> and <span class="math">\(f_2(z)=-g\rho z\)</span>. Using this, the pressure field can be described as in Eq. (3) where <span class="math">\(p_0\)</span> is the pressure at the point x=0, z=0.</p>
+<p>A comparison of Eq.(1) and Eq.(2) shows that <span class="math">\(f_1(x)=Cx\)</span> and <span class="math">\(f_2(z)=-g\rho z\)</span>. Using this, the pressure field can be described as in Eq.(3) where <span class="math">\(p_0\)</span> is the pressure at the point x=0, z=0.</p>
 <div class="math">
 \[\boxed{p(x,z)=Cx-g\rho z + p_0} \qquad (3)\]</div>
-<p>Furthermore, integrating the equation <span class="math">\(\rho \nu u''=C\)</span> with respect to z twice, we obtain Eq. (4) which describes the x-component of the velocity field:</p>
+<p>Furthermore, integrating the equation <span class="math">\(\rho \nu u''=C\)</span> with respect to z twice, we obtain Eq.(4) which describes the x-component of the velocity field:</p>
 <div class="math">
-\[\boxed{u(z)=\displaystyle\frac{C}{2\rho\nu}z^2+c_1z+c_2} \qquad (4)\]</div>
+\[u(z)=\displaystyle\frac{C}{2\rho\nu}z^2+c_1z+c_2 \qquad (4)\]</div>
+<p>Applying the boundary conditions for u at z=-h and at z=h, the constants of integration <span class="math">\(c_1,c_2\)</span> can be computed as in Eq.(5).</p>
+<div class="math">
+\[\boxed{u(z)=\displaystyle\frac{C}{2\rho\nu}z^2+\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}-\displaystyle\frac{Ch^2}{2\rho\nu}}\qquad (5)\]</div>
+<p>Similarly, the velocity field in y-direction can be obtained by integrating the equation <span class="math">\(\nu v''=0\)</span> (the Navier-Stokes equation for y-direction) twice with respect to z and using the boundary conditions for v at z=-h and at z=h as in Eq.(6).</p>
+<div class="math">
+\[\boxed{v(z)=\displaystyle\frac{V-V'}{2h}z+\displaystyle\frac{V+V'}{2}}\qquad (6)\]</div>
+<p>A sub-class of flow between parallel plates is called Couette flow which occurs when <span class="math">\(\partial_x p=0\)</span> in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first before the more general case of <span class="math">\(\partial_xp \neq 0\)</span> which is called Poiseuille flow.</p>
 </div>
 <div class="section" id="numerical-solution-using-openfoam">
 <h2>Numerical Solution using OpenFOAM<a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>

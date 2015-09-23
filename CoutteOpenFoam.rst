@@ -76,21 +76,33 @@ Since in the above equation the left hand side is a function of z only and the r
 .. math::
   \rho \nu u''=\partial_x f_1=\partial_x p=C
    
-A second expression for the pressure field can be obtained by integrating the equation :math:`\partial_x p=C` with respect to x once. This expression is given in Eq. (2)
+A second expression for the pressure field can be obtained by integrating the equation :math:`\partial_x p=C` with respect to x once. This expression is given in Eq.(2)
 
 .. math::
    p(x,z)=Cx+f_2(z)  \qquad (2)
 
-A comparison of Eq. (1) and Eq. (2) shows that :math:`f_1(x)=Cx` and :math:`f_2(z)=-g\rho z`. Using this, the pressure field can be described as in Eq. (3) where :math:`p_0` is the pressure at the point x=0, z=0.
+A comparison of Eq.(1) and Eq.(2) shows that :math:`f_1(x)=Cx` and :math:`f_2(z)=-g\rho z`. Using this, the pressure field can be described as in Eq.(3) where :math:`p_0` is the pressure at the point x=0, z=0.
 
 .. math::
    \boxed{p(x,z)=Cx-g\rho z + p_0} \qquad (3)
 
-Furthermore, integrating the equation :math:`\rho \nu u''=C` with respect to z twice, we obtain Eq. (4) which describes the x-component of the velocity field:
+Furthermore, integrating the equation :math:`\rho \nu u''=C` with respect to z twice, we obtain Eq.(4) which describes the x-component of the velocity field:
 
 .. math::
-   \boxed{u(z)=\displaystyle\frac{C}{2\rho\nu}z^2+c_1z+c_2} \qquad (4)
+   u(z)=\displaystyle\frac{C}{2\rho\nu}z^2+c_1z+c_2 \qquad (4)
 
+Applying the boundary conditions for u at z=-h and at z=h, the constants of integration :math:`c_1,c_2` can be computed as in Eq.(5).
+
+.. math::
+   \boxed{u(z)=\displaystyle\frac{C}{2\rho\nu}z^2+\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}-\displaystyle\frac{Ch^2}{2\rho\nu}}\qquad (5)
+  
+Similarly, the velocity field in y-direction can be obtained by integrating the equation :math:`\nu v''=0` (the Navier-Stokes equation for y-direction) twice with respect to z and using the boundary conditions for v at z=-h and at z=h as in Eq.(6).
+
+.. math::
+   \boxed{v(z)=\displaystyle\frac{V-V'}{2h}z+\displaystyle\frac{V+V'}{2}}\qquad (6)
+
+A sub-class of flow between parallel plates is called Couette flow which occurs when :math:`\partial_x p=0` in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first before the more general case of :math:`\partial_xp \neq 0` which is called Poiseuille flow.
+ 
 Numerical Solution using OpenFOAM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
