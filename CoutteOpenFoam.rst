@@ -54,14 +54,43 @@ Here is a list of assumptions that we made so far to describe fluid flow between
 The application of the above assumptions to the Navier-Stokes equations yields the following simplified governing equations of fluid motion:
 
 .. math::
-   \begin{pmatrix}0\\0\\0\end{pmatrix}=\begin{pmatrix}-(1/\rho)\partial_x p+\nu u''\\ \nu v'' \\ -g-(1/\rho)\partial_z p\end{pmatrix}
+  \begin{matrix}\text{x-direction:}\\ \text{y-direection:} \\ \text{z-direction:}\end{matrix} \begin{pmatrix}0\\0\\0\end{pmatrix}=\begin{pmatrix}-(1/\rho)\partial_x p+\nu u''\\ \nu v'' \\ -g-(1/\rho)\partial_z p\end{pmatrix}
 
 or
 
 .. math::
    \Big[-\displaystyle\frac{1}{\rho}\partial_x p+\nu u''\Big]\mathbf{e}_1+\Big[\nu v''\Big]\mathbf{e}_2+\Big[-g-\displaystyle\frac{1}{\rho}\partial_z p\Big]\mathbf{e}_3=0
 
-In the above equations :math:`\partial_x` and :math:`\partial_z` stand for the partial derivatives with respect to x and z respectively.
+In the above equations :math:`\partial_x` and :math:`\partial_z` stand for the partial derivatives with respect to x and z respectively. By integrating the z-direction simplified Navier-Stokes equation once we obtain:
+
+.. math::
+   p(x,z)=-g\rho z+f_1(x) \qquad (1)
+
+From the above description of :math:`p(x,z)` it follows that :math:`\partial_x p=\partial_x f_1`. Plugging this relationship into the x-direction simplified Navier-Stokes equation we obtain:
+
+.. math::
+   \rho\nu u''=\partial_x f_1
+
+Since in the above equation the left hand side is a function of z only and the right hand side is a function of x only, both the left and the right hand sides must be equal to a constant value such that:
+
+.. math::
+  \rho \nu u''=\partial_x f_1=\partial_x p=C
+   
+A second expression for the pressure field can be obtained by integrating the equation :math:`\partial_x p=C` with respect to x once. This expression is given in Eq. (2)
+
+.. math::
+   p(x,z)=Cx+f_2(z)  \qquad (2)
+
+A comparison of Eq. (1) and Eq. (2) shows that :math:`f_1(x)=Cx` and :math:`f_2(z)=-g\rho z`. Using this, the pressure field can be described as in Eq. (3) where :math:`p_0` is the pressure at the point x=0, z=0.
+
+.. math::
+   \boxed{p(x,z)=Cx-g\rho z + p_0} \qquad (3)
+
+Furthermore, integrating the equation :math:`\rho \nu u''=C` with respect to z twice, we obtain Eq. (4) which describes the x-component of the velocity field:
+
+.. math::
+   \boxed{u(z)=\displaystyle\frac{C}{2\rho\nu}z^2+c_1z+c_2} \qquad (4)
+
 Numerical Solution using OpenFOAM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
