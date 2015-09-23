@@ -60,18 +60,49 @@
             
   <div class="section" id="flow-between-parallel-plates">
 <h1>Flow Between Parallel Plates<a class="headerlink" href="#flow-between-parallel-plates" title="Permalink to this headline">¶</a></h1>
-<p>This section is about the computation and visualization of the velocity and pressure fields in a fluid between two parallel plates using OpenFOAM and ParaView. The plates are assumed to be infinitely large and the fluid is assumed to be incompressible. The results obtained by OpenFOAM are compared to the analytical solutions available for this particular flow case.</p>
+<p>This section is about the computation and visualization of the velocity and pressure fields in an incompressible fluid between two parallel infinitely large plates using OpenFOAM and ParaView. The results obtained by OpenFOAM are compared to the analytical solutions available for this particular flow case.</p>
+<div class="section" id="analytical-solution">
+<h2>Analytical Solution<a class="headerlink" href="#analytical-solution" title="Permalink to this headline">¶</a></h2>
 <p>The fluid is set in motion due to the shear forces caused by the movement of the plates relative to each other. The positions and velocities of the plates are given in Figure 1 with respect to a cartesian coordinate system (x,y,z).</p>
 <div class="figure align-center" id="plates">
 <a class="reference internal image-reference" href="_images/Plates.jpg"><img alt="_images/Plates.jpg" src="_images/Plates.jpg" style="width: 624.4px; height: 360.5px;" /></a>
 <p class="caption">Figure 1: Parallel plates and the cartesian coordinate system [<a class="reference internal" href="#id1">1</a>]</p>
 </div>
-<p>The plates are a distance 2h apart from each other and the coordinate system is centered in the middle of this distance so that the top plate is located at z=h and the bottom plate is located at z=-h. The Navier-Stokes equations describing incompressible fluid flow are given below:</p>
+<p>The plates are a distance 2h apart from each other and the coordinate system is centered in the middle of this distance so that the top plate is located at z=h and the bottom plate is located at z=-h. The Navier-Stokes equations describing incompressible fluid flow in x,y,z directions are given below [<a class="reference internal" href="#id1">1</a>]:</p>
 <p>x-direction:</p>
+<div class="math">
+\[\frac{\partial u}{\partial t}+u\frac{\partial u}{\partial x}+v\frac{\partial u}{\partial y}+w\frac{\partial u}{\partial z}=-\frac{1}{\rho}\frac{\partial p}{\partial x}+\nu\cdot \Big(\frac{\partial^2 u}{\partial x^2}+\frac{\partial ^2 u}{\partial y^2}+\frac{\partial^2 u}{\partial z^2}\Big)\]</div>
 <p>y-direction:</p>
+<div class="math">
+\[\frac{\partial v}{\partial t}+u\frac{\partial v}{\partial x}+v\frac{\partial v}{\partial y}+w\frac{\partial v}{\partial z}=-\frac{1}{\rho}\frac{\partial p}{\partial y}+\nu\cdot \Big(\frac{\partial^2 v}{\partial x^2}+\frac{\partial ^2 v}{\partial y^2}+\frac{\partial^2 v}{\partial z^2}\Big)\]</div>
 <p>z-direction:</p>
+<div class="math">
+\[\frac{\partial w}{\partial t}+u\frac{\partial w}{\partial x}+v\frac{\partial w}{\partial y}+w\frac{\partial w}{\partial z}=-g-\frac{1}{\rho}\frac{\partial p}{\partial z}+\nu\cdot \Big(\frac{\partial^2 w}{\partial x^2}+\frac{\partial ^2 w}{\partial y^2}+\frac{\partial^2 w}{\partial z^2}\Big)\]</div>
+<p>In the Navier-Stokes equation for the z-direction the g term denotes the gravitational constant. In all equations <span class="math">\(\nu\)</span> is the kinematic viscosity of the fluid, <span class="math">\(p\)</span> is the pressure and <span class="math">\(u,v,w\)</span> are the velocity components in the x,y,z directions respectively. The steady state flow assumption requires the local time derivatives of the velocity components (<span class="math">\(\frac{\partial u}{\partial t}, \frac{\partial v}{\partial t},\frac{\partial w}{\partial t}\)</span>) to be equal to zero. Another assumption is that the pressure changes only in x and z directions. The no-slip boundary conditions are given below:</p>
+<div class="math">
+\[u=U,\quad v=V \quad \text{at z=h}\]</div>
+<div class="math">
+\[u=U',\quad v=V' \quad \text{at z=-h}\]</div>
+<p>In order to obtain the velocity profile at an arbitrary point, the velocity components <span class="math">\(u\)</span> and <span class="math">\(v\)</span> are assumed to be functions of z only such that <span class="math">\(\mathbf{V}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2\)</span> where <span class="math">\(\mathbf{V}\)</span> denotes the velocity vector field and <span class="math">\(\mathbf{e}_1\)</span> and <span class="math">\(\mathbf{e}_2\)</span> denote the unit vectors in x and y directions respectively.</p>
+<p>Here is a list of assumptions that we made so far to describe fluid flow between two infinitely large plates moving with respect to each other:</p>
+<ul class="simple">
+<li>The flow is parallel to the plates <span class="math">\(\Rightarrow w=0\)</span></li>
+<li>Steady flow <span class="math">\(\Rightarrow \displaystyle\frac{\partial u}{\partial t}=\displaystyle\frac{\partial v}{\partial t}=\displaystyle\frac{\partial w}{\partial t}=0\)</span></li>
+<li><span class="math">\(\displaystyle\frac{\partial p}{\partial y}=0\)</span></li>
+<li><span class="math">\(\mathbf{V}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2\)</span></li>
+</ul>
+<p>The application of the above assumptions to the Navier-Stokes equations yields the following simplified governing equations of fluid motion:</p>
+<div class="math">
+\[\begin{split}\begin{pmatrix}0\\0\\0\end{pmatrix}=\begin{pmatrix}-(1/\rho)\partial_x p+\nu u''\\ \nu v'' \\ -g-(1/\rho)\partial_z p\end{pmatrix}\end{split}\]</div>
+<p>or</p>
+<div class="math">
+\[\Big[-\displaystyle\frac{1}{\rho}\partial_x p+\nu u''\Big]\mathbf{e}_1+\Big[\nu v''\Big]\mathbf{e}_2+\Big[-g-\displaystyle\frac{1}{\rho}\partial_z p\Big]\mathbf{e}_3=0\]</div>
+</div>
+<div class="section" id="numerical-solution-using-openfoam">
+<h2>Numerical Solution using OpenFOAM<a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
 <p><strong>References</strong></p>
 <p id="id1">[1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546</p>
+</div>
 </div>
 
 
@@ -88,7 +119,11 @@
 <li class="toctree-l1"><a class="reference internal" href="SiemensNX.html">3D Modeling Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CalculusStory.html">Calculus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="WebGL_Tri.html">Polygon Meshing through Triangulation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Flow Between Parallel Plates</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Flow Between Parallel Plates</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#analytical-solution">Analytical Solution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-solution-using-openfoam">Numerical Solution using OpenFOAM</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
