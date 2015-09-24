@@ -42,14 +42,14 @@ In the Navier-Stokes equation for the z-direction the g term denotes the gravita
 .. math::
    u=U',\quad v=V' \quad \text{at z=-h}   
 
-In order to obtain the velocity profile at an arbitrary point, the velocity components :math:`u` and :math:`v` are assumed to be functions of z only such that :math:`\mathbf{V}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2` where :math:`\mathbf{V}` denotes the velocity vector field and :math:`\mathbf{e}_1` and :math:`\mathbf{e}_2` denote the unit vectors in x and y directions respectively.
+In order to obtain the velocity profile at an arbitrary point, the velocity components :math:`u` and :math:`v` are assumed to be functions of z only such that :math:`\mathbf{v}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2` where :math:`\mathbf{v}` denotes the velocity vector field and :math:`\mathbf{e}_1` and :math:`\mathbf{e}_2` denote the unit vectors in x and y directions respectively.
 
 Here is a list of assumptions that we made so far to describe fluid flow between two infinitely large plates moving with respect to each other:
 
 * The flow is parallel to the plates :math:`\Rightarrow w=0`
 * Steady flow :math:`\Rightarrow \displaystyle\frac{\partial u}{\partial t}=\displaystyle\frac{\partial v}{\partial t}=\displaystyle\frac{\partial w}{\partial t}=0`
 * :math:`\displaystyle\frac{\partial p}{\partial y}=0`
-* :math:`\mathbf{V}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2` 
+* :math:`\mathbf{v}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2` 
 
 The application of the above assumptions to the Navier-Stokes equations yields the following simplified governing equations of fluid motion:
 
@@ -101,10 +101,26 @@ Similarly, the velocity field in y-direction can be obtained by integrating the 
 .. math::
    \boxed{v(z)=\displaystyle\frac{V-V'}{2h}z+\displaystyle\frac{V+V'}{2}}\qquad (6)
 
-A sub-class of flow between parallel plates is called Couette flow which occurs when :math:`\partial_x p=0` in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first before the more general case of :math:`\partial_xp \neq 0` which is called Poiseuille flow.
+A sub-class of flow between parallel plates is called Couette flow which occurs when :math:`\partial_x p=0` in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first. Afterward the more general case of :math:`\partial_xp \neq 0` is demonstrated which is called Poiseuille flow.
  
 Numerical Solution using OpenFOAM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.
+
+**Couette Flow**
+
+Inside the 'home/username/OpenFoam' folder create a new folder called 'Couette'. Then, inside the 'Couette' folder create three more folders called '0', 'constant' and 'system'. The '0' folder will contain the initial velocity and pressure conditions, the 'constant' folder will contain the mesh description and material properties and the 'system' folder will contain some solver parameters which will be explained on examples in the subsequent sections.
+
+**Definition of the simulation domain and the mesh properties:** The Couette flow will be simulated by taking a strip from the infinite fluid between the plates. The long side of this strip is 4 m long in x-direction, its height is equal to 2h=0.2 m and its depth is equal to 0.01 m. The geometry of this finite strip is shown in Figure 2.
+
+.. _Domain:
+.. figure:: Coutte/Domain.png
+   :height: 468 px
+   :width: 466 px
+   :scale: 90 %
+   :align: center
+
+   Figure 2: Couette flow simulation domain  
 
 **References**
 

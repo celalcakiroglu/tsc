@@ -83,13 +83,13 @@
 \[u=U,\quad v=V \quad \text{at z=h}\]</div>
 <div class="math">
 \[u=U',\quad v=V' \quad \text{at z=-h}\]</div>
-<p>In order to obtain the velocity profile at an arbitrary point, the velocity components <span class="math">\(u\)</span> and <span class="math">\(v\)</span> are assumed to be functions of z only such that <span class="math">\(\mathbf{V}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2\)</span> where <span class="math">\(\mathbf{V}\)</span> denotes the velocity vector field and <span class="math">\(\mathbf{e}_1\)</span> and <span class="math">\(\mathbf{e}_2\)</span> denote the unit vectors in x and y directions respectively.</p>
+<p>In order to obtain the velocity profile at an arbitrary point, the velocity components <span class="math">\(u\)</span> and <span class="math">\(v\)</span> are assumed to be functions of z only such that <span class="math">\(\mathbf{v}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2\)</span> where <span class="math">\(\mathbf{v}\)</span> denotes the velocity vector field and <span class="math">\(\mathbf{e}_1\)</span> and <span class="math">\(\mathbf{e}_2\)</span> denote the unit vectors in x and y directions respectively.</p>
 <p>Here is a list of assumptions that we made so far to describe fluid flow between two infinitely large plates moving with respect to each other:</p>
 <ul class="simple">
 <li>The flow is parallel to the plates <span class="math">\(\Rightarrow w=0\)</span></li>
 <li>Steady flow <span class="math">\(\Rightarrow \displaystyle\frac{\partial u}{\partial t}=\displaystyle\frac{\partial v}{\partial t}=\displaystyle\frac{\partial w}{\partial t}=0\)</span></li>
 <li><span class="math">\(\displaystyle\frac{\partial p}{\partial y}=0\)</span></li>
-<li><span class="math">\(\mathbf{V}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2\)</span></li>
+<li><span class="math">\(\mathbf{v}=u(z)\mathbf{e}_1+v(z)\mathbf{e}_2\)</span></li>
 </ul>
 <p>The application of the above assumptions to the Navier-Stokes equations yields the following simplified governing equations of fluid motion:</p>
 <div class="math">
@@ -121,10 +121,18 @@
 <p>Similarly, the velocity field in y-direction can be obtained by integrating the equation <span class="math">\(\nu v''=0\)</span> (the Navier-Stokes equation for y-direction) twice with respect to z and using the boundary conditions for v at z=-h and at z=h as in Eq.(6).</p>
 <div class="math">
 \[\boxed{v(z)=\displaystyle\frac{V-V'}{2h}z+\displaystyle\frac{V+V'}{2}}\qquad (6)\]</div>
-<p>A sub-class of flow between parallel plates is called Couette flow which occurs when <span class="math">\(\partial_x p=0\)</span> in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first before the more general case of <span class="math">\(\partial_xp \neq 0\)</span> which is called Poiseuille flow.</p>
+<p>A sub-class of flow between parallel plates is called Couette flow which occurs when <span class="math">\(\partial_x p=0\)</span> in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first. Afterward the more general case of <span class="math">\(\partial_xp \neq 0\)</span> is demonstrated which is called Poiseuille flow.</p>
 </div>
 <div class="section" id="numerical-solution-using-openfoam">
 <h2>Numerical Solution using OpenFOAM<a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
+<p>This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.</p>
+<p><strong>Couette Flow</strong></p>
+<p>Inside the &#8216;home/username/OpenFoam&#8217; folder create a new folder called &#8216;Couette&#8217;. Then, inside the &#8216;Couette&#8217; folder create three more folders called &#8216;0&#8217;, &#8216;constant&#8217; and &#8216;system&#8217;. The &#8216;0&#8217; folder will contain the initial velocity and pressure conditions, the &#8216;constant&#8217; folder will contain the mesh description and material properties and the &#8216;system&#8217; folder will contain some solver parameters which will be explained on examples in the subsequent sections.</p>
+<p><strong>Definition of the simulation domain and the mesh properties:</strong> The Couette flow will be simulated by taking a strip from the infinite fluid between the plates. The long side of this strip is 4 m long in x-direction, its height is equal to 2h=0.2 m and its depth is equal to 0.01 m. The geometry of this finite strip is shown in Figure 2.</p>
+<div class="figure align-center" id="domain">
+<a class="reference internal image-reference" href="_images/Domain.png"><img alt="_images/Domain.png" src="_images/Domain.png" style="width: 419.4px; height: 421.2px;" /></a>
+<p class="caption">Figure 2: Couette flow simulation domain</p>
+</div>
 <p><strong>References</strong></p>
 <p id="id1">[1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546</p>
 </div>
