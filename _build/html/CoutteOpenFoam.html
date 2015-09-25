@@ -127,12 +127,105 @@
 <h2>Numerical Solution using OpenFOAM<a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
 <p>This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.</p>
 <p><strong>Couette Flow</strong></p>
-<p>Inside the &#8216;home/username/OpenFoam&#8217; folder create a new folder called &#8216;Couette&#8217;. Then, inside the &#8216;Couette&#8217; folder create three more folders called &#8216;0&#8217;, &#8216;constant&#8217; and &#8216;system&#8217;. The &#8216;0&#8217; folder will contain the initial velocity and pressure conditions, the &#8216;constant&#8217; folder will contain the mesh description and material properties and the &#8216;system&#8217; folder will contain some solver parameters which will be explained on examples in the subsequent sections.</p>
+<p>Inside the &#8216;home/username/OpenFOAM&#8217; folder create a new folder called &#8216;Couette&#8217;. Then, inside the &#8216;Couette&#8217; folder create three more folders called &#8216;0&#8217;, &#8216;constant&#8217; and &#8216;system&#8217;. The &#8216;0&#8217; folder will contain the initial velocity and pressure conditions, the &#8216;constant&#8217; folder will contain the mesh description and material properties and the &#8216;system&#8217; folder will contain some solver parameters which will be explained on examples in the subsequent sections.</p>
 <p><strong>Definition of the simulation domain and the mesh properties:</strong> The Couette flow will be simulated by taking a strip from the infinite fluid between the plates. The long side of this strip is 4 m long in x-direction, its height is equal to 2h=0.2 m and its depth is equal to 0.01 m. The geometry of this finite strip is shown in Figure 2.</p>
 <div class="figure align-center" id="domain">
 <a class="reference internal image-reference" href="_images/Domain.png"><img alt="_images/Domain.png" src="_images/Domain.png" style="width: 419.4px; height: 421.2px;" /></a>
 <p class="caption">Figure 2: Couette flow simulation domain</p>
 </div>
+<p>In order to discretize the geometry shown in Figure 2, create a new folder called &#8216;polyMesh&#8217; inside the &#8216;constant&#8217; folder and inside the &#8216;polyMesh&#8217; folder create a file called &#8216;blockMeshDict&#8217;. The &#8216;blockMeshDict&#8217; file contains the parameters used by the &#8216;blockMesh&#8217; program in order to generate the finite volume mesh for the geometry discretization. The &#8216;blockMesh&#8217; command should be executed in the Linux terminal from within the &#8216;Couette&#8217; folder in order to invoke the mesh generation program &#8216;blockMesh&#8217;. The following code block shows what the &#8216;blockMeshDict&#8217; file should look like.</p>
+<blockquote>
+<div><div class="code highlight-python"><div class="highlight"><pre>/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      blockMeshDict;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+convertToMeters 0.1;
+
+vertices
+(
+    (0 0 0)
+    (20 0 0)
+    (20 1 0)
+    (0 1 0)
+    (0 0 0.1)
+    (20 0 0.1)
+    (20 1 0.1)
+    (0 1 0.1)
+);
+
+blocks
+(
+    hex (0 1 2 3 4 5 6 7) (20 20 1) simpleGrading (1 1 1)
+);
+
+edges
+(
+);
+
+boundary
+(
+    top
+    {
+        type wall;
+        faces
+        (
+            (3 7 6 2)
+        );
+    }
+    bottom
+    {
+        type wall;
+        faces
+        (
+            (1 5 4 0)
+        );
+    }
+    inlet
+    {
+        type patch;
+        faces
+        (
+            (0 4 7 3)
+        );
+    }
+    outlet
+    {
+        type patch;
+        faces
+        (
+            (2 6 5 1)
+        );
+    }
+    frontAndBack
+    {
+        type empty;
+        faces
+        (
+            (0 3 2 1)
+            (4 5 6 7)
+        );
+    }
+  );
+
+  mergePatchPairs
+  (
+  );
+</pre></div>
+</div>
+</div></blockquote>
+<p>The initial part of the above &#8216;blockMeshDict&#8217; file can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder &#8216;home/username/OpenFOAM/FOAM_RUN/tutorials&#8217;.</p>
 <p><strong>References</strong></p>
 <p id="id1">[1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546</p>
 </div>
