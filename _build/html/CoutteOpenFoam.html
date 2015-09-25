@@ -121,7 +121,10 @@
 <p>Similarly, the velocity field in y-direction can be obtained by integrating the equation <span class="math">\(\nu v''=0\)</span> (the Navier-Stokes equation for y-direction) twice with respect to z and using the boundary conditions for v at z=-h and at z=h as in Eq.(6).</p>
 <div class="math">
 \[\boxed{v(z)=\displaystyle\frac{V-V'}{2h}z+\displaystyle\frac{V+V'}{2}}\qquad (6)\]</div>
-<p>A sub-class of flow between parallel plates is called Couette flow which occurs when <span class="math">\(\partial_x p=0\)</span> in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first. Afterward the more general case of <span class="math">\(\partial_xp \neq 0\)</span> is demonstrated which is called Poiseuille flow.</p>
+<p>A sub-class of flow between parallel plates is called Couette flow which occurs when <span class="math">\(\partial_x p=0\)</span> in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first. Afterwards the more general case of <span class="math">\(\partial_xp \neq 0\)</span> is demonstrated which is called Poiseuille flow.</p>
+<p>In case of Couette flow the application of the condition <span class="math">\(\partial_x p=C=0\)</span> to Eq.(5) results in the following solution for the x-direction velocity profile:</p>
+<div class="math">
+\[\text{Couette flow: }u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)\]</div>
 </div>
 <div class="section" id="numerical-solution-using-openfoam">
 <h2>Numerical Solution using OpenFOAM<a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
@@ -225,7 +228,7 @@ boundary
 </pre></div>
 </div>
 </div></blockquote>
-<p>The initial part of the above &#8216;blockMeshDict&#8217; file can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder &#8216;home/username/OpenFOAM/FOAM_RUN/tutorials&#8217;.</p>
+<p>The initial part of the above &#8216;blockMeshDict&#8217; file up to the &#8216;convertToMeters&#8217; command can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder &#8216;home/username/OpenFOAM/FOAM_RUN/tutorials&#8217;.</p>
 <p><strong>References</strong></p>
 <p id="id1">[1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546</p>
 </div>

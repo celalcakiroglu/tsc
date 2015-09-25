@@ -101,8 +101,13 @@ Similarly, the velocity field in y-direction can be obtained by integrating the 
 .. math::
    \boxed{v(z)=\displaystyle\frac{V-V'}{2h}z+\displaystyle\frac{V+V'}{2}}\qquad (6)
 
-A sub-class of flow between parallel plates is called Couette flow which occurs when :math:`\partial_x p=0` in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first. Afterward the more general case of :math:`\partial_xp \neq 0` is demonstrated which is called Poiseuille flow.
+A sub-class of flow between parallel plates is called Couette flow which occurs when :math:`\partial_x p=0` in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first. Afterwards the more general case of :math:`\partial_xp \neq 0` is demonstrated which is called Poiseuille flow.
  
+In case of Couette flow the application of the condition :math:`\partial_x p=C=0` to Eq.(5) results in the following solution for the x-direction velocity profile:
+
+.. math::
+   \text{Couette flow: }u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)
+
 Numerical Solution using OpenFOAM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.
