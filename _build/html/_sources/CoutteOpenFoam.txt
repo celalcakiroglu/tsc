@@ -103,10 +103,10 @@ Similarly, the velocity field in y-direction can be obtained by integrating the 
 
 A sub-class of flow between parallel plates is called Couette flow which occurs when :math:`\partial_x p=0` in addition to the assumptions listed previously. In the next section about the simulation in OpenFOAM the Couette flow is demonstrated first. Afterwards the more general case of :math:`\partial_xp \neq 0` is demonstrated which is called Poiseuille flow.
  
-In case of Couette flow the application of the condition :math:`\partial_x p=C=0` to Eq.(5) results in the following solution for the x-direction velocity profile:
+In case of Couette flow the application of the condition :math:`\partial_x p=C=0` to Eq.(5) results in the following solution for the x-direction velocity and pressure profiles:
 
 .. math::
-   \text{Couette flow: }u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)
+   \text{Couette flow: }\quad u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)\\p(z)=-\rho g z+p_0 \qquad (8)
 
 Numerical Solution using OpenFOAM
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -114,7 +114,7 @@ This section contains step-by-step instructions for the pre-processing, solving 
 
 **Couette Flow**
 
-Inside the 'home/username/OpenFOAM' folder create a new folder called 'Couette'. Then, inside the 'Couette' folder create three more folders called '0', 'constant' and 'system'. The '0' folder will contain the initial velocity and pressure conditions, the 'constant' folder will contain the mesh description and material properties and the 'system' folder will contain some solver parameters which will be explained on examples in the subsequent sections.
+Inside the *home/username/OpenFOAM* folder create a new folder called *Couette*. Then, inside the *Couette* folder create three more folders called *0*, *constant* and *system*. The *0* folder will contain the initial velocity and pressure conditions, the *constant* folder will contain the mesh description and material properties and the 'system' folder will contain some solver parameters which will be explained on examples in the subsequent sections.
 
 **Definition of the simulation domain and the mesh properties:** The Couette flow will be simulated by taking a strip from the infinite fluid between the plates. The long side of this strip is 4 m long in x-direction, its height is equal to 2h=0.2 m and its depth is equal to 0.01 m. The geometry of this finite strip is shown in Figure 2.
 
@@ -127,7 +127,7 @@ Inside the 'home/username/OpenFOAM' folder create a new folder called 'Couette'.
 
    Figure 2: Couette flow simulation domain  
 
-In order to discretize the geometry shown in Figure 2, create a new folder called 'polyMesh' inside the 'constant' folder and inside the 'polyMesh' folder create a file called 'blockMeshDict'. The 'blockMeshDict' file contains the parameters used by the 'blockMesh' program in order to generate the finite volume mesh for the geometry discretization. The 'blockMesh' command should be executed in the Linux terminal from within the 'Couette' folder in order to invoke the mesh generation program 'blockMesh'. The following code block shows what the 'blockMeshDict' file should look like.
+In order to discretize the geometry shown in Figure 2, create a new folder called *polyMesh* inside the *constant* folder and inside the *polyMesh* folder create a file called 'blockMeshDict'. The *blockMeshDict* file contains the parameters used by the 'blockMesh' program in order to generate the finite volume mesh for the geometry discretization. The *blockMesh* command should be executed in the Linux terminal from within the *Couette* folder in order to invoke the mesh generation program *blockMesh*. The following code block shows what the *blockMeshDict* file should look like.
 
   .. code::
 
@@ -219,7 +219,9 @@ In order to discretize the geometry shown in Figure 2, create a new folder calle
       (
       );
 
-The initial part of the above 'blockMeshDict' file up to the 'convertToMeters' command can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder 'home/username/OpenFOAM/FOAM_RUN/tutorials'. 
+The initial part of the above *blockMeshDict* file up to the *convertToMeters* command can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder 'home/username/OpenFOAM/FOAM_RUN/tutorials'. In the next part of this section the commands in the *blockMeshDict* file are explained.
+
+**convertToMeters:** The number that comes after this command is multiplied with the vertex coordinates. The results of this multiplication are stored in the computer memory as the vertex coordinates with respect to the cartesian coordinate system shown in Figure 2 with the unit of meters. For example, if the number that comes after *convertToMeters* is 0.1 and the x-coordinate of a vertex is defined as 20 in the *blockMeshDict* file, then the x-coordinate of this vertex is stored in the computer memory as 2 meters away from the origin.  
 
 **References**
 
