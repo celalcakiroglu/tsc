@@ -108,20 +108,20 @@ In case of Couette flow the application of the condition :math:`\partial_x p=C=0
 .. math::
    \text{Couette flow: }\quad u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)\\p(z)=-\rho g z+p_0 \qquad (8)
 
-Numerical Solution using OpenFOAM
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Numerical Solution using OpenFOAM :math:`^*`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.
 
 **Couette Flow**
 
-Inside the *home/username/OpenFOAM* folder create a new folder called *Couette*. Then, inside the *Couette* folder create three more folders called *0*, *constant* and *system*. The *0* folder will contain the initial velocity and pressure conditions, the *constant* folder will contain the mesh description and material properties and the 'system' folder will contain some solver parameters which will be explained on examples in the subsequent sections.
+Inside the *home/username/OpenFOAM* folder create a new folder called *Couette*. Then, inside the *Couette* folder create three more folders called *0*, *constant* and *system*. The *0* folder will contain the initial velocity and pressure conditions, the *constant* folder will contain the mesh description and material properties and the *system* folder will contain some solver parameters which will be explained on examples in the subsequent sections.
 
 **Definition of the simulation domain and the mesh properties:** The Couette flow will be simulated by taking a strip from the infinite fluid between the plates. The long side of this strip is 4 m long in x-direction, its height is equal to 2h=0.2 m and its depth is equal to 0.01 m. The geometry of this finite strip is shown in Figure 2.
 
 .. _Domain:
 .. figure:: Coutte/Domain.png
-   :height: 468 px
-   :width: 466 px
+   :height: 461 px
+   :width: 454 px
    :scale: 90 %
    :align: center
 
@@ -147,23 +147,23 @@ In order to discretize the geometry shown in Figure 2, create a new folder calle
     }
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
  
-    convertToMeters 0.1;
+    convertToMeters 0.01;
 
     vertices
     (
         (0 0 0)
-        (20 0 0)
-        (20 1 0)
-        (0 1 0)
-        (0 0 0.1)
-        (20 0 0.1)
-        (20 1 0.1)
-        (0 1 0.1)
+        (400 0 0)
+        (400 0 20)
+        (0 0 20)
+        (0 2 0)
+        (400 2 0)
+        (400 2 20)
+        (0 2 20)
     );
 
     blocks
     (
-        hex (0 1 2 3 4 5 6 7) (20 20 1) simpleGrading (1 1 1)
+        hex (0 1 2 3 4 5 6 7) (40 1 20) simpleGrading (1 1 1)
     );
 
     edges
@@ -219,12 +219,30 @@ In order to discretize the geometry shown in Figure 2, create a new folder calle
       (
       );
 
-The initial part of the above *blockMeshDict* file up to the *convertToMeters* command can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder 'home/username/OpenFOAM/FOAM_RUN/tutorials'. In the next part of this section the commands in the *blockMeshDict* file are explained.
+The initial part of the above *blockMeshDict* file up to the *convertToMeters* command can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder *home/username/OpenFOAM/FOAM_RUN/tutorials*. In the next part of this section the commands in the *blockMeshDict* file are explained.
 
-**convertToMeters:** The number that comes after this command is multiplied with the vertex coordinates. The results of this multiplication are stored in the computer memory as the vertex coordinates with respect to the cartesian coordinate system shown in Figure 2 with the unit of meters. For example, if the number that comes after *convertToMeters* is 0.1 and the x-coordinate of a vertex is defined as 20 in the *blockMeshDict* file, then the x-coordinate of this vertex is stored in the computer memory as 2 meters away from the origin.  
+**convertToMeters:** The number that comes after this command is multiplied with the vertex coordinates. The results of this multiplication are stored in the computer memory as the vertex coordinates with respect to the cartesian coordinate system shown in Figure 2 with the unit of meters. For example, if the number that comes after *convertToMeters* is 0.1 and the x-coordinate of a vertex is defined as 20 in the *blockMeshDict* file, then the x-coordinate of this vertex is stored in the computer memory as 2 meters away from the origin in x-direction.  
+
+**vertices:** In OpenFOAM the domain of analysis is partitioned into blocks and afterwards for each block a meshing scheme is defined. In this current example since the domain is simple, it can be described using a single block. This block has the shape of a rectangular prism(Figure 2) and it can be defined using the coordinates of its eight vertices. These coordinates are defined with respect to the coordinate system shown in Figure 2.  It is important that this coordinate system is right-handed and its origin is located at one of the vertices that make up the block. The order in which the vertices are defined is also important since this order determines the index of each vertex and the x,y,z directions of the coordinate system.
+
+The first vertex (0,0,0) has the index 0 and defines the position of the origin of the coordinate system. The second vertex (400,0,0) has the index 1 and defines the direction of the x axis so that the x-axis is oriented from vertex 0 to vertex 1. The third vertex (400, 0, 20) has the index 2 and determines the direction of the y-axis so that the y-axis is oriented from vertex 1 towards vertex 2. The fourth vertex (0,0,20) does not play a role in determining the direction of an axis but it is essential for defining one of the six faces of the prism. The fifth vertex (0,2,0) determines the direction of the z-axis so that the z-axis is oriented from vertex 0 towards vertex 4. The remaining vertices are simply offset from the vertices 1, 2 and 3 and serve the purpose of defining another face of the prism.
+
+**block and hex:** Using the two rectangular faces defined with eight vertices, a block is defined inside the *block* command. The *hex* command implies that the prism which constitutes the block is bounded by six faces. Inside the first parentheses folowing the *hex* command the vertices that make up two opposite faces of the prism are listed. In this example the vertices 0,1,2,3 define the first face and 4,5,6,7 define its opposite face.
+
+The second parenthesis after the *hex* command defines the number of cells that the block should be divided in, in x,y,z directions. In this example 40 inside the second parenthesis after *hex* means that the block will be divided in 40 cells in x-direction of the finite volume mesh. The 1 that comes after the 40 means that there will be only 1 cell in the y-direction. This makes sense since we are interested in the x-direction flow profile only and the y-direction flow is expected to have the same pattern(Figure 1). Therefore no discretization is needed in the y-direction. The 20 in this second parenthesis implies that in the z-direction the block will be divided in 20 cells. 
+ 
+The first, second and third numbers in the last parenthesis after the *hex* command define the grading of the mesh in the x-, y- and z-directions respectively. The numbers in this last parenthesis define the ratio of the length of the last cell in a certain direction to the length of the first cell in that same direction. In this example all cells in a certain direction have equal length, therefore the last parenthesis after the *hex* command is populated with ones. 
+
+**edges:** This command is used in cases of where a block has curved boundaries. In this example the parenthesis after this command are left empty since the block bounded with straight lines. 
+
+:math:`^*` This section is largely influenced by the tutorials of Jordi Casacuberta Puig[2_] which is also mentioned under the references. But you'll be better off reading my version :) Or just come to one of our workshops. Detailed information about the workshops can be found at www.hypercfd.com .
 
 **References**
 
 .. _1: 
 
 [1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546
+
+.. _2:
+
+[2] Jordi Casacuberta Puig, The Foam House, the-foam-house5.webnode.es 
