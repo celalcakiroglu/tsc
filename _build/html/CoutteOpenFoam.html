@@ -127,7 +127,7 @@
 \[\begin{split}\text{Couette flow: }\quad u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)\\p(z)=-\rho g z+p_0 \qquad (8)\end{split}\]</div>
 </div>
 <div class="section" id="numerical-solution-using-openfoam">
-<h2>Numerical Solution using OpenFOAM <span class="math">\(^*\)</span><a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
+<h2>Numerical Solution using OpenFOAM .. <span class="math">\(^*\)</span><a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
 <p>This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.</p>
 <p><strong>Couette Flow</strong></p>
 <p>Inside the <em>home/username/OpenFOAM</em> folder create a new folder called <em>Couette</em>. Then, inside the <em>Couette</em> folder create three more folders called <em>0</em>, <em>constant</em> and <em>system</em>. The <em>0</em> folder will contain the initial velocity and pressure conditions, the <em>constant</em> folder will contain the mesh description and material properties and the <em>system</em> folder will contain some solver parameters which will be explained on examples in the subsequent sections.</p>
@@ -137,8 +137,8 @@
 <p class="caption">Figure 2: Couette flow simulation domain</p>
 </div>
 <p>In order to discretize the geometry shown in Figure 2, create a new folder called <em>polyMesh</em> inside the <em>constant</em> folder and inside the <em>polyMesh</em> folder create a file called &#8216;blockMeshDict&#8217;. The <em>blockMeshDict</em> file contains the parameters used by the &#8216;blockMesh&#8217; program in order to generate the finite volume mesh for the geometry discretization. The <em>blockMesh</em> command should be executed in the Linux terminal from within the <em>Couette</em> folder in order to invoke the mesh generation program <em>blockMesh</em>. The following code block shows what the <em>blockMeshDict</em> file should look like.</p>
-<blockquote>
-<div><div class="code highlight-python"><div class="highlight"><pre>/*--------------------------------*- C++ -*----------------------------------*\
+<p><strong>blockMeshDict file:</strong></p>
+<div class="code highlight-python"><div class="highlight"><pre>/*--------------------------------*- C++ -*----------------------------------*\
 | =========                 |                                                 |
 | \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
 |  \\    /   O peration     | Version:  2.4.0                                 |
@@ -227,17 +227,80 @@ boundary
   );
 </pre></div>
 </div>
-</div></blockquote>
 <p>The initial part of the above <em>blockMeshDict</em> file up to the <em>convertToMeters</em> command can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder <em>home/username/OpenFOAM/FOAM_RUN/tutorials</em>. In the next part of this section the commands in the <em>blockMeshDict</em> file are explained.</p>
+<p><strong>Explanation of the blockMeshDict file</strong></p>
 <p><strong>convertToMeters:</strong> The number that comes after this command is multiplied with the vertex coordinates. The results of this multiplication are stored in the computer memory as the vertex coordinates with respect to the cartesian coordinate system shown in Figure 2 with the unit of meters. For example, if the number that comes after <em>convertToMeters</em> is 0.1 and the x-coordinate of a vertex is defined as 20 in the <em>blockMeshDict</em> file, then the x-coordinate of this vertex is stored in the computer memory as 2 meters away from the origin in x-direction.</p>
 <p><strong>vertices:</strong> In OpenFOAM the domain of analysis is partitioned into blocks and afterwards for each block a meshing scheme is defined. In this current example since the domain is simple, it can be described using a single block. This block has the shape of a rectangular prism(Figure 2) and it can be defined using the coordinates of its eight vertices. These coordinates are defined with respect to the coordinate system shown in Figure 2.  It is important that this coordinate system is right-handed and its origin is located at one of the vertices that make up the block. The order in which the vertices are defined is also important since this order determines the index of each vertex and the x,y,z directions of the coordinate system.</p>
 <p>The first vertex (0,0,0) has the index 0 and defines the position of the origin of the coordinate system. The second vertex (400,0,0) has the index 1 and defines the direction of the x axis so that the x-axis is oriented from vertex 0 to vertex 1. The third vertex (400, 0, 20) has the index 2 and determines the direction of the y-axis so that the y-axis is oriented from vertex 1 towards vertex 2. The fourth vertex (0,0,20) does not play a role in determining the direction of an axis but it is essential for defining one of the six faces of the prism. The fifth vertex (0,2,0) determines the direction of the z-axis so that the z-axis is oriented from vertex 0 towards vertex 4. The remaining vertices are simply offset from the vertices 1, 2 and 3 and serve the purpose of defining another face of the prism.</p>
 <p><strong>block and hex:</strong> Using the two rectangular faces defined with eight vertices, a block is defined inside the <em>block</em> command. The <em>hex</em> command implies that the prism which constitutes the block is bounded by six faces. Inside the first parentheses folowing the <em>hex</em> command the vertices that make up two opposite faces of the prism are listed. In this example the vertices 0,1,2,3 define the first face and 4,5,6,7 define its opposite face.</p>
 <p>The second parenthesis after the <em>hex</em> command defines the number of cells that the block should be divided in, in x,y,z directions. In this example 40 inside the second parenthesis after <em>hex</em> means that the block will be divided in 40 cells in x-direction of the finite volume mesh. The 1 that comes after the 40 means that there will be only 1 cell in the y-direction. This makes sense since we are interested in the x-direction flow profile only and the y-direction flow is expected to have the same pattern(Figure 1). Therefore no discretization is needed in the y-direction. The 20 in this second parenthesis implies that in the z-direction the block will be divided in 20 cells.</p>
-<p><span class="math">\(^*\)</span> This section is largely influenced by the tutorials of Jordi Casacuberta Puig[<a class="reference internal" href="#id2">2</a>] which is also mentioned under the references. But you&#8217;ll be better off reading my version :) Or just come to one of our workshops. Detailed information about the workshops can be found at www.hypercfd.com .</p>
+<p>The first, second and third numbers in the last parenthesis after the <em>hex</em> command define the grading of the mesh in the x-, y- and z-directions respectively. The numbers in this last parenthesis define the ratio of the length of the last cell in a certain direction to the length of the first cell in that same direction. In this example all cells in a certain direction have equal length, therefore the last parenthesis after the <em>hex</em> command is populated with ones.</p>
+<p><strong>edges:</strong> This command is used in cases where a block has curved boundaries. In this example the parentheses after this command are left empty since the block is bounded with straight lines.</p>
+<p><strong>boundary:</strong> In this part of the file, different parts of the boundary are given appropriate labels like <em>top</em>, <em>bottom</em>, etc. Also, each part is given an appropriate type like <em>wall</em>, <em>patch</em> or <em>empty</em>. After a label and type is defined for the boundary part, the faces that constitute that boundary part are listed using their vertex indices. The order in which these vertices are listed inside the <em>faces</em> command is important. The vertices should be listed in such a way that a person sitting inside the block would perceive it as being in counter-clockwise direction.</p>
+<p><strong>mergePatchPairs:</strong> This command is needed when more than one blocks have to be merged at some patch. Here it is left empty since we have only one block.</p>
+<hr class="docutils" />
+<p><strong>Definition of the initial conditions:</strong> The initial conditions for velocity and pressure are defined inside the <em>0</em> folder that we created inside the <em>Couette</em> folder together with the <em>constant</em> and <em>system</em> folders. In this context the meaning of <em>0</em> is that the pressure and velocity conditions at the time t=0 are defined. For this purpose two different files are created inside the <em>0</em> folder with the file names <em>p</em> and <em>U</em>. In the following part the contents of these files are listed for the Couette flow example and after each file the commands used in that file are explained. The contents of the <em>p</em> file are as follows:</p>
+<p><strong>p file:</strong></p>
+<div class="code highlight-python"><div class="highlight"><pre>/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.4.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       volScalarField;
+    object      p;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+dimensions      [0 2 -2 0 0 0 0];
+
+internalField   uniform 0;
+
+boundaryField
+{
+    top
+    {
+        type            zeroGradient;
+    }
+
+    bottom
+    {
+        type            zeroGradient;
+    }
+
+    inlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    outlet
+    {
+        type            fixedValue;
+        value           uniform 0;
+    }
+    frontAndBack
+    {
+        type            empty;
+    }
+}
+
+// ************************************************************************* //
+</pre></div>
+</div>
+<p>Similar to the <em>blockMeshDict</em> file, the initial part of the <em>p</em> file up to the <em>dimensions</em> command can be copied from one of the sample files that come with OpenFOAM. The seven numbers inside the brackets following the <em>dimensions</em> command define the pressure unit in which the pressure initial condition is defined.</p>
 <p><strong>References</strong></p>
 <p id="id1">[1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546</p>
-<p id="id2">[2] Jordi Casacuberta Puig, The Foam House, the-foam-house5.webnode.es</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[2]</td><td>Jordi Casacuberta Puig, The Foam House, the-foam-house5.webnode.es</td></tr>
+</tbody>
+</table>
 </div>
 </div>
 
@@ -257,7 +320,7 @@ boundary
 <li class="toctree-l1"><a class="reference internal" href="WebGL_Tri.html">Polygon Meshing through Triangulation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Flow Between Parallel Plates</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#analytical-solution">Analytical Solution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#numerical-solution-using-openfoam">Numerical Solution using OpenFOAM <span class="math">\(^*\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-solution-using-openfoam">Numerical Solution using OpenFOAM .. <span class="math">\(^*\)</span></a></li>
 </ul>
 </li>
 </ul>

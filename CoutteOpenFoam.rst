@@ -108,7 +108,7 @@ In case of Couette flow the application of the condition :math:`\partial_x p=C=0
 .. math::
    \text{Couette flow: }\quad u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)\\p(z)=-\rho g z+p_0 \qquad (8)
 
-Numerical Solution using OpenFOAM :math:`^*`
+Numerical Solution using OpenFOAM .. :math:`^*`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.
 
@@ -129,7 +129,9 @@ Inside the *home/username/OpenFOAM* folder create a new folder called *Couette*.
 
 In order to discretize the geometry shown in Figure 2, create a new folder called *polyMesh* inside the *constant* folder and inside the *polyMesh* folder create a file called 'blockMeshDict'. The *blockMeshDict* file contains the parameters used by the 'blockMesh' program in order to generate the finite volume mesh for the geometry discretization. The *blockMesh* command should be executed in the Linux terminal from within the *Couette* folder in order to invoke the mesh generation program *blockMesh*. The following code block shows what the *blockMeshDict* file should look like.
 
-  .. code::
+**blockMeshDict file:**
+
+.. code::
 
     /*--------------------------------*- C++ -*----------------------------------*\
     | =========                 |                                                 |
@@ -221,6 +223,8 @@ In order to discretize the geometry shown in Figure 2, create a new folder calle
 
 The initial part of the above *blockMeshDict* file up to the *convertToMeters* command can be copied from one of the sample files that come with the OpenFOAM installation and can be found in the folder *home/username/OpenFOAM/FOAM_RUN/tutorials*. In the next part of this section the commands in the *blockMeshDict* file are explained.
 
+**Explanation of the blockMeshDict file**
+
 **convertToMeters:** The number that comes after this command is multiplied with the vertex coordinates. The results of this multiplication are stored in the computer memory as the vertex coordinates with respect to the cartesian coordinate system shown in Figure 2 with the unit of meters. For example, if the number that comes after *convertToMeters* is 0.1 and the x-coordinate of a vertex is defined as 20 in the *blockMeshDict* file, then the x-coordinate of this vertex is stored in the computer memory as 2 meters away from the origin in x-direction.  
 
 **vertices:** In OpenFOAM the domain of analysis is partitioned into blocks and afterwards for each block a meshing scheme is defined. In this current example since the domain is simple, it can be described using a single block. This block has the shape of a rectangular prism(Figure 2) and it can be defined using the coordinates of its eight vertices. These coordinates are defined with respect to the coordinate system shown in Figure 2.  It is important that this coordinate system is right-handed and its origin is located at one of the vertices that make up the block. The order in which the vertices are defined is also important since this order determines the index of each vertex and the x,y,z directions of the coordinate system.
@@ -233,9 +237,73 @@ The second parenthesis after the *hex* command defines the number of cells that 
  
 The first, second and third numbers in the last parenthesis after the *hex* command define the grading of the mesh in the x-, y- and z-directions respectively. The numbers in this last parenthesis define the ratio of the length of the last cell in a certain direction to the length of the first cell in that same direction. In this example all cells in a certain direction have equal length, therefore the last parenthesis after the *hex* command is populated with ones. 
 
-**edges:** This command is used in cases of where a block has curved boundaries. In this example the parenthesis after this command are left empty since the block bounded with straight lines. 
+**edges:** This command is used in cases where a block has curved boundaries. In this example the parentheses after this command are left empty since the block is bounded with straight lines. 
 
-:math:`^*` This section is largely influenced by the tutorials of Jordi Casacuberta Puig[2_] which is also mentioned under the references. But you'll be better off reading my version :) Or just come to one of our workshops. Detailed information about the workshops can be found at www.hypercfd.com .
+**boundary:** In this part of the file, different parts of the boundary are given appropriate labels like *top*, *bottom*, etc. Also, each part is given an appropriate type like *wall*, *patch* or *empty*. After a label and type is defined for the boundary part, the faces that constitute that boundary part are listed using their vertex indices. The order in which these vertices are listed inside the *faces* command is important. The vertices should be listed in such a way that a person sitting inside the block would perceive it as being in counter-clockwise direction. 
+
+**mergePatchPairs:** This command is needed when more than one blocks have to be merged at some patch. Here it is left empty since we have only one block.
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+**Definition of the initial conditions:** The initial conditions for velocity and pressure are defined inside the *0* folder that we created inside the *Couette* folder together with the *constant* and *system* folders. In this context the meaning of *0* is that the pressure and velocity conditions at the time t=0 are defined. For this purpose two different files are created inside the *0* folder with the file names *p* and *U*. In the following part the contents of these files are listed for the Couette flow example and after each file the commands used in that file are explained. The contents of the *p* file are as follows: 
+
+**p file:**
+
+.. code::
+
+	/*--------------------------------*- C++ -*----------------------------------*\
+	| =========                 |                                                 |
+	| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+	|  \\    /   O peration     | Version:  2.4.0                                 |
+	|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+	|    \\/     M anipulation  |                                                 |
+	\*---------------------------------------------------------------------------*/
+	FoamFile
+	{
+	    version     2.0;
+	    format      ascii;
+	    class       volScalarField;
+	    object      p;
+	}
+	// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+	dimensions      [0 2 -2 0 0 0 0];
+
+	internalField   uniform 0;
+
+	boundaryField
+	{
+	    top
+	    {
+		type            zeroGradient;
+	    }
+
+            bottom
+            {
+                type            zeroGradient;
+            }  
+
+            inlet
+            {
+                type            fixedValue;
+	        value		uniform 0;
+            }
+            outlet
+            {
+	        type		fixedValue;
+	        value		uniform 0;
+            }
+            frontAndBack
+	    {
+    	        type		empty;
+	    }
+        }
+
+	// ************************************************************************* //
+
+Similar to the *blockMeshDict* file, the initial part of the *p* file up to the *dimensions* command can be copied from one of the sample files that come with OpenFOAM. The seven numbers inside the brackets following the *dimensions* command define the pressure unit in which the pressure initial condition is defined. 
+
+.. :math:`^*` This section is largely influenced by the tutorials of Jordi Casacuberta Puig[2_] which is also mentioned under the references. But you'll be better off reading my version :) Or just come to one of our workshops. Detailed information about the workshops can be found at www.hypercfd.com .
 
 **References**
 
@@ -243,6 +311,6 @@ The first, second and third numbers in the last parenthesis after the *hex* comm
 
 [1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546
 
-.. _2:
+.. .. _2:
 
-[2] Jordi Casacuberta Puig, The Foam House, the-foam-house5.webnode.es 
+.. [2] Jordi Casacuberta Puig, The Foam House, the-foam-house5.webnode.es 
