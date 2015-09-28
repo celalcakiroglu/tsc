@@ -108,7 +108,7 @@ In case of Couette flow the application of the condition :math:`\partial_x p=C=0
 .. math::
    \text{Couette flow: }\quad u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)\\p(z)=-\rho g z+p_0 \qquad (8)
 
-Numerical Solution using OpenFOAM .. :math:`^*`
+Numerical Solution using OpenFOAM 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.
 
@@ -311,6 +311,4 @@ Similar to the *blockMeshDict* file, the initial part of the *p* file up to the 
 
 [1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546
 
-.. .. _2:
-
-.. [2] Jordi Casacuberta Puig, The Foam House, the-foam-house5.webnode.es 
+ 

@@ -27,7 +27,7 @@
     <link rel="top" title="Celal&#39;s documentation" href="index.html" />
     <link rel="prev" title="Polygon Meshing through Triangulation" href="WebGL_Tri.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="_static/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/style.css" type="text/css" />
     <script src="_static/deneme.js" type="text/javascript"></script>
     <script src="_static/deneme2.js" type="text/javascript"></script>
     <style type="text/css">
@@ -127,7 +127,7 @@
 \[\begin{split}\text{Couette flow: }\quad u(z)=\displaystyle\frac{U-U'}{2h}z+\displaystyle\frac{U+U'}{2}\qquad (7)\\p(z)=-\rho g z+p_0 \qquad (8)\end{split}\]</div>
 </div>
 <div class="section" id="numerical-solution-using-openfoam">
-<h2>Numerical Solution using OpenFOAM .. <span class="math">\(^*\)</span><a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
+<h2>Numerical Solution using OpenFOAM<a class="headerlink" href="#numerical-solution-using-openfoam" title="Permalink to this headline">¶</a></h2>
 <p>This section contains step-by-step instructions for the pre-processing, solving and post-processing of Couette and Poiseuille flows whose analytical solutions have been derived in the previous section.</p>
 <p><strong>Couette Flow</strong></p>
 <p>Inside the <em>home/username/OpenFOAM</em> folder create a new folder called <em>Couette</em>. Then, inside the <em>Couette</em> folder create three more folders called <em>0</em>, <em>constant</em> and <em>system</em>. The <em>0</em> folder will contain the initial velocity and pressure conditions, the <em>constant</em> folder will contain the mesh description and material properties and the <em>system</em> folder will contain some solver parameters which will be explained on examples in the subsequent sections.</p>
@@ -295,12 +295,6 @@ boundaryField
 <p>Similar to the <em>blockMeshDict</em> file, the initial part of the <em>p</em> file up to the <em>dimensions</em> command can be copied from one of the sample files that come with OpenFOAM. The seven numbers inside the brackets following the <em>dimensions</em> command define the pressure unit in which the pressure initial condition is defined.</p>
 <p><strong>References</strong></p>
 <p id="id1">[1] Granger R.A., Fluid Mechanics, Dover Publications, 1995, ISBN:9781621986546</p>
-<table class="docutils footnote" frame="void" id="id2" rules="none">
-<colgroup><col class="label" /><col /></colgroup>
-<tbody valign="top">
-<tr><td class="label">[2]</td><td>Jordi Casacuberta Puig, The Foam House, the-foam-house5.webnode.es</td></tr>
-</tbody>
-</table>
 </div>
 </div>
 
@@ -320,7 +314,7 @@ boundaryField
 <li class="toctree-l1"><a class="reference internal" href="WebGL_Tri.html">Polygon Meshing through Triangulation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Flow Between Parallel Plates</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#analytical-solution">Analytical Solution</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#numerical-solution-using-openfoam">Numerical Solution using OpenFOAM .. <span class="math">\(^*\)</span></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#numerical-solution-using-openfoam">Numerical Solution using OpenFOAM</a></li>
 </ul>
 </li>
 </ul>
