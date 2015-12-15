@@ -106,6 +106,47 @@ The reason why the summation in the definition of :math:`\phi(x)` starts from k=
 
 Inserting the above found M into the expression :math:`\phi(a)=\phi(b)` completes the proof of Taylor's theorem.
 
+Taylor's theorem can also be expressed in **integral form** using the fundamental theorem of calculus which says that if a function :math:`f(x)` is differentiable on :math:`[a,b]` and :math:`\int_a^b f'(x)dx` exists, then :math:`f(b)-f(a)=\int_a^b f'(x)dx`. This expression can be reformulated as 
+
+.. math::
+	f(b)=\frac{1}{0!}f(a)(b-a)^0+\frac{1}{0!}\int_a^bf'(x)dx=p_0+r_0
+
+Using integration by parts, the :math:`r_0` part of the above equation can be expanded as follows:
+
+.. math::
+	r_0&=-\frac{1}{1!}\int_a^bf'(x)d(b-x)\\
+	   &u=f'(x), du=f''(x)dx,\quad dv=d(b-x), v=b-x \\
+	   &=-\frac{1}{1!}\Big[f'(x)(b-x)\Big|_a^b-\int_a^bf''(x)(b-x)dx\Big]\\
+	   &=-\frac{1}{1!}\Big[-f'(a)(b-a)-\int_a^bf''(x)(b-x)dx\Big]\\
+	   &=\frac{1}{1!}f'(a)(b-a)^1+\frac{1}{1!}\int_a^bf''(x)(b-x)dx
+
+which gives us
+
+.. math::
+	p_1=\frac{1}{0!}f^{(0)}(a)(b-a)^0+\frac{1}{1!}f^{(1)}(a)(b-a)^1,\quad r_1=\frac{1}{1!}\int_a^bf^{(2)}(x)(b-x)^1dx
+
+Continuing this way, if :math:`f^{(n+1)}(x)` is continuous on :math:`[a,b]`, then we would obtain
+
+.. math::
+	p_n=\sum_{k=0}^{n}\frac{f^{(k)}(a)}{k!}(b-a)^k,\quad r_n=\frac{1}{n!}\int_a^bf^{(n+1)}(x)(b-x)^ndx
+
+In order to show this inductively, we can expand :math:`r_n` as follows
+
+.. math::
+	r_n&=-\frac{1}{(n+1)!}\int_a^bf^{(n+1)}(x)d(b-x)^{(n+1)}\\
+	   &=-\frac{1}{(n+1)!}\Big[f^{(n+1)}(x)(b-x)^{(n+1)}\Big|_a^b-\int_a^bf^{(n+2)}(x)(b-x)^{(n+1)}dx\Big]\\
+	   &=\frac{1}{(n+1)!}f^{(n+1)}(a)(b-a)^{(n+1)}+\frac{1}{(n+1)!}\int_a^bf^{(n+2)}(x)(b-x)^{(n+1)}dx
+
+which gives us
+
+.. math::
+	p_{n+1}=\sum_{k=0}^{n+1}\frac{f^{(k)}(a)}{k!}(b-a)^k,\quad r_{n+1}=\frac{1}{(n+1)!}\int_a^bf^{(n+2)}(x)(b-x)^{(n+1)}dx
+
+Therefore, if :math:`f^{(n)}(x)` is continuous on :math:`[a,b]`, then **the integral form of Taylor's theorem** is
+
+.. math::
+	f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(a)(b-a)^{(n-1)}dx
+
 Differentiation Rules
 ~~~~~~~~~~~~~~~~~~~~~~~
 
