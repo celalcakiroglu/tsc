@@ -56,6 +56,8 @@ Since :math:`g^{'}(\theta)=0` for all :math:`\theta\in\mathbb{R}`, :math:`g(\the
 
 In the above proof we used the fact that if the derivative of a function is zero everywhere, then this function has a constant value. This can be proven using the mean value theorem as follows: 
 
+.. _mvt:
+
 Mean Value Theorem and Rolle's Theorem
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -92,9 +94,9 @@ A generalization of the **mean value theorem** to n times differentiable functio
 In order to prove this, we define the following function :math:`\phi(x)` [2_] :
 
 .. math::
-	\phi(x)=f(x)+\sum_{k=1}^{n-1}\frac{f^{(k)}(x)}{k!}(b-x)^k + M(b-x)^n
+	\phi(x)=\sum_{k=0}^{n-1}\frac{f^{(k)}(x)}{k!}(b-x)^k + M(b-x)^n
 
-The reason why the summation in the definition of :math:`\phi(x)` starts from k=1 is that otherwise in case of x=b we would get the undefined :math:`0^0`. Clearly :math:`\phi` is continuous on [a,b] and differentiable on (a,b). Therefore if we choose a value for M such that :math:`\phi(a)=\phi(b)=f(b)`, then from Rolle's theorem it would follow that there exists :math:`\xi\in (a,b)` such that :math:`\phi'(\xi)=0`.
+ Clearly :math:`\phi` is continuous on [a,b] and differentiable on (a,b). Therefore if we choose a value for M such that :math:`\phi(a)=\phi(b)=f(b)`, then from Rolle's theorem [mvt_] it would follow that there exists :math:`\xi\in (a,b)` such that :math:`\phi'(\xi)=0`.
 
 .. math::
 	\phi'(x)&=f'(x)+\sum_{k=1}^{n-1}\frac{f^{(k+1)}(x)}{k!}(b-x)^k - \frac{f^{(k)}(x)}{k!}k(b-x)^{(k-1)} - Mn(b-x)^{(n-1)} \\
@@ -147,10 +149,34 @@ Therefore, if :math:`f^{(n)}(x)` is continuous on :math:`[a,b]`, then **the inte
 .. math::
 	f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(a)(b-a)^{(n-1)}dx
 
+The Fundamental Theorem of Calculus
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Let :math:`\int_a^bf(x)dx` exist and let :math:`F:[a,b]\to\mathbb{R}` be the antiderivative of :math:`f(x)` which means that :math:`F'(x)=f(x), \forall x\in[a,b]`. Then the fundamental theorem of calculus states that :math:`F(b)-F(a)=\int_a^bf(x)dx`. In order to prove this, let :math:`P` be any partition of :math:`[a,b]` so that :math:`P=\lbrace x_0=a,x_1,x_2,...,x_{n-1},x_n=b\rbrace`. Then :math:`F(b)-F(a)=\sum_{i=1}^nF(x_i)-F(x_{i-1})`. Since :math:`F(x)` is differentiable on every subinterval :math:`[x_{i-1},x_i]`, according to the mean value theorem, for every :math:`i\in\lbrace 1,...,n\rbrace,\exists c_i\in(x_{i-1},x_i)` such that 
+
+.. math::
+	F'(c_i)=f(c_i)=\frac{F(x_i)-F(x_{i-1})}{x_i-x_{i-1}} 
+
+Therefore :math:`F(b)-F(a)=\sum_{i=1}^nf(c_i)(x_i-x_{i-1})` which is a Riemann sum of :math:`f` with respect to :math:`P`. The lower sum :math:`L(P,f)` and upper sum :math:`U(P,f)` of :math:`f` with respect to :math:`P` are defined as
+
+.. math::
+	L(P,f)=\sum_{i=1}^nf(p_i)(x_i-x_{i-1}),f(p_i)=\inf\lbrace f(x):x\in[x_{i-1},x_i]\rbrace\\
+	U(P,f)=\sum_{i=1}^nf(q_i)(x_i-x_{i-1}),f(q_i)=\sup\lbrace f(x):x\in[x_{i-1},x_i]\rbrace
+
+Therefore :math:`L(P,f)\leq F(b)-F(a)\leq U(P,f)`. Since :math:`P` was chosen arbitrarily, :math:`F(b)-F(a)` is an upper bound for the set of all lower sums of :math:`f` and a lower bound for the set of all upper sums of :math:`f` on the interval :math:`[a,b]`. Since :math:`\int_a^b f(x)dx` exists, by definition the upper and lower integrals of :math:`f` on :math:`[a,b]` must be both equal to :math:`\int_a^b f(x)dx`. The upper integral :math:`U(f)` is the greatest lower bound of the set of all upper sums of :math:`f` and the lower integral :math:`L(f)` is the least upper bound of the set of all lower sums of :math:`f`.
+
+.. math::
+	L(f)=\sup\lbrace L(P,f):P\text{ partitions }[a,b]\rbrace\\
+	U(f)=\inf\lbrace U(P,f):P\text{ partitions }[a,b]\rbrace
+
+From the above definitions it follows that 
+
+.. math::
+	L(f)\leq F(b)-F(a)\leq U(f)\Rightarrow \boxed{F(b)-F(a)=\int_a^b f(x)dx}
+
 Differentiation Rules
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-While proving Taylor's theorem we made use of the product rule and the chain rule of differentiation. The product rule was utilized while taking the derivative of :math:`\displaystyle\frac{f^{(k)}(x)}{k!}(b-x)^k` with respect to x. Let :math:`G(x)=f(x)g(x)` where f' and g' both exist at some x=a. Then the derivative of :math:`G(x)` at x=a can be expressed as follows [1_]:
+While proving `Taylor's theorem`_ we made use of the product rule and the chain rule of differentiation. The product rule was utilized while taking the derivative of :math:`\displaystyle\frac{f^{(k)}(x)}{k!}(b-x)^k` with respect to x. Let :math:`G(x)=f(x)g(x)` where f' and g' both exist at some x=a. Then the derivative of :math:`G(x)` at x=a can be expressed as follows [1_]:
 
 .. math::
 	G'(a)&=\lim_{x\to a} \frac{G(x)-G(a)}{x-a}\\
@@ -190,7 +216,7 @@ Therefore
 .. math::
 	\frac{dy}{dx}\Big \rvert_{x=x_0}=\lim_{x\to x_0}\frac{y-y_0}{x-x_0}=lim_{x\to x_0}\frac{y-y_0}{u-u_0}\frac{u-u_0}{x-x_0}
 
-Using Taylor's theorem, at any value of :math:`x` and :math:`u`, :math:`f(u)` and :math:`g(x)` can be expressed as follows:
+Using `Taylor's theorem`_, at any value of :math:`x` and :math:`u`, :math:`f(u)` and :math:`g(x)` can be expressed as follows:
 
 .. math::
 	&f(u)=f(u_0)+f'(u_0)(u-u_0)+ ... +\frac{f^{(n)}(\xi)}{n!}(u-u_0)^n,\qquad  \xi\in(u_0,u)\\
@@ -222,6 +248,83 @@ Using this result the derivative of f(g(x)) with respect to x is computed as fol
 .. math::
 	\lim_{x\to x_0}\frac{y-y_0}{x-x_0}&=\lim_{x\to x_0}\Big[f'(u_0)\cdot g'(x_0)+\varepsilon_1\cdot g'(x_0)+\varepsilon_2\cdot f'(u_0)+\varepsilon_1 \cdot \varepsilon_2\Big]\\
 	&=f'(u_0)\cdot g'(x_0)=f'(g(x_0))\cdot g'(x_0)
+
+Another differentiation rule that we used while proving `Taylor's theorem`_ is the rule to calculate the **derivative of a power**. According to this rule, if a function has the form :math:`f(x)=x^n`, then its derivative with respect to :math:`x` is :math:`nx^{n-1}`. There are to ways to prove this formula. The first one uses the `binomial theorem`_ . The derivative of :math:`f` at some :math:`x=x_0` is computed as :math:`\displaystyle\lim_{h\to 0}\displaystyle\frac{f(x_0+h)-f(x_0)}{h}`. Using the binomial expansion of :math:`f(x_0+h)` we obtain
+
+.. math::
+	f'(x_0)&=\lim_{h\to 0}\frac{(x_0+h)^n-{x_0}^n}{h}\\
+	&=\lim_{h\to 0}\frac{\binom{n}{0}{x_0}^n+\binom{n}{1}{x_0}^{n-1}h+...+\binom{n}{n-1}x_0h^{n-1}+\binom{n}{n}h^n-{x_0}^n}{h}\\
+	&=n{x_0}^{n-1}+\lim_{h\to 0}h\Bigg(\binom{n}{2}{x_0}^{n-2}+\binom{n}{3}{x_0}^{n-3}h+\quad ...\quad+\binom{n}{n-1}x_0h^{n-2}+\binom{n}{n}h^{n-1}\Bigg)\\
+	&=\boxed{n{x_0}^{n-1}}
+
+The second way to prove the formula for the derivative of a power uses the following expansion
+
+.. math::
+	x^n-{x_0}^n=(x-x_0)(x^{n-1}+x_0x^{n-2}+{x_0}^2x^{n-3}+{x_0}^3x^{n-4}+\quad ...\quad +{x_0}^{n-2}x+{x_0}^{n-1})
+
+The derivative of :math:`f` at some :math:`x=x_0` can also be computed as :math:`\displaystyle\lim_{x\to x_0}\displaystyle\frac{f(x)-f(x_0)}{x-x_0}`. Using the above expansion we obtain:
+
+.. math::
+	f'(x_0)&=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}=\lim_{x\to x_0}\frac{x^n-{x_0}^n}{x-x_0}\\
+	&=\lim_{x\to x_0}(x^{n-1}+x_0x^{n-2}+{x_0}^2x^{n-3}+{x_0}^3x^{n-4}+ \quad ... \quad +{x_0}^{n-2}x+{x_0}^{n-1})\\
+	&=({x_0}^{n-1}+x_0{x_0}^{n-2}+{x_0}^2{x_0}^{n-3}+...+{x_0}^{n-2}x_0+{x_0}^{n-1})\\
+	&=\boxed{n{x_0}^{n-1}}	
+
+The expansion used in the above proof can be obtained using the finite geometric series summation formula. This formula states that:
+
+.. math::
+	\sum_{k=0}^{n-1}r^k=\frac{1-r^n}{1-r},\quad r\neq 1
+
+In the above formula let :math:`r=x_0/x`. If :math:`x=x_0` then :math:`x^n-{x_0}^n=0` and there is no need for an expansion formula. Suppose :math:`x\neq x_0`. Then :math:`\displaystyle\sum_{k=0}^{n-1}\Big(\frac{x_0}{x}\Big)^k=\displaystyle\frac{1-\Big(\displaystyle\frac{x_0}{x}\Big)^n}{1-\displaystyle\frac{x_0}{x}}`. Using this result we can write :math:`x^n-{x_0}^n` in the following form:
+
+.. math::
+	x^n-{x_0}^n&=x^n\Big(1-(\frac{x_0}{x})^n\Big)=x^n\Big(1-\frac{x_0}{x}\Big)\sum_{k=0}^{n-1}(\frac{x_0}{x})^k\\
+	&=x\Big(1-\frac{x_0}{x}\Big)x^{n-1}\Big(1+\frac{x_0}{x}+(\frac{x_0}{x})^2+...+(\frac{x_0}{x})^{n-2}+(\frac{x_0}{x})^{n-1}\Big)\\
+	&=(x-x_0)(x^{n-1}+x_0x^{n-2}+{x_0}^2x^{n-3}+...+{x_0}^{n-2}x+{x_0}^{n-1})
+
+Binomial theorem
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+Binomial theorem states that for any :math:`a,b\in\mathbb{R}` and :math:`n\in\mathbb{N}`, [1_]
+
+.. math::
+	(a+b)^n&=\binom{n}{0}a^n+\binom{n}{1}a^{n-1}b+\binom{n}{2}a^{n-2}b^2+\quad ...\quad \\
+	&+\binom{n}{n-2}a^2b^{n-2}+\binom{n}{n-1}ab^{n-1}+\binom{n}{n}b^n 
+
+This can be inductively proven with the help of Pascal's triangle theorem which states that
+
+.. math::
+	\binom{n}{k-1}+\binom{n}{k}=\binom{n+1}{k}
+
+Pascal's triangle theorem can be proven by inserting the definition of the binomial coefficient :math:`\binom{n}{k}` in the above equation:
+
+.. math::
+	&\frac{n!}{(k-1)!(n-k+1)!}+\frac{n!}{k!(n-k)!}=\frac{n!}{(n-k)!(k-1)!}\Big[\frac{1}{n-k+1}+\frac{1}{k}\Big]\\
+	&=\frac{n!}{(n-k)!(k-1)!}\Big[\frac{n+1}{k(n-k+1)}\Big]=\frac{(n+1)!}{k!(n+1-k)!}=\binom{n+1}{k}
+
+For :math:`n=1`, :math:`\displaystyle\sum_{k=0}^1\displaystyle\binom{1}{k}a^{1-k}b^k=\displaystyle\binom{1}{0}a+\displaystyle\binom{1}{1}b=(a+b)^1` and the binomial formula for :math:`(a+b)^n` is true. Suppose the formula is also true for some :math:`n\in\mathbb{N}`. Then
+
+.. math::
+	(a+b)^{n+1}&=(a+b)(a+b)^n=(a+b)\sum_{k=0}^n\binom{n}{k}a^{n-k}b^k\\
+	&=\Big[\binom{n+1}{0}a^{n+1}+\binom{n}{1}a^nb+\binom{n}{2}a^{n-1}b^2+\binom{n}{3}a^{n-2}b^3+... \\
+	&+\binom{n}{n-3}a^4b^{n-3}+\binom{n}{n-2}a^3b^{n-2}+\binom{n}{n-1}a^2b^{n-1}+\binom{n}{n}ab^n\Big]\\
+	&+\Big[\binom{n}{0}a^nb+\binom{n}{1}a^{n-1}b^2+\binom{n}{2}a^{n-2}b^3+\binom{n}{3}a^{n-3}b^4 + ... \\
+	&+ \binom{n}{n-3}a^3b^{n-2}+\binom{n}{n-2}a^2b^{n-1}+\binom{n}{n-1}ab^n+\binom{n+1}{n+1}b^{n+1}\Big]\\
+	&=\binom{n+1}{0}a^{n+1}+a^nb\Big[\binom{n}{1}+\binom{n}{0}\Big]+a^{n-1}b^2\Big[\binom{n}{1}+\binom{n}{2}\Big]\\
+	&+a^{n-2}b^3\Big[\binom{n}{3}+\binom{n}{2}\Big]+...+a^3b^{n-2}\Big[\binom{n}{n-2}+\binom{n}{n-3}\Big]\\
+	&+a^2b^{n-1}\Big[\binom{n}{n-1}+\binom{n}{n-2}\Big]+ab^n\Big[\binom{n}{n}+\binom{n}{n-1}\Big]+\binom{n+1}{n+1}b^{n+1}\\
+	&=\binom{n+1}{0}a^{n+1}+\binom{n+1}{1}a^nb+\binom{n+1}{2}a^{n-1}b^2+\binom{n+1}{3}a^{n-2}b^3 +... \\
+	&+\binom{n+1}{n-2}a^3b^{n-2}+\binom{n+1}{n-1}a^2b^{n-1}+\binom{n+1}{n}ab^n+\binom{n+1}{n+1}b^{n+1}\\
+	&=\sum_{k=0}^{n+1}\binom{n+1}{k}a^{n+1-k}b^k
+
+which shows that the formula is also true for :math:`n+1` if it is true for :math:`n`. This completes the proof of the binomial theorem.
+
+The binomial theorem is also one of the reasons why the quantity :math:`0^0` was defined as equal to :math:`1` by mathematicians. Consider the following expansion [5_]:
+
+.. math::
+	(0+x)^n&=\binom{n}{0}0^nx^0+\binom{n}{1}0^{n-1}x+...+\binom{n}{n-1}0^1x^{n-1}+\binom{n}{n}0^0x^n\\
+		  &=x^n
+
+If :math:`0^0` were undefined or defined as zero, then the binominal theorem would yield :math:`x^n=0^0x^n=0` or :math:`x^n=` undefined. 
 
 Weierstrass' maximum-minimum theorem
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -259,3 +362,7 @@ Therefore, according to the Cauchy criterion for integrability, :math:`\int_a^bf
 .. _4:
 
 [4] Thomas' Calculus, 12th edition.
+
+.. _5:
+
+[5] http://www.askamathematician.com/2010/12/q-what-does-00-zero-raised-to-the-zeroth-power-equal-why-do-mathematicians-and-high-school-teachers-disagree/

@@ -100,7 +100,7 @@
 <p>Since <span class="math">\(g^{'}(\theta)=0\)</span> for all <span class="math">\(\theta\in\mathbb{R}\)</span>, <span class="math">\(g(\theta)\)</span> is a constant function and equal to <span class="math">\(g(0)=(f(0))^2+(f^{'}(0))^2=0\)</span> for all <span class="math">\(\theta\in\mathbb{R}\)</span>. Assume that <span class="math">\(f(\theta_0)\neq 0\)</span> for some <span class="math">\(\theta_0 \in\mathbb{R}\)</span>. Then <span class="math">\(g(\theta_0)=(f(\theta_0))^2+(f^{'}(\theta_0))^2&gt;0\)</span>. This contradiction proves that <span class="math">\(f(\theta)=0\)</span> everywhere on <span class="math">\(\mathbb{R}\)</span> and therefore <span class="math">\(\boxed{\cos(\theta-\beta)=\cos(\theta)\cos(\beta)+\sin(\theta)\sin(\beta)}\)</span>.</p>
 <p>In the above proof we used the fact that if the derivative of a function is zero everywhere, then this function has a constant value. This can be proven using the mean value theorem as follows:</p>
 <div class="section" id="mean-value-theorem-and-rolle-s-theorem">
-<h2>Mean Value Theorem and Rolle&#8217;s Theorem<a class="headerlink" href="#mean-value-theorem-and-rolle-s-theorem" title="Permalink to this headline">¶</a></h2>
+<span id="mvt"></span><h2>Mean Value Theorem and Rolle&#8217;s Theorem<a class="headerlink" href="#mean-value-theorem-and-rolle-s-theorem" title="Permalink to this headline">¶</a></h2>
 <p>Let <span class="math">\([a,b]\subset\mathbb{R}\)</span> with <span class="math">\(a&lt;b\)</span>. Then <span class="math">\(g(\theta)\)</span> is differentiable on <span class="math">\([a,b]\)</span>. According to the mean value theorem, there exists <span class="math">\(\xi \in (a,b)\)</span> such that</p>
 <div class="math">
 \[g^{'}(\xi)=\frac{g(b)-g(a)}{b-a}=0 \Rightarrow g(b)=g(a), \forall a,b \in \mathbb{R}, \quad\therefore \boxed{g(\theta)=const}\]</div>
@@ -122,8 +122,7 @@
 \[f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k + \frac{f^{n}(\xi)}{n!}(b-a)^n\]</div>
 <p>In order to prove this, we define the following function <span class="math">\(\phi(x)\)</span> [<a class="reference internal" href="#id2">2</a>] :</p>
 <div class="math">
-\[\phi(x)=f(x)+\sum_{k=1}^{n-1}\frac{f^{(k)}(x)}{k!}(b-x)^k + M(b-x)^n\]</div>
-<p>The reason why the summation in the definition of <span class="math">\(\phi(x)\)</span> starts from k=1 is that otherwise in case of x=b we would get the undefined <span class="math">\(0^0\)</span>. Clearly <span class="math">\(\phi\)</span> is continuous on [a,b] and differentiable on (a,b). Therefore if we choose a value for M such that <span class="math">\(\phi(a)=\phi(b)=f(b)\)</span>, then from Rolle&#8217;s theorem it would follow that there exists <span class="math">\(\xi\in (a,b)\)</span> such that <span class="math">\(\phi'(\xi)=0\)</span>.</p>
+\[\phi(x)=\sum_{k=0}^{n-1}\frac{f^{(k)}(x)}{k!}(b-x)^k + M(b-x)^n\]\[Clearly :math:`\phi` is continuous on [a,b] and differentiable on (a,b). Therefore if we choose a value for M such that :math:`\phi(a)=\phi(b)=f(b)`, then from Rolle's theorem [mvt_] it would follow that there exists :math:`\xi\in (a,b)` such that :math:`\phi'(\xi)=0`.\]</div>
 <div class="math">
 \[\begin{split}\phi'(x)&amp;=f'(x)+\sum_{k=1}^{n-1}\frac{f^{(k+1)}(x)}{k!}(b-x)^k - \frac{f^{(k)}(x)}{k!}k(b-x)^{(k-1)} - Mn(b-x)^{(n-1)} \\
 &amp;=f'(x)+\sum_{k=2}^{n}\frac{f^{(k)}(x)}{(k-1)!}(b-x)^{k-1}-\sum_{k=1}^{n-1}\frac{f^{(k)}(x)}{(k-1)!}(b-x)^{k-1}-Mn(b-x)^{n-1}\\
@@ -159,9 +158,26 @@
 <div class="math">
 \[f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(a)(b-a)^{(n-1)}dx\]</div>
 </div>
+<div class="section" id="the-fundamental-theorem-of-calculus">
+<h2>The Fundamental Theorem of Calculus<a class="headerlink" href="#the-fundamental-theorem-of-calculus" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math">\(\int_a^bf(x)dx\)</span> exist and let <span class="math">\(F:[a,b]\to\mathbb{R}\)</span> be the antiderivative of <span class="math">\(f(x)\)</span> which means that <span class="math">\(F'(x)=f(x), \forall x\in[a,b]\)</span>. Then the fundamental theorem of calculus states that <span class="math">\(F(b)-F(a)=\int_a^bf(x)dx\)</span>. In order to prove this, let <span class="math">\(P\)</span> be any partition of <span class="math">\([a,b]\)</span> so that <span class="math">\(P=\lbrace x_0=a,x_1,x_2,...,x_{n-1},x_n=b\rbrace\)</span>. Then <span class="math">\(F(b)-F(a)=\sum_{i=1}^nF(x_i)-F(x_{i-1})\)</span>. Since <span class="math">\(F(x)\)</span> is differentiable on every subinterval <span class="math">\([x_{i-1},x_i]\)</span>, according to the mean value theorem, for every <span class="math">\(i\in\lbrace 1,...,n\rbrace,\exists c_i\in(x_{i-1},x_i)\)</span> such that</p>
+<div class="math">
+\[F'(c_i)=f(c_i)=\frac{F(x_i)-F(x_{i-1})}{x_i-x_{i-1}}\]</div>
+<p>Therefore <span class="math">\(F(b)-F(a)=\sum_{i=1}^nf(c_i)(x_i-x_{i-1})\)</span> which is a Riemann sum of <span class="math">\(f\)</span> with respect to <span class="math">\(P\)</span>. The lower sum <span class="math">\(L(P,f)\)</span> and upper sum <span class="math">\(U(P,f)\)</span> of <span class="math">\(f\)</span> with respect to <span class="math">\(P\)</span> are defined as</p>
+<div class="math">
+\[\begin{split}L(P,f)=\sum_{i=1}^nf(p_i)(x_i-x_{i-1}),f(p_i)=\inf\lbrace f(x):x\in[x_{i-1},x_i]\rbrace\\
+U(P,f)=\sum_{i=1}^nf(q_i)(x_i-x_{i-1}),f(q_i)=\sup\lbrace f(x):x\in[x_{i-1},x_i]\rbrace\end{split}\]</div>
+<p>Therefore <span class="math">\(L(P,f)\leq F(b)-F(a)\leq U(P,f)\)</span>. Since <span class="math">\(P\)</span> was chosen arbitrarily, <span class="math">\(F(b)-F(a)\)</span> is an upper bound for the set of all lower sums of <span class="math">\(f\)</span> and a lower bound for the set of all upper sums of <span class="math">\(f\)</span> on the interval <span class="math">\([a,b]\)</span>. Since <span class="math">\(\int_a^b f(x)dx\)</span> exists, by definition the upper and lower integrals of <span class="math">\(f\)</span> on <span class="math">\([a,b]\)</span> must be both equal to <span class="math">\(\int_a^b f(x)dx\)</span>. The upper integral <span class="math">\(U(f)\)</span> is the greatest lower bound of the set of all upper sums of <span class="math">\(f\)</span> and the lower integral <span class="math">\(L(f)\)</span> is the least upper bound of the set of all lower sums of <span class="math">\(f\)</span>.</p>
+<div class="math">
+\[\begin{split}L(f)=\sup\lbrace L(P,f):P\text{ partitions }[a,b]\rbrace\\
+U(f)=\inf\lbrace U(P,f):P\text{ partitions }[a,b]\rbrace\end{split}\]</div>
+<p>From the above definitions it follows that</p>
+<div class="math">
+\[L(f)\leq F(b)-F(a)\leq U(f)\Rightarrow \boxed{F(b)-F(a)=\int_a^b f(x)dx}\]</div>
+</div>
 <div class="section" id="differentiation-rules">
 <h2>Differentiation Rules<a class="headerlink" href="#differentiation-rules" title="Permalink to this headline">¶</a></h2>
-<p>While proving Taylor&#8217;s theorem we made use of the product rule and the chain rule of differentiation. The product rule was utilized while taking the derivative of <span class="math">\(\displaystyle\frac{f^{(k)}(x)}{k!}(b-x)^k\)</span> with respect to x. Let <span class="math">\(G(x)=f(x)g(x)\)</span> where f&#8217; and g&#8217; both exist at some x=a. Then the derivative of <span class="math">\(G(x)\)</span> at x=a can be expressed as follows [<a class="reference internal" href="#id1">1</a>]:</p>
+<p>While proving <a class="reference internal" href="#taylor-s-theorem">Taylor&#8217;s theorem</a> we made use of the product rule and the chain rule of differentiation. The product rule was utilized while taking the derivative of <span class="math">\(\displaystyle\frac{f^{(k)}(x)}{k!}(b-x)^k\)</span> with respect to x. Let <span class="math">\(G(x)=f(x)g(x)\)</span> where f&#8217; and g&#8217; both exist at some x=a. Then the derivative of <span class="math">\(G(x)\)</span> at x=a can be expressed as follows [<a class="reference internal" href="#id1">1</a>]:</p>
 <div class="math">
 \[\begin{split}G'(a)&amp;=\lim_{x\to a} \frac{G(x)-G(a)}{x-a}\\
 &amp;=\lim_{x\to a}\frac{f(x)g(x)-f(a)g(x)+f(a)g(x)-f(a)g(a)}{x-a}\\
@@ -188,7 +204,7 @@
 <p><strong>The chain rule</strong> of differentiation is applied in order to take the derivative of compound functions in form of <span class="math">\(f(g(x))\)</span> or <span class="math">\(f\circ g(x)\)</span> with respect to <span class="math">\(x\)</span>. If we equate <span class="math">\(g(x)\)</span> to a variable <span class="math">\(u\)</span>, then <span class="math">\(f'(g(x))\)</span> is computed as <span class="math">\(f'(u)g'(x)\)</span>. In order to prove this formula we can use the definition of derivative as follows [<a class="reference internal" href="#id4">4</a>]: Let <span class="math">\(y=f(u)\)</span>, <span class="math">\(y_0=f(u_0)\)</span>, <span class="math">\(u_0=g(x_0)\)</span>, then</p>
 <div class="math">
 \[\frac{dy}{dx}\Big \rvert_{x=x_0}=\lim_{x\to x_0}\frac{y-y_0}{x-x_0}=lim_{x\to x_0}\frac{y-y_0}{u-u_0}\frac{u-u_0}{x-x_0}\]</div>
-<p>Using Taylor&#8217;s theorem, at any value of <span class="math">\(x\)</span> and <span class="math">\(u\)</span>, <span class="math">\(f(u)\)</span> and <span class="math">\(g(x)\)</span> can be expressed as follows:</p>
+<p>Using <a class="reference internal" href="#taylor-s-theorem">Taylor&#8217;s theorem</a>, at any value of <span class="math">\(x\)</span> and <span class="math">\(u\)</span>, <span class="math">\(f(u)\)</span> and <span class="math">\(g(x)\)</span> can be expressed as follows:</p>
 <div class="math">
 \[\begin{split}&amp;f(u)=f(u_0)+f'(u_0)(u-u_0)+ ... +\frac{f^{(n)}(\xi)}{n!}(u-u_0)^n,\qquad  \xi\in(u_0,u)\\
 &amp;f(u)-f(u_0)=f'(u_0)(u-u_0)+\varepsilon_1(u-u_0)\\
@@ -211,6 +227,62 @@
 <div class="math">
 \[\begin{split}\lim_{x\to x_0}\frac{y-y_0}{x-x_0}&amp;=\lim_{x\to x_0}\Big[f'(u_0)\cdot g'(x_0)+\varepsilon_1\cdot g'(x_0)+\varepsilon_2\cdot f'(u_0)+\varepsilon_1 \cdot \varepsilon_2\Big]\\
 &amp;=f'(u_0)\cdot g'(x_0)=f'(g(x_0))\cdot g'(x_0)\end{split}\]</div>
+<p>Another differentiation rule that we used while proving <a class="reference internal" href="#taylor-s-theorem">Taylor&#8217;s theorem</a> is the rule to calculate the <strong>derivative of a power</strong>. According to this rule, if a function has the form <span class="math">\(f(x)=x^n\)</span>, then its derivative with respect to <span class="math">\(x\)</span> is <span class="math">\(nx^{n-1}\)</span>. There are to ways to prove this formula. The first one uses the <a class="reference internal" href="#binomial-theorem">binomial theorem</a> . The derivative of <span class="math">\(f\)</span> at some <span class="math">\(x=x_0\)</span> is computed as <span class="math">\(\displaystyle\lim_{h\to 0}\displaystyle\frac{f(x_0+h)-f(x_0)}{h}\)</span>. Using the binomial expansion of <span class="math">\(f(x_0+h)\)</span> we obtain</p>
+<div class="math">
+\[\begin{split}f'(x_0)&amp;=\lim_{h\to 0}\frac{(x_0+h)^n-{x_0}^n}{h}\\
+&amp;=\lim_{h\to 0}\frac{\binom{n}{0}{x_0}^n+\binom{n}{1}{x_0}^{n-1}h+...+\binom{n}{n-1}x_0h^{n-1}+\binom{n}{n}h^n-{x_0}^n}{h}\\
+&amp;=n{x_0}^{n-1}+\lim_{h\to 0}h\Bigg(\binom{n}{2}{x_0}^{n-2}+\binom{n}{3}{x_0}^{n-3}h+\quad ...\quad+\binom{n}{n-1}x_0h^{n-2}+\binom{n}{n}h^{n-1}\Bigg)\\
+&amp;=\boxed{n{x_0}^{n-1}}\end{split}\]</div>
+<p>The second way to prove the formula for the derivative of a power uses the following expansion</p>
+<div class="math">
+\[x^n-{x_0}^n=(x-x_0)(x^{n-1}+x_0x^{n-2}+{x_0}^2x^{n-3}+{x_0}^3x^{n-4}+\quad ...\quad +{x_0}^{n-2}x+{x_0}^{n-1})\]</div>
+<p>The derivative of <span class="math">\(f\)</span> at some <span class="math">\(x=x_0\)</span> can also be computed as <span class="math">\(\displaystyle\lim_{x\to x_0}\displaystyle\frac{f(x)-f(x_0)}{x-x_0}\)</span>. Using the above expansion we obtain:</p>
+<div class="math">
+\[\begin{split}f'(x_0)&amp;=\lim_{x\to x_0}\frac{f(x)-f(x_0)}{x-x_0}=\lim_{x\to x_0}\frac{x^n-{x_0}^n}{x-x_0}\\
+&amp;=\lim_{x\to x_0}(x^{n-1}+x_0x^{n-2}+{x_0}^2x^{n-3}+{x_0}^3x^{n-4}+ \quad ... \quad +{x_0}^{n-2}x+{x_0}^{n-1})\\
+&amp;=({x_0}^{n-1}+x_0{x_0}^{n-2}+{x_0}^2{x_0}^{n-3}+...+{x_0}^{n-2}x_0+{x_0}^{n-1})\\
+&amp;=\boxed{n{x_0}^{n-1}}\end{split}\]</div>
+<p>The expansion used in the above proof can be obtained using the finite geometric series summation formula. This formula states that:</p>
+<div class="math">
+\[\sum_{k=0}^{n-1}r^k=\frac{1-r^n}{1-r},\quad r\neq 1\]</div>
+<p>In the above formula let <span class="math">\(r=x_0/x\)</span>. If <span class="math">\(x=x_0\)</span> then <span class="math">\(x^n-{x_0}^n=0\)</span> and there is no need for an expansion formula. Suppose <span class="math">\(x\neq x_0\)</span>. Then <span class="math">\(\displaystyle\sum_{k=0}^{n-1}\Big(\frac{x_0}{x}\Big)^k=\displaystyle\frac{1-\Big(\displaystyle\frac{x_0}{x}\Big)^n}{1-\displaystyle\frac{x_0}{x}}\)</span>. Using this result we can write <span class="math">\(x^n-{x_0}^n\)</span> in the following form:</p>
+<div class="math">
+\[\begin{split}x^n-{x_0}^n&amp;=x^n\Big(1-(\frac{x_0}{x})^n\Big)=x^n\Big(1-\frac{x_0}{x}\Big)\sum_{k=0}^{n-1}(\frac{x_0}{x})^k\\
+&amp;=x\Big(1-\frac{x_0}{x}\Big)x^{n-1}\Big(1+\frac{x_0}{x}+(\frac{x_0}{x})^2+...+(\frac{x_0}{x})^{n-2}+(\frac{x_0}{x})^{n-1}\Big)\\
+&amp;=(x-x_0)(x^{n-1}+x_0x^{n-2}+{x_0}^2x^{n-3}+...+{x_0}^{n-2}x+{x_0}^{n-1})\end{split}\]</div>
+</div>
+<div class="section" id="binomial-theorem">
+<h2>Binomial theorem<a class="headerlink" href="#binomial-theorem" title="Permalink to this headline">¶</a></h2>
+<p>Binomial theorem states that for any <span class="math">\(a,b\in\mathbb{R}\)</span> and <span class="math">\(n\in\mathbb{N}\)</span>, [<a class="reference internal" href="#id1">1</a>]</p>
+<div class="math">
+\[\begin{split}(a+b)^n&amp;=\binom{n}{0}a^n+\binom{n}{1}a^{n-1}b+\binom{n}{2}a^{n-2}b^2+\quad ...\quad \\
+&amp;+\binom{n}{n-2}a^2b^{n-2}+\binom{n}{n-1}ab^{n-1}+\binom{n}{n}b^n\end{split}\]</div>
+<p>This can be inductively proven with the help of Pascal&#8217;s triangle theorem which states that</p>
+<div class="math">
+\[\binom{n}{k-1}+\binom{n}{k}=\binom{n+1}{k}\]</div>
+<p>Pascal&#8217;s triangle theorem can be proven by inserting the definition of the binomial coefficient <span class="math">\(\binom{n}{k}\)</span> in the above equation:</p>
+<div class="math">
+\[\begin{split}&amp;\frac{n!}{(k-1)!(n-k+1)!}+\frac{n!}{k!(n-k)!}=\frac{n!}{(n-k)!(k-1)!}\Big[\frac{1}{n-k+1}+\frac{1}{k}\Big]\\
+&amp;=\frac{n!}{(n-k)!(k-1)!}\Big[\frac{n+1}{k(n-k+1)}\Big]=\frac{(n+1)!}{k!(n+1-k)!}=\binom{n+1}{k}\end{split}\]</div>
+<p>For <span class="math">\(n=1\)</span>, <span class="math">\(\displaystyle\sum_{k=0}^1\displaystyle\binom{1}{k}a^{1-k}b^k=\displaystyle\binom{1}{0}a+\displaystyle\binom{1}{1}b=(a+b)^1\)</span> and the binomial formula for <span class="math">\((a+b)^n\)</span> is true. Suppose the formula is also true for some <span class="math">\(n\in\mathbb{N}\)</span>. Then</p>
+<div class="math">
+\[\begin{split}(a+b)^{n+1}&amp;=(a+b)(a+b)^n=(a+b)\sum_{k=0}^n\binom{n}{k}a^{n-k}b^k\\
+&amp;=\Big[\binom{n+1}{0}a^{n+1}+\binom{n}{1}a^nb+\binom{n}{2}a^{n-1}b^2+\binom{n}{3}a^{n-2}b^3+... \\
+&amp;+\binom{n}{n-3}a^4b^{n-3}+\binom{n}{n-2}a^3b^{n-2}+\binom{n}{n-1}a^2b^{n-1}+\binom{n}{n}ab^n\Big]\\
+&amp;+\Big[\binom{n}{0}a^nb+\binom{n}{1}a^{n-1}b^2+\binom{n}{2}a^{n-2}b^3+\binom{n}{3}a^{n-3}b^4 + ... \\
+&amp;+ \binom{n}{n-3}a^3b^{n-2}+\binom{n}{n-2}a^2b^{n-1}+\binom{n}{n-1}ab^n+\binom{n+1}{n+1}b^{n+1}\Big]\\
+&amp;=\binom{n+1}{0}a^{n+1}+a^nb\Big[\binom{n}{1}+\binom{n}{0}\Big]+a^{n-1}b^2\Big[\binom{n}{1}+\binom{n}{2}\Big]\\
+&amp;+a^{n-2}b^3\Big[\binom{n}{3}+\binom{n}{2}\Big]+...+a^3b^{n-2}\Big[\binom{n}{n-2}+\binom{n}{n-3}\Big]\\
+&amp;+a^2b^{n-1}\Big[\binom{n}{n-1}+\binom{n}{n-2}\Big]+ab^n\Big[\binom{n}{n}+\binom{n}{n-1}\Big]+\binom{n+1}{n+1}b^{n+1}\\
+&amp;=\binom{n+1}{0}a^{n+1}+\binom{n+1}{1}a^nb+\binom{n+1}{2}a^{n-1}b^2+\binom{n+1}{3}a^{n-2}b^3 +... \\
+&amp;+\binom{n+1}{n-2}a^3b^{n-2}+\binom{n+1}{n-1}a^2b^{n-1}+\binom{n+1}{n}ab^n+\binom{n+1}{n+1}b^{n+1}\\
+&amp;=\sum_{k=0}^{n+1}\binom{n+1}{k}a^{n+1-k}b^k\end{split}\]</div>
+<p>which shows that the formula is also true for <span class="math">\(n+1\)</span> if it is true for <span class="math">\(n\)</span>. This completes the proof of the binomial theorem.</p>
+<p>The binomial theorem is also one of the reasons why the quantity <span class="math">\(0^0\)</span> was defined as equal to <span class="math">\(1\)</span> by mathematicians. Consider the following expansion [<a class="reference internal" href="#id5">5</a>]:</p>
+<div class="math">
+\[\begin{split}(0+x)^n&amp;=\binom{n}{0}0^nx^0+\binom{n}{1}0^{n-1}x+...+\binom{n}{n-1}0^1x^{n-1}+\binom{n}{n}0^0x^n\\
+          &amp;=x^n\end{split}\]</div>
+<p>If <span class="math">\(0^0\)</span> were undefined or defined as zero, then the binominal theorem would yield <span class="math">\(x^n=0^0x^n=0\)</span> or <span class="math">\(x^n=\)</span> undefined.</p>
 </div>
 <div class="section" id="weierstrass-maximum-minimum-theorem">
 <h2>Weierstrass&#8217; maximum-minimum theorem<a class="headerlink" href="#weierstrass-maximum-minimum-theorem" title="Permalink to this headline">¶</a></h2>
@@ -229,6 +301,7 @@
 <p id="id2">[2] Bowman, John C. ; &#8220;Math 117/118 Honours Calculus Lecture Notes&#8221;, University of Alberta</p>
 <p id="id3">[3] <a class="reference external" href="http://planetmath.org/proofoflimitruleofproduct">http://planetmath.org/proofoflimitruleofproduct</a></p>
 <p id="id4">[4] Thomas&#8217; Calculus, 12th edition.</p>
+<p id="id5">[5] <a class="reference external" href="http://www.askamathematician.com/2010/12/q-what-does-00-zero-raised-to-the-zeroth-power-equal-why-do-mathematicians-and-high-school-teachers-disagree/">http://www.askamathematician.com/2010/12/q-what-does-00-zero-raised-to-the-zeroth-power-equal-why-do-mathematicians-and-high-school-teachers-disagree/</a></p>
 </div>
 </div>
 
@@ -247,7 +320,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="">Calculus</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#mean-value-theorem-and-rolle-s-theorem">Mean Value Theorem and Rolle&#8217;s Theorem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#taylor-s-theorem">Taylor&#8217;s theorem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-fundamental-theorem-of-calculus">The Fundamental Theorem of Calculus</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#differentiation-rules">Differentiation Rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binomial-theorem">Binomial theorem</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#weierstrass-maximum-minimum-theorem">Weierstrass&#8217; maximum-minimum theorem</a></li>
 </ul>
 </li>
