@@ -77,8 +77,29 @@
 \[\cos{\theta_a}=\frac{a_1}{\Vert \mathbf{a} \Vert},\quad \cos{\theta_b}=\frac{b_1}{\Vert \mathbf{b} \Vert},\quad
 \sin{\theta_a}=\frac{a_2}{\Vert \mathbf{a} \Vert},\quad \sin{\theta_b}=\frac{b_2}{\Vert \mathbf{b} \Vert}\]</div>
 <div class="math">
-\[\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert a \Vert}\frac{b_1}{\Vert b \Vert}+\frac{a_2}{\Vert a \Vert}\frac{b_2}{\Vert b \Vert}=\frac{\langle a { , } b \rangle}{\Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert}\]</div>
-<p>where <span class="math">\(\Vert\cdot \Vert\)</span> denotes the Euclidean norm or the magnitude of a vector and <span class="math">\(\langle { \cdot { , } \cdot } \rangle\)</span> denotes the scalar product or dot product of two vectors. The formula for the cosine of the difference between two angles(or an angle between two vectors) can be derived as follows[<a class="reference internal" href="#id1">1</a>]:</p>
+\[\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert \mathbf{a} \Vert}\frac{b_1}{\Vert \mathbf{b} \Vert}+\frac{a_2}{\Vert \mathbf{a} \Vert}\frac{b_2}{\Vert \mathbf{b} \Vert}=\frac{\langle \mathbf{a} { , } \mathbf{b} \rangle}{\Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert}\]</div>
+<p>where <span class="math">\(\Vert\cdot \Vert\)</span> denotes the Euclidean norm or the magnitude of a vector and <span class="math">\(\langle { \cdot { , } \cdot } \rangle\)</span> denotes the scalar product or inner product of two vectors. All vectors are  denoted with bold letters. The inner product of two vectors in the Euclidean n-space <span class="math">\(\mathbb{R}^n\)</span> is defined by <span class="math">\(\langle { \mathbf{x} { , } \mathbf{y} } \rangle=\sum_{i=1}^{n}x_iy_i\)</span>. Some of the properties of the inner product are as follows [<a class="reference internal" href="#id6">6</a>]:</p>
+<div class="math">
+\[\lvert\langle { \mathbf{x} { , } \mathbf{y} } \rangle\rvert\leq \Vert\mathbf{x}\Vert\cdot \Vert\mathbf{y}\Vert\]</div>
+<p>This can be proven using the concept of linear independence. Let&#8217;s say we have a set of k vectors <span class="math">\(\lbrace \mathbf{v}_1, ... ,\mathbf{v}_k \rbrace\)</span> in the Euclidean n-space <span class="math">\(\mathbb{R}^n\)</span>. These vectors are either linearly dependent or independent. If there exists a set of k coefficients <span class="math">\(\lbrace\alpha_1, ... , \alpha_k \rbrace\)</span> such that not all of these coefficients are zero and <span class="math">\(\alpha_1\mathbf{v}_1 + ... +\alpha_k\mathbf{v}_k=0\)</span>, then the vectors are linearly dependent because we could express one of these vectors as a linear combination of the rest of the vectors in the set. As an example suppose that <span class="math">\(\alpha_1\neq 0\)</span>. Then we could write <span class="math">\(\mathbf{v}_1=-(\alpha_2/\alpha_1)\mathbf{v}_2-(\alpha_3/\alpha_1)\mathbf{v}_3- ... -(\alpha_k/\alpha_1)\mathbf{v}_k\)</span>. On the other hand if the only way to express the zero vector as a linear combination of these vectors is with <span class="math">\(\alpha_i=0\quad\forall i\in\lbrace 1,...,k\rbrace\)</span>, then the vectors are linearly independent. If the vectors <span class="math">\(\mathbf{x}\)</span> and <span class="math">\(\mathbf{y}\)</span> are linearly dependent, then one of them can be expressed in terms of the other such that <span class="math">\(\mathbf{x}=\alpha \mathbf{y}\)</span> for some <span class="math">\(\alpha \in\mathbb{R}\)</span>. Then we obtain:</p>
+<div class="math">
+\[|\langle \mathbf{x},\mathbf{y} \rangle |=|\langle \alpha \mathbf{y},\mathbf{y} \rangle|=|\alpha\langle \mathbf{y},\mathbf{y}\rangle |=|\alpha|\Vert y\Vert^2=\Vert\alpha \mathbf{y}\Vert\Vert\mathbf{y}\Vert=\Vert\mathbf{x}\Vert\Vert\mathbf{y}\Vert\]</div>
+<p>On the other hand, if <span class="math">\(\mathbf{x}\)</span> and <span class="math">\(\mathbf{y}\)</span> are linearly independent, then <span class="math">\(\Vert\mathbf{x}-\alpha\mathbf{y}\Vert\neq 0\)</span> for any <span class="math">\(\alpha \in\mathbb{R}\)</span> and we obtain:</p>
+<div class="math">
+\[\begin{split}0&lt;|\mathbf{x}-\alpha\mathbf{y}|^2=\sum_{i=1}^{n}(x_i-\alpha y_i)^2=\sum_{i=1}^{n}{x_i}^2+{\alpha}^2{y_i}^2-2\alpha x_iy_i\end{split}\]</div>
+<p>which is a quadratic equation in form of <span class="math">\(a{\alpha}^2+b\alpha + c\)</span>. Since this equation is always greater than zero, there are no real values of <span class="math">\(\alpha\)</span> which would make it equal to zero. As a result the discriminant of the equation (<span class="math">\(b^2-4ac\)</span>) must be less than zero. Because if it were greater than or equal to zero, then <span class="math">\({(-b \pm\sqrt{b^2-4ac})}/{2a}\)</span> would give us some real values that make the quadratic equation equal to zero. Therefore:</p>
+<div class="math">
+\[\begin{split}\Big(-2\sum_{i=1}^{n}x_iy_i\Big)^2-4\Big(\sum_{i=1}^n{y_i}^2\Big)\Big(\sum_{i=1}^{n}{x_i}^2\Big) &lt;0\end{split}\]</div>
+<div class="math">
+\[\begin{split}|\langle \mathbf{x},\mathbf{y} \rangle|^2&lt;\Vert\mathbf{y}\Vert^2\Vert\mathbf{x}\Vert^2\end{split}\]</div>
+<p>This property leads to another one which is called the triangle inequality:</p>
+<div class="math">
+\[\Vert \mathbf{x}+\mathbf{y}\Vert\leq\Vert\mathbf{x}\Vert + \Vert \mathbf{y}\Vert\]</div>
+<p>To prove this we can proceed as follows:</p>
+<div class="math">
+\[\begin{split}\Vert\mathbf{x}+\mathbf{y}\Vert^2&amp;=\sum_{i=1}^n(x_i+y_i)^2=\sum_{i=1}^n{x_i}^2+{y_i}^2+2x_iy_i=\Vert\mathbf{x}\Vert^2+\Vert\mathbf{y}\Vert^2+2\langle\mathbf{x},\mathbf{y}\rangle \\
+&amp;\leq \Vert\mathbf{x}\Vert^2+\Vert\mathbf{y}\Vert^2+2\Vert\mathbf{x}\Vert\Vert\mathbf{y}\Vert=(\Vert\mathbf{x}\Vert+\Vert\mathbf{y}\Vert)^2\end{split}\]</div>
+<p>Now let&#8217;s turn back to the vectors <span class="math">\(\mathbf{a}\)</span>, <span class="math">\(\mathbf{b}\)</span> in <span class="math">\(\mathbb{R}^2\)</span> and the angle between them. The formula for the cosine of the difference between two angles(or an angle between two vectors) can be derived as follows[<a class="reference internal" href="#id1">1</a>]:</p>
 <p>Let <span class="math">\(f(\theta)=\cos(\theta-\beta)+\alpha_1\cos(\theta)+\alpha_2\sin(\theta)\)</span> where <span class="math">\(f:\mathbb{R}\to\mathbb{R}\)</span> and <span class="math">\(\beta,\alpha_1, \alpha_2 \in \mathbb{R}\)</span> are arbitrary. The first and second derivatives of <span class="math">\(f(\theta)\)</span> look like:</p>
 <div class="math">
 \[\begin{split}&amp;f^{'}(\theta)=-\sin(\theta-\beta)-\alpha_1\sin(\theta)+\alpha_2\cos(\theta)\\
@@ -122,7 +143,8 @@
 \[f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k + \frac{f^{n}(\xi)}{n!}(b-a)^n\]</div>
 <p>In order to prove this, we define the following function <span class="math">\(\phi(x)\)</span> [<a class="reference internal" href="#id2">2</a>] :</p>
 <div class="math">
-\[\phi(x)=\sum_{k=0}^{n-1}\frac{f^{(k)}(x)}{k!}(b-x)^k + M(b-x)^n\]\[Clearly :math:`\phi` is continuous on [a,b] and differentiable on (a,b). Therefore if we choose a value for M such that :math:`\phi(a)=\phi(b)=f(b)`, then from Rolle's theorem [mvt_] it would follow that there exists :math:`\xi\in (a,b)` such that :math:`\phi'(\xi)=0`.\]</div>
+\[\phi(x)=\sum_{k=0}^{n-1}\frac{f^{(k)}(x)}{k!}(b-x)^k + M(b-x)^n\]</div>
+<p>Clearly <span class="math">\(\phi\)</span> is continuous on [a,b] and differentiable on (a,b). Therefore if we choose a value for M such that <span class="math">\(\phi(a)=\phi(b)=f(b)\)</span>, then from Rolle&#8217;s theorem [<a class="reference internal" href="#mvt">mvt</a>] it would follow that there exists <span class="math">\(\xi\in (a,b)\)</span> such that <span class="math">\(\phi'(\xi)=0\)</span>.</p>
 <div class="math">
 \[\begin{split}\phi'(x)&amp;=f'(x)+\sum_{k=1}^{n-1}\frac{f^{(k+1)}(x)}{k!}(b-x)^k - \frac{f^{(k)}(x)}{k!}k(b-x)^{(k-1)} - Mn(b-x)^{(n-1)} \\
 &amp;=f'(x)+\sum_{k=2}^{n}\frac{f^{(k)}(x)}{(k-1)!}(b-x)^{k-1}-\sum_{k=1}^{n-1}\frac{f^{(k)}(x)}{(k-1)!}(b-x)^{k-1}-Mn(b-x)^{n-1}\\
@@ -203,7 +225,7 @@ U(f)=\inf\lbrace U(P,f):P\text{ partitions }[a,b]\rbrace\end{split}\]</div>
 \[\begin{split}|f(x)g(x)-FG|&lt;(1+|G|)\frac{\varepsilon}{2(1+|G|)}+(1+|F|)\frac{\varepsilon}{2(1+|F|)}=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon\end{split}\]</div>
 <p><strong>The chain rule</strong> of differentiation is applied in order to take the derivative of compound functions in form of <span class="math">\(f(g(x))\)</span> or <span class="math">\(f\circ g(x)\)</span> with respect to <span class="math">\(x\)</span>. If we equate <span class="math">\(g(x)\)</span> to a variable <span class="math">\(u\)</span>, then <span class="math">\(f'(g(x))\)</span> is computed as <span class="math">\(f'(u)g'(x)\)</span>. In order to prove this formula we can use the definition of derivative as follows [<a class="reference internal" href="#id4">4</a>]: Let <span class="math">\(y=f(u)\)</span>, <span class="math">\(y_0=f(u_0)\)</span>, <span class="math">\(u_0=g(x_0)\)</span>, then</p>
 <div class="math">
-\[\frac{dy}{dx}\Big \rvert_{x=x_0}=\lim_{x\to x_0}\frac{y-y_0}{x-x_0}=lim_{x\to x_0}\frac{y-y_0}{u-u_0}\frac{u-u_0}{x-x_0}\]</div>
+\[\frac{dy}{dx}\Big \rvert_{x=x_0}=\lim_{x\to x_0}\frac{y-y_0}{x-x_0}=\lim_{x\to x_0}\frac{y-y_0}{u-u_0}\frac{u-u_0}{x-x_0}\]</div>
 <p>Using <a class="reference internal" href="#taylor-s-theorem">Taylor&#8217;s theorem</a>, at any value of <span class="math">\(x\)</span> and <span class="math">\(u\)</span>, <span class="math">\(f(u)\)</span> and <span class="math">\(g(x)\)</span> can be expressed as follows:</p>
 <div class="math">
 \[\begin{split}&amp;f(u)=f(u_0)+f'(u_0)(u-u_0)+ ... +\frac{f^{(n)}(\xi)}{n!}(u-u_0)^n,\qquad  \xi\in(u_0,u)\\
@@ -278,7 +300,7 @@ U(f)=\inf\lbrace U(P,f):P\text{ partitions }[a,b]\rbrace\end{split}\]</div>
 &amp;+\binom{n+1}{n-2}a^3b^{n-2}+\binom{n+1}{n-1}a^2b^{n-1}+\binom{n+1}{n}ab^n+\binom{n+1}{n+1}b^{n+1}\\
 &amp;=\sum_{k=0}^{n+1}\binom{n+1}{k}a^{n+1-k}b^k\end{split}\]</div>
 <p>which shows that the formula is also true for <span class="math">\(n+1\)</span> if it is true for <span class="math">\(n\)</span>. This completes the proof of the binomial theorem.</p>
-<p>The binomial theorem is also one of the reasons why the quantity <span class="math">\(0^0\)</span> was defined as equal to <span class="math">\(1\)</span> by mathematicians. Consider the following expansion [<a class="reference internal" href="#id5">5</a>]:</p>
+<p>The binomial theorem is also one of the reasons why <span class="math">\(0^0\)</span> was defined as equal to <span class="math">\(1\)</span> by mathematicians. Consider the following expansion [<a class="reference internal" href="#id5">5</a>]:</p>
 <div class="math">
 \[\begin{split}(0+x)^n&amp;=\binom{n}{0}0^nx^0+\binom{n}{1}0^{n-1}x+...+\binom{n}{n-1}0^1x^{n-1}+\binom{n}{n}0^0x^n\\
           &amp;=x^n\end{split}\]</div>
@@ -302,6 +324,7 @@ U(f)=\inf\lbrace U(P,f):P\text{ partitions }[a,b]\rbrace\end{split}\]</div>
 <p id="id3">[3] <a class="reference external" href="http://planetmath.org/proofoflimitruleofproduct">http://planetmath.org/proofoflimitruleofproduct</a></p>
 <p id="id4">[4] Thomas&#8217; Calculus, 12th edition.</p>
 <p id="id5">[5] <a class="reference external" href="http://www.askamathematician.com/2010/12/q-what-does-00-zero-raised-to-the-zeroth-power-equal-why-do-mathematicians-and-high-school-teachers-disagree/">http://www.askamathematician.com/2010/12/q-what-does-00-zero-raised-to-the-zeroth-power-equal-why-do-mathematicians-and-high-school-teachers-disagree/</a></p>
+<p id="id6">[6] Spivak M. (1965);&#8221;Calculus on Manifolds&#8221;, ISBN 0-8053-9021-9</p>
 </div>
 </div>
 

@@ -5576,8 +5576,8 @@
             yConstraintCheckBox,firstNodeDropDown,secondNodeDropDown){
             maxSysLength=parseFloat(totalSizeTxt.value);
             scaleFactor=2/(1.25*maxSysLength);//A very small number, the entered coordinates will be multiplied with this before being plotted
-            var xCoord=parseFloat(xTxt.value);var xCoordScaled=scaleFactor*parseFloat(xTxt.value);
-            var yCoord=parseFloat(yTxt.value);var yCoordScaled=scaleFactor*parseFloat(yTxt.value);
+            var xCoord=parseFloat(xTxt.value);var xCoordScaled=scaleFactor*xCoord;
+            var yCoord=parseFloat(yTxt.value);var yCoordScaled=scaleFactor*yCoord;
             var xForce=parseFloat(xForceTxt.value);
             var yForce=parseFloat(yForceTxt.value);
             var xIsConstrained=xConstraintCheckBox.checked;
