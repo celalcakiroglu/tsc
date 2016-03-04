@@ -22,12 +22,20 @@ In the above figure, the cosines and sines of the angles :math:`\theta_a` , :mat
 .. math::
 	\cos(\theta_a-\theta_b)=\cos(\theta_a)\cos(\theta_b)+\sin(\theta_a)\sin(\theta_b)=\frac{a_1}{\Vert \mathbf{a} \Vert}\frac{b_1}{\Vert \mathbf{b} \Vert}+\frac{a_2}{\Vert \mathbf{a} \Vert}\frac{b_2}{\Vert \mathbf{b} \Vert}=\frac{\langle \mathbf{a} { , } \mathbf{b} \rangle}{\Vert\mathbf{a}\Vert\Vert\mathbf{b}\Vert}
 
-where :math:`\Vert\cdot \Vert` denotes the Euclidean norm or the magnitude of a vector and :math:`\langle { \cdot { , } \cdot } \rangle` denotes the scalar product or inner product of two vectors. All vectors are  denoted with bold letters. The inner product of two vectors in the Euclidean n-space :math:`\mathbb{R}^n` is defined by :math:`\langle { \mathbf{x} { , } \mathbf{y} } \rangle=\sum_{i=1}^{n}x_iy_i`. Some of the properties of the inner product are as follows [6_]:
+where :math:`\Vert\cdot \Vert` denotes the Euclidean norm or the magnitude of a vector and :math:`\langle { \cdot { , } \cdot } \rangle` denotes the scalar product or inner product of two vectors. 
+
+Vector norm and inner product
+---------------------------------
+All vectors are  denoted with bold letters. The inner product of two vectors in the Euclidean n-space :math:`\mathbb{R}^n` is defined by :math:`\langle { \mathbf{x} { , } \mathbf{y} } \rangle=\sum_{i=1}^{n}x_iy_i`. Some of the properties of the inner product are as follows [6_]:
 
 .. math::
 	\lvert\langle { \mathbf{x} { , } \mathbf{y} } \rangle\rvert\leq \Vert\mathbf{x}\Vert\cdot \Vert\mathbf{y}\Vert
 
-This can be proven using the concept of linear independence. Let's say we have a set of k vectors :math:`\lbrace \mathbf{v}_1, ... ,\mathbf{v}_k \rbrace` in the Euclidean n-space :math:`\mathbb{R}^n`. These vectors are either linearly dependent or independent. If there exists a set of k coefficients :math:`\lbrace\alpha_1, ... , \alpha_k \rbrace` such that not all of these coefficients are zero and :math:`\alpha_1\mathbf{v}_1 + ... +\alpha_k\mathbf{v}_k=0`, then the vectors are linearly dependent because we could express one of these vectors as a linear combination of the rest of the vectors in the set. As an example suppose that :math:`\alpha_1\neq 0`. Then we could write :math:`\mathbf{v}_1=-(\alpha_2/\alpha_1)\mathbf{v}_2-(\alpha_3/\alpha_1)\mathbf{v}_3- ... -(\alpha_k/\alpha_1)\mathbf{v}_k`. On the other hand if the only way to express the zero vector as a linear combination of these vectors is with :math:`\alpha_i=0\quad\forall i\in\lbrace 1,...,k\rbrace`, then the vectors are linearly independent. If the vectors :math:`\mathbf{x}` and :math:`\mathbf{y}` are linearly dependent, then one of them can be expressed in terms of the other such that :math:`\mathbf{x}=\alpha \mathbf{y}` for some :math:`\alpha \in\mathbb{R}`. Then we obtain:
+This can be proven using the concept of linear independence. 
+
+Linear independence
+~~~~~~~~~~~~~~~~~~~~~~~~~
+Let's say we have a set of k vectors :math:`\lbrace \mathbf{v}_1, ... ,\mathbf{v}_k \rbrace` in the Euclidean n-space :math:`\mathbb{R}^n`. These vectors are either linearly dependent or independent. If there exists a set of k coefficients :math:`\lbrace\alpha_1, ... , \alpha_k \rbrace` such that not all of these coefficients are zero and :math:`\alpha_1\mathbf{v}_1 + ... +\alpha_k\mathbf{v}_k=0`, then the vectors are linearly dependent because we could express one of these vectors as a linear combination of the rest of the vectors in the set. As an example suppose that :math:`\alpha_1\neq 0`. Then we could write :math:`\mathbf{v}_1=-(\alpha_2/\alpha_1)\mathbf{v}_2-(\alpha_3/\alpha_1)\mathbf{v}_3- ... -(\alpha_k/\alpha_1)\mathbf{v}_k`. On the other hand if the only way to express the zero vector as a linear combination of these vectors is with :math:`\alpha_i=0\quad\forall i\in\lbrace 1,...,k\rbrace`, then the vectors are linearly independent. If the vectors :math:`\mathbf{x}` and :math:`\mathbf{y}` are linearly dependent, then one of them can be expressed in terms of the other such that :math:`\mathbf{x}=\alpha \mathbf{y}` for some :math:`\alpha \in\mathbb{R}`. Then we obtain:
 
 .. math::
 	|\langle \mathbf{x},\mathbf{y} \rangle |=|\langle \alpha \mathbf{y},\mathbf{y} \rangle|=|\alpha\langle \mathbf{y},\mathbf{y}\rangle |=|\alpha|\Vert y\Vert^2=\Vert\alpha \mathbf{y}\Vert\Vert\mathbf{y}\Vert=\Vert\mathbf{x}\Vert\Vert\mathbf{y}\Vert 
@@ -35,7 +43,7 @@ This can be proven using the concept of linear independence. Let's say we have a
 On the other hand, if :math:`\mathbf{x}` and :math:`\mathbf{y}` are linearly independent, then :math:`\Vert\mathbf{x}-\alpha\mathbf{y}\Vert\neq 0` for any :math:`\alpha \in\mathbb{R}` and we obtain:
 
 .. math::
-	0<|\mathbf{x}-\alpha\mathbf{y}|^2=\sum_{i=1}^{n}(x_i-\alpha y_i)^2=\sum_{i=1}^{n}{x_i}^2+{\alpha}^2{y_i}^2-2\alpha x_iy_i
+	0<\Vert\mathbf{x}-\alpha\mathbf{y}\Vert^2=\sum_{i=1}^{n}(x_i-\alpha y_i)^2=\sum_{i=1}^{n}{x_i}^2+{\alpha}^2{y_i}^2-2\alpha x_iy_i
 
 which is a quadratic equation in form of :math:`a{\alpha}^2+b\alpha + c`. Since this equation is always greater than zero, there are no real values of :math:`\alpha` which would make it equal to zero. As a result the discriminant of the equation (:math:`b^2-4ac`) must be less than zero. Because if it were greater than or equal to zero, then :math:`{(-b \pm\sqrt{b^2-4ac})}/{2a}` would give us some real values that make the quadratic equation equal to zero. Therefore:
 
@@ -93,14 +101,14 @@ In the above proof we used the fact that if the derivative of a function is zero
 .. _mvt:
 
 Mean Value Theorem and Rolle's Theorem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------------
 
 Let :math:`[a,b]\subset\mathbb{R}` with :math:`a<b`. Then :math:`g(\theta)` is differentiable on :math:`[a,b]`. According to the mean value theorem, there exists :math:`\xi \in (a,b)` such that 
 
 .. math::
 	g^{'}(\xi)=\frac{g(b)-g(a)}{b-a}=0 \Rightarrow g(b)=g(a), \forall a,b \in \mathbb{R}, \quad\therefore \boxed{g(\theta)=const}
 
-In order to prove the mean value theorem, it is possible to define another function :math:`G:\mathbb{R}\to\mathbb{R}` as :math:`G(\theta)=g(\theta)+\alpha\theta` for some :math:`\alpha\in\mathbb{R}` where is as previously defined. Then for any interval :math:`[a,b]\subset\mathbb{R}`, :math:`G(\theta)` is differentiable on :math:`[a,b]`. Also, :math:`\alpha` can be chosen in such a way that :math:`G(a)=G(b)`. Since :math:`G(a)=g(a)+\alpha a` and :math:`G(b)=g(b)+\alpha b`, Choosing :math:`\alpha=(g(b)-g(a))/(a-b)` would imply that :math:`G(a)=G(b)`. Since :math:`G(\theta)` is differentiable on :math:`[a,b]`, according to Rolle's theorem, there exists :math:`\xi \in (a,b)` such that
+In order to prove the mean value theorem, it is possible to define another function :math:`G:\mathbb{R}\to\mathbb{R}` as :math:`G(\theta)=g(\theta)+\alpha\theta` for some :math:`\alpha\in\mathbb{R}`. Then for any interval :math:`[a,b]\subset\mathbb{R}`, :math:`G(\theta)` is differentiable on :math:`[a,b]`. Also, :math:`\alpha` can be chosen in such a way that :math:`G(a)=G(b)`. Since :math:`G(a)=g(a)+\alpha a` and :math:`G(b)=g(b)+\alpha b`, Choosing :math:`\alpha=(g(b)-g(a))/(a-b)` would imply that :math:`G(a)=G(b)`. Since :math:`G(\theta)` is differentiable on :math:`[a,b]`, according to Rolle's theorem, there exists :math:`\xi \in (a,b)` such that
 
 .. math::
 	G^{'}(\xi)=0=g^{'}(\xi)+\frac{g(b)-g(a)}{a-b}\Rightarrow \boxed{g^{'}(\xi)=\displaystyle\frac{g(b)-g(a)}{b-a}}
@@ -118,7 +126,7 @@ The second possibility is that for some :math:`\theta_0 \in (a,b)`, :math:`G(\th
 From the above inequalities it is clear that :math:`\boxed{G^{'}(\theta _{max})=0}`. This completes the proof of Rolle`s theorem since the only remaining possibility is that for some :math:`\theta_0 \in (a,b)`, :math:`G(\theta_0)<G(a)=G(b)` and the proof of this case is identical to the previous case.  
 
 Taylor's theorem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 A generalization of the **mean value theorem** to n times differentiable functions is **Taylor's theorem**. According to Taylor's theorem, if :math:`f^{(n-1)}(x)` exists on [a,b] and :math:`f^n(x)` exists on (a,b), then there exists :math:`\xi \in (a,b)` such that  
 
@@ -147,7 +155,7 @@ Taylor's theorem can also be expressed in **integral form** using the fundamenta
 .. math::
 	f(b)=\frac{1}{0!}f(a)(b-a)^0+\frac{1}{0!}\int_a^bf'(x)dx=p_0+r_0
 
-Using integration by parts, the :math:`r_0` part of the above equation can be expanded as follows:
+Using `integration by parts`_, the :math:`r_0` part of the above equation can be expanded as follows:
 
 .. math::
 	r_0&=-\frac{1}{1!}\int_a^bf'(x)d(b-x)\\
@@ -183,8 +191,148 @@ Therefore, if :math:`f^{(n)}(x)` is continuous on :math:`[a,b]`, then **the inte
 .. math::
 	f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(a)(b-a)^{(n-1)}dx
 
-The Fundamental Theorem of Calculus
+Integration by Parts
+--------------------------------
+We used this integration rule while deriving the integral form of `Taylor's theorem`_. The rule is based on `the fundamental theorem of calculus`_ which says that if :math:`f,g` are differentiable functions and :math:`f',g'` are integrable on :math:`[a,b]` then :math:`\int_a^b(f(x)g(x))'dx=f(x)g(x)|_a^b`.
+
+Using `the product rule`_ for differentiation we obtain:
+
+.. math::
+	&\int_a^b(f(x)g(x))'dx=\int_a^b\Big[f'(x)g(x)+f(x)g'(x)\Big]dx=f(x)g(x)|_a^b\\
+	&\Rightarrow \int_a^bf(x)g'(x)dx=f(x)g(x)|_a^b-\int_a^bg(x)f'(x)dx
+
+If we let :math:`f(x)=u`, :math:`g(x)=v`, this rule can also be expressed as :math:`\int_a^b udv=uv|_a^b-\int_a^bvdu`.
+
+Power Series
+------------------
+
+Series in the form of the Taylor expansion of a function :math:`f:[a,b]\to\mathbb{R}` at :math:`b` about :math:`a` are called power series. Furthermore, for every power series :math:`\sum_{k=n}^\infty c_k(x-a)^k` there is a certain set of values such that if :math:`|x|` is in that set then the series absolutely converges and if it is not then the series diverges. This set is defined by the concept of `radius of convergence`_. Before proving that every power series has a radius of convergence, first let's clarify the concept of absolute convergence and show that absolutely convergent series are a subset of convergent series.
+
+A series in the form :math:`\sum_{k=n_0}^\infty a_k` is absolutely convergent if the series :math:`\sum_{k=n_0}^\infty |a_k|` is convergent. To show this we use a property of the absolute value operator which states that if :math:`x,c\in\mathbb{R}` and :math:`c\geq 0` then :math:`|x|\leq c` if and only if :math:`-c\leq x\leq c`. Using this we obtain :math:`-|a_k|\leq a_k \leq |a_k|` and :math:`0\leq a_k+|a_k|\leq 2|a_k|`. According to the `direct comparison test`_ for the convergence of series, if :math:`\sum_{k=n_0}^\infty |a_k|` converges then :math:`\sum_{k=n_0}^\infty 2|a_k|` converges and :math:`\sum_{k=n_0}^\infty a_k+|a_k|` converges. We know that :math:`\sum_{k=n_0}^\infty a_k=\sum_{k=n_0}^\infty a_k+|a_k|-|a_k|=\sum_{k=n_0}^\infty a_k+|a_k|-\sum_{k=n_0}^\infty |a_k|`. This means that :math:`\sum_{k=n_0}^\infty a_k` is the sum of two convergent series and therefore is itself convergent.
+
+Direct Comparison Test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This test is used in order to determine the convergence behaviour of a series :math:`\sum_{k=n_0}^\infty |a_k|` based on the behaviour of another series :math:`\sum_{k=n_0}^\infty |b_k|`. If there exists :math:`N\in \mathbb{N}` such that :math:`\forall k\geq N`, :math:`0\leq a_k\leq b_k`, then :math:`\sum_{k=n_0}^\infty |b_k|` is convergent :math:`\Rightarrow` :math:`\sum_{k=n_0}^\infty |a_k|` is convergent and if :math:`\sum_{k=n_0}^\infty |a_k|` is divergent :math:`\Rightarrow`:math:`\sum_{k=n_0}^\infty |b_k|` is divergent. Let :math:`M_a=\sum_{k=n_0}^N a_k`, :math:`M_b=\sum_{k=n_0}^N b_k`. Then :math:`\sum_{k=n_0}^\infty a_k=M_a+\sum_{k=N+1}^\infty a_k` and :math:`\sum_{k=n_0}^\infty b_k=M_b+\sum_{k=N+1}^\infty b_k`. Let :math:`\forall n>N`,
+:math:`S_n=\sum_{k=N+1}^n a_k` and :math:`T_n=\sum_{k=N+1}^n b_k`. If :math:`\sum_{k=n_0}^\infty b_k` is a convergent series, then :math:`\lbrace T_n \rbrace` must be a convergent and therefore bounded sequence. As a result :math:`\lbrace S_n \rbrace` is bounded. Since :math:`a_k` is non-negative for :math:`k\geq N`, :math:`\lbrace S_n \rbrace` is also a monotonely increasing sequence. Therefore :math:`\lbrace S_n \rbrace` is convergent and :math:`\sum_{k=n_0}^\infty a_k=M_a+\lim_{n\to\infty}S_n`.
+
+Assume that :math:`\sum_{k=n_0}^\infty a_k` is divergent but :math:`\sum_{k=n_0}^\infty b_k` is convergent. Then :math:`\lbrace T_n\rbrace` must be convergent and bounded which implies the boundedness and convergence of :math:`\lbrace S_n \rbrace` and :math:`\sum_{k=n_0}^\infty a_k`. This contradiction proves the divergence of :math:`\sum_{k=n_0}^\infty b_k`.   
+
+Every convergent sequence is bounded
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+While proving why direct comparison test works we used the fact that convergent sequences must be bounded. Let :math:`a_n\to L`. :math:`\exists N\in\mathbb{N}:n\geq N \Rightarrow |a_n-L|<1\Rightarrow|a_n|<1+|L|` where we are using another property of the absolute value operator which is as follows: :math:`\Big||x|-|y|\Big|\leq |x-y|,\forall x,y\in\mathbb{R}`. Let :math:`M=\max\lbrace|a_1|, |a_2|, ... , |a_{N-1}|,1+|L|\rbrace`. Then :math:`\forall n,|a_n|\leq M` and :math:`\lbrace a_n\rbrace` is bounded.
+
+Limit Comparison Test 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[4_]Let :math:`\frac{a_n}{b_n}=L`. Also let :math:`0\leq a_n\leq b_n` for :math:`n` greater than or equal to some :math:`N\in\mathbb{N}`. Then, if :math:`0<L<\infty`, then :math:`\sum_{n=0}^\infty a_n` is convergent if and only if :math:`\sum_{n=0}^\infty a_n` is convergent.
+
+Ratio Test 
+~~~~~~~~~~~~~~~~~~~~
+[4_]Let :math:`a_n>0` for all :math:`n` and :math:`\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\rho`. If :math:`\rho<1` then the series :math:`\sum_{n=n_0}^\infty a_n` converges, if :math:`\rho>1` then the series diverges and if :math:`\rho=1` then the test is inconclusive. First, let
+s investigate the case when :math:`\rho<1`. Let :math:`\rho<r<1`. Then there exists :math:`N\in\mathbb{}N` such that if :math:`n\geq N` then :math:`\frac{a_{n+1}}{a_n}-\rho <r-\rho`.
+
+Root Test 
+~~~~~~~~~~~~~~~~~~~
+[4_]Let :math:`\sqrt[n]{a_n}\to \rho`. If :math:`\rho<1` then :math:`\sum_{n=0}^\infty a_n` is convergent and if :math:`\rho>1` then th series is divergent. In case of :math:`\rho=1` the test is inconclusive.
+
+Dirichlet Test 
+~~~~~~~~~~~~~~~~~~~~~~
+[2_] Let :math:`a_k\to 0` and :math:`S_n=\sum_{k=0}^\infty b_k` is a bounded sequence such that for every :math:`n`, :math:`|S_n|\leq B`. Furthermore the sequence :math:`\lbrace a_k\rbrace` is of bounded variation which means that :math:`\lim_{k=1}^\infty |a_{k+1}-a_k|` is convergent. Then :math:`\sum_{k=1}^\infty a_kb_k` is convergent.
+
+Let :math:`\varepsilon>0`. There exists :math:`N` such that whenever :math:`n,m\geq N`, :math:`\sum_n^m|a_{k+1}-a_k|<\frac{\varepsilon}{3B}` by the Cauchy convergence criterion. Also whenever :math:`k\geq N`, :math:`|a_k|<\frac{\varepsilon}{3B}`.
+
+Let :math:`n,m \geq N`. Using `Abel's lemma`_ :
+
+.. math::
+	\Big|\sum_{k=n}^m a_kb_k \Big|&=\Big|\sum_{k=n}^ma_k(S_k-S_{k-1})\Big|\\
+	   &=\Big| a_{m+1}S_m-a_nS_{n-1}-\sum_{k=n}^m (a_{k+1}-a_k)S_k\Big|\\
+	   &\leq\Big| a_{m+1}S_m\Big|+\Big|a_nS_{n-1}\Big|+\Big|\sum_{k=n}^m (a_{k+1}-a_k)S_k\Big|\\
+	   &\leq\Big| a_{m+1}\Big|\Big|S_m\Big|+\Big|a_n\Big|\Big|S_{n-1}\Big|+\Big|S_k\Big|\Big|\sum_{k=n}^m (a_{k+1}-a_k)\Big|\\
+	   &<\frac{\varepsilon}{3B}B+\frac{\varepsilon}{3B}B+\frac{\varepsilon}{3B}B=\varepsilon
+
+Therefore :math:`\sum_{k=0}^\infty a_kb_k` is convergent according to the Cauchy convergence criterion.
+
+Cauchy convergence criterion
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[1_] This criterion says that a sequence is convergent if and only if it is a Cauchy sequence. A sequence is called Cauchy sequence, if for every :math:`\varepsilon`, there exists :math:`N\in\mathbb{N}` such that whenever :math:`n,m\geq N`, :math:`|a_n-a_m|<\varepsilon`.
+
+If :math:`a_n\to L` and :math:`\varepsilon>0`. There exists :math:`N\in\mathbb{N}` such that :math:`n,m\geq N\Rightarrow |a_n-L|<\varepsilon/2` and :math:`|a_m-L|<\varepsilon/2`. Therefore :math:`|a_n-a_m|=|a_n-L+L-a_m|\leq |a_n-L|+|a_m-L|<\varepsilon/2+\varepsilon/2=\varepsilon`. 
+
+Conversely, if :math:`\lbrace a_n\rbrace` is a Cauchy sequence, then first of all it is a bounded sequence. We know that there exists :math:`N\in\mathbb{N}` such that :math:`n,m\geq N\Rightarrow|a_n-a_m|<1\Rightarrow |a_n|<1+|a_N|`. Let :math:`M=\max\lbrace|a_1|,|a_2|, ... ,|a_{N-1}|, 1+|a_N|\rbrace`. Then :math:`\lbrace a_n \rbrace` is bounded by :math:`M`. Since :math:`\lbrace a_n \rbrace` is bounded, it has a convergent subsequence :math:`a_{n_k}\to c`. Let :math:`\varepsilon >0`. For some :math:`N`, :math:`|a_n-a_m|` is always less than :math:`\varepsilon/2` if :math:`n,m\geq N`. Also there exists :math:`K>N` such that if :math:`k\geq K`, then :math:`|a_{n_k}-c|<\varepsilon/2`. Let :math:`n\geq N` and :math:`k\geq K`. Considering that :math:`n_k\geq k`, we obtain :math:`|a_n-c|=|a_n-a_{n_k}+a_{n_k}-c|\leq|a_n-a_{n_k}|+|a_{n_k}-c|<\varepsilon/2+\varepsilon/2=\varepsilon`. This proves that every Cauchy sequence is a convergent sequence.   
+
+Abel's Lemma 
+~~~~~~~~~~~~~~~~~~~~~
+[2_]This lemma states that :math:`\sum_n^ma_k(b_{k+1}-b_k)=a_{m+1}b_{m+1}-a_nb_n-\sum_n^m(a_{k+1}-a_k)b_{k+1}`. This can be proven as follows:
+
+.. math::
+	\sum_n^m a_k (b _{k+1}-b_k)&=\sum_n^ma_k b _{k+1}-\sum_n^m a_k b_k \\
+	&=\sum_n^ma_k b _{k+1}-\sum _{n+1}^{m+1} a_k b_k +a _{m+1}b _{m+1}-a_nb_n \\
+	&=\sum_n^m \Big[a _k b _{k+1}-a _{k+1}b _{k+1}\Big]+a _{m+1}b _{m+1}-a_nb_n \\
+	&=\sum_n^m b _{k+1}\Big[ a_k-a _{k+1} \Big]+  a _{m+1}b _{m+1}-a_nb_n \\
+	&=a _{m+1}b _{m+1}-a_nb_n-\sum_n^m(a _{k+1}-a_k)b _{k+1}
+
+Radius of convergence 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+[2_]For every power series there exists a value :math:`R` called the radius of convergence such that :math:`0\leq R\leq \infty`. If :math:`|x|<R` then the series :math:`\sum_{k=n_0}^\infty c_k(x-a)^k` absolutely converges and if :math:`|x|>R` then the series diverges. 
+
+Consider a convergent series :math:`\sum_{k=n_0}^\infty c_k(x_0-a)^k` and let :math:`|x-a|<|x_0-a|`. For the sake of convenience let :math:`y=x-a` and :math:`y_0=x_0-a`. Since :math:`\sum_{k=n_0}^\infty c_k{y_0}^k` is convergent, there exists a real number :math:`M` such that :math:`|c_k{y_0}^k|\leq M` for all :math:`k`. Then :math:`|c_ky^k|=|c_ky_0^k|\displaystyle\frac{|c_ky^k|}{|c_k{y_0}^k|}\leq M \displaystyle\frac{|y^k|}{|{y_0}^k|}`. Since :math:`\displaystyle\frac{y}{y_0}<1`, the right hand side of the inequality is a convergent geometric series and using the `direct comparison test`_ we obtain that :math:`\sum_{k=n_0}^\infty c_ky^k` absolutely converges.
+
+Let :math:`S=\lbrace r\geq 0:\sum_{k=n_0}^\infty c_kr^k \text{ is convergent}\rbrace`. If :math:`S` is unbounded, then for every :math:`y\in \mathbb{R}` there exists :math:`r\in S` such that :math:`|y|<|r|` and :math:`\sum_{k=n_0}^\infty c_ky^k` is absolutely convergent. This means that the series is absolutely convergent for :math:`|y|<\infty` or :math:`|x|<\infty`. If :math:`S` is bounded then using the completeness axiom of the set of real numbers we know that it has a supremum. Let :math:`R=\sup S` and :math:`|y|<R`. Then, there exists :math:`r\in S` such that :math:`|y|<r\leq |r|` otherwise :math:`|y|` would be the supremum. It follows that :math:`\sum_{k=n_0}^\infty c_ky^k` is absolutely convergent when :math:`|y|<R`. This means that :math:`\sum_{k=n_0}^\infty c_k(x-a)^k` is absolutely convergent when :math:`x\in(-R+a,R+a)`. As another possibility, suppose that :math:`R<|y|`. Then there exists some :math:`r` such that :math:`R<r<|y|`. Assume that :math:`\sum_{k=n_0}^\infty c_ky^k` is convergent. Then :math:`\sum_{k=n_0}^\infty c_k r^k` must be absolutely convergent and therefore convergent which means that :math:`r` is in :math:`S` and at the same time greater than the supremum of :math:`S`. This is a contradiction, therefore if :math:`|y|>R` then :math:`\sum_{k=n_0}^\infty c_ky^k` is divergent. 
+
+As an example we can analyze the series :math:`\displaystyle\sum_{k=2}^\infty\frac{x^k}{\log k}`. Using the ratio test:
+
+.. math::
+	\lim_{k\to\infty}\Big|\frac{a_{k+1}}{a_k}\Big|=\lim_{k\to\infty}\Big|\frac{x^{k+1}\log(k+1)}{x^k\log(k)}\Big|=|x|\lim_{k\to\infty}\frac{\log(k+1)}{\log(k)}=|x|\lim_{k\to\infty}\frac{1/(k+1)}{1/k}=|x|
+
+Therefore the series absolutely converges when :math:`|x|<1` and the radius of convergence is :math:`1`. When computing the limit in the above example which includes the `logarithm`_ function we resorted to L'Hospital's rule.
+
+L'Hospital's Rule
+----------------------------
+Let :math:`f:(a,b)\to \mathbb{R}`, :math:`g:(a,b)\to \mathbb{R}` and both functions are differentiable on :math:`(a,b)`.Let :math:`\displaystyle\lim_{x\to a^+}\frac{f'(x)}{g'(x)}=A\in\mathbb{R}`. Choose :math:`p,q,\varepsilon` such that :math:`A\in(p+\varepsilon,q-\varepsilon)`. Since :math:`f` and :math:`g` are differentiable on :math:`(a,b)`, according to the `Cauchy mean value theorem`_ for any :math:`x,y\in (a,b)` there exists :math:`\xi\in(x,y)` such that :math:`\displaystyle \frac{f'(\xi)}{g`(\xi)}=\frac{f(x)-f(y)}{g(x)-g(y)}`.
+
+Suppose that :math:`\lim_{x\to a^+}f(x)=\lim_{x\to a^+}g(x)=0`. Since :math:`f'/g'` converges to :math:`A` as x converges to :math:`a`, there exists a neighbourhood of :math:`a` such that the intersection of that neighbourhood with :math:`(a,b)` is non-empty and for every :math:`x_0` in this intersection :math:`f'(x_0)/g'(x_0)\in (p+\varepsilon,q-\varepsilon)`. Let's call this intersection :math:`(a,c)` for some :math:`c\in(a,b)`. Let :math:`x,y\in(a,c)`. Then :math:`\displaystyle\frac{f(x)-f(y)}{g(x)-g(y)}\in(p+\varepsilon,q-\varepsilon)`. Furthermore, :math:`\displaystyle\lim_{x\to a^+}\frac{f(x)-f(y)}{g(x)-g(y)}=\frac{f(y)}{g(y)}\in[p+\varepsilon,q-\varepsilon]` which means that for any neighbourhood :math:`(p,q)` of :math:`A`, there exists a neighbourhood of :math:`a` such that the intersection of that neighbourhood is a non-empty set :math:`(a,c)` and for every :math:`y\in(a,c)`, :math:`f(y)/g(y)\in (p,q)`. Therefore, :math:`\displaystyle\lim_{x\to a^+}\frac{f(x)}{g(x)}=A`.
+
+Another case where L'Hospital's rule can be applied is when :math:`g(x)\to\infty` as :math:`x\to a^+`. Fix :math:`y\in(a,c)`. Since :math:`g(x)\to\infty` as :math:`x\to a^+`, there exists :math:`c_1\in(a,c)` such that for every :math:`x\in(a,c_1)`, :math:`g(x)>0` and :math:`g(x)>g(y)`. Let :math:`x\in(a,c_1)`. Using
+
+.. math::
+	p+\varepsilon <\frac{f(x)-f(y)}{g(x)-g(y)}<q-\varepsilon 
+
+.. math::
+	\Rightarrow (p+\varepsilon)\Big(1-\frac{g(y)}{g(x)}\Big)<\frac{f(x)}{g(x)}-\frac{f(y)}{g(x)}<(q-\varepsilon)\Big(1-\frac{g(y)}{g(x)}\Big)
+
+.. math::
+	\Rightarrow p+\varepsilon+\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))<\frac{f(x)}{g(x)}<q-\varepsilon+\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))
+
+Since :math:`g(x)\to\infty` as :math:`x\to a^+`, it is possible to choose :math:`x` close enough to :math:`a` and therefore :math:`g(x)` large enough such that :math:`\Big|\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))\Big|<\varepsilon`, :math:`\Big|\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))\Big|<f(x)/g(x)-(p+\varepsilon)`, :math:`\Big|\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))\Big|<\varepsilon` and :math:`\Big|\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))\Big|<q-\varepsilon-f(x)/g(x)`. Let :math:`c_2\in(a,c_1)` such that :math:`x\in(a,c_2)` satisfies these conditions. It follows that :math:`x\in(a,c_2)\Rightarrow f(x)/g(x)\in (p,q)` and :math:`\lim_{x\to a^+ f(x)/g(x)=A}`.
+
+Cauchy Mean Value Theorem
+-------------------------------
+
+Logarithm
+-----------------
+The logarithm function is defined as 
+
+.. math::
+	\log(x)=\int_1^x\frac{1}{t}dt
+
+Using `the fundamental theorem of calculus`_ we can derive the following equality:
+
+.. math::
+	\log(xy)=\log(x)+\log(y),\quad x,y>0
+
+Let :math:`xy=u`. Then :math:`\log(xy)=\log(u)=\int_1^u\frac{1}{t}dt\Rightarrow \frac{d}{dx}\log(xy)=\frac{d}{du}\log(u)\frac{du}{dx}`.
+
+Absolute value 
+-----------------------
+[1_]Some of the most significant properties of the absolute value can be proven as follows:
+
+:math:`x,y\in\mathbb{R}`. :math:`-|x|\leq x\leq |x|`, :math:`-|y|\leq y\leq |y| \Rightarrow -(|x|+|y|)\leq x+y\leq(|x|+|y|)`.Also using :math:`|-y|=|y|` we obtain :math:`|x\pm y|\leq |x|+|y|`.
+
+:math:`|x|=|x+y-y|\leq|x+y|+|y|\Rightarrow |x|-|y|\leq|x+y|`. :math:`|y|=|y+x-x|\leq|x+y|+|x|\Rightarrow |y|-|x|\leq |x+y|\Rightarrow \Big||x|-|y|\Big|\leq|x\pm y|\leq|x|+|y|`.
+
+Another property of the absolute value operator that we used in the section about the `radius of convergence`_ is that for any :math:`x,y\in \mathbb{R}`, :math:`|x|^y=|x^y|`. Using the representation of real numbers as complex numbers without imaginary part we obtain :math:`x=re^{i\theta}=|x|e^{i\theta}` and :math:`|x^y|=||x|^ye^{iy\theta}|=||x|^y||\cos(y\theta)+i\sin(y\theta)|=||x|^y|\cdot 1=|x|^y`.
+
+The Fundamental Theorem of Calculus
+--------------------------------------
 Let :math:`\int_a^bf(x)dx` exist and let :math:`F:[a,b]\to\mathbb{R}` be the antiderivative of :math:`f(x)` which means that :math:`F'(x)=f(x), \forall x\in[a,b]`. Then the fundamental theorem of calculus states that :math:`F(b)-F(a)=\int_a^bf(x)dx`. In order to prove this, let :math:`P` be any partition of :math:`[a,b]` so that :math:`P=\lbrace x_0=a,x_1,x_2,...,x_{n-1},x_n=b\rbrace`. Then :math:`F(b)-F(a)=\sum_{i=1}^nF(x_i)-F(x_{i-1})`. Since :math:`F(x)` is differentiable on every subinterval :math:`[x_{i-1},x_i]`, according to the mean value theorem, for every :math:`i\in\lbrace 1,...,n\rbrace,\exists c_i\in(x_{i-1},x_i)` such that 
 
 .. math::
@@ -207,10 +355,16 @@ From the above definitions it follows that
 .. math::
 	L(f)\leq F(b)-F(a)\leq U(f)\Rightarrow \boxed{F(b)-F(a)=\int_a^b f(x)dx}
 
-Differentiation Rules
-~~~~~~~~~~~~~~~~~~~~~~~
+According to the fundamental theorem of calculus if :math:`g:[a,b]\to\mathbb{R}` is integrable on :math:`[a,b]`, and :math:`G(x)=\displaystyle\int_a^xg(t)dt` for any :math:`x\in[a,b]`, then :math:`G(x)` is continuous on :math:`[a,b]`. Also, if :math:`g` is continuous at some :math:`c\in[a,b]` then :math:`G'(c)=g(c)`. First of all, since :math:`g` is integrable, it is also bounded by some :math:`M\in\mathbb{R}`. Let :math:`x,y\in[a,b]` and :math:`x\neq y`. Consider :math:`|G(x)-G(y)|=|\int_x^yg(t)dt|\leq M|x-y|\Rightarrow \displaystyle\frac{|G(x)-G(y)|}{|x-y|\leq M}` which proves that :math:`G` is Lipschitz and therefore continuous on :math:`[a,b]`. 
 
-While proving `Taylor's theorem`_ we made use of the product rule and the chain rule of differentiation. The product rule was utilized while taking the derivative of :math:`\displaystyle\frac{f^{(k)}(x)}{k!}(b-x)^k` with respect to x. Let :math:`G(x)=f(x)g(x)` where f' and g' both exist at some x=a. Then the derivative of :math:`G(x)` at x=a can be expressed as follows [1_]:
+Differentiation Rules
+-------------------------------------
+
+While proving `Taylor's theorem`_ we made use of `the product rule`_ and `the chain rule`_ of differentiation. 
+
+The Product Rule
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The product rule was utilized while taking the derivative of :math:`\displaystyle\frac{f^{(k)}(x)}{k!}(b-x)^k` with respect to x. Let :math:`G(x)=f(x)g(x)` where f' and g' both exist at some x=a. Then the derivative of :math:`G(x)` at x=a can be expressed as follows [1_]:
 
 .. math::
 	G'(a)&=\lim_{x\to a} \frac{G(x)-G(a)}{x-a}\\
@@ -245,6 +399,9 @@ Therefore
 .. math::
 	|f(x)g(x)-FG|<(1+|G|)\frac{\varepsilon}{2(1+|G|)}+(1+|F|)\frac{\varepsilon}{2(1+|F|)}=\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
 
+
+The Chain Rule
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 **The chain rule** of differentiation is applied in order to take the derivative of compound functions in form of :math:`f(g(x))` or :math:`f\circ g(x)` with respect to :math:`x`. If we equate :math:`g(x)` to a variable :math:`u`, then :math:`f'(g(x))` is computed as :math:`f'(u)g'(x)`. In order to prove this formula we can use the definition of derivative as follows [4_]: Let :math:`y=f(u)`, :math:`y_0=f(u_0)`, :math:`u_0=g(x_0)`, then
 
 .. math::
@@ -317,7 +474,7 @@ In the above formula let :math:`r=x_0/x`. If :math:`x=x_0` then :math:`x^n-{x_0}
 	&=(x-x_0)(x^{n-1}+x_0x^{n-2}+{x_0}^2x^{n-3}+...+{x_0}^{n-2}x+{x_0}^{n-1})
 
 Binomial theorem
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 Binomial theorem states that for any :math:`a,b\in\mathbb{R}` and :math:`n\in\mathbb{N}`, [1_]
 
 .. math::
@@ -361,10 +518,14 @@ The binomial theorem is also one of the reasons why :math:`0^0` was defined as e
 If :math:`0^0` were undefined or defined as zero, then the binominal theorem would yield :math:`x^n=0^0x^n=0` or :math:`x^n=` undefined. 
 
 Weierstrass' maximum-minimum theorem
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 While proving Rolle's theorem we made use of **Weierstrass' maximum-minimum theorem** which states that if a function is continuous on a closed interval :math:`[a,b]`, then this function has a maximum and a minimum value on :math:`[a,b]`. We can start the proof of Weierstrass' maximum-minimum theorem by showing that the continuity of :math:`f:[a,b]\to\mathbb{R}` on :math:`[a,b]` implies its boundedness on :math:`[a,b]`. This can be proven by contradiction. Assume that :math:`f:[a,b]\to\mathbb{R}` is continuous but not bounded. Then for any :math:`n\in\mathbb{N}` there must be :math:`x_n\in [a,b]` such that :math:`\lvert f(x_n)\lvert > n`. Obviously, :math:`\lbrace x_n \rbrace` is a sequence bounded by a and b. From the boundedness of :math:`\lbrace x_n \rbrace` it follows that :math:`\lbrace x_n \rbrace` has a convergent subsequence :math:`\lbrace x_{n_k} \rbrace` such that :math:`x_{n_k}\to c\in [a,b]`. Since :math:`f` is a continuous function, :math:`f(x_{n_k})\to f(c)`. This means that for any real number :math:`\varepsilon > 0`, there exists :math:`k_0\in\mathbb{N}` such that if :math:`\lvert x_{n_k}-c \rvert < 1/n_{k_0}` then :math:`\lvert f(x_{n_k})-f(c)\rvert < \varepsilon` and :math:`\lvert f(x_{n_k})\rvert < \varepsilon + \lvert f(c) \rvert`. Since :math:`\lbrace x_{n_k} \rbrace` converges to :math:`c`, it is possible to choose k large enough so that :math:`\lvert x_{n_k}-c \rvert <1/n_{k_0}` and :math:`\varepsilon+\lvert f(c) \rvert < n_k`. But in this case we obtain :math:`\lvert f(x_{n_k} \rvert < n_k` which is in contradiction with our initial assumption that :math:`\lvert f(x_n)\rvert >n` for any :math:`n\in\mathbb{N}`. This proves the boundedness of :math:`f:[a,b]\to\mathbb{R}`. As a result, :math:`f` has a supremum :math:`S` on :math:`[a,b]`. Using the definition of supremum, we know that for every :math:`n\in\mathbb{N}` there exists :math:`x_n \in [a,b]` such that :math:`S-1/n < f(x_n) \leq S` from which :math:`f(x_n)\to S` follows. This gives us another bounded sequence :math:`\lbrace x_n \rbrace` with a convergent subsequence :math:`x_{n_k}\to c` in :math:`[a,b]` and :math:`f(x _{n_k})\to f(c)`. Since :math:`f(x _{n_k})` is a subsequence of :math:`f(x_n)`, these two sequences have to converge to the same limit such that :math:`f(c)=S`. Since :math:`c\in[a,b]` and :math:`\forall x\in[a,b]`, :math:`f(x)\leq f(c)`, this completes the proof of the maximum part of the Weierstrass' maximum-minimum theorem. The minimum part can be proven in the same way.  
 
-In the proof of the Weierstrass' maximum-minimum theorem we made use of several facts without showing why they are true. The first one of these facts is that any bounded sequence has a convergent subsequence (**Bolzano-Weierstrass theorem**). Let :math:`\lbrace x_n \rbrace` be any real valued sequence. We can call :math:`x_p` a peak value of :math:`\lbrace x_n\rbrace` if for all :math:`k\in\mathbb{N}`, :math:`x_{p+k}\leq x_p`. Then :math:`\lbrace x_n \rbrace` has either an infinite number of peak values or only a finite number of them. In case of infinitely many peak values, for any :math:`k\in\mathbb{N}`, There exists a peak value :math:`x_{n_k}` and these peak values build a decreasing monotone subsequence :math:`\lbrace x_{n_k} \rbrace`. In case of a finite number of peak values, let :math:`x_N` be the last of them and let :math:`n_1 > N`. Then, :math:`x_{n_1}` is not a peak value and therefore there exists :math:`x_{n_2}` such that :math:`x_{n_1} \leq x_{n_2}`. Also, for any :math:`k\in\mathbb{N}`, there exist :math:`x_{n_k}` and :math:`x_{n_{k+1}}` such that :math:`n_k >N` and :math:`x_{n_k} \leq x_{n_{k+1}}`. Therefore, a monotone increasing subsequence :math:`\lbrace x_{n_k} \rbrace` of :math:`\lbrace x_n \rbrace` can be built using these non-peak values with indices greater than :math:`N`. It follows that any real valued sequence has a monotone subsequence. It can also be shown that if a monotone sequence is bounded, then it is convergent. Now suppose that :math:`\lbrace x_n \rbrace` is a real-valued and bounded sequence and :math:`\lbrace x_{n_k} \rbrace` is its monotone increasing subsequence. Then :math:`\lbrace x_{n_k} \rbrace` is also bounded. Let :math:`S` be the supremum of :math:`\lbrace x_{n_k} \rbrace`. Then, for every :math:`\varepsilon >0`, there exists :math:`K\in\mathbb{N}` such that :math:`S-\varepsilon < x_{n_K} \leq S`. Since :math:`\lbrace x_{n_k} \rbrace` is an increasing sequence, :math:`\forall k>K`, :math:`S-\varepsilon < x_{n_K}\leq x_{n_k} \leq S` from which we can obtain by subtracting :math:`S` from both sides of the inequality the following relationship: :math:`\lvert x_{n_k}-S \rvert <\varepsilon`. This completes the proof that the monotone subsequence of a bounded sequence is convergent and therefore every bounded sequence has a convergent subsequence. 
+In the proof of the Weierstrass' maximum-minimum theorem we made use of several facts without showing why they are true. The first one of these facts is that any bounded sequence has a convergent subsequence (**Bolzano-Weierstrass theorem**). 
+
+Every bounded sequence has a convergent subsequence (Bolzano-Weierstrass)
+-----------------------------------------------------------------------------
+Let :math:`\lbrace x_n \rbrace` be any real valued sequence. We can call :math:`x_p` a peak value of :math:`\lbrace x_n\rbrace` if for all :math:`k\in\mathbb{N}`, :math:`x_{p+k}\leq x_p`. Then :math:`\lbrace x_n \rbrace` has either an infinite number of peak values or only a finite number of them. In case of infinitely many peak values, for any :math:`k\in\mathbb{N}`, There exists a peak value :math:`x_{n_k}` and these peak values build a decreasing monotone subsequence :math:`\lbrace x_{n_k} \rbrace`. In case of a finite number of peak values, let :math:`x_N` be the last of them and let :math:`n_1 > N`. Then, :math:`x_{n_1}` is not a peak value and therefore there exists :math:`x_{n_2}` such that :math:`x_{n_1} \leq x_{n_2}`. Also, for any :math:`k\in\mathbb{N}`, there exist :math:`x_{n_k}` and :math:`x_{n_{k+1}}` such that :math:`n_k >N` and :math:`x_{n_k} \leq x_{n_{k+1}}`. Therefore, a monotone increasing subsequence :math:`\lbrace x_{n_k} \rbrace` of :math:`\lbrace x_n \rbrace` can be built using these non-peak values with indices greater than :math:`N`. It follows that any real valued sequence has a monotone subsequence. It can also be shown that if a monotone sequence is bounded, then it is convergent. Now suppose that :math:`\lbrace x_n \rbrace` is a real-valued and bounded sequence and :math:`\lbrace x_{n_k} \rbrace` is its monotone increasing subsequence. Then :math:`\lbrace x_{n_k} \rbrace` is also bounded. Let :math:`S` be the supremum of :math:`\lbrace x_{n_k} \rbrace`. Then, for every :math:`\varepsilon >0`, there exists :math:`K\in\mathbb{N}` such that :math:`S-\varepsilon < x_{n_K} \leq S`. Since :math:`\lbrace x_{n_k} \rbrace` is an increasing sequence, :math:`\forall k>K`, :math:`S-\varepsilon < x_{n_K}\leq x_{n_k} \leq S` from which we can obtain by subtracting :math:`S` from both sides of the inequality the following relationship: :math:`\lvert x_{n_k}-S \rvert <\varepsilon`. This completes the proof that the monotone subsequence of a bounded sequence is convergent and therefore every bounded sequence has a convergent subsequence. 
 
 The next fact that we used in the proof of Weierstrass' maximum-minimum theorem is that if a convergent sequence :math:`a_n \to L` is in :math:`[A,B]` then its limit :math:`L` is also in :math:`[A,B]`. We can start the proof of this fact by first proving that the limit of a non-negative convergent sequence :math:`a_n \to L` is also non-negative. Clearly, for any :math:`\varepsilon > 0`, there exists :math:`N_{\varepsilon}\in\mathbb{N}` such that :math:`n>N_{\varepsilon}` implies :math:`\lvert a_n - L \rvert <\varepsilon`. If we assume a negative limit then we obtain :math:`a_n-L <\varepsilon \Rightarrow a_n <\varepsilon + L`. However we could choose :math:`\varepsilon` small enough such that :math:`\varepsilon <\lvert L \rvert`. Then we would obtain :math:`a_n <\varepsilon +L <0` which is a contradiction. Therefore the limit of a non-negative convergent sequence must be non-negative. The next step in the proof is to observe the behaviours of the non-negative sequences :math:`\lbrace a_n-A \rbrace` and :math:`\lbrace B-a_n \rbrace`. Clearly, :math:`a_n-A \to L-A\geq 0\Rightarrow A \leq L` and :math:`B-a_n\to B-L \geq 0 \Rightarrow L\leq B`. It follows that :math:`L\in [A,B]`.
 
