@@ -287,7 +287,7 @@ Therefore the series absolutely converges when :math:`|x|<1` and the radius of c
 
 L'Hospital's Rule
 ----------------------------
-Let :math:`f:(a,b)\to \mathbb{R}`, :math:`g:(a,b)\to \mathbb{R}` and both functions are differentiable on :math:`(a,b)`.Let :math:`\displaystyle\lim_{x\to a^+}\frac{f'(x)}{g'(x)}=A\in\mathbb{R}`. Choose :math:`p,q,\varepsilon` such that :math:`A\in(p+\varepsilon,q-\varepsilon)`. Since :math:`f` and :math:`g` are differentiable on :math:`(a,b)`, according to the `Cauchy mean value theorem`_ for any :math:`x,y\in (a,b)` there exists :math:`\xi\in(x,y)` such that :math:`\displaystyle \frac{f'(\xi)}{g`(\xi)}=\frac{f(x)-f(y)}{g(x)-g(y)}`.
+Let :math:`f:[a,b]\to \mathbb{R}`, :math:`g:[a,b]\to \mathbb{R}` and both functions are differentiable on :math:`(a,b)`, continuous on :math:`[a,b]`.Let :math:`\displaystyle\lim_{x\to a^+}\frac{f'(x)}{g'(x)}=A\in\mathbb{R}`. Choose :math:`p,q,\varepsilon` such that :math:`A\in(p+\varepsilon,q-\varepsilon)`. Since :math:`f` and :math:`g` are differentiable on :math:`(a,b)`, according to the `Cauchy mean value theorem`_ for any :math:`x,y\in (a,b)` there exists :math:`\xi\in(x,y)` such that :math:`\displaystyle \frac{f'(\xi)}{g`(\xi)}=\frac{f(x)-f(y)}{g(x)-g(y)}`.
 
 Suppose that :math:`\lim_{x\to a^+}f(x)=\lim_{x\to a^+}g(x)=0`. Since :math:`f'/g'` converges to :math:`A` as x converges to :math:`a`, there exists a neighbourhood of :math:`a` such that the intersection of that neighbourhood with :math:`(a,b)` is non-empty and for every :math:`x_0` in this intersection :math:`f'(x_0)/g'(x_0)\in (p+\varepsilon,q-\varepsilon)`. Let's call this intersection :math:`(a,c)` for some :math:`c\in(a,b)`. Let :math:`x,y\in(a,c)`. Then :math:`\displaystyle\frac{f(x)-f(y)}{g(x)-g(y)}\in(p+\varepsilon,q-\varepsilon)`. Furthermore, :math:`\displaystyle\lim_{x\to a^+}\frac{f(x)-f(y)}{g(x)-g(y)}=\frac{f(y)}{g(y)}\in[p+\varepsilon,q-\varepsilon]` which means that for any neighbourhood :math:`(p,q)` of :math:`A`, there exists a neighbourhood of :math:`a` such that the intersection of that neighbourhood is a non-empty set :math:`(a,c)` and for every :math:`y\in(a,c)`, :math:`f(y)/g(y)\in (p,q)`. Therefore, :math:`\displaystyle\lim_{x\to a^+}\frac{f(x)}{g(x)}=A`.
 
@@ -302,10 +302,17 @@ Another case where L'Hospital's rule can be applied is when :math:`g(x)\to\infty
 .. math::
 	\Rightarrow p+\varepsilon+\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))<\frac{f(x)}{g(x)}<q-\varepsilon+\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))
 
-Since :math:`g(x)\to\infty` as :math:`x\to a^+`, it is possible to choose :math:`x` close enough to :math:`a` and therefore :math:`g(x)` large enough such that :math:`\Big|\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))\Big|<\varepsilon`, :math:`\Big|\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))\Big|<f(x)/g(x)-(p+\varepsilon)`, :math:`\Big|\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))\Big|<\varepsilon` and :math:`\Big|\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))\Big|<q-\varepsilon-f(x)/g(x)`. Let :math:`c_2\in(a,c_1)` such that :math:`x\in(a,c_2)` satisfies these conditions. It follows that :math:`x\in(a,c_2)\Rightarrow f(x)/g(x)\in (p,q)` and :math:`\lim_{x\to a^+ f(x)/g(x)=A}`.
+Since :math:`g(x)\to\infty` as :math:`x\to a^+`, it is possible to choose :math:`x` close enough to :math:`a` and therefore :math:`g(x)` large enough such that :math:`\Big|\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))\Big|<\varepsilon`, :math:`\Big|\frac{1}{g(x)}(f(y)-(p+\varepsilon)g(y))\Big|<f(x)/g(x)-(p+\varepsilon)`, :math:`\Big|\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))\Big|<\varepsilon` and :math:`\Big|\frac{1}{g(x)}(f(y)-(q-\varepsilon)g(y))\Big|<q-\varepsilon-f(x)/g(x)`. Let :math:`c_2\in(a,c_1)` such that :math:`x\in(a,c_2)` satisfies these conditions. It follows that :math:`x\in(a,c_2)\Rightarrow f(x)/g(x)\in (p,q)` and :math:`\displaystyle\lim_{x\to a^+ f(x)/g(x)=A}`.
 
 Cauchy Mean Value Theorem
 -------------------------------
+Let :math:`f` and :math:`g` be continuous on :math:`[a,b]` and differentiable on :math:`(a,b)`. Then there exists :math:`\xi\in(a,b)` such that :math:`\displaystyle\frac{f'(\xi)}{g'(\xi)}=\frac{f(b)-f(a)}{g(b)-g(a)}`. In order to prove this, we can define a function :math:`\phi` as follows:
+
+.. math::
+	\phi(x)=(f(x)-f(a))(g(b)-g(a))-(g(x)-g(a))(f(b)-f(a))
+
+Clearly, :math:`\phi(a)=\phi(b)=0` and from Rolle's theorem there exists :math:`\xi\in(a,b)` such that :math:`\phi'(x)=f'(\xi)(g(b)-g(a))-g'(\xi)(f(b)-f(a))=0\Rightarrow \displaystyle\frac{f'(\xi)}{g'(\xi)}=\frac{f(b)-f(a)}{g(b)-g(a)}`. 
+
 
 Logarithm
 -----------------
@@ -319,7 +326,19 @@ Using `the fundamental theorem of calculus`_ we can derive the following equalit
 .. math::
 	\log(xy)=\log(x)+\log(y),\quad x,y>0
 
-Let :math:`xy=u`. Then :math:`\log(xy)=\log(u)=\int_1^u\frac{1}{t}dt\Rightarrow \frac{d}{dx}\log(xy)=\frac{d}{du}\log(u)\frac{du}{dx}`.
+Let :math:`xy=u` for :math:`x,y>0`. Then :math:`\log(xy)=\log(u)=\int_1^u\frac{1}{t}dt\Rightarrow \frac{d}{dx}\log(xy)=\frac{d}{du}\log(u)\frac{du}{dx}`. Since :math:`1/t` is continuous at :math:`t=u` we obtain :math:`\displaystyle\frac{d}{dx}\log(xy)=\frac{1}{xy}y=\frac{1}{x}`. The derivative of :math:`\log(x)` with respect to :math:`x` is also equal to :math:`\displaystyle\frac{1}{x}`. Therefore :math:`\log(xy)=\log(x)+C` where :math:`C` is a constant. Using :math:`\log(1)=0` we obtain :math:`\log(1\cdot y)=0+C\Rightarrow \log(xy)=\log(x)+\log(y)`.
+
+Using the above equality we obtain :math:`0=\log(1)=\log(x\cdot x^{-1})=\log(x)+\log(x^{-1})\Rightarrow \log(x^{-1})=-\log(x)`.
+
+Clearly :math:`\log(x^1)=1\cdot \log(x)`. Let :math:`n\in\mathbb{N}`. If :math:`\log(x^{n})=n\cdot \log(x)`, then :math:`\log(x^{n+1})=\log(x^n)+\log(x)=(n+1)\log(x)\therefore\forall n\in\mathbb{N},\forall x>0, \log(x^n)=n\log(x)`.
+
+:math:`\log(x^0)=0\cdot\log(x)` and :math:`\log(x^{-n})=\log((x^{-1})^n)`. Since :math:`x^{-1}>0`, :math:`\log((x^{-1})^n)=n\cdot\log(x^{-1})`. Therefore for every integer :math:`m\in\mathbb{Z}`, :math:`log(x^m)=m\log(x)`. 
+
+Let :math:`b^n=x\Rightarrow b=x^{1/n}>0\Rightarrow\log(x)=\log(b^n)=n\log(b)=n\log(x^{1/n})`
+
+:math:`\Rightarrow\log(x^{1/n})=\frac{1}{n}\log(x)`.
+
+Let :math:`q\in\mathbb{Q}` be any rational number. Then there exist an integer :math:`m` and a positive integer :math:`n` such that :math:`\log(x^q)=\log((x^{1/n})^m)=m\log(x^{1/n})=\frac{m}{n}\log(x)=q\log(x)`. Therefore for every rational number :math:`q` and for every positive real number :math:`x`, :math:`\log(x^q)=q\log(x)`.
 
 Absolute value 
 -----------------------
