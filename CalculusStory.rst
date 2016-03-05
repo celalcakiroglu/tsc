@@ -232,7 +232,7 @@ s investigate the case when :math:`\rho<1`. Let :math:`\rho<r<1`. Then there exi
 
 Root Test 
 ~~~~~~~~~~~~~~~~~~~
-[4_]Let :math:`\sqrt[n]{a_n}\to \rho`. If :math:`\rho<1` then :math:`\sum_{n=0}^\infty a_n` is convergent and if :math:`\rho>1` then th series is divergent. In case of :math:`\rho=1` the test is inconclusive.
+[4_]Let :math:`\sqrt[n]{a_n}\to \rho` and :math:`a_n\geq 0, \forall n\geq N`. If :math:`\rho<1` then :math:`\sum_{n=0}^\infty a_n` is convergent and if :math:`\rho>1` then the series is divergent. In case of :math:`\rho=1` the test is inconclusive. Suppose :math:`\rho<r<1`. For large enough :math:`n`, :math:`\sqrt[n]{a_n}-\rho<r-\rho\Rightarrow a_n<r^n`. Suppose :math:`a_n<r^n` for :math:`n\geq K>N`. Let :math:`M_a=\sum_{n=0}^{K-1}a_n` and compare the series :math:`\sum_{n=N}^\infty a_n` and :math:`\sum_{n=N}^\infty r^n`. Since :math:`|r|<1`, the geometric series :math:`\sum_{n=N}^\infty r^n` converges to :math:`1/(1-r)` and by the direct comparison test :math:`\sum_{n=N}^\infty a_n` and therefore :math:`\sum_{n=0}^\infty a_n` are convergent. On the other hand if :math:`\rho>1` then for all large :math:`n`, :math:`(a_n)^{(1/n)}>1\Rightarrow a_n>1` which means that :math:`a_n` does not converge to 0 and therefore the series diverges. In order to prove the inconclusiveness of the test when :math:`\rho=1`, consider the series :math:`\sum_{n=1}^{\infty}1/n` and :math:`\sum_{n=1}^{\infty}1/n^2`. In both cases :math:`a_n\to 1` but the first series is divergent whereas the second is convergent.   
 
 Dirichlet Test 
 ~~~~~~~~~~~~~~~~~~~~~~
