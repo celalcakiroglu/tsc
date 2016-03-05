@@ -607,6 +607,8 @@ The next fact that we used in the proof of Weierstrass' maximum-minimum theorem 
 
 In the proof of Weierstrass' maximum-minimum theorem we also used the fact that a sequence is convergent with a limit if and only if each of its subsequences is convergent with the same limit. In order to prove this let :math:`x_n\to L`. Then for any :math:`\varepsilon >0` there exists :math:`N_{\varepsilon}` such that :math:`n>N_{\varepsilon}` implies :math:`\lvert x_n-L\rvert<\varepsilon`. Then let :math:`\lbrace x_{n_k}\rbrace` be any subsequence of :math:`\lbrace x_n \rbrace`. For every :math:`k>N_{\varepsilon}` we know that :math:`n_k\geq k> N_{\varepsilon}` and :math:`\lvert x_{n_k}-L\rvert<\varepsilon` and therefore :math:`x_{n_k}\to L`. Conversely, if any subsequence of :math:`\lbrace x_n \rbrace` converges to :math:`L`, then since :math:`\lbrace x_n\rbrace` is a subsequence of itself :math:`x_n\to L`.
 
+A continuous function is integrable
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Another place where Weierstress' maximum-minimum theorem can be used is in the proof of the integrability of a continuous function. While proving the Weierstrass' maximum-minimum theorem, we made use of the boundedness of a continuous function. A further implication of the continuity is that a function :math:`f` which is continuous on an interval :math:`[a,b]\subset\mathbb{R}` is integrable on :math:`[a,b]`. In order to prove this, we use the fact that :math:`f` is also uniformly continuous on :math:`[a,b]`. Suppose :math:`\varepsilon >0`, then :math:`\exists \delta >0` such that for any :math:`x,y` with :math:`|x-y|<\delta`, :math:`|f(x)-f(y)|<\varepsilon / (b-a)`. We can choose a partition :math:`P=\lbrace x_0,x_1, ... , x_n\rbrace` of :math:`[a,b]` such that for any :math:`i\in\lbrace 1,...,n\rbrace`, :math:`|x_i-x_{i-1}|<\delta`. Since :math:`f` is continuous on every interval :math:`[x_{i-1},x_i]`, according to Weierstrass' maximum-minimum theorem on each one of these intervals there exist :math:`p_i,q_i\in[x_{i-1},x_i]` such that :math:`f(p_i)=\inf\lbrace f(x):x\in[x_{i-1},x_i]\rbrace` and :math:`f(q_i)=\sup\lbrace f(x):x\in[x_{i-1},x_i]\rbrace`. Furthermore since :math:`|q_i-p_i|` is always less than :math:`\delta`, :math:`|f(q_i)-f(p_i)|` is always less than :math:`\varepsilon/(b-a)`. Now, :math:`U(P,f)-L(P,f)` can be computed as follows:
 
 .. math::
@@ -615,6 +617,8 @@ Another place where Weierstress' maximum-minimum theorem can be used is in the p
 				 &=\frac{\varepsilon}{b-a}(b-a)=\varepsilon
 
 Therefore, according to the `Cauchy criterion for integrability`_, :math:`\int_a^bf(x)dx` exists. The definitions of :math:`U(P,f),L(P,f)` can be found in the section about `the fundamental theorem of calculus`_ 
+
+In order to prove that if :math:`f` is continuous on :math:`[a,b]` then it is uniformly continuous on :math:`[a,b]` we can assume that :math:`\exists \varepsilon>0 : \forall n \exists x_n,y_n\in[a,b]: |x_n-y_n|<1/n \text{ and }|f(x_n)-f(y_n)|\geq\varepsilon`. Then :math:`\lbrace x_n \rbrace,\lbrace y_n \rbrace` have convergent subsequences :math:`\lbrace x_{n_k} \rbrace,\lbrace y_{n_k} \rbrace` with :math:`|x_{n_k}-y_{n_k}|<1/n_k\forall k`. It follows that :math:`x_{n_k}\to c\in[a,b],y_{n_k}\to c\in[a,b]\Rightarrow f(x_{n_k})\to f(c),f(y_{n_k})\to f(c)`. Therefore for large enough :math:`k`, :math:`|f(x_{n_k})-f(y_{n_k})|<\varepsilon`. This contradiction completes the proof. 
 
 Cauchy criterion for integrability
 ------------------------------------------
