@@ -287,7 +287,7 @@ Therefore the series absolutely converges when :math:`|x|<1` and the radius of c
 
 L'Hospital's Rule
 ----------------------------
-Let :math:`f:[a,b]\to \mathbb{R}`, :math:`g:[a,b]\to \mathbb{R}` and both functions are differentiable on :math:`(a,b)`, continuous on :math:`[a,b]`.Let :math:`\displaystyle\lim_{x\to a^+}\frac{f'(x)}{g'(x)}=A\in\mathbb{R}`. Choose :math:`p,q,\varepsilon` such that :math:`A\in(p+\varepsilon,q-\varepsilon)`. Since :math:`f` and :math:`g` are differentiable on :math:`(a,b)`, according to the `Cauchy mean value theorem`_ for any :math:`x,y\in (a,b)` there exists :math:`\xi\in(x,y)` such that :math:`\displaystyle \frac{f'(\xi)}{g`(\xi)}=\frac{f(x)-f(y)}{g(x)-g(y)}`.
+[7_]Let :math:`f:(a,b)\to \mathbb{R}`, :math:`g:(a,b)\to \mathbb{R}` and both functions are differentiable on :math:`(a,b)`.Let :math:`\displaystyle\lim_{x\to a^+}\frac{f'(x)}{g'(x)}=A\in\mathbb{R}`. Choose :math:`p,q,\varepsilon` such that :math:`A\in(p+\varepsilon,q-\varepsilon)`. Since :math:`f` and :math:`g` are differentiable on :math:`(a,b)`, according to the `Cauchy mean value theorem`_ for any :math:`x,y\in (a,b)` there exists :math:`\xi\in(x,y)` such that :math:`\displaystyle \frac{f'(\xi)}{g`(\xi)}=\frac{f(x)-f(y)}{g(x)-g(y)}`.
 
 Suppose that :math:`\lim_{x\to a^+}f(x)=\lim_{x\to a^+}g(x)=0`. Since :math:`f'/g'` converges to :math:`A` as x converges to :math:`a`, there exists a neighbourhood of :math:`a` such that the intersection of that neighbourhood with :math:`(a,b)` is non-empty and for every :math:`x_0` in this intersection :math:`f'(x_0)/g'(x_0)\in (p+\varepsilon,q-\varepsilon)`. Let's call this intersection :math:`(a,c)` for some :math:`c\in(a,b)`. Let :math:`x,y\in(a,c)`. Then :math:`\displaystyle\frac{f(x)-f(y)}{g(x)-g(y)}\in(p+\varepsilon,q-\varepsilon)`. Furthermore, :math:`\displaystyle\lim_{x\to a^+}\frac{f(x)-f(y)}{g(x)-g(y)}=\frac{f(y)}{g(y)}\in[p+\varepsilon,q-\varepsilon]` which means that for any neighbourhood :math:`(p,q)` of :math:`A`, there exists a neighbourhood of :math:`a` such that the intersection of that neighbourhood is a non-empty set :math:`(a,c)` and for every :math:`y\in(a,c)`, :math:`f(y)/g(y)\in (p,q)`. Therefore, :math:`\displaystyle\lim_{x\to a^+}\frac{f(x)}{g(x)}=A`.
 
@@ -374,7 +374,23 @@ From the above definitions it follows that
 .. math::
 	L(f)\leq F(b)-F(a)\leq U(f)\Rightarrow \boxed{F(b)-F(a)=\int_a^b f(x)dx}
 
-According to the fundamental theorem of calculus if :math:`g:[a,b]\to\mathbb{R}` is integrable on :math:`[a,b]`, and :math:`G(x)=\displaystyle\int_a^xg(t)dt` for any :math:`x\in[a,b]`, then :math:`G(x)` is continuous on :math:`[a,b]`. Also, if :math:`g` is continuous at some :math:`c\in[a,b]` then :math:`G'(c)=g(c)`. First of all, since :math:`g` is integrable, it is also bounded by some :math:`M\in\mathbb{R}`. Let :math:`x,y\in[a,b]` and :math:`x\neq y`. Consider :math:`|G(x)-G(y)|=|\int_x^yg(t)dt|\leq M|x-y|\Rightarrow \displaystyle\frac{|G(x)-G(y)|}{|x-y|\leq M}` which proves that :math:`G` is Lipschitz and therefore continuous on :math:`[a,b]`. 
+According to the fundamental theorem of calculus if :math:`g:[a,b]\to\mathbb{R}` is integrable on :math:`[a,b]`, and :math:`G(x)=\displaystyle\int_a^xg(t)dt` for any :math:`x\in[a,b]`, then :math:`G(x)` is continuous on :math:`[a,b]`. Also, if :math:`g` is continuous at some :math:`c\in[a,b]` then :math:`G'(c)=g(c)`. First of all, since :math:`g` is integrable, it is also bounded by some :math:`M\in\mathbb{R}`. Let :math:`x,y\in[a,b]` and :math:`x\neq y`. Consider :math:`|G(x)-G(y)|=|\int_x^yg(t)dt|\leq M|x-y|\Rightarrow \displaystyle\frac{|G(x)-G(y)|}{|x-y|}\leq M` which proves that :math:`G` is Lipschitz and therefore continuous on :math:`[a,b]`. 
+
+Suppose that :math:`g` is continuous at some :math:`c\in [a,b]`. Then for every :math:`\varepsilon >0` there exists :math:`\delta >0` such that if :math:`|x-c|<\delta` then :math:`|g(x)-g(c)|<\varepsilon`. Choose :math:`\varepsilon, x` such that :math:`|x-c|<\delta`. Consider :math:`\displaystyle\Big|\frac{G(x)-G(c)}{x-c}-g(c)\Big|=\Big|\frac{1}{x-c}\int_c^x g(t)dt-g(c)\Big|=\Big|\frac{1}{x-c}\int_c^x[g(t)-g(c)]dt\Big|`. Since :math:`|t-c|<\delta`, :math:`|g(t)-g(c)|<\varepsilon`.
+
+.. math::
+	\Rightarrow \Big| \frac{G(x)-G(c)}{x-c}-g(c) \Big|<\frac{1}{|x-c|}\varepsilon |x-c|=\varepsilon
+
+.. math::
+	\therefore \lim_{x\to c}\frac{G(x)-G(c)}{x-c}=G'(c)=g(c)
+
+It can also be proven that a function which is Lipschitz on an interval, is also uniformly continuous and therefore continuous on this interval. Assume that :math:`G` is Lipschitz but not uniformly continuous on :math:`[a,b]`. Then, there exists :math:`\varepsilon >0` such that for all :math:`n\in\mathbb{N}` there exist :math:`x_n,y_n\in[a,b]` with :math:`|x_n-y_n|<1/n` and :math:`|G(x_n)-G(y_n)|\geq \varepsilon`. Since :math:`G` is Lipschitz, there exists :math:`M\in\mathbb{R}` such that :math:`\displaystyle|\frac{G(x_n)-G(y_n)}{x_n-y_n}|\leq M` for all :math:`n`. It follows that for large enough :math:`n`: 
+
+.. math::
+	|G(x_n)-G(y_n)|\leq M|x_n-y_n|<\frac{M}{n}<\varepsilon  
+
+But our assumption was that :math:`|G(x_n)-G(y_n)|\geq \varepsilon` for all :math:`n`. This contradiction proves that on some interval :math:`[a,b]` if a function is Lipschitz then it is uniformly continuous.
+
 
 Differentiation Rules
 -------------------------------------
@@ -557,7 +573,47 @@ Another place where Weierstress' maximum-minimum theorem can be used is in the p
 				 &<\frac{\varepsilon}{b-a}\sum_{i=1}^{n}(x_i-x_{i-1})\\
 				 &=\frac{\varepsilon}{b-a}(b-a)=\varepsilon
 
-Therefore, according to the Cauchy criterion for integrability, :math:`\int_a^bf(x)dx` exists.
+Therefore, according to the `Cauchy criterion for integrability`_, :math:`\int_a^bf(x)dx` exists. The definitions of :math:`U(P,f),L(P,f)` can be found in the section about `the fundamental theorem of calculus`_ 
+
+Cauchy criterion for integrability
+------------------------------------------
+According to this criterion a function :math:`f` is integrable on an interval :math:`[a,b]` if and only if for every :math:`\varepsilon >0` there exists a partition :math:`P` of :math:`[a,b]` such that :math:`U(P,f)-L(P,f)<\varepsilon`.
+
+If :math:`\int_a^b f=\alpha` then there exists a sequence of partitions :math:`\lbrace P_n \rbrace` such that :math:`U(P_n,f)\to\alpha` and :math:`L(P_n,f)\to alpha`. Then :math:`U(P_n,f)-L(P_n,f)\to 0` and for every :math:`\varepsilon>0` for large enough :math:`n`, :math:`U(P_n,f)-L(P_n,f)<\varepsilon`.
+
+Conversely, if for every :math:`\varepsilon>0` there exists :math:`P_{\varepsilon}` such that :math:`U(P_{\varepsilon},f)-L(P_{\varepsilon},f)<\varepsilon` then :math:`0\leq U(f)-L(f)<\varepsilon` for every positive :math:`\varepsilon` which implies that :math:`U(f)=L(f)=\int_a^b f`. 
+
+In the proof of the Cauchy integrability criterion we used the fact that if :math:`f` is integrable on :math:`[a,b]` then there exists a sequence of partitions :math:`\lbrace P_n \rbrace` such that :math:`U(P_n,f)\to\alpha` and :math:`L(P_n,f)\to \alpha`.
+
+If :math:`f` is integrable on :math:`[a,b]` then :math:`U(f)=L(f)=\alpha` from which it follows that for every :math:`n\in\mathbb{N}`, there exist partitions of :math:`[a,b]`, :math:`Q_n,R_n` and their union :math:`P_n=Q_n\cup R_n` such that 
+
+.. math::
+	\alpha-\frac{1}{n}<L(Q_n,f)\leq L(P_n,f)\leq U(P_n,f)\leq U(R_n,f)<\alpha+\frac{1}{n}
+
+.. math::
+	\Rightarrow |L(P_n,f)-\alpha|<\frac{1}{n},\quad |U(P_n,f)-\alpha|<\frac{1}{n} \Rightarrow L(P_n,f)\to\alpha,  U(P_n,f)\to\alpha
+
+Conversely, if there exists a sequence of partitions :math:`\lbrace P_n \rbrace` such that :math:`U(P_n,f)\to\alpha` and :math:`L(P_n,f)\to \alpha`, then
+
+.. math::
+	\alpha\leq L(f)\leq U(f)\leq\alpha\Rightarrow L(f)=U(f)=\alpha=\int_a^bf`
+
+Assume that :math:`L(P_n,f)\to\alpha` and :math:`L(f)<\alpha`. Then for large enough :math:`n`, :math:`|L(P_n,f)-\alpha|<\alpha-L(f)`. It follows that :math:`L(f)-\alpha <L(P_n,f)-\alpha` and :math:`L(P_n,f)` is greater than the least upper bound of lower sums of :math:`f` which is a contradiction. :math:`U(f)\leq \alpha` can be proven similarly. 
+
+In order to prove that :math:`L(f)\leq U(f)`, let :math:`Q,R` be any partitions and let :math:`P=Q\cup R`. Then :math:`L(Q,f)\leq L(P,f)\leq U(P,f)\leq U(R,f)`. Therefore any lower sum is less than or equal to any upper sum. In other words any lower sum is **a** lower bound for the set of all upper sums. Since :math:`U(f)` is the **greatest** lower bound for the set of all upper sums, we have :math:`L(P,f)\leq U(f)`. Since :math:`P` could be any partition, it follows that :math:`U(f)` is **an** upper bound for the set of all lower sums. Since :math:`L(f)` is the **least** upper bound for the set of all lower sums, :math:`L(f)\leq U(f)` follows.
+
+In the above proofs we frequently used the fact that the refinement of a partition increases lower sums and decreases upper sums. The increase of lower sums and decrease of upper sums can be proven in the same way. In order to prove the increase of lower sums we can insert an additional point :math:`p` to the partition :math:`P` and call the refined partition :math:`P'` such that
+
+.. math::
+	P'=\lbrace x_0,x_1, ... , x _{k-1}, p, x_k, x _{k+1}, ..., x_n\rbrace 
+
+Let :math:`m'=\inf\lbrace x:x\in[x _{k-1}, p] \rbrace`, :math:`m''=\inf\lbrace x:x\in[p, x_k] \rbrace`, :math:`m_i=\inf\lbrace x:x\in[x_{i-1}, x_i] \rbrace`. It follows that :math:`m'\geq m_k` and :math:`m''\geq m_k`. Therefore
+
+.. math::
+	L(P',f)&=\sum _{i=1}^{k-1}m_i(x_i-x _{i-1})+m'(p-x _{k-1})+m''(x_k-p)+\sum _{i=k+1}^n m_i(x_i-x _{i-1})\\
+		   &\geq \sum _{i=1}^{k-1}m_i(x_i-x _{i-1})+m_k(p-x _{k-1})+m_k(x_k-p)+\sum _{i=k+1}^n m_i(x_i-x _{i-1})\\
+		   &=\sum _{i=1}^{k-1}m_i(x_i-x _{i-1})+m_k(x_k-x _{k-1})+\sum _{i=k+1}^n m_i(x_i-x _{i-1})\\
+		   &=L(P,f)
 
 **References**
 
@@ -584,3 +640,7 @@ Therefore, according to the Cauchy criterion for integrability, :math:`\int_a^bf
 .. _6:
 
 [6] Spivak M. (1965);"Calculus on Manifolds", ISBN 0-8053-9021-9
+
+.. _7:
+
+[7] Rudin W. (1976);"Principles of Mathematical Analysis", ISBN 0-07-054235-X
