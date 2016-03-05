@@ -223,16 +223,37 @@ While proving why direct comparison test works we used the fact that convergent 
 
 Limit Comparison Test 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-[4_]Let :math:`\frac{a_n}{b_n}=L`. Also let :math:`0\leq a_n\leq b_n` for :math:`n` greater than or equal to some :math:`N\in\mathbb{N}`. Then, if :math:`0<L<\infty`, then :math:`\sum_{n=0}^\infty a_n` is convergent if and only if :math:`\sum_{n=0}^\infty a_n` is convergent.
+[4_]Let :math:`\lim_{n\to\infty}\frac{a_n}{b_n}=L` and :math:`0< a_n, b_n` for :math:`n` greater than or equal to some :math:`N\in\mathbb{N}`. If :math:`0<L<\infty`, then either both :math:`\sum_{n=0}^\infty a_n` and :math:`\sum_{n=0}^\infty b_n` converge or both diverge.
+
+For large enough :math:`n`, :math:`a_n,b_n>0` and :math:`\displaystyle\frac{L}{2}<\frac{a_n}{b_n}<\frac{3L}{2}\Rightarrow \frac{L}{2}b_n<a_n<\frac{3L}{2}b_n`. Therefore by `direct comparison test`_ either both :math:`\sum_{n=0}^\infty a_n` and :math:`\sum_{n=0}^\infty b_n` converge or both diverge.
+
+If :math:`L=0` then for large enough :math:`n`, :math:`a_n,b_n>0` and :math:`\frac{a_n}{b_n}<1\Rightarrow 0<a_n<b_n`. It follows that if :math:`\sum_{n=0}^\infty b_n` is convergent then :math:`\sum_{n=0}^\infty a_n` is convergent.
+
+If :math:`L=\infty` then for large enough :math:`n`, :math:`a_n,b_n>0` and :math:`1<\frac{a_n}{b_n}\Rightarrow 0<b_n<a_n`. It follows that if :math:`\sum_{n=0}^\infty b_n` is divergent then :math:`\sum_{n=0}^\infty a_n` is divergent.
 
 Ratio Test 
 ~~~~~~~~~~~~~~~~~~~~
 [4_]Let :math:`a_n>0` for all :math:`n` and :math:`\lim_{n\to\infty}\frac{a_{n+1}}{a_n}=\rho`. If :math:`\rho<1` then the series :math:`\sum_{n=n_0}^\infty a_n` converges, if :math:`\rho>1` then the series diverges and if :math:`\rho=1` then the test is inconclusive. First, let
-s investigate the case when :math:`\rho<1`. Let :math:`\rho<r<1`. Then there exists :math:`N\in\mathbb{}N` such that if :math:`n\geq N` then :math:`\frac{a_{n+1}}{a_n}-\rho <r-\rho`.
+us investigate the case when :math:`\rho<1`. Let :math:`\rho<r<1`. Then there exists :math:`N\in\mathbb{N}` such that if :math:`n\geq N` then :math:`\frac{a_{n+1}}{a_n}-\rho <r-\rho\Rightarrow \frac{a_{n+1}}{a_n} <r`. It follows that
+
+.. math::
+	a _{N+1}<ra_N
+
+.. math::
+	a _{N+2}<ra _{N+1}<r^2 a_N
+
+.. math::
+	\Rightarrow a _{N+k}<r^k a_N
+
+Since :math:`|r|<1`, :math:`a_N\sum_{k=1}^\infty r^k` is a convergent series and by the `direct comparison test`_ :math:`\sum_{k=N+1}^\infty a_k` is a convergent series. Considering that :math:`\sum_{k=0}^N a_k` is a finite value, we can conclude that :math:`\sum_{k=0}^\infty a_k` is convergent when :math:`\rho<1`.
+
+If :math:`\rho>1` then for all large :math:`n`, :math:`0<a_n<a_{n+1}` and :math:`\lbrace a_n \rbrace` does not converge to zero which implies that in this case :math:`\sum_{n=0}^\infty a_n` is divergent.
+
+In both cases :math:`a_n=1/n` and :math:`a_n=1/n^2`, :math:`\displaystyle\frac{a_{n+1}}{a_n}\to 1` but the first of these series is divergent and the second one is convergent. Therefore, the test is inconclusive if :math:`\rho=1`.
 
 Root Test 
 ~~~~~~~~~~~~~~~~~~~
-[4_]Let :math:`\sqrt[n]{a_n}\to \rho` and :math:`a_n\geq 0, \forall n\geq N`. If :math:`\rho<1` then :math:`\sum_{n=0}^\infty a_n` is convergent and if :math:`\rho>1` then the series is divergent. In case of :math:`\rho=1` the test is inconclusive. Suppose :math:`\rho<r<1`. For large enough :math:`n`, :math:`\sqrt[n]{a_n}-\rho<r-\rho\Rightarrow a_n<r^n`. Suppose :math:`a_n<r^n` for :math:`n\geq K>N`. Let :math:`M_a=\sum_{n=0}^{K-1}a_n` and compare the series :math:`\sum_{n=N}^\infty a_n` and :math:`\sum_{n=N}^\infty r^n`. Since :math:`|r|<1`, by the direct comparison test :math:`\sum_{n=N}^\infty a_n` and therefore :math:`\sum_{n=0}^\infty a_n` are convergent. On the other hand if :math:`\rho>1` then for all large :math:`n`, :math:`(a_n)^{(1/n)}>1\Rightarrow a_n>1` which means that :math:`a_n` does not converge to 0 and therefore the series diverges. In order to prove the inconclusiveness of the test when :math:`\rho=1`, consider the series :math:`\sum_{n=1}^{\infty}1/n` and :math:`\sum_{n=1}^{\infty}1/n^2`. In both cases :math:`a_n\to 1` but the first series is divergent whereas the second is convergent.   
+[4_]Let :math:`\sqrt[n]{a_n}\to \rho` and :math:`a_n\geq 0, \forall n\geq N`. If :math:`\rho<1` then :math:`\sum_{n=0}^\infty a_n` is convergent and if :math:`\rho>1` then the series is divergent. In case of :math:`\rho=1` the test is inconclusive. Suppose :math:`\rho<r<1`. For large enough :math:`n`, :math:`\sqrt[n]{a_n}-\rho<r-\rho\Rightarrow a_n<r^n`. Suppose :math:`a_n<r^n` for :math:`n\geq K>N`. Let :math:`M_a=\sum_{n=0}^{K-1}a_n` and compare the series :math:`\sum_{n=N}^\infty a_n` and :math:`\sum_{n=N}^\infty r^n`. Since :math:`|r|<1`, the geometric series :math:`\sum_{n=N}^\infty r^n` converges to :math:`1/(1-r)` and by the `direct comparison test`_ :math:`\sum_{n=N}^\infty a_n` and therefore :math:`\sum_{n=0}^\infty a_n` are convergent. On the other hand if :math:`\rho>1` then for all large :math:`n`, :math:`(a_n)^{(1/n)}>1\Rightarrow a_n>1` which means that :math:`a_n` does not converge to 0 and therefore the series diverges. In order to prove the inconclusiveness of the test when :math:`\rho=1`, consider the series :math:`\sum_{n=1}^{\infty}1/n` and :math:`\sum_{n=1}^{\infty}1/n^2`. In both cases :math:`a_n\to 1` but the first series is divergent whereas the second is convergent.   
 
 Dirichlet Test 
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -552,9 +573,29 @@ The binomial theorem is also one of the reasons why :math:`0^0` was defined as e
 
 If :math:`0^0` were undefined or defined as zero, then the binominal theorem would yield :math:`x^n=0^0x^n=0` or :math:`x^n=` undefined. 
 
-Weierstrass' maximum-minimum theorem
+Weierstrass maximum minimum theorem
 ----------------------------------------------
 While proving Rolle's theorem we made use of **Weierstrass' maximum-minimum theorem** which states that if a function is continuous on a closed interval :math:`[a,b]`, then this function has a maximum and a minimum value on :math:`[a,b]`. We can start the proof of Weierstrass' maximum-minimum theorem by showing that the continuity of :math:`f:[a,b]\to\mathbb{R}` on :math:`[a,b]` implies its boundedness on :math:`[a,b]`. This can be proven by contradiction. Assume that :math:`f:[a,b]\to\mathbb{R}` is continuous but not bounded. Then for any :math:`n\in\mathbb{N}` there must be :math:`x_n\in [a,b]` such that :math:`\lvert f(x_n)\lvert > n`. Obviously, :math:`\lbrace x_n \rbrace` is a sequence bounded by a and b. From the boundedness of :math:`\lbrace x_n \rbrace` it follows that :math:`\lbrace x_n \rbrace` has a convergent subsequence :math:`\lbrace x_{n_k} \rbrace` such that :math:`x_{n_k}\to c\in [a,b]`. Since :math:`f` is a continuous function, :math:`f(x_{n_k})\to f(c)`. This means that for any real number :math:`\varepsilon > 0`, there exists :math:`k_0\in\mathbb{N}` such that if :math:`\lvert x_{n_k}-c \rvert < 1/n_{k_0}` then :math:`\lvert f(x_{n_k})-f(c)\rvert < \varepsilon` and :math:`\lvert f(x_{n_k})\rvert < \varepsilon + \lvert f(c) \rvert`. Since :math:`\lbrace x_{n_k} \rbrace` converges to :math:`c`, it is possible to choose k large enough so that :math:`\lvert x_{n_k}-c \rvert <1/n_{k_0}` and :math:`\varepsilon+\lvert f(c) \rvert < n_k`. But in this case we obtain :math:`\lvert f(x_{n_k} \rvert < n_k` which is in contradiction with our initial assumption that :math:`\lvert f(x_n)\rvert >n` for any :math:`n\in\mathbb{N}`. This proves the boundedness of :math:`f:[a,b]\to\mathbb{R}`. As a result, :math:`f` has a supremum :math:`S` on :math:`[a,b]`. Using the definition of supremum, we know that for every :math:`n\in\mathbb{N}` there exists :math:`x_n \in [a,b]` such that :math:`S-1/n < f(x_n) \leq S` from which :math:`f(x_n)\to S` follows. This gives us another bounded sequence :math:`\lbrace x_n \rbrace` with a convergent subsequence :math:`x_{n_k}\to c` in :math:`[a,b]` and :math:`f(x _{n_k})\to f(c)`. Since :math:`f(x _{n_k})` is a subsequence of :math:`f(x_n)`, these two sequences have to converge to the same limit such that :math:`f(c)=S`. Since :math:`c\in[a,b]` and :math:`\forall x\in[a,b]`, :math:`f(x)\leq f(c)`, this completes the proof of the maximum part of the Weierstrass' maximum-minimum theorem. The minimum part can be proven in the same way.  
+
+Combining `Weierstrass maximum minimum theorem`_ with the integrability of a continuous function we obtain the mean value theorem for integrals 
+
+Mean Value Theorem for Integrals
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Let :math:`f` be continuous on :math:`[a,b]`. Then :math:`\exists p,q\in[a,b]:f(p)=\inf{f(x):x\in[a,b]},f(q)=\sup{f(x):x\in[a,b]}`.It follows that
+
+.. math::
+	f(p)(b-a)\leq\int_a^bf\leq f(q)(b-a)
+
+.. math::
+	\Rightarrow f(p)\leq \frac{1}{b-a}\int_a^bf\leq f(q)
+
+Therefore according to `Bolzano intermediate value theorem`_ :math:`\exists c\in[a,b]:f(c)=\frac{1}{b-a}\int_a^bf\Rightarrow \int_a^bf=f(c)(b-a)`. 
+
+Bolzano intermediate value theorem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This theorem states that if :math:`f` is continuous on :math:`[a,b]` and :math:`f(a)<0<f(b)` then :math:`\exists c\in(a,b):f(c)=0`. 
+
+Consider :math:`\displaystyle f\Bigg(\frac{a+b}{2}\Bigg)`. If :math:`\displaystyle f\Bigg(\frac{a+b}{2}\Bigg)=0` then we found :math:`c`. Otherwise, if :math:`\displaystyle f\Bigg(\frac{a+b}{2}\Bigg)<0` let :math:`a_1=(a+b)/2, b_1=b` and consider :math:`\displaystyle f\Bigg(\frac{a_1+b_1}{2}\Bigg)`. If :math:`\displaystyle f\Bigg(\frac{a_1+b_1}{2}\Bigg)=0` then we found :math:`c`. Otherwise, if :math:`\displaystyle f\Bigg(\frac{a_1+b_1}{2}\Bigg)>0` let :math:`b_2=(a_1+b_1)/2, a_2=a_1` and consider :math:`\displaystyle f\Bigg(\frac{a_2+b_2}{2}\Bigg)`. Continuing this way we either find :math:`c` after a finite number of updates or we get a monotone increasing sequence :math:`\lbrace a_n\rbrace` and a monotone decreasing sequence :math:`\lbrace b_n\rbrace`. Since these sequences are also bounded, they are both convergent. Also, because :math:`b_n=a_n+\displaystyle\frac{b-a}{2^n}`, they converge to the same limit :math:`c\in[a,b]`. Due to the continuity of :math:`f` on :math:`[a,b]` it follows that :math:`f(a_n)\to f(c),f(b_n)\to f(c)`. Furthermore :math:`\forall n,f(a_n)<0, f(b_n)>0` which implies that :math:`0\leq f(c)\leq 0\Rightarrow \boxed{f(c)=0}`.
 
 In the proof of the Weierstrass' maximum-minimum theorem we made use of several facts without showing why they are true. The first one of these facts is that any bounded sequence has a convergent subsequence (**Bolzano-Weierstrass theorem**). 
 
