@@ -9,7 +9,7 @@
 Contents:
 
 .. toctree::
-   :maxdepth: 15
+   :maxdepth: 1
 
    2DTruss.rst
    2DFrame.rst

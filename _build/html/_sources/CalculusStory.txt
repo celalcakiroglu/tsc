@@ -347,19 +347,25 @@ Using `the fundamental theorem of calculus`_ we can derive the following equalit
 .. math::
 	\log(xy)=\log(x)+\log(y),\quad x,y>0
 
-Let :math:`xy=u` for :math:`x,y>0`. Then :math:`\log(xy)=\log(u)=\int_1^u\frac{1}{t}dt\Rightarrow \frac{d}{dx}\log(xy)=\frac{d}{du}\log(u)\frac{du}{dx}`. Since :math:`1/t` is continuous at :math:`t=u` we obtain :math:`\displaystyle\frac{d}{dx}\log(xy)=\frac{1}{xy}y=\frac{1}{x}`. The derivative of :math:`\log(x)` with respect to :math:`x` is also equal to :math:`\displaystyle\frac{1}{x}`. Therefore :math:`\log(xy)=\log(x)+C` where :math:`C` is a constant. Using :math:`\log(1)=0` we obtain :math:`\log(1\cdot y)=0+C\Rightarrow \log(xy)=\log(x)+\log(y)`.
+Let :math:`xy=u` for :math:`x,y>0`. Then :math:`\log(xy)=\log(u)=\int_1^u\frac{1}{t}dt\Rightarrow \frac{d}{dx}\log(xy)=\frac{d}{du}\log(u)\frac{du}{dx}` by `the chain rule`_. Since :math:`1/t` is continuous at :math:`t=u` we obtain :math:`\displaystyle\frac{d}{dx}\log(xy)=\frac{1}{xy}y=\frac{1}{x}`. The derivative of :math:`\log(x)` with respect to :math:`x` is also equal to :math:`\displaystyle\frac{1}{x}`. Therefore :math:`\log(xy)=\log(x)+C` where :math:`C` is a constant. Using :math:`\log(1)=0` we obtain :math:`\log(1\cdot y)=0+C\Rightarrow \log(xy)=\log(x)+\log(y)`.
 
 Using the above equality we obtain :math:`0=\log(1)=\log(x\cdot x^{-1})=\log(x)+\log(x^{-1})\Rightarrow \log(x^{-1})=-\log(x)`.
 
-Clearly :math:`\log(x^1)=1\cdot \log(x)`. Let :math:`n\in\mathbb{N}`. If :math:`\log(x^{n})=n\cdot \log(x)`, then :math:`\log(x^{n+1})=\log(x^n)+\log(x)=(n+1)\log(x)\therefore\forall n\in\mathbb{N},\forall x>0, \log(x^n)=n\log(x)`.
+Clearly :math:`\log(x^1)=1\cdot \log(x)`. Let :math:`n\in\mathbb{N}`. If :math:`\log(x^{n})=n\cdot \log(x)`, then :math:`\log(x^{n+1})=\log(x^n)+\log(x)=(n+1)\log(x)\therefore\forall n\in\mathbb{N},\forall x>0, \log(x^n)=n\log(x)` by induction.
 
-:math:`\log(x^0)=0\cdot\log(x)` and :math:`\log(x^{-n})=\log((x^{-1})^n)`. Since :math:`x^{-1}>0`, :math:`\log((x^{-1})^n)=n\cdot\log(x^{-1})`. Therefore for every integer :math:`m\in\mathbb{Z}`, :math:`log(x^m)=m\log(x)`. 
+:math:`\log(x^0)=0\cdot\log(x)` and :math:`\log(x^{-n})=\log((x^{-1})^n)`. Since :math:`x^{-1}>0`, :math:`\log((x^{-1})^n)=n\cdot\log(x^{-1})=-n\log(x)`. Therefore for every integer :math:`m\in\mathbb{Z}`, :math:`log(x^m)=m\log(x)`. 
 
 Let :math:`b^n=x\Rightarrow b=x^{1/n}>0\Rightarrow\log(x)=\log(b^n)=n\log(b)=n\log(x^{1/n})`
 
 :math:`\Rightarrow\log(x^{1/n})=\frac{1}{n}\log(x)`.
 
 Let :math:`q\in\mathbb{Q}` be any rational number. Then there exist an integer :math:`m` and a positive integer :math:`n` such that :math:`\log(x^q)=\log((x^{1/n})^m)=m\log(x^{1/n})=\frac{m}{n}\log(x)=q\log(x)`. Therefore for every rational number :math:`q` and for every positive real number :math:`x`, :math:`\log(x^q)=q\log(x)`.
+
+While showing that the series :math:`\displaystyle\sum_{k=2}^\infty\frac{x^k}{\log k}` has the radius of convergence :math:`1`, we made use of :math:`\displaystyle\lim_{k\to\infty}\log k=\infty`. The limits of the :math:`\log` function at :math:`\pm\infty` can be obtained as follows: Let :math:`(n\log(x),+\infty)` be any neighbourhood of :math:`+\infty` where :math:`n\in\mathbb{N}, 0<x\in\mathbb{R}`. There exists another neighbourhood :math:`(x^n,+\infty)` of :math:`+\infty` such that :math:`\forall x_0\in(x^n,+\infty),\quad \log(x^n)=n\log(x)<\log(x_0)` since :math:`\log(x)` is a strictly increasing function. Therefore :math:`\log(x_0)\in (n\log(x),+\infty) \text{ and }\displaystyle\lim_{x\to+\infty} \log(x)=+\infty`.
+
+Similarly, let :math:`(-\infty,-n\log(x))` be any neighbourhood of :math:`-\infty` where :math:`n\in\mathbb{N}, 0<x\in\mathbb{R}`. There exists a neighbourhood :math:`(0,x^{-n})` of :math:`0` such that :math:`\forall x_0\in(0,x^{-n}),\quad \log(x_0)<\log(x^{-n})=-n\log(x)` since :math:`\log(x)` is a strictly increasing function. Therefore :math:`\log(x_0)\in (-\infty,-n\log(x)) \text{ and }\displaystyle\lim_{x\to 0} \log(x)=-\infty`.
+
+It can also be proven that the range of the :math:`\log` function is all of :math:`\mathbb{R}`. Since :math:`\log(x)\to\pm\infty,\forall r\in\mathbb{R},\exists p,q\in(0,+\infty):\log(p)<r<\log(q)`. Therefore according to `Bolzano intermediate value theorem`_ :math:`\exists x\in(p,q):\log(x)=r`.
 
 Absolute value 
 -----------------------
