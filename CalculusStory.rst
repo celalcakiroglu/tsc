@@ -189,7 +189,7 @@ which gives us
 Therefore, if :math:`f^{(n)}(x)` is continuous on :math:`[a,b]`, then **the integral form of Taylor's theorem** is
 
 .. math::
-	f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(a)(b-a)^{(n-1)}dx
+	f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(x)(b-x)^{(n-1)}dx
 
 Integration by Parts
 --------------------------------
@@ -257,7 +257,7 @@ Root Test
 
 Dirichlet Test 
 ~~~~~~~~~~~~~~~~~~~~~~
-[2_] Let :math:`a_k\to 0` and :math:`S_n=\sum_{k=0}^\infty b_k` is a bounded sequence such that for every :math:`n`, :math:`|S_n|\leq B`. Furthermore the sequence :math:`\lbrace a_k\rbrace` is of bounded variation which means that :math:`\lim_{k=1}^\infty |a_{k+1}-a_k|` is convergent. Then :math:`\sum_{k=1}^\infty a_kb_k` is convergent.
+[2_] Let :math:`a_k\to 0` and :math:`S_n=\sum_{k=0}^n b_k` is a bounded sequence such that for every :math:`n`, :math:`|S_n|\leq B`. Furthermore the sequence :math:`\lbrace a_k\rbrace` is of bounded variation which means that :math:`\displaystyle\sum_{k=1}^\infty |a_{k+1}-a_k|` is convergent. Then :math:`\displaystyle\sum_{k=1}^\infty a_kb_k` is convergent.
 
 Let :math:`\varepsilon>0`. There exists :math:`N` such that whenever :math:`n,m\geq N`, :math:`\sum_n^m|a_{k+1}-a_k|<\frac{\varepsilon}{3B}` by the Cauchy convergence criterion. Also whenever :math:`k\geq N`, :math:`|a_k|<\frac{\varepsilon}{3B}`.
 
@@ -364,6 +364,8 @@ Let :math:`q\in\mathbb{Q}` be any rational number. Then there exist an integer :
 While showing that the series :math:`\displaystyle\sum_{k=2}^\infty\frac{x^k}{\log k}` has the radius of convergence :math:`1`, we made use of :math:`\displaystyle\lim_{k\to\infty}\log k=\infty`. The limits of the :math:`\log` function at :math:`\pm\infty` can be obtained as follows: Let :math:`(n\log(x),+\infty)` be any neighbourhood of :math:`+\infty` where :math:`n\in\mathbb{N}, 0<x\in\mathbb{R}`. There exists another neighbourhood :math:`(x^n,+\infty)` of :math:`+\infty` such that :math:`\forall x_0\in(x^n,+\infty),\quad \log(x^n)=n\log(x)<\log(x_0)` since :math:`\log(x)` is a strictly increasing function. Therefore :math:`\log(x_0)\in (n\log(x),+\infty) \text{ and }\displaystyle\lim_{x\to+\infty} \log(x)=+\infty`.
 
 Similarly, let :math:`(-\infty,-n\log(x))` be any neighbourhood of :math:`-\infty` where :math:`n\in\mathbb{N}, 0<x\in\mathbb{R}`. There exists a neighbourhood :math:`(0,x^{-n})` of :math:`0` such that :math:`\forall x_0\in(0,x^{-n}),\quad \log(x_0)<\log(x^{-n})=-n\log(x)` since :math:`\log(x)` is a strictly increasing function. Therefore :math:`\log(x_0)\in (-\infty,-n\log(x)) \text{ and }\displaystyle\lim_{x\to 0} \log(x)=-\infty`.
+
+In order to prove that logarithm is a strictly increasing function we use the fact that its derivative has always a positive value. Let :math:`(u,v)\subset(0,\infty)`. Since :math:`\log(x)` is differentiable on :math:`(u,v)` and continuous on :math:`[u,v]`, according to the mean value theorem (`mvt`_) there exists :math:`c\in(u,v)` such that :math:`\displaystyle\frac{d}{dx}\log(x)\Big|_{x=c}=\frac{1}{c}=\frac{\log(v)-\log(u)}{v-u}>0\Rightarrow \log(u)<\log(v)\quad\forall (u,v)\subset (0,\infty)`. 
 
 It can also be proven that the range of the :math:`\log` function is all of :math:`\mathbb{R}`. Since :math:`\log(x)\to\pm\infty,\forall r\in\mathbb{R},\exists p,q\in(0,+\infty):\log(p)<r<\log(q)`. Therefore according to `Bolzano intermediate value theorem`_ :math:`\exists x\in(p,q):\log(x)=r`.
 

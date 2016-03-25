@@ -186,7 +186,7 @@
 \[p_{n+1}=\sum_{k=0}^{n+1}\frac{f^{(k)}(a)}{k!}(b-a)^k,\quad r_{n+1}=\frac{1}{(n+1)!}\int_a^bf^{(n+2)}(x)(b-x)^{(n+1)}dx\]</div>
 <p>Therefore, if <span class="math">\(f^{(n)}(x)\)</span> is continuous on <span class="math">\([a,b]\)</span>, then <strong>the integral form of Taylor&#8217;s theorem</strong> is</p>
 <div class="math">
-\[f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(a)(b-a)^{(n-1)}dx\]</div>
+\[f(b)=\sum_{k=0}^{n-1}\frac{f^{(k)}(a)}{k!}(b-a)^k+\frac{1}{(n-1)!}\int_a^bf^{(n)}(x)(b-x)^{(n-1)}dx\]</div>
 </div>
 <div class="section" id="integration-by-parts">
 <h2>Integration by Parts<a class="headerlink" href="#integration-by-parts" title="Permalink to this headline">¶</a></h2>
@@ -238,7 +238,7 @@ us investigate the case when <span class="math">\(\rho&lt;1\)</span>. Let <span 
 </div>
 <div class="section" id="dirichlet-test">
 <h3>Dirichlet Test<a class="headerlink" href="#dirichlet-test" title="Permalink to this headline">¶</a></h3>
-<p>[<a class="reference internal" href="#id2">2</a>] Let <span class="math">\(a_k\to 0\)</span> and <span class="math">\(S_n=\sum_{k=0}^\infty b_k\)</span> is a bounded sequence such that for every <span class="math">\(n\)</span>, <span class="math">\(|S_n|\leq B\)</span>. Furthermore the sequence <span class="math">\(\lbrace a_k\rbrace\)</span> is of bounded variation which means that <span class="math">\(\lim_{k=1}^\infty |a_{k+1}-a_k|\)</span> is convergent. Then <span class="math">\(\sum_{k=1}^\infty a_kb_k\)</span> is convergent.</p>
+<p>[<a class="reference internal" href="#id2">2</a>] Let <span class="math">\(a_k\to 0\)</span> and <span class="math">\(S_n=\sum_{k=0}^n b_k\)</span> is a bounded sequence such that for every <span class="math">\(n\)</span>, <span class="math">\(|S_n|\leq B\)</span>. Furthermore the sequence <span class="math">\(\lbrace a_k\rbrace\)</span> is of bounded variation which means that <span class="math">\(\displaystyle\sum_{k=1}^\infty |a_{k+1}-a_k|\)</span> is convergent. Then <span class="math">\(\displaystyle\sum_{k=1}^\infty a_kb_k\)</span> is convergent.</p>
 <p>Let <span class="math">\(\varepsilon&gt;0\)</span>. There exists <span class="math">\(N\)</span> such that whenever <span class="math">\(n,m\geq N\)</span>, <span class="math">\(\sum_n^m|a_{k+1}-a_k|&lt;\frac{\varepsilon}{3B}\)</span> by the Cauchy convergence criterion. Also whenever <span class="math">\(k\geq N\)</span>, <span class="math">\(|a_k|&lt;\frac{\varepsilon}{3B}\)</span>.</p>
 <p>Let <span class="math">\(n,m \geq N\)</span>. Using <a class="reference internal" href="#abel-s-lemma">Abel&#8217;s lemma</a> :</p>
 <div class="math">
@@ -313,6 +313,7 @@ us investigate the case when <span class="math">\(\rho&lt;1\)</span>. Let <span 
 <p>Let <span class="math">\(q\in\mathbb{Q}\)</span> be any rational number. Then there exist an integer <span class="math">\(m\)</span> and a positive integer <span class="math">\(n\)</span> such that <span class="math">\(\log(x^q)=\log((x^{1/n})^m)=m\log(x^{1/n})=\frac{m}{n}\log(x)=q\log(x)\)</span>. Therefore for every rational number <span class="math">\(q\)</span> and for every positive real number <span class="math">\(x\)</span>, <span class="math">\(\log(x^q)=q\log(x)\)</span>.</p>
 <p>While showing that the series <span class="math">\(\displaystyle\sum_{k=2}^\infty\frac{x^k}{\log k}\)</span> has the radius of convergence <span class="math">\(1\)</span>, we made use of <span class="math">\(\displaystyle\lim_{k\to\infty}\log k=\infty\)</span>. The limits of the <span class="math">\(\log\)</span> function at <span class="math">\(\pm\infty\)</span> can be obtained as follows: Let <span class="math">\((n\log(x),+\infty)\)</span> be any neighbourhood of <span class="math">\(+\infty\)</span> where <span class="math">\(n\in\mathbb{N}, 0&lt;x\in\mathbb{R}\)</span>. There exists another neighbourhood <span class="math">\((x^n,+\infty)\)</span> of <span class="math">\(+\infty\)</span> such that <span class="math">\(\forall x_0\in(x^n,+\infty),\quad \log(x^n)=n\log(x)&lt;\log(x_0)\)</span> since <span class="math">\(\log(x)\)</span> is a strictly increasing function. Therefore <span class="math">\(\log(x_0)\in (n\log(x),+\infty) \text{ and }\displaystyle\lim_{x\to+\infty} \log(x)=+\infty\)</span>.</p>
 <p>Similarly, let <span class="math">\((-\infty,-n\log(x))\)</span> be any neighbourhood of <span class="math">\(-\infty\)</span> where <span class="math">\(n\in\mathbb{N}, 0&lt;x\in\mathbb{R}\)</span>. There exists a neighbourhood <span class="math">\((0,x^{-n})\)</span> of <span class="math">\(0\)</span> such that <span class="math">\(\forall x_0\in(0,x^{-n}),\quad \log(x_0)&lt;\log(x^{-n})=-n\log(x)\)</span> since <span class="math">\(\log(x)\)</span> is a strictly increasing function. Therefore <span class="math">\(\log(x_0)\in (-\infty,-n\log(x)) \text{ and }\displaystyle\lim_{x\to 0} \log(x)=-\infty\)</span>.</p>
+<p>In order to prove that logarithm is a strictly increasing function we use the fact that its derivative has always a positive value. Let <span class="math">\((u,v)\subset(0,\infty)\)</span>. Since <span class="math">\(\log(x)\)</span> is differentiable on <span class="math">\((u,v)\)</span> and continuous on <span class="math">\([u,v]\)</span>, according to the mean value theorem (<a class="reference internal" href="#mvt">mvt</a>) there exists <span class="math">\(c\in(u,v)\)</span> such that <span class="math">\(\displaystyle\frac{d}{dx}\log(x)\Big|_{x=c}=\frac{1}{c}=\frac{\log(v)-\log(u)}{v-u}&gt;0\Rightarrow \log(u)&lt;\log(v)\quad\forall (u,v)\subset (0,\infty)\)</span>.</p>
 <p>It can also be proven that the range of the <span class="math">\(\log\)</span> function is all of <span class="math">\(\mathbb{R}\)</span>. Since <span class="math">\(\log(x)\to\pm\infty,\forall r\in\mathbb{R},\exists p,q\in(0,+\infty):\log(p)&lt;r&lt;\log(q)\)</span>. Therefore according to <a class="reference internal" href="#bolzano-intermediate-value-theorem">Bolzano intermediate value theorem</a> <span class="math">\(\exists x\in(p,q):\log(x)=r\)</span>.</p>
 </div>
 <div class="section" id="absolute-value">
@@ -549,49 +550,7 @@ U(f)=\inf\lbrace U(P,f):P\text{ partitions }[a,b]\rbrace\end{split}\]</div>
 <li class="toctree-l1"><a class="reference internal" href="2DFrame.html">2D Frame System Solver</a></li>
 <li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SiemensNX.html">3D Modeling Tutorials</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Calculus</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#vector-norm-and-inner-product">Vector norm and inner product</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#linear-independence">Linear independence</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#mean-value-theorem-and-rolle-s-theorem">Mean Value Theorem and Rolle&#8217;s Theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#taylor-s-theorem">Taylor&#8217;s theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#integration-by-parts">Integration by Parts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#power-series">Power Series</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#direct-comparison-test">Direct Comparison Test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#every-convergent-sequence-is-bounded">Every convergent sequence is bounded</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#limit-comparison-test">Limit Comparison Test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#ratio-test">Ratio Test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#root-test">Root Test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dirichlet-test">Dirichlet Test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#cauchy-convergence-criterion">Cauchy convergence criterion</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#abel-s-lemma">Abel&#8217;s Lemma</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#radius-of-convergence">Radius of convergence</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#l-hospital-s-rule">L&#8217;Hospital&#8217;s Rule</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cauchy-mean-value-theorem">Cauchy Mean Value Theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#logarithm">Logarithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#absolute-value">Absolute value</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#the-fundamental-theorem-of-calculus">The Fundamental Theorem of Calculus</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#differentiation-rules">Differentiation Rules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#the-product-rule">The Product Rule</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-chain-rule">The Chain Rule</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#binomial-theorem">Binomial theorem</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#weierstrass-maximum-minimum-theorem">Weierstrass maximum minimum theorem</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#mean-value-theorem-for-integrals">Mean Value Theorem for Integrals</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bolzano-intermediate-value-theorem">Bolzano intermediate value theorem</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#every-bounded-sequence-has-a-convergent-subsequence-bolzano-weierstrass">Every bounded sequence has a convergent subsequence (Bolzano-Weierstrass)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#a-continuous-function-is-integrable">A continuous function is integrable</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#cauchy-criterion-for-integrability">Cauchy criterion for integrability</a></li>
-</ul>
-</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Calculus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="WebGL_Tri.html">Polygon Meshing through Triangulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CoutteOpenFoam.html">Flow Between Parallel Plates</a></li>
 </ul>
