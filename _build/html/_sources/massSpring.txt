@@ -7,14 +7,18 @@ Free Vibration of Mass-Spring System
 	<canvas id="massSpringDamper" width = "578" height="200">
 	</canvas>
 	<p>
-		k[N/m] <input type="text" id="k" style="width: 70px;" value="1">
-        m[kg] <input type="text" id="m" style="width: 70px;" value="15000">
-        xi <input type="text" id="xi" style="width: 70px;" value=0.002>
-        A0 <input type="text" id="A0" style="width: 70px;" value=150>
+		k[N/m] <input type="text" id="k" style="width: 60px;" onclick="stop()" value="1">
+        m[kg] <input type="text" id="m" style="width: 60px;" onclick="stop()" value="15000">
+        xi <input type="text" id="xi" style="width: 60px;" oninput="stop()" value=0.002>
+        A0 <input type="text" id="A0" style="width: 60px;" onclick="stop()" value=150>
+        <button id="restart" type="button" onclick="restart()">Restart</button>
 	</p>
+	<canvas id="plotTimeDisp" width = "578" height="200">
+	</canvas>
 	<script>
 		var t0 = (new Date()).getTime();
-		(function repeatOften() {
+		var requestId=0;
+		function draw() {
 			var canvas=document.getElementById('massSpringDamper')
 			canvas.style.backgroundColor = 'rgba(158, 167, 184, 0.2)';
 			var context = canvas.getContext('2d');
@@ -43,8 +47,21 @@ Free Vibration of Mass-Spring System
         	context.fillStyle = '#8ED6FF';
         	context.fill();
     		console.log("deneme");
-    		requestAnimationFrame(repeatOften);
-		})();
+    		requestId=requestAnimationFrame(draw);
+		};
+		draw();
+		function restart(){
+		    console.log("we are in restart")
+		    t0 = (new Date()).getTime();
+			draw();
+		}
+		function stop() {
+            if (requestId) {
+                window.cancelAnimationFrame(requestId);
+            }
+        }
 	</script>
 	</canvas>
 	</html>
+
+xi denotes the damping varible :math:`\xi` in the equation of motion :math:`\ddot{x}+2\xi\omega_n\dot{x}+{\omega_n}^2x=0`.
