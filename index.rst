@@ -11,6 +11,7 @@ Contents:
 .. toctree::
    :maxdepth: 1
 
+   massSpring.rst
    2DTruss.rst
    2DFrame.rst
    MachineLearning.rst
@@ -18,6 +19,7 @@ Contents:
    CalculusStory.rst
    WebGL_Tri.rst
    CoutteOpenFoam.rst
+   
 ..   DOE.rst
 ..   ColdBend.rst
 ..   WebGL_DNBackShapes.rst
