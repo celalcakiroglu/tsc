@@ -78,36 +78,43 @@ A0 <input type="text" id="A0" style="width: 60px;" onclick="stop()" value=150>
 <canvas id="plotTimeDisp" width = "578" height="200">
 </canvas>
 <script>
-        var t0 = (new Date()).getTime();
-        var t=(new Date()).getTime();
         var requestId=0, requestId2=0;
         var A0=parseFloat(document.getElementById('A0').value);
+        var disp=0;
         var canvas2=document.getElementById('plotTimeDisp');
         var canvas=document.getElementById('massSpringDamper');
         canvas.style.backgroundColor = 'rgba(158, 167, 184, 0.2)';
         var context = canvas.getContext('2d');
+        context.font = "20px Arial";
         canvas2.style.backgroundColor = 'rgba(158, 167, 184, 0.2)';
         var context2 = canvas2.getContext('2d');
-        context2.beginPath();
-        context2.moveTo(20,canvas2.height/2);
-context2.lineTo(20+canvas2.width/2, canvas2.height/2);
-context2.moveTo(20,canvas2.height/2);
-context2.lineTo(20, 20);
-context2.stroke();
-context2.moveTo(20,20);
+        context2.font = "20px Arial";
+        var t, t0;
 function stop() {
     if (requestId) {
         window.cancelAnimationFrame(requestId);
     }
 }
-function plot(disp, A0, t, t0){
+function plot(disp, A0, t, t0, xi, omegaN, omegaD){
                 adjustedDisp=(canvas2.height/2-20)*disp/A0;
                 time=(t-t0)/1000;
                 adjustedTime=(canvas2.width/2)*time/10;//first 10 seconds of the motion
                 if(time<=10){
+                        context2.moveTo(prevT, prevX);
                         context2.lineTo(20+adjustedTime,canvas2.height/2-adjustedDisp);
                 context2.stroke();
+                prevT=20+adjustedTime;
+                prevX=canvas2.height/2-adjustedDisp;
                 }
+                velocity=A0*Math.exp(-xi*omegaN*(t-t0))*[-xi*omegaN*Math.cos(omegaD*(t-t0))-omegaD*Math.sin(omegaD*(t-t0))];
+                adjustedPhaseX=(phaseXArm-10)*disp/A0+phaseMidX;
+                vMax=-omegaD*A0*Math.exp(-xi*omegaN*Math.PI/(2*omegaD));
+                adjustedPhaseV=(phaseYArm-10)*velocity/vMax+canvas2.height/2;
+                context2.moveTo(prevPhaseX, prevPhaseV)
+                context2.lineTo(adjustedPhaseX, adjustedPhaseV);
+                context2.stroke();
+                prevPhaseX=adjustedPhaseX;
+                prevPhaseV=adjustedPhaseV
 };
         function draw() {
                 context.clearRect(0, 0, canvas.width, canvas.height);
@@ -119,7 +126,7 @@ function plot(disp, A0, t, t0){
                 omegaN=Math.sqrt(k/m);
                 omegaD=omegaN*Math.sqrt(1-xi*xi);
                 t=(new Date()).getTime();
-                disp=Math.exp(-xi*omegaN*(t-t0))*A0*Math.cos(omegaD*t);
+                disp=Math.exp(-xi*omegaN*(t-t0))*A0*Math.cos(omegaD*(t-t0));
                 xWall= 20;yWall=canvas.height/2;//The point where the spring is attached to the wall
                 length0=(canvas.width)/2;
                 context.beginPath();
@@ -135,23 +142,42 @@ function plot(disp, A0, t, t0){
         context.fillStyle = '#8ED6FF';
         context.fill();
         console.log("animation going on");
-        plot(disp,A0, t, t0);
+        plot(disp,A0, t, t0, xi, omegaN, omegaD);
         if(Math.abs(disp)>0.000001){requestId=requestAnimationFrame(draw);}
         };
-        draw();
+        //draw();
         function restart(){
-            console.log("we are in restart")
+            //console.log("we are in restart")
             t0 = (new Date()).getTime();
             context2.clearRect(0, 0, canvas2.width, canvas2.height);
             context2.beginPath();
                 context2.moveTo(20,canvas2.height/2);
         context2.lineTo(20+canvas2.width/2, canvas2.height/2);
+        context2.fillText("t", 20+canvas2.width/2, canvas2.height/2);
         context2.moveTo(20,canvas2.height/2);
         context2.lineTo(20, 20);
+        context2.fillText("x", 20, 20);
+        //Drawing the phase plot
+        context2.moveTo(70+canvas2.width/2, canvas.height/2);
+        context2.lineTo(canvas2.width-20, canvas.height/2);
+        context2.fillText("x",canvas2.width-20, canvas.height/2);
+        phaseMidX=(70+canvas2.width/2+canvas2.width-20)/2;
+        phaseXArm=(canvas2.width-20-phaseMidX);//x length of the phase
+        //coordinate system
+        phaseYArm=(canvas2.height-40)/2;
+        prevT=20;
+        prevX=20;
+        prevPhaseX=phaseMidX+phaseXArm-10;
+        prevPhaseV=canvas2.height/2;
+        context2.moveTo(phaseMidX, 20);
+        context2.lineTo(phaseMidX, canvas2.height-20);
+        context2.fillText("v", phaseMidX, 20);
         context2.stroke();
-        context2.moveTo(20,20);
                 draw();
         }
+        //setTimeout(restart(), 10000);//Tries to prevent the initial straight line when the webpage opens
+        document.getElementById('restart').click();
+        //restart();
 </script>
 </canvas>
 </html><p>xi denotes the damping varible <span class="math">\(\xi\)</span> in the equation of motion <span class="math">\(\ddot{x}+2\xi\omega_n\dot{x}+{\omega_n}^2x=0\)</span>. <span class="math">\(\xi\)</span> is supposed to be in the interval <span class="math">\([0,1]\)</span>. Systems where <span class="math">\(\xi\)</span> has values greater than about 0.3 are usually highly damped systems.</p>
