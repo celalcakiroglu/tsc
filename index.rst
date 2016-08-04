@@ -16,6 +16,7 @@ Contents:
    2DFrame.rst
    MachineLearning.rst
    SiemensNX.rst
+   Precalc.rst
    CalculusStory.rst
    WebGL_Tri.rst
    CoutteOpenFoam.rst

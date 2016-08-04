@@ -7,10 +7,10 @@ Free Vibration of Mass-Spring System
 	<canvas id="massSpringDamper" width = "578" height="200">
 	</canvas>
 	<p>
-		k[N/m] <input type="text" id="k" style="width: 60px;" onclick="stop()" value="1">
-        m[kg] <input type="text" id="m" style="width: 60px;" onclick="stop()" value="5000">
-        xi <input type="text" id="xi" style="width: 60px;" oninput="stop()" value=0.01>
-        A0 <input type="text" id="A0" style="width: 60px;" onclick="stop()" value=150>
+		k[N/m] <input type="text" id="k" style="width: 60px;" onclick="stop()" oninput="stop()" value="1">
+        m[kg] <input type="text" id="m" style="width: 60px;" onclick="stop()" oninput="stop()" value="5000">
+        xi <input type="text" id="xi" style="width: 60px;" onclick="stop()" oninput="stop()" value=0.01>
+        A0 <input type="text" id="A0" style="width: 60px;" onclick="stop()" oninput="stop()" value=150>
         <button id="restart" type="button" onclick="restart()">Restart</button>
 	</p>
 	<canvas id="plotTimeDisp" width = "578" height="200">
@@ -18,6 +18,11 @@ Free Vibration of Mass-Spring System
 	<script>
 		var requestId=0, requestId2=0;
 		var A0=parseFloat(document.getElementById('A0').value);
+		var k=parseFloat(document.getElementById('k').value);
+		var m=parseFloat(document.getElementById('m').value);
+		var xi=parseFloat(document.getElementById('xi').value);
+		var omegaN=Math.sqrt(k/m);
+		var omegaD=omegaN*Math.sqrt(1-xi*xi);
 		var disp=0;
 		var canvas2=document.getElementById('plotTimeDisp');
 		var canvas=document.getElementById('massSpringDamper');
@@ -28,10 +33,17 @@ Free Vibration of Mass-Spring System
 		var context2 = canvas2.getContext('2d');
 		context2.font = "20px Arial";
 		var t, t0;
+		rectWidth=40;//Size of the mass
       	function stop() {
             if (requestId) {
                 window.cancelAnimationFrame(requestId);
             }
+            A0=parseFloat(document.getElementById('A0').value);
+			k=parseFloat(document.getElementById('k').value);
+			m=parseFloat(document.getElementById('m').value);
+			xi=parseFloat(document.getElementById('xi').value);
+			omegaN=Math.sqrt(k/m);
+			omegaD=omegaN*Math.sqrt(1-xi*xi);
         }
       	function plot(disp, A0, t, t0, xi, omegaN, omegaD){
 			adjustedDisp=(canvas2.height/2-20)*disp/A0;
@@ -56,13 +68,6 @@ Free Vibration of Mass-Spring System
         };
 		function draw() {
 			context.clearRect(0, 0, canvas.width, canvas.height);
-			rectWidth=40;//This is the side length of the mass
-			A0=parseFloat(document.getElementById('A0').value);
-			k=parseFloat(document.getElementById('k').value);
-			m=parseFloat(document.getElementById('m').value);
-			xi=parseFloat(document.getElementById('xi').value);
-			omegaN=Math.sqrt(k/m);
-			omegaD=omegaN*Math.sqrt(1-xi*xi);
 			t=(new Date()).getTime();
 			disp=Math.exp(-xi*omegaN*(t-t0))*A0*Math.cos(omegaD*(t-t0));
 			xWall= 20;yWall=canvas.height/2;//The point where the spring is attached to the wall
