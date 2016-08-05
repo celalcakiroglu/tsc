@@ -101,8 +101,6 @@ Therefore we should write the polynomial as :math:`24x^2+16x+3x+2`. Focusing on 
 
    .. image :: spacer.png
 
-Exponents
-~~~~~~~~~~~~~~~~~~~~
   
 **References**
 
