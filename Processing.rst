@@ -38,6 +38,24 @@ List of Processing functions:
 
 * **noLoop** (): This function prevents the draw() function from repeating when called inside the draw() function.
 
+Coordinates on a Canvas
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In Processing the canvas has an invisible coordinate system with an origin at the upper left corner of the canvas. As an example when we say the upper left corner of a rectangle has the coordinates (50,65) this means that the upper left corner of the rectangle is 50 pixels to the right side of the canvas upper left corner and 65 pixels away from the canvas upper left corner in downwards direction. This is also illustrated in the following figure.
+
+.. _canvas:
+.. figure:: processing/canvas.JPG
+    :height: 311px
+    :width: 374 px
+    :scale: 78 %
+    :align: center
+
+    Canvas coordinate system
+
+.. container:: clearer
+
+   .. image :: spacer.png
+
 **Example 1** : Drawing lines, rectangles and ellipses.
 
 .. code-block:: c
@@ -117,4 +135,4 @@ The above example shows that once you define a line colour or filling colour, it
 
 The quad() function draws from vertex to vertex. Which means that entering the same corner points in a different sequence may result in different shapes.
 
-** Exercise 1** : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc. 
+**Exercise 1** : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc. 

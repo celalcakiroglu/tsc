@@ -87,6 +87,17 @@
 <li><strong>fill</strong> (r,g,b): fills inside of rectangles and ellipses with colour.</li>
 <li><strong>noLoop</strong> (): This function prevents the draw() function from repeating when called inside the draw() function.</li>
 </ul>
+</div>
+<div class="section" id="coordinates-on-a-canvas">
+<h2>Coordinates on a Canvas<a class="headerlink" href="#coordinates-on-a-canvas" title="Permalink to this headline">¶</a></h2>
+<p>In Processing the canvas has an invisible coordinate system with an origin at the upper left corner of the canvas. As an example when we say the upper left corner of a rectangle has the coordinates (50,65) this means that the upper left corner of the rectangle is 50 pixels to the right side of the canvas upper left corner and 65 pixels away from the canvas upper left corner in downwards direction. This is also illustrated in the following figure.</p>
+<div class="figure align-center" id="canvas">
+<a class="reference internal image-reference" href="_images/canvas.JPG"><img alt="_images/canvas.JPG" src="_images/canvas.JPG" style="width: 291.72px; height: 242.58px;" /></a>
+<p class="caption">Canvas coordinate system</p>
+</div>
+<div class="clearer container">
+<img alt="_images/spacer.png" src="_images/spacer.png" />
+</div>
 <p><strong>Example 1</strong> : Drawing lines, rectangles and ellipses.</p>
 <div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
         <span class="n">size</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span><span class="mi">250</span><span class="p">);</span>
@@ -147,7 +158,7 @@
 <img alt="_images/spacer.png" src="_images/spacer.png" />
 </div>
 <p>The quad() function draws from vertex to vertex. Which means that entering the same corner points in a different sequence may result in different shapes.</p>
-<p>** Exercise 1** : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc.</p>
+<p><strong>Exercise 1</strong> : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc.</p>
 </div>
 </div>
 
