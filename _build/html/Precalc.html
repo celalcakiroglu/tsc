@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Celal&#39;s documentation" href="index.html" />
-    <link rel="next" title="Calculus" href="CalculusStory.html" />
+    <link rel="next" title="Processing" href="Processing.html" />
     <link rel="prev" title="3D Modeling Tutorials" href="SiemensNX.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
@@ -46,7 +46,7 @@
           <a href="SiemensNX.html" title="Previous document">3D Modeling Tutorials</a>
         </li>
         <li>
-          <a href="CalculusStory.html" title="Next document">Calculus</a>
+          <a href="Processing.html" title="Next document">Processing</a>
           &rarr;
         </li>
     </ul>
@@ -93,17 +93,44 @@
 <li><span class="math">\(a^3+b^3=(a+b)(a^2-ab+b^2)\)</span></li>
 <li><span class="math">\(a^3-b^3=(a-b)(a^2+ab+b^2)\)</span></li>
 <li><span class="math">\(x^2+(a+b)x+ab=(x+a)(x+b)\)</span></li>
+<li>To factor <span class="math">\(ax^2+bx+c\)</span>, find two factors of <span class="math">\(ac\)</span> that add to <span class="math">\(b\)</span>. Let <span class="math">\(ac=f_1 f_2\)</span> such that <span class="math">\(f_1+f_2=b\)</span>. Then the polynomial can be written as <span class="math">\(ax^2+f_1x+f_2x+c\)</span>. Since <span class="math">\(a=f_1f_2/c\)</span>, the polynomial is equal to <span class="math">\(\displaystyle\frac{f_1f_2}{c}x^2+f_1x+f_2x+c\)</span>. Obviously, this is an expression with four components added together. The first two components have the common factor of <span class="math">\(f_1x\)</span>, therefore they can be combined to <span class="math">\(f_1x(\displaystyle\frac{f_2}{c}x+1)=\displaystyle\frac{1}{c}f_1x(f_2x+c)\)</span>. Here we see the addition of the third and fourth components as one of the factors of the addition of the first and second components. Therefore the whole polynomial can be factored as <span class="math">\(\displaystyle\frac{1}{c}(f_2x+c)(f_1x+1)\)</span>.</li>
 <li>To factor <span class="math">\(ax^2+bxy+cy^2\)</span>, find two factors of <span class="math">\(ac\)</span> that add to <span class="math">\(b\)</span>. Let <span class="math">\(ac=f_1 f_2\)</span> such that <span class="math">\(f_1+f_2=b\)</span>. Then the polynomial can be written as <span class="math">\(ax^2+f_1xy+f_2xy+cy^2\)</span>. Since <span class="math">\(a=f_1f_2/c\)</span>, the polynomial can be written as</li>
 </ul>
 <div class="math">
-\[\begin{split}\frac{f_1f_2}{c}x^2+f_1xy+f_2xy+cy^2&amp;=f_1f_2x^2+f_1cxy+f_2cxy+cy^2\\
-&amp;=f_1cx(f_2x+y)+cy(f_2x+y)\\
-&amp;=(f_2x+y)(f_1cx+cy)\end{split}\]</div>
-<p>As an example let&#8217;s factor the polynomial <span class="math">\(3x^2+8xy+4y^2\)</span>: Since <span class="math">\(3\cdot 4=12=6\cdot 2 \text{ and } 8=6+2\)</span>, we have</p>
+\[\begin{split}\frac{f_1f_2}{c}x^2+f_1xy+f_2xy+cy^2&amp;=\frac{1}{c}(f_1f_2x^2+f_1cxy+f_2cxy+c^2y^2)\\
+&amp;=\frac{f_1x}{c}(f_2x+cy)+\frac{1}{c}cy(f_2x+cy)\\
+&amp;=\frac{1}{c}(f_2x+cy)(f_1x+cy)\end{split}\]</div>
+<p><strong>Example 1</strong> : Factor <span class="math">\(x^2+x-2\)</span></p>
+<p><strong>Solution</strong>: This is a polynomial in the format <span class="math">\(ax^2+bx+c\)</span> where <span class="math">\(a=1\)</span>, <span class="math">\(b=1\)</span>, <span class="math">\(c=-2\)</span>. Since <span class="math">\(a\cdot c=-2=2\cdot (-1)\)</span> and <span class="math">\(2+(-1)=1=b\)</span>, we can write the polynomial as follows:</p>
+<div class="math">
+\[x^2+2x+(-1)x+(-1)(2)\]</div>
+<p>The above expression has 4 components added to each other. Let&#8217;s focus on the first two of these components. The reason for that is because the first two components <span class="math">\(x^2\)</span> and <span class="math">\(2x\)</span> have a common factor which is <span class="math">\(x\)</span>. So these two can be combined into a single term as <span class="math">\(x(x+2)\)</span>. The third and fourth components also have a common factor which is <span class="math">\(-1\)</span>. Therefore they can be combined into <span class="math">\((-1)(x+2)\)</span>. So the whole polynomial becomes <span class="math">\(x(x+2)+(-1)(x+2)\)</span>. This last expression has only two components with the common factor <span class="math">\((x+2)\)</span> added together. If we divide the first component by <span class="math">\((x+2)\)</span> we obtain <span class="math">\(x\)</span> and if we divide the second component by <span class="math">\((x+2)\)</span> we obtain <span class="math">\((-1)\)</span>. Therefore this expression can be re-written as <span class="math">\(\boxed{(x+2)(x-1)}\)</span>.</p>
+<p><strong>Example 2</strong> : Simplify the following rational expression</p>
+<div class="math">
+\[\frac{x^2-1}{x^2+x-2}\]</div>
+<p><strong>Solution</strong>: A rational expression is a fractional expression  in which both the numerator and the denominator are polynomials. In the above example the numerator is <span class="math">\(x^2-1\)</span> and the denominator is <span class="math">\(x^2+x-2\)</span>. Both of these expressions can be factored. First let&#8217;s focus on the numerator: <span class="math">\(x^2-1=(x+1)(x-1)\)</span>. Now focus on the denominator: Using the result of Example 1 <span class="math">\(x^2+x-2=(x+2)(x-1)\)</span>. Now we can write the rational expression as follows:</p>
+<div class="math">
+\[\frac{x^2-1}{x^2+x-2}=\frac{(x+1)\color{red}{(x-1)}}{(x+2)\color{red}{(x-1)}}\]</div>
+<p>The <span class="math">\((x-1)\)</span> terms in the numerator and the denominator cancel each other. Therefore the expression can be simplified as <span class="math">\(\boxed{\displaystyle\frac{x+1}{x+2}}\)</span></p>
+<p><strong>Example 3</strong> : Factor the polynomial <span class="math">\(3x^2+8xy+4y^2\)</span></p>
+<p><strong>Solution</strong>: Since <span class="math">\(3\cdot 4=12=6\cdot 2 \text{ and } 8=6+2\)</span>, we have</p>
 <div class="math">
 \[\begin{split}3x^2+8xy+4y^2&amp;=3x^2+6xy+2xy+4y^2\\
    &amp;=3x(x+2y)+2y(x+2y)\\
    &amp;=(3x+2y)(x+2y)\end{split}\]</div>
+<p><strong>Example 4</strong>: Find the sum <span class="math">\((x^3-6x^2+2x+4)+(x^3+5x^2-7x)\)</span></p>
+<p><strong>Solution</strong>: We sum two polynomials by combining like terms. Like terms are terms with the same variable (x,y, etc.) raised to the same power. For example if one polynomial contains the term <span class="math">\(a\cdot x^2\)</span> and the other one contains <span class="math">\(b\cdot x^2\)</span>, then in the summation we would have <span class="math">\((a+b)x^2\)</span>. In this example we have</p>
+<div class="math">
+\[(1+1)x^3+(-6+5)x^2+(2+(-7))x^1+(4+0)x^0=\boxed{2x^3+(-1)x^2+(-5)x+4}\]</div>
+<p><strong>Example 5</strong> : Factor the polynomial <span class="math">\(24x^2+19x+2\)</span></p>
+<p><strong>Solution</strong>: The polynomial has the format <span class="math">\(ax^2+bx+c\)</span> where <span class="math">\(a=24,\quad b=19,\quad c=2\)</span>.</p>
+<div class="math">
+\[\begin{split}3x^2+8xy+4y^2&amp;=3x^2+6xy+2xy+4y^2\\
+   &amp;=3x(x+2y)+2y(x+2y)\\
+   &amp;=(3x+2y)(x+2y)\end{split}\]</div>
+</div>
+<div class="section" id="exponents">
+<h2>Exponents<a class="headerlink" href="#exponents" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 
@@ -121,6 +148,7 @@
 <li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SiemensNX.html">3D Modeling Tutorials</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="">Pre-calculus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Processing.html">Processing</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CalculusStory.html">Calculus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="WebGL_Tri.html">Polygon Meshing through Triangulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CoutteOpenFoam.html">Flow Between Parallel Plates</a></li>
@@ -138,7 +166,7 @@
           <a href="SiemensNX.html" title="Previous document">3D Modeling Tutorials</a>
         </li>
         <li>
-          <a href="CalculusStory.html" title="Next document">Calculus</a>
+          <a href="Processing.html" title="Next document">Processing</a>
           &rarr;
         </li>
     </ul>
