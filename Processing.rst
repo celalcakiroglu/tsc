@@ -30,9 +30,13 @@ List of Processing functions:
 
 * **quad** (x0,y0,x1,y1,x2,y2,x3,y3): Draws a quadrilateral with the given 4 corners (vertices). Here (x0,y0) is the first corner point (x1,y2) is the second and so on. A quadrilateral is a polygon with 4 straight sides (edges) and 4 corners. The vertices should be specified in either clockwise or counterclockwise direction.
 
+* **triangle** (x0,y0,x1,y1,x2,y2): Draws a triangle with the given 3 corners.
+
 * **ellipse** (centerX, centerY, width, height)
 
 * **fill** (r,g,b): fills inside of rectangles and ellipses with colour.
+
+* **noLoop** (): This function prevents the draw() function from repeating when called inside the draw() function.
 
 **Example 1** : Drawing lines, rectangles and ellipses.
 
@@ -60,6 +64,7 @@ List of Processing functions:
   		stroke(0,255,0);
   		strokeWeight(5);
   		line(20,40,120,140);
+  		noLoop();
   	}
 
 .. _procEx1:
@@ -94,6 +99,7 @@ The above example shows that once you define a line colour or filling colour, it
   		quad(25, 25, 150, 50, 100, 175, 25, 200);
   		fill(0,0,255);
   		quad(25, 25, 100, 175, 25, 200, 150, 50);
+  		noLoop();
   	}
 
 .. _procEx2:
@@ -110,3 +116,5 @@ The above example shows that once you define a line colour or filling colour, it
    .. image :: spacer.png
 
 The quad() function draws from vertex to vertex. Which means that entering the same corner points in a different sequence may result in different shapes.
+
+** Exercise 1** : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc. 

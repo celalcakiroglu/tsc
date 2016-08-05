@@ -82,8 +82,10 @@
 <li><strong>line</strong> (x0,y0,x1,y1)</li>
 <li><strong>rect</strong> (upperLeftX, upperLeftY, width, height)</li>
 <li><strong>quad</strong> (x0,y0,x1,y1,x2,y2,x3,y3): Draws a quadrilateral with the given 4 corners (vertices). Here (x0,y0) is the first corner point (x1,y2) is the second and so on. A quadrilateral is a polygon with 4 straight sides (edges) and 4 corners. The vertices should be specified in either clockwise or counterclockwise direction.</li>
+<li><strong>triangle</strong> (x0,y0,x1,y1,x2,y2): Draws a triangle with the given 3 corners.</li>
 <li><strong>ellipse</strong> (centerX, centerY, width, height)</li>
 <li><strong>fill</strong> (r,g,b): fills inside of rectangles and ellipses with colour.</li>
+<li><strong>noLoop</strong> (): This function prevents the draw() function from repeating when called inside the draw() function.</li>
 </ul>
 <p><strong>Example 1</strong> : Drawing lines, rectangles and ellipses.</p>
 <div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
@@ -108,6 +110,7 @@
         <span class="n">stroke</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
         <span class="n">strokeWeight</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
         <span class="n">line</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">120</span><span class="p">,</span><span class="mi">140</span><span class="p">);</span>
+        <span class="n">noLoop</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -132,6 +135,7 @@
         <span class="n">quad</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
         <span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
         <span class="n">quad</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+        <span class="n">noLoop</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -143,6 +147,7 @@
 <img alt="_images/spacer.png" src="_images/spacer.png" />
 </div>
 <p>The quad() function draws from vertex to vertex. Which means that entering the same corner points in a different sequence may result in different shapes.</p>
+<p>** Exercise 1** : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc.</p>
 </div>
 </div>
 
