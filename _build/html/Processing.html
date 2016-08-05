@@ -65,6 +65,12 @@
             
   <div class="section" id="processing">
 <h1>Processing<a class="headerlink" href="#processing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="where-to-start">
+<h2>Where to start ?<a class="headerlink" href="#where-to-start" title="Permalink to this headline">¶</a></h2>
+<p>The first thing to do is to download the processing files from the following address</p>
+<p><a class="reference external" href="https://processing.org/download/?processing">https://processing.org/download/?processing</a></p>
+<p>If you have a Windows operating system you should choose either the Windows 64 bit or the Windows 32 bit version of the processing files. You can see which version of windows you have as follows: Click on start button -&gt; Settings -&gt; System -&gt; About -&gt; Here the system type is listed. The processing files come packed in a zip file. Extract the contents of this zip file and you can start the processing platform right away by executing the processing.exe file. No installation necessary.</p>
+</div>
 <div class="section" id="list-of-processing-functions">
 <h2>List of Processing functions:<a class="headerlink" href="#list-of-processing-functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
@@ -75,6 +81,7 @@
 <li><strong>strokeWeight</strong> (line thickness in pixels)</li>
 <li><strong>line</strong> (x0,y0,x1,y1)</li>
 <li><strong>rect</strong> (upperLeftX, upperLeftY, width, height)</li>
+<li><strong>quad</strong> (x0,y0,x1,y1,x2,y2,x3,y3): Draws a quadrilateral with the given 4 corners (vertices). Here (x0,y0) is the first corner point (x1,y2) is the second and so on. A quadrilateral is a polygon with 4 straight sides (edges) and 4 corners. The vertices should be specified in either clockwise or counterclockwise direction.</li>
 <li><strong>ellipse</strong> (centerX, centerY, width, height)</li>
 <li><strong>fill</strong> (r,g,b): fills inside of rectangles and ellipses with colour.</li>
 </ul>
@@ -104,7 +111,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="figure align-center" id="percx65">
+<div class="figure align-center" id="procex1">
 <a class="reference internal image-reference" href="_images/procEx1.JPG"><img alt="_images/procEx1.JPG" src="_images/procEx1.JPG" style="width: 300.0px; height: 300.0px;" /></a>
 <p class="caption">The outcome of the code in Example 1</p>
 </div>
@@ -112,6 +119,30 @@
 <img alt="_images/spacer.png" src="_images/spacer.png" />
 </div>
 <p>The above example shows that once you define a line colour or filling colour, it affects every geometric shape that comes afterwards. This means, we don&#8217;t need to re-define the line and filling colours unless we want to change them. Notice that as we change the line thickness with the strokeWeight() function, the outer line thicknesses of the rectangles and the ellipses also change. Also, using the noStroke() function we removed the outline of the last ellipse.</p>
+<p><strong>Example 2</strong> : Draw a quadrilateral with the vertex coordinates (25,25), (150, 50), (100, 175), (25, 200). First define the filling colour as red and define the corner coordinates in clockwise direction. Then change the filling colour to blue and use the quad function second time but this time enter the vertex coordinates in random order.</p>
+<p><strong>Solution</strong></p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+        <span class="n">size</span><span class="p">(</span><span class="mi">250</span><span class="p">,</span><span class="mi">250</span><span class="p">);</span>
+        <span class="n">background</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="p">(){</span>
+        <span class="n">stroke</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">quad</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+        <span class="n">fill</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">);</span>
+        <span class="n">quad</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="figure align-center" id="procex2">
+<a class="reference internal image-reference" href="_images/procEx2.JPG"><img alt="_images/procEx2.JPG" src="_images/procEx2.JPG" style="width: 209.0px; height: 225.0px;" /></a>
+<p class="caption">The outcome of the code in Example 2</p>
+</div>
+<div class="clearer container">
+<img alt="_images/spacer.png" src="_images/spacer.png" />
+</div>
+<p>The quad() function draws from vertex to vertex. Which means that entering the same corner points in a different sequence may result in different shapes.</p>
 </div>
 </div>
 
@@ -158,7 +189,7 @@
     </ul>
   </nav>
   </div>
-  <footer id="pagefooter">&copy; 2015, Celal Cakiroglu.
+  <footer id="pagefooter">&copy; 2016, Celal Cakiroglu.
       Created using <a href="http://sphinx-doc.org/">Sphinx</a>
       1.2.2
         with the <a href="http://github.com/irskep/sphinx-better-theme">
