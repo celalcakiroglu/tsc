@@ -11,8 +11,8 @@ https://processing.org/download/?processing
 If you have a Windows operating system you should choose either the Windows 64 bit or the Windows 32 bit version of the processing files. You can see which version of windows you have as follows: Click on start button -> Settings -> System -> About -> Here the system type is listed. The processing files come packed in a zip file. Extract the contents of this zip file and you can start the processing platform right away by executing the processing.exe file. No installation necessary.
 
 
-List of Processing functions:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+List of Processing functions and built-in variables:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * void **setup** (): The size of the drawing canvas and the backgroud colour are defined in this function. Every processing program starts with void setup().
 
@@ -37,6 +37,10 @@ List of Processing functions:
 * **fill** (r,g,b): fills inside of rectangles and ellipses with colour.
 
 * **noLoop** (): This function prevents the draw() function from repeating when called inside the draw() function.
+
+* **println** (): Prints to console.
+
+* **mouseX, mouseY** : Variables holding the current x and y coordinates of the mouse when it is positioned on the canvas. These coordinates are the pixel distances in horizontal and vertical direction from the upper left corner of the canvas.
 
 Coordinates on a Canvas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
