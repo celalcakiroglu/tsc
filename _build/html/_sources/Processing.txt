@@ -173,7 +173,7 @@ In this example we simulate the motion of a ball which bounces back each time it
     frameCount++;
   }
 
-Since the frame rate in a usual movie is 29 frames per second, only half of the drawings made by the draw() function are saved by the saveFrame() function in order to use them in movie making.
+Since the frame rate in a usual movie is 30 frames per second, only half of the drawings made by the draw() function are saved by the saveFrame() function in order to use them in movie making.
 
 .. raw:: html
 
