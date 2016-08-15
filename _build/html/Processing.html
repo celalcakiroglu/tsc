@@ -25,7 +25,6 @@
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="top" title="Celal&#39;s documentation" href="index.html" />
-    <link rel="next" title="Calculus" href="CalculusStory.html" />
     <link rel="prev" title="Pre-calculus" href="Precalc.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
       <link rel="stylesheet" href="_static/style.css" type="text/css" />
@@ -44,10 +43,6 @@
         <li>
           &larr;
           <a href="Precalc.html" title="Previous document">Pre-calculus</a>
-        </li>
-        <li>
-          <a href="CalculusStory.html" title="Next document">Calculus</a>
-          &rarr;
         </li>
     </ul>
   </nav>
@@ -88,6 +83,7 @@
 <li><strong>noLoop</strong> (): This function prevents the draw() function from repeating when called inside the draw() function.</li>
 <li><strong>println</strong> (): Prints to console.</li>
 <li><strong>mouseX, mouseY</strong> : Variables holding the current x and y coordinates of the mouse when it is positioned on the canvas. These coordinates are the pixel distances in horizontal and vertical direction from the upper left corner of the canvas.</li>
+<li><strong>height, width</strong> : These variables are always equal to the height and width of the sketch window.</li>
 </ul>
 </div>
 <div class="section" id="coordinates-on-a-canvas">
@@ -162,6 +158,40 @@
 <p>The quad() function draws from vertex to vertex. Which means that entering the same corner points in a different sequence may result in different shapes.</p>
 <p><strong>Exercise 1</strong> : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc.</p>
 </div>
+<div class="section" id="a-dynamic-example">
+<h2>A Dynamic Example<a class="headerlink" href="#a-dynamic-example" title="Permalink to this headline">¶</a></h2>
+<p>In this example we simulate the motion of a ball which bounces back each time it hits one of the boundaries of the drawing canvas. To do this simulation we use the fact that the draw() function is called 60 times per second. The position of the ball is defined as a variable by using variable values (x,y) for the center of the circle representing the ball. Thess variable values are updated each time the draw() function is called by adding to them the constants growX and growY. Increasing the value of growX makes the ball move faster in the horizontal direction.</p>
+<div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">frameCount</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">growX</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">growY</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+  <span class="n">size</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">350</span><span class="p">);</span>
+  <span class="c1">//smooth();</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">draw</span><span class="p">(){</span>
+  <span class="n">background</span><span class="p">(</span><span class="mi">150</span><span class="p">);</span>
+  <span class="n">fill</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">ellipse</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span><span class="mi">60</span><span class="p">);</span>
+  <span class="n">x</span><span class="o">+=</span><span class="n">growX</span><span class="p">;</span>
+  <span class="n">y</span><span class="o">+=</span><span class="n">growY</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mi">30</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">width</span> <span class="o">||</span> <span class="n">x</span><span class="o">-</span><span class="mi">30</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="n">growX</span><span class="o">*=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">((</span><span class="n">y</span><span class="o">+</span><span class="mi">30</span><span class="p">)</span><span class="o">&gt;=</span><span class="n">height</span> <span class="o">||</span> <span class="n">y</span><span class="o">-</span><span class="mi">30</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span><span class="n">growY</span><span class="o">*=-</span><span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">frameCount</span> <span class="o">&gt;</span> <span class="mi">300</span><span class="p">)</span><span class="n">noLoop</span><span class="p">();</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">frameCount</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="n">saveFrame</span><span class="p">();</span>
+  <span class="n">frameCount</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Since the frame rate in a usual movie is 29 frames per second, only half of the drawings made by the draw() function are saved by the saveFrame() function in order to use them in movie making.</p>
+<video width="640" height="360" controls>
+<source src="DynamicBall.mp4" type="video/mp4">
+<source src="DynamicBall.ogg" type="video/ogg">
+Your browser does not support the video tag.
+</video></div>
 </div>
 
 
@@ -178,7 +208,13 @@
 <li class="toctree-l1"><a class="reference internal" href="MachineLearning.html">Machine Learning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="SiemensNX.html">3D Modeling Tutorials</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Precalc.html">Pre-calculus</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="">Processing</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Processing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#where-to-start">Where to start ?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#list-of-processing-functions-and-built-in-variables">List of Processing functions and built-in variables:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#coordinates-on-a-canvas">Coordinates on a Canvas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-dynamic-example">A Dynamic Example</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="CalculusStory.html">Calculus</a></li>
 <li class="toctree-l1"><a class="reference internal" href="WebGL_Tri.html">Polygon Meshing through Triangulation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="CoutteOpenFoam.html">Flow Between Parallel Plates</a></li>
@@ -194,10 +230,6 @@
         <li>
           &larr;
           <a href="Precalc.html" title="Previous document">Pre-calculus</a>
-        </li>
-        <li>
-          <a href="CalculusStory.html" title="Next document">Calculus</a>
-          &rarr;
         </li>
     </ul>
   </nav>

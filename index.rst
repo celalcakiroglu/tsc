@@ -9,7 +9,7 @@
 Contents:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    massSpring.rst
    2DTruss.rst
@@ -18,6 +18,7 @@ Contents:
    SiemensNX.rst
    Precalc.rst
    Processing.rst
+   DynamicExample.rst
    CalculusStory.rst
    WebGL_Tri.rst
    CoutteOpenFoam.rst

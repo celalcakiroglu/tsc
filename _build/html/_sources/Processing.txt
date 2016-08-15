@@ -42,6 +42,8 @@ List of Processing functions and built-in variables:
 
 * **mouseX, mouseY** : Variables holding the current x and y coordinates of the mouse when it is positioned on the canvas. These coordinates are the pixel distances in horizontal and vertical direction from the upper left corner of the canvas.
 
+* **height, width** : These variables are always equal to the height and width of the sketch window. 
+
 Coordinates on a Canvas
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -140,3 +142,43 @@ The above example shows that once you define a line colour or filling colour, it
 The quad() function draws from vertex to vertex. Which means that entering the same corner points in a different sequence may result in different shapes.
 
 **Exercise 1** : Draw a snowman using the functions mentioned so far. For example ellipse(), triangle(), line(). You can also use the rect() function to draw the ground that the snowman stands on. You can draw a carrot nose for the snowman using the triangle() function etc. 
+
+A Dynamic Example
+~~~~~~~~~~~~~~~~~~~~~
+In this example we simulate the motion of a ball which bounces back each time it hits one of the boundaries of the drawing canvas. To do this simulation we use the fact that the draw() function is called 60 times per second. The position of the ball is defined as a variable by using variable values (x,y) for the center of the circle representing the ball. Thess variable values are updated each time the draw() function is called by adding to them the constants growX and growY. Increasing the value of growX makes the ball move faster in the horizontal direction.
+
+.. code-block:: c
+
+  int y = 200;
+  int x = 30;
+  int frameCount=0;
+  int growX = 8;
+  int growY = 3;
+
+  void setup(){
+    size(400,350);
+    //smooth();
+  }
+
+  void draw(){
+    background(150);
+    fill(255,0,0);
+    ellipse(x, y, 60,60);
+    x+=growX;
+    y+=growY;
+    if((x+30)>=width || x-30 < 0)growX*=-1;
+    if((y+30)>=height || y-30 < 0)growY*=-1;
+    if(frameCount > 300)noLoop();
+    if(frameCount%2 == 0)saveFrame();
+    frameCount++;
+  }
+
+Since the frame rate in a usual movie is 29 frames per second, only half of the drawings made by the draw() function are saved by the saveFrame() function in order to use them in movie making.
+
+.. raw:: html
+
+   <video width="640" height="360" controls>
+   <source src="DynamicBall.mp4" type="video/mp4">
+   <source src="DynamicBall.ogg" type="video/ogg">
+   Your browser does not support the video tag.
+   </video> 

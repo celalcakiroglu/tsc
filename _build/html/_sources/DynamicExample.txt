@@ -1,0 +1,3 @@
+A Dynamic Example
+~~~~~~~~~~~~~~~~~~~~~
+In this example we simulate the motion of a ball which bounces back each time it hits one of the boundaries of the drawing canvas. To do this simulation we use the fact that the draw() function is called 60 times per second. The position of the ball is defined as a variable by using variable values for the center of the circle representing the ball. This variable value is updated each time the draw() function is called.
