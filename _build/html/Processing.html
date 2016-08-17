@@ -160,7 +160,7 @@
 </div>
 <div class="section" id="a-dynamic-example">
 <h2>A Dynamic Example<a class="headerlink" href="#a-dynamic-example" title="Permalink to this headline">¶</a></h2>
-<p>In this example we simulate the motion of a ball which bounces back each time it hits one of the boundaries of the drawing canvas. To do this simulation we use the fact that the draw() function is called 60 times per second. The position of the ball is defined as a variable by using variable values (x,y) for the center of the circle representing the ball. Thess variable values are updated each time the draw() function is called by adding to them the constants growX and growY. Increasing the value of growX makes the ball move faster in the horizontal direction.</p>
+<p>In this example we simulate the motion of a ball which bounces back each time it hits one of the boundaries of the drawing canvas. To do this simulation we use the fact that the draw() function is called 60 times per second. The position of the ball is defined as a variable by using variable values (x,y) for the center of the circle representing the ball. These variable values are updated each time the draw() function is called by adding to them the constants growX and growY. Increasing the value of growX makes the ball move faster in the horizontal direction.</p>
 <div class="highlight-c"><div class="highlight"><pre><span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">30</span><span class="p">;</span>
 <span class="kt">int</span> <span class="n">frameCount</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
@@ -169,7 +169,6 @@
 
 <span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
   <span class="n">size</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span><span class="mi">350</span><span class="p">);</span>
-  <span class="c1">//smooth();</span>
 <span class="p">}</span>
 
 <span class="kt">void</span> <span class="nf">draw</span><span class="p">(){</span>
@@ -187,11 +186,9 @@
 </pre></div>
 </div>
 <p>Since the frame rate in a usual movie is 30 frames per second, only half of the drawings made by the draw() function are saved by the saveFrame() function in order to use them in movie making.</p>
-<video width="640" height="360" controls>
-<source src="DynamicBall.mp4" type="video/mp4">
-<source src="DynamicBall.ogg" type="video/ogg">
-Your browser does not support the video tag.
-</video></div>
+<iframe width="560" height="315"
+src="https://www.youtube.com/embed/TqabfTdMlwI">
+</iframe></div>
 </div>
 
 

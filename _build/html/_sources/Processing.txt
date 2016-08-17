@@ -145,7 +145,7 @@ The quad() function draws from vertex to vertex. Which means that entering the s
 
 A Dynamic Example
 ~~~~~~~~~~~~~~~~~~~~~
-In this example we simulate the motion of a ball which bounces back each time it hits one of the boundaries of the drawing canvas. To do this simulation we use the fact that the draw() function is called 60 times per second. The position of the ball is defined as a variable by using variable values (x,y) for the center of the circle representing the ball. Thess variable values are updated each time the draw() function is called by adding to them the constants growX and growY. Increasing the value of growX makes the ball move faster in the horizontal direction.
+In this example we simulate the motion of a ball which bounces back each time it hits one of the boundaries of the drawing canvas. To do this simulation we use the fact that the draw() function is called 60 times per second. The position of the ball is defined as a variable by using variable values (x,y) for the center of the circle representing the ball. These variable values are updated each time the draw() function is called by adding to them the constants growX and growY. Increasing the value of growX makes the ball move faster in the horizontal direction.
 
 .. code-block:: c
 
@@ -157,7 +157,6 @@ In this example we simulate the motion of a ball which bounces back each time it
 
   void setup(){
     size(400,350);
-    //smooth();
   }
 
   void draw(){
@@ -177,8 +176,6 @@ Since the frame rate in a usual movie is 30 frames per second, only half of the 
 
 .. raw:: html
 
-   <video width="640" height="360" controls>
-   <source src="DynamicBall.mp4" type="video/mp4">
-   <source src="DynamicBall.ogg" type="video/ogg">
-   Your browser does not support the video tag.
-   </video> 
+   <iframe width="560" height="315" 
+   src="https://www.youtube.com/embed/TqabfTdMlwI">
+   </iframe>
