@@ -128,13 +128,13 @@ Free Vibration of Mass-Spring System
 
 xi denotes the damping varible :math:`\xi` in the equation of motion :math:`\ddot{x}+2\xi\omega_n\dot{x}+{\omega_n}^2x=0`. :math:`\xi` is supposed to be in the interval :math:`[0,1]`. Systems where :math:`\xi` has values greater than about 0.3 are usually highly damped systems.
 
-A0 is the initial displacement of the mass from the unstretched position of the spring which causes the subsequent vibration of the mass around that position. The equation of motion can be derived using the free body diagram which shows the mass and the forces acting on it. The equilibrium of these forces (:math:`m\ddot{x}-c\dot{x}-kx=0`) gives us the equation of motion.
+A0 is the initial displacement of the mass from the unstretched position of the spring which causes the subsequent vibration of the mass around that position. The equation of motion can be derived using the free body diagram which shows the mass and the forces acting on it (free vibration :math:`\Rightarrow f(t)=0`). The equilibrium of these forces (:math:`m\ddot{x}+c\dot{x}+kx=f(t)=0`) gives us the equation of motion.
 
 .. _canvas:
 .. figure:: freeBody.JPG
-    :height: 115px
-    :width: 396 px
-    :scale: 100 %
+    :height: 200px
+    :width: 662 px
+    :scale: 60 %
     :align: center
 
     Free body diagram
