@@ -8,7 +8,7 @@ The first thing to do is to download the processing files from the following add
 
 https://processing.org/download/?processing
 
-If you have a Windows operating system you should choose either the Windows 64 bit or the Windows 32 bit version of the processing files. You can see which version of windows you have as follows: Click on start button -> Settings -> System -> About -> Here the system type is listed. The processing files come packed in a zip file. Extract the contents of this zip file and you can start the processing platform right away by executing the processing.exe file. No installation necessary.
+If you have a Windows operating system you should choose either the Windows 64 bit or the Windows 32 bit version of the processing files. You can see which version of windows you have as follows: Click on start button -> Settings -> System -> About -> Here the system type is listed. The processing files come packed in a zip file. Extract the contents of this zip file and you can start the processing platform right away by executing the processing.exe file. No installation needed.
 
 
 List of Processing functions and built-in variables:

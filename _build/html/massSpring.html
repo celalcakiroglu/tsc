@@ -74,6 +74,7 @@ m[kg] <input type="text" id="m" style="width: 60px;" onclick="stop()" oninput="s
 xi <input type="text" id="xi" style="width: 60px;" onclick="stop()" oninput="stop()" value=0.01>
 A0 <input type="text" id="A0" style="width: 60px;" onclick="stop()" oninput="stop()" value=150>
 <button id="restart" type="button" onclick="restart()">Restart</button>
+<button id="stop" type="button" onclick="stop()">Stop</button>
 </p>
 <canvas id="plotTimeDisp" width = "578" height="200">
 </canvas>
@@ -186,7 +187,34 @@ function plot(disp, A0, t, t0, xi, omegaN, omegaD){
 </script>
 </canvas>
 </html><p>xi denotes the damping varible <span class="math">\(\xi\)</span> in the equation of motion <span class="math">\(\ddot{x}+2\xi\omega_n\dot{x}+{\omega_n}^2x=0\)</span>. <span class="math">\(\xi\)</span> is supposed to be in the interval <span class="math">\([0,1]\)</span>. Systems where <span class="math">\(\xi\)</span> has values greater than about 0.3 are usually highly damped systems.</p>
-<p>A0 is the initial displacement of the mass from the unstretched position of the string which causes the subsequent vibration of the mass around that position.</p>
+<p>A0 is the initial displacement of the mass from the unstretched position of the spring which causes the subsequent vibration of the mass around that position. The equation of motion can be derived using the free body diagram which shows the mass and the forces acting on it. The equilibrium of these forces (<span class="math">\(m\ddot{x}-c\dot{x}-kx=0\)</span>) gives us the equation of motion.</p>
+<div class="figure align-center" id="canvas">
+<a class="reference internal image-reference" href="_images/freeBody.JPG"><img alt="_images/freeBody.JPG" src="_images/freeBody.JPG" style="width: 396.0px; height: 115.0px;" /></a>
+<p class="caption">Free body diagram</p>
+</div>
+<div class="clearer container">
+<img alt="_images/spacer.png" src="_images/spacer.png" />
+</div>
+<p>The damping coefficient c is the force required for unit velocity to occur across the damper. The stiffness k is the force required for a unit extension of the spring. The equation of motion is obtained by dividing the equilibrium equation by m and letting <span class="math">\(c/m=2\xi\omega_n,\quad k/m={\omega_n}^2\)</span>. <span class="math">\(\omega_n\)</span> is the angular natural frequency of the system.</p>
+<p>The solution of the equation of motion can be sought after by assuming a displacement in the form <span class="math">\(x(t)=e^{rt}\)</span> where <span class="math">\(r\)</span> is some parameter possibly complex valued. Inserting the first and second derivatives of that assumed expression in the equation of motion we obtain</p>
+<div class="math">
+\[e^{rt}(r^2+2\xi\omega_n r+{\omega_n}^2)=0\]</div>
+<p>Since <span class="math">\(e^{rt}\neq 0\)</span> we obtain</p>
+<div class="math">
+\[r^2+2\xi\omega_n r+{\omega_n}^2=0 \Rightarrow r_{1,2}=\omega_n(-\xi\pm\sqrt{\xi^2-1})\]</div>
+<p>We know that <span class="math">\(\xi\)</span> is less than 1 most of the time. Therefore <span class="math">\(r_{1,2}=\omega_n(-\xi\pm j\sqrt{1-\xi^2})\)</span> where <span class="math">\(\quad j=\sqrt{-1}\)</span>. Let&#8217;s coin a new parameter <span class="math">\(\omega_d=\omega_n\sqrt{1-\xi^2}\)</span> for the damped angular natural frequency of the system. Using this new variable leads to <span class="math">\(r_{1,2}=-\xi\omega_n\pm j\omega_d\)</span>. Obviously <span class="math">\(r_{1,2}\)</span> are complex valued which leaves us with two complex valued solutions of the equation of motion <span class="math">\(x_1(t)=e^{(-\xi\omega_n+j\omega_d)t},\quad x_2(t)=e^{(-\xi\omega_n-j\omega_d)t}\)</span>. These solutions are of little use to describe the motion of an object. Fortunately there is a way around this. According to the theorem of superposition if <span class="math">\(x_1(t)\)</span> and <span class="math">\(x_2(t)\)</span> are solutions of the differential equation then any linear combination of them is also a solution. Using this theorem we can obtain real valued solutions by adding and subtracting <span class="math">\(x_1(t)\)</span> and <span class="math">\(x_2(t)\)</span> which can actually describe the motion of the mass .</p>
+<div class="math">
+\[x_1(t)=e^{(-\xi\omega_n+j\omega_d)t}=e^{-\xi\omega_nt}e^{j\omega_dt}=e^{-\xi\omega_nt}(\cos{\omega_dt}+j\sin{\omega_dt})\]</div>
+<div class="math">
+\[x_2(t)=e^{(-\xi\omega_n-j\omega_d)t}=e^{-\xi\omega_nt}e^{-j\omega_dt}=e^{-\xi\omega_nt}(\cos{\omega_dt}-j\sin{\omega_dt})\]</div>
+<div class="math">
+\[x_3(t)=\frac{1}{2}[x_1(t)+x_2(t)]=\frac{1}{2}[e^{-\xi\omega_nt}2\cos{\omega_dt}]=e^{-\xi\omega_nt}\cos{\omega_dt}\]</div>
+<div class="math">
+\[x_4(t)=\frac{1}{2i}[x_1(t)-x_2(t)]=\frac{1}{2i}[e^{-\xi\omega_nt}2j\sin{\omega_dt}]=e^{-\xi\omega_nt}\sin{\omega_dt}\]</div>
+<p>The general solution of the equation of motion is</p>
+<div class="math">
+\[x(t)=e^{-\xi\omega_nt}(a_0\cos{\omega_dt}+b_0\sin{\omega_dt})\]</div>
+<p>where <span class="math">\(a_0,b_0\)</span> are arbitrary constants.</p>
 </div>
 
 

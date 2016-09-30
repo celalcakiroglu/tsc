@@ -12,6 +12,7 @@ Free Vibration of Mass-Spring System
         xi <input type="text" id="xi" style="width: 60px;" onclick="stop()" oninput="stop()" value=0.01>
         A0 <input type="text" id="A0" style="width: 60px;" onclick="stop()" oninput="stop()" value=150>
         <button id="restart" type="button" onclick="restart()">Restart</button>
+        <button id="stop" type="button" onclick="stop()">Stop</button>
 	</p>
 	<canvas id="plotTimeDisp" width = "578" height="200">
 	</canvas>
@@ -127,4 +128,50 @@ Free Vibration of Mass-Spring System
 
 xi denotes the damping varible :math:`\xi` in the equation of motion :math:`\ddot{x}+2\xi\omega_n\dot{x}+{\omega_n}^2x=0`. :math:`\xi` is supposed to be in the interval :math:`[0,1]`. Systems where :math:`\xi` has values greater than about 0.3 are usually highly damped systems.
 
-A0 is the initial displacement of the mass from the unstretched position of the string which causes the subsequent vibration of the mass around that position.
+A0 is the initial displacement of the mass from the unstretched position of the spring which causes the subsequent vibration of the mass around that position. The equation of motion can be derived using the free body diagram which shows the mass and the forces acting on it. The equilibrium of these forces (:math:`m\ddot{x}-c\dot{x}-kx=0`) gives us the equation of motion.
+
+.. _canvas:
+.. figure:: freeBody.JPG
+    :height: 115px
+    :width: 396 px
+    :scale: 100 %
+    :align: center
+
+    Free body diagram
+
+.. container:: clearer
+
+   .. image :: spacer.png
+
+The damping coefficient c is the force required for unit velocity to occur across the damper. The stiffness k is the force required for a unit extension of the spring. The equation of motion is obtained by dividing the equilibrium equation by m and letting :math:`c/m=2\xi\omega_n,\quad k/m={\omega_n}^2`. :math:`\omega_n` is the angular natural frequency of the system.
+
+The solution of the equation of motion can be sought after by assuming a displacement in the form :math:`x(t)=e^{rt}` where :math:`r` is some parameter possibly complex valued. Inserting the first and second derivatives of that assumed expression in the equation of motion we obtain
+
+.. math::
+	e^{rt}(r^2+2\xi\omega_n r+{\omega_n}^2)=0 
+
+Since :math:`e^{rt}\neq 0` we obtain
+
+.. math::
+	r^2+2\xi\omega_n r+{\omega_n}^2=0 \Rightarrow r_{1,2}=\omega_n(-\xi\pm\sqrt{\xi^2-1})
+
+We know that :math:`\xi` is less than 1 most of the time. Therefore :math:`r_{1,2}=\omega_n(-\xi\pm j\sqrt{1-\xi^2})` where :math:`\quad j=\sqrt{-1}`. Let's coin a new parameter :math:`\omega_d=\omega_n\sqrt{1-\xi^2}` for the damped angular natural frequency of the system. Using this new variable leads to :math:`r_{1,2}=-\xi\omega_n\pm j\omega_d`. Obviously :math:`r_{1,2}` are complex valued which leaves us with two complex valued solutions of the equation of motion :math:`x_1(t)=e^{(-\xi\omega_n+j\omega_d)t},\quad x_2(t)=e^{(-\xi\omega_n-j\omega_d)t}`. These solutions are of little use to describe the motion of an object. Fortunately there is a way around this. According to the theorem of superposition if :math:`x_1(t)` and :math:`x_2(t)` are solutions of the differential equation then any linear combination of them is also a solution. Using this theorem we can obtain real valued solutions by adding and subtracting :math:`x_1(t)` and :math:`x_2(t)` which can actually describe the motion of the mass .  
+
+.. math::
+	x_1(t)=e^{(-\xi\omega_n+j\omega_d)t}=e^{-\xi\omega_nt}e^{j\omega_dt}=e^{-\xi\omega_nt}(\cos{\omega_dt}+j\sin{\omega_dt})
+
+.. math::
+	x_2(t)=e^{(-\xi\omega_n-j\omega_d)t}=e^{-\xi\omega_nt}e^{-j\omega_dt}=e^{-\xi\omega_nt}(\cos{\omega_dt}-j\sin{\omega_dt})
+
+.. math::
+	x_3(t)=\frac{1}{2}[x_1(t)+x_2(t)]=\frac{1}{2}[e^{-\xi\omega_nt}2\cos{\omega_dt}]=e^{-\xi\omega_nt}\cos{\omega_dt}
+
+.. math::
+	x_4(t)=\frac{1}{2i}[x_1(t)-x_2(t)]=\frac{1}{2i}[e^{-\xi\omega_nt}2j\sin{\omega_dt}]=e^{-\xi\omega_nt}\sin{\omega_dt}
+
+The general solution of the equation of motion is 
+
+.. math::
+	x(t)=e^{-\xi\omega_nt}(a_0\cos{\omega_dt}+b_0\sin{\omega_dt})
+
+where :math:`a_0,b_0` are arbitrary constants.
