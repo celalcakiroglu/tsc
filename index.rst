@@ -34,8 +34,6 @@ Biography of Celal Cakiroglu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Education:**
 
-- Ph.D. Structural Engineering, University of Alberta
-
 - MSc. Computational Sciences in Engineering, Technische Universitaet Carolo Wilhelmina zu Braunschweig
 
 - BSc. Civil Engineering, Istanbul Technical University
