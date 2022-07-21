@@ -34,29 +34,19 @@ Biography of Celal Cakiroglu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 **Education:**
 
-- MSc. Computational Sciences in Engineering, Technische Universitaet Carolo Wilhelmina zu Braunschweig
+- PhD Structural Engineering, University of Alberta
 
-- BSc. Civil Engineering, Istanbul Technical University
+- MSc Computational Sciences in Engineering, Technische Universitaet Carolo Wilhelmina zu Braunschweig
+
+- BSc Civil Engineering, Istanbul Technical University
 
 **Professional Service:**
+
+- Assistant Professor of Civil Engineering at the Turkish-German University
 
 - Research and Teaching Assistant at the University of Alberta
 
 - Research Assistant at the German Aerospace Center (master thesis)
-
-**Favourite Books:**
-
-- Stranger in a Strange Land, Robert A. Heinlein
-- The Player of Games, Iain M Banks
-
-**Favourite Movies:**
-
-- Her
-- The Matrix
-
-.. **Favourite Music:**
-
-.. - Morgan Page
 
 
 **How I made this documentation:**
