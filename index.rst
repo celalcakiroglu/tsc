@@ -30,47 +30,14 @@ Contents:
 ..   DigitalFilters.rst
 ..   FourierSeriesAndTransform.rst
 
-Biography of Celal Cakiroglu
+Brief Biography of Celal Cakiroglu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**Education:**
+Celal Cakiroglu is an assistant professor at the Turkish-German University. Celal graduated from the high school of "Istanbul Erkek Lisesi" in 2003 and received his bachelor of science degree in civil engineering from Istanbul Technical University. Celal received his Master of Science degree in computational sciences in engineering from the Technical University of Braunschweig in Germany, and worked at the German Aerospace Center during his master thesis. He received his PhD degree from the University of Alberta, Canada. His research topic at the University of Alberta was the tensile strain capacity of energy pipelines and he worked on the experimental analysis and numerical modelling of steel pipes. In addition to authoring papers on the design and analysis of steel and composite structures, Celal is co-author of the textbook Numerische Methoden Für Ingenieure, mit Anwendungsbeispielen in Python (Springer, 2020).
 
-- MSc. Computational Sciences in Engineering, Technische Universitaet Carolo Wilhelmina zu Braunschweig
-
-- BSc. Civil Engineering, Istanbul Technical University
-
-**Professional Service:**
-
-- Research and Teaching Assistant at the University of Alberta
-
-- Research Assistant at the German Aerospace Center (master thesis)
-
-**Favourite Books:**
-
-- Stranger in a Strange Land, Robert A. Heinlein
-- The Player of Games, Iain M Banks
-
-**Favourite Movies:**
-
-- Her
-- The Matrix
-
-.. **Favourite Music:**
-
-.. - Morgan Page
-
-
-**How I made this documentation:**
-Installing Sphinx and making it work the way you want, linking the git repository with the readthedocs account can be quite tedious. Here are some useful links which explain the procedure
-
-https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/
-
-https://www.youtube.com/watch?v=oJsUvBQyHBs
-
-http://numericjs.com/index.php
 
 Contact Celal_.
 
-.. _Celal: cakirogl@ualberta.ca
+.. _Celal: celalcakiroglu@gmail.com
 
 
 Indices and tables
